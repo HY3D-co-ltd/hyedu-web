@@ -1,59 +1,63 @@
 'use client';
 
-import Slider from '@/components/ui/Slider';
+import Image from 'next/image';
 
-const testimonials = [
-  {
-    quote:
-      '이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다. 교육 받기 전과 비교하면 인생이 바뀐 기분입니다!',
-    author: '참여 학생',
-  },
-  {
-    quote:
-      '4차 산업혁명이라는 것에 대해서 잘 알지 못했는데 이번 캠프를 통해서 알게 되었습니다.',
-    author: '참여 학생',
-  },
-  {
-    quote:
-      '한 가지 기술만 체험할 수 있는게 아니라 다양한 기술을 체험할 수 있어서 좋았어요.',
-    author: '참여 학생',
-  },
+const reviewImages = [
+  '/images/programs/detail/main/comming-class01_01.png',
+  '/images/programs/detail/main/comming-class01_02.png',
+  '/images/programs/detail/main/comming-class01_03.png',
+  '/images/programs/detail/main/comming-class02_01.png',
+  '/images/programs/detail/main/comming-class02_02.png',
+  '/images/programs/detail/main/comming-class02_03.png',
 ];
-
-function QuoteIcon() {
-  return (
-    <svg
-      className="w-10 h-10 text-primary/30 mb-4"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-    </svg>
-  );
-}
 
 export default function TestimonialSection() {
   return (
-    <section className="bg-gray-50 py-16 px-6" aria-label="참여자 후기">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
-          참여자 후기
-        </h2>
-        <Slider autoplay loop slidesPerView={1} spaceBetween={0}>
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-md p-8 md:p-12 text-center mx-2"
-            >
-              <QuoteIcon />
-              <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-              <p className="text-sm font-semibold text-primary">{testimonial.author}</p>
+    <section className="py-16 px-6 bg-gray-50" aria-label="YouTube 및 최신 후기">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* Left: YouTube */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              교육을 받고 꿈이 생겼어요
+            </h2>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/eBueNdGAvGg?rel=0&showinfo=0"
+                title="한양미래연구소 교육 후기"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
-          ))}
-        </Slider>
+            <p className="mt-4 text-gray-600 text-sm leading-relaxed">
+              &ldquo;이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다.
+              교육 받기 전과 비교하면 인생이 바뀐 기분입니다!&rdquo;
+            </p>
+          </div>
+
+          {/* Right: Latest Reviews */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              최신 후기
+            </h2>
+            <div className="grid grid-cols-3 gap-3">
+              {reviewImages.map((src, i) => (
+                <div
+                  key={i}
+                  className="relative aspect-square rounded-lg overflow-hidden shadow-md"
+                >
+                  <Image
+                    src={src}
+                    alt={`최신 후기 ${i + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import HeroSection from '@/components/sections/HeroSection';
-import StatsSection from '@/components/sections/StatsSection';
 import ProgramPreview from '@/components/sections/ProgramPreview';
+import AgeRecommendation from '@/components/sections/AgeRecommendation';
+import StatsSection from '@/components/sections/StatsSection';
 import TestimonialSection from '@/components/sections/TestimonialSection';
-import PartnerSection from '@/components/sections/PartnerSection';
+import FeatureSection from '@/components/sections/FeatureSection';
+import ContactSection from '@/components/sections/ContactSection';
 
 export const metadata: Metadata = {
   title: '한양미래연구소 | AI교육·로봇코딩·자율주행 No.1 체험교실',
@@ -34,10 +36,12 @@ export default async function HomePage({
   return (
     <>
       <HeroSection />
-      <StatsSection />
       <ProgramPreview />
+      <AgeRecommendation />
+      <StatsSection />
       <TestimonialSection />
-      <PartnerSection />
+      <FeatureSection />
+      <ContactSection />
     </>
   );
 }
