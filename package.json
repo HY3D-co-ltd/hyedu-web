@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "npx http-server out -p 3000 -c-1 --cors"
   },
   "dependencies": {
     "firebase": "^11.0.0",

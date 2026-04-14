@@ -22,14 +22,14 @@ const tabData: Record<string, ProgramCard[]> = {
     { image: '/images/programs/detail/main/main-grade01_03.png', category: '메이커 융합', title: '블루투스 스피커 만들기', price: '33,000원', href: '/programs/bluetooth-speaker' },
   ],
   중등: [
-    { image: '/images/programs/detail/main/main-grade02_01.png', category: '피지컬 코딩', title: '마이크로비트 아케이드 게임', price: '28,500원', href: '/programs/microbit-arcade-game' },
-    { image: '/images/programs/detail/main/main-grade02_02.png', category: '인공지능', title: 'AI 음악 프로듀서', price: '24,000원', href: '/programs/ai-music-producer' },
-    { image: '/images/programs/detail/main/main-grade02_03.png', category: 'STEAM', title: 'ChatGPT LED 무드등', price: '45,000원', href: '/programs/chatgpt-led-mood-light' },
+    { image: '/images/programs/detail/main/main-grade02_01.png', category: '피지컬 코딩', title: '마이크로비트로 만드는 아케이드 게임', price: '28,500원', href: '/programs/microbit-arcade-game' },
+    { image: '/images/programs/detail/main/main-grade02_02.png', category: '인공지능', title: 'AI 인공지능 음악 프로듀서', price: '24,000원', href: '/programs/ai-music-producer' },
+    { image: '/images/programs/detail/main/main-grade02_03.png', category: 'STEAM', title: 'ChatGPT로 노래하는 LED 무드등 만들기', price: '45,000원', href: '/programs/chatgpt-led-mood-light' },
   ],
   고등: [
-    { image: '/images/programs/detail/main/main-grade03_01.png', category: '인공지능', title: '빅데이터 인공지능', price: '24,000원', href: '/programs/bigdata-ai' },
-    { image: '/images/programs/detail/main/main-grade03_02.png', category: 'IoT', title: '스마트팜 전문가', price: '99,000원', href: '/programs/smart-farm' },
-    { image: '/images/programs/detail/main/main-grade03_03.png', category: 'STEAM', title: 'ChatGPT LED 무드등', price: '45,000원', href: '/programs/chatgpt-led-mood-light' },
+    { image: '/images/programs/detail/main/main-grade03_01.png', category: '인공지능', title: '빅데이터로 만드는 나만의 인공지능', price: '24,000원', href: '/programs/bigdata-ai' },
+    { image: '/images/programs/detail/main/main-grade03_02.png', category: 'IoT(사물인터넷)', title: '스마트팜 전문가', price: '99,000원', href: '/programs/smart-farm' },
+    { image: '/images/programs/detail/main/main-grade03_03.png', category: 'STEAM', title: 'ChatGPT로 노래하는 LED 무드등 만들기', price: '45,000원', href: '/programs/chatgpt-led-mood-light' },
   ],
 };
 
@@ -39,74 +39,49 @@ export default function AgeRecommendation() {
   const cards = tabData[activeTab];
 
   return (
-    <section className="py-16 px-6 bg-gray-50" aria-label="연령대별 맞춤 교육 추천">
+    <section className="py-10 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <span className="text-sm text-primary font-semibold">연령대별</span>
-          <div className="flex items-center justify-between mt-1">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              맞춤 교육 추천
-            </h2>
-          </div>
+        <div className="text-center mb-5">
+          <span className="text-xs font-semibold text-primary">연령대별</span>
+          <h2 className="text-xl font-bold text-gray-900">맞춤 교육 추천</h2>
         </div>
 
-        {/* Tabs row with "모든 교육 보기" link */}
-        <div className="flex items-center justify-between mb-10">
-          <div className="flex gap-0">
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-sm font-semibold border transition-colors duration-200 first:rounded-l-md last:rounded-r-md ${
-                  activeTab === tab
-                    ? 'bg-primary text-white border-primary'
-                    : 'bg-white text-gray-600 border-gray-300 hover:border-primary hover:text-primary'
+                className={`px-5 py-2 text-sm font-semibold border transition-colors first:rounded-l-md last:rounded-r-md ${
+                  activeTab === tab ? 'bg-primary text-white border-primary' : 'bg-white text-gray-600 border-gray-300 hover:text-primary'
                 }`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          <Link
-            href={`/${locale}/programs`}
-            className="text-sm text-primary font-semibold hover:underline whitespace-nowrap"
-          >
-            모든 교육 보기 &gt;
+          <Link href={`/${locale}/programs`} className="text-sm text-gray-500 hover:text-primary flex items-center gap-1">
+            모든 교육 보기 <span>›</span>
           </Link>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-3 gap-4 mb-5">
           {cards.map((card) => (
-            <Link
-              key={card.title}
-              href={`/${locale}${card.href}`}
-              className="block rounded-xl overflow-hidden shadow-md bg-white hover:shadow-xl transition-shadow duration-300"
-            >
+            <Link key={card.title + card.category} href={`/${locale}${card.href}`} className="block bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-shadow">
               <div className="relative aspect-[4/3]">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={card.image} alt={card.title} fill className="object-contain bg-gray-50" sizes="(max-width: 768px) 33vw, 280px" />
               </div>
-              <div className="p-4">
-                <small className="text-xs text-gray-500">{card.category}</small>
-                <h5 className="text-base font-bold text-gray-900 mt-1 mb-1">{card.title}</h5>
-                <p className="text-sm font-semibold text-primary">{card.price}</p>
+              <div className="p-3">
+                <span className="text-[10px] text-gray-400">{card.category}</span>
+                <h5 className="text-sm font-bold text-gray-900 line-clamp-2">{card.title}</h5>
+                <p className="text-sm font-semibold text-primary mt-1">{card.price}</p>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* CTA Button */}
         <div className="text-center">
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-block bg-primary text-white font-semibold rounded-lg px-8 py-3 hover:bg-primary-dark transition-colors duration-200"
-          >
+          <Link href={`/${locale}/contact`} className="inline-block bg-primary text-white font-semibold rounded px-6 py-2 text-sm hover:bg-primary-dark">
             교육 문의하기
           </Link>
         </div>
