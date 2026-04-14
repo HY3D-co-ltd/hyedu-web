@@ -10,7 +10,7 @@ export const youthClubs: YouthClub[] = [
     descriptionEn: 'Youth club program creating creative works with 3D pens',
     target: ['middle', 'high'],
     price: '29,500원/회기',
-    thumbnail: '/images/programs/3d-pen.png',
+    thumbnail: '/images/programs/detail/youth_club_maker/maker_activity_2_3d_pen.png',
   },
   {
     slug: '3d-printer-modeling',
@@ -21,7 +21,7 @@ export const youthClubs: YouthClub[] = [
     descriptionEn: '3D modeling software and 3D printer creative activities',
     target: ['middle', 'high'],
     price: '22,000원/회기',
-    thumbnail: '/images/programs/3d-printer.png',
+    thumbnail: '/images/programs/detail/youth_club_maker/maker_activity_1_3d_printer.png',
   },
   {
     slug: 'vr-video-designer',
@@ -32,7 +32,7 @@ export const youthClubs: YouthClub[] = [
     descriptionEn: 'Video production club using VR technology',
     target: ['middle', 'high'],
     price: '26,000원/회기',
-    thumbnail: '/images/programs/vr-ar.png',
+    thumbnail: '/images/programs/detail/youth_club_maker/maker_activity_3_vr_movie.png',
   },
   {
     slug: 'drone-basketball',
@@ -43,7 +43,7 @@ export const youthClubs: YouthClub[] = [
     descriptionEn: 'Drone basketball combining drone control and programming',
     target: ['middle', 'high'],
     price: '28,500원/회기',
-    thumbnail: '/images/programs/drone.png',
+    thumbnail: '/images/programs/detail/youth_club_maker/maker_activity_5_drone_steam.png',
   },
   {
     slug: 'autonomous-driving-club',
@@ -54,6 +54,6 @@ export const youthClubs: YouthClub[] = [
     descriptionEn: 'Club learning autonomous driving technology and building self-driving cars',
     target: ['middle', 'high'],
     price: '30,000원/회기',
-    thumbnail: '/images/programs/autonomous-driving.png',
+    thumbnail: '/images/programs/detail/youth_club_coding/maker_activity_7_autonomous_car.png',
   },
 ];

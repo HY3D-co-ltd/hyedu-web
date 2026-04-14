@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { programs } from '@/data/programs';
@@ -147,6 +148,30 @@ export default async function ProgramDetailPage({
           </div>
         </div>
       </section>
+
+      {/* Image Gallery */}
+      {program.images.length > 0 && (
+        <section className="py-14 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {isKo ? '교육 활동 사진' : 'Program Gallery'}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {program.images.map((img, idx) => (
+                <div key={idx} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-sm bg-gray-100">
+                  <Image
+                    src={img}
+                    alt={`${title} ${isKo ? '활동 사진' : 'activity photo'} ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Curriculum */}
       <section className="py-14 px-6 bg-white">

@@ -9,7 +9,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A comprehensive youth camp program experiencing various 4th Industrial Revolution technologies.',
     target: ['elementary', 'middle', 'high'],
     price: '120,000원/일, 300,000원/1박2일, 450,000원/2박3일',
-    thumbnail: '/images/camps/youth-camp.png',
+    thumbnail: '/images/programs/detail/youth_camp_all/youth_camp_maker01.png',
   },
   {
     slug: 'hanyang-3d-makerthon',
@@ -19,7 +19,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A team-based project camp combining 3D printing and maker activities.',
     target: ['middle', 'high'],
     price: '별도 문의',
-    thumbnail: '/images/camps/3d-makerthon.png',
+    thumbnail: '/images/programs/detail/hanyang_convergence_camp/maker_activity_1_3d_printer.png',
   },
   {
     slug: 'hanyang-steam-camp',
@@ -29,7 +29,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A STEAM camp for elementary students integrating Science, Technology, Engineering, Arts, and Mathematics.',
     target: ['elementary'],
     price: '120,000원',
-    thumbnail: '/images/camps/steam-camp.png',
+    thumbnail: '/images/programs/detail/youth_camp_all/youth_camp_steam01.png',
   },
   {
     slug: 'hanyang-startup-ideathon',
@@ -39,7 +39,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A camp for high school students to discover startup ideas and develop business models.',
     target: ['high'],
     price: '별도 문의',
-    thumbnail: '/images/camps/startup-ideathon.png',
+    thumbnail: '/images/programs/detail/youth_camp_all/youth_camp_start01.png',
   },
   {
     slug: 'hanyang-ai-camp',
@@ -49,7 +49,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A camp where students learn AI principles and create AI projects hands-on.',
     target: ['elementary', 'middle', 'high'],
     price: '별도 문의',
-    thumbnail: '/images/camps/ai-camp.png',
+    thumbnail: '/images/programs/detail/youth_camp_all/youth_camp_coding01.png',
   },
   {
     slug: 'hanyang-physical-coding-camp',
@@ -59,7 +59,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A physical computing coding camp combining hardware and software.',
     target: ['elementary', 'middle', 'high'],
     price: '별도 문의',
-    thumbnail: '/images/camps/physical-coding-camp.png',
+    thumbnail: '/images/programs/detail/youth_camp_all/youth_camp_coding02.png',
   },
   {
     slug: 'hanyang-iot-camp',
@@ -69,7 +69,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A camp learning IoT technology and building smart devices.',
     target: ['middle', 'high'],
     price: '385,000원',
-    thumbnail: '/images/camps/iot-camp.png',
+    thumbnail: '/images/programs/detail/hanyang_convergence_camp/edu01_3_1n.png',
   },
   {
     slug: 'ict-smart-farm-camp',
@@ -79,7 +79,7 @@ export const camps: Camp[] = [
     descriptionEn: 'A camp building and operating smart farm systems using ICT technology.',
     target: ['elementary', 'middle', 'high'],
     price: '별도 문의',
-    thumbnail: '/images/camps/smart-farm-camp.png',
+    thumbnail: '/images/programs/detail/hanyang_convergence_camp/program_figure_3_pbl_class.png',
   },
   {
     slug: 'hanyang-unplugged-robot-coding-camp',
@@ -89,6 +89,6 @@ export const camps: Camp[] = [
     descriptionEn: 'A camp developing computational thinking without computers and experiencing robots and block coding.',
     target: ['elementary', 'middle'],
     price: '별도 문의',
-    thumbnail: '/images/camps/unplugged-robot-camp.png',
+    thumbnail: '/images/programs/detail/hanyang_convergence_camp/maker_activity_6_robot_coding.png',
   },
 ];

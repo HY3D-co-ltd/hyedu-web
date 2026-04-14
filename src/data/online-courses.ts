@@ -11,7 +11,7 @@ export const onlineCourses: OnlineCourse[] = [
     type: 'both',
     priceLive: '22,000원',
     priceVideo: '20,000원',
-    thumbnail: '/images/programs/3d-printer.png',
+    thumbnail: '/images/programs/detail/online/maker_activity_1_3d_printer.png',
   },
   {
     slug: 'online-3d-pen',
@@ -22,7 +22,7 @@ export const onlineCourses: OnlineCourse[] = [
     descriptionEn: 'Online class creating works with 3D pen',
     type: 'video',
     priceVideo: '20,000원 (재료비 20,000원 별도)',
-    thumbnail: '/images/programs/3d-pen.png',
+    thumbnail: '/images/programs/detail/online/maker_activity_2_3d_pen.png',
   },
   {
     slug: 'online-ultrasonic-robot',
@@ -34,7 +34,7 @@ export const onlineCourses: OnlineCourse[] = [
     type: 'both',
     priceLive: '30,000원',
     priceVideo: '25,000원',
-    thumbnail: '/images/programs/ultrasonic-robot.png',
+    thumbnail: '/images/programs/detail/online/online_maker03.png',
   },
   {
     slug: 'online-ir-dog-car',
@@ -46,7 +46,7 @@ export const onlineCourses: OnlineCourse[] = [
     type: 'both',
     priceLive: '25,000원',
     priceVideo: '22,000원',
-    thumbnail: '/images/programs/ir-dog-car.png',
+    thumbnail: '/images/programs/detail/online/online_maker04.png',
   },
   {
     slug: 'online-bluetooth-speaker',
@@ -58,7 +58,7 @@ export const onlineCourses: OnlineCourse[] = [
     type: 'both',
     priceLive: '27,000원',
     priceVideo: '22,000원',
-    thumbnail: '/images/programs/bluetooth-speaker.png',
+    thumbnail: '/images/programs/detail/online/online_maker05.png',
   },
   {
     slug: 'online-metaverse',
@@ -69,7 +69,7 @@ export const onlineCourses: OnlineCourse[] = [
     descriptionEn: 'Understanding metaverse concepts and Zepeto platform experience',
     type: 'live',
     priceLive: '25,000원',
-    thumbnail: '/images/programs/metaverse.png',
+    thumbnail: '/images/programs/detail/online/online_coding07.png',
   },
   {
     slug: 'online-4th-revolution',
@@ -81,6 +81,6 @@ export const onlineCourses: OnlineCourse[] = [
     type: 'both',
     priceLive: '22,000원',
     priceVideo: '20,000원',
-    thumbnail: '/images/programs/4th-revolution.png',
+    thumbnail: '/images/programs/detail/online/online_special01.png',
   },
 ];
