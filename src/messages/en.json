@@ -1,0 +1,34 @@
+{
+  "common": {
+    "siteName": "Hanyang Future Lab",
+    "siteDescription": "No.1 Education Platform | Future Technology Experience",
+    "contact": "Contact Us",
+    "learnMore": "Learn More",
+    "home": "Home"
+  },
+  "nav": {
+    "about": "About",
+    "programs": "Experience Classes",
+    "experienceClass": "Experience Class",
+    "youthClub": "Youth Club",
+    "online": "Online Education",
+    "specialLecture": "Special Lectures",
+    "booth": "Maker Booth",
+    "camp": "Camp",
+    "eduRequest": "Apply",
+    "contactUs": "Contact / Apply",
+    "events": "Events",
+    "reviews": "Reviews"
+  },
+  "footer": {
+    "company": "Hi-Starter Inc.",
+    "ceo": "CEO: Lee Jeongwook",
+    "bizNo": "Business Registration: 831-88-01997",
+    "address": "Hanyang Univ. ERICA, 55 Hanyangdaehak-ro, Sangnok-gu, Ansan, Gyeonggi-do",
+    "tel": "TEL: 070-8064-0829",
+    "email": "EMAIL: hyedu0829@gmail.com",
+    "hours": "Weekdays 9AM-6PM (Lunch 12PM-1PM)",
+    "holiday": "Closed on weekends and holidays",
+    "inquiry": "Inquiry: KakaoTalk Channel 'Hanyang Future Lab'"
+  }
+}

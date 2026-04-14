@@ -1,0 +1,34 @@
+{
+  "common": {
+    "siteName": "한양미래연구소",
+    "siteDescription": "No.1 교육 플랫폼 | 미래기술 체험교실",
+    "contact": "문의하기",
+    "learnMore": "자세히 보기",
+    "home": "홈"
+  },
+  "nav": {
+    "about": "소개",
+    "programs": "찾아가는 체험교실",
+    "experienceClass": "체험교실",
+    "youthClub": "청소년 동아리",
+    "online": "온라인 교육",
+    "specialLecture": "전문인 특강",
+    "booth": "체험 부스",
+    "camp": "캠프",
+    "eduRequest": "교육 신청",
+    "contactUs": "교육신청/문의",
+    "events": "대회&행사",
+    "reviews": "교육 후기"
+  },
+  "footer": {
+    "company": "(주)하이스타터",
+    "ceo": "대표자: 이정욱",
+    "bizNo": "사업자등록번호: 831-88-01997",
+    "address": "경기도 안산시 상록구 한양대학로 55 5공학관 창업실",
+    "tel": "TEL: 070-8064-0829",
+    "email": "EMAIL: hyedu0829@gmail.com",
+    "hours": "주중 9시 ~ 18시 (점심시간 12시 ~ 13시)",
+    "holiday": "주말 및 공휴일 휴무",
+    "inquiry": "교육 문의: 카카오톡 채널 '한양미래연구소'"
+  }
+}
