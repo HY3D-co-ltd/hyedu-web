@@ -13,32 +13,32 @@ export default function FeatureSection() {
   return (
     <section className="py-12 px-4 bg-white">
       <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-        <h2 className="text-xl font-bold text-center text-gray-900 mb-8">
+        <h2 className="text-[25px] md:text-[30px] lg:text-[40px] font-bold text-center text-gray-900 mb-8">
           4차산업기술교육 답은 <span className="text-point">한양미래연구소</span>에 있습니다
         </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[40px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]">
           {features.map((feature) => (
-            <div key={feature.title} className="flex flex-col items-center">
-              {/* Feature card with background image */}
-              <div
-                className="relative h-[490px] xl:h-[490px] lg:h-[400px] md:h-[400px] w-full flex flex-col items-center justify-center gap-[40px]"
-                style={{
-                  backgroundImage: 'url(/images/main/feature-bg.png)',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  backgroundSize: 'contain',
-                }}
-              >
+            <div
+              key={feature.title}
+              className="relative w-full aspect-[3/4] flex flex-col items-center justify-center gap-4 p-6 rounded-md overflow-hidden"
+              style={{
+                backgroundImage: 'url(/images/main/feature-bg.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: '100% 100%',
+              }}
+            >
+              <div className="relative w-full flex-1 flex items-center justify-center">
                 <Image
                   src={feature.image}
                   alt={feature.title}
                   width={300}
-                  height={260}
-                  className="h-[260px] lg:h-[200px] md:h-[120px] w-full object-none lg:object-contain md:object-contain"
+                  height={200}
+                  className="w-full max-w-[250px] h-auto object-contain"
                 />
               </div>
-              <h3 className="text-[25px] font-bold text-gray-900 mt-4">{feature.title}</h3>
-              <p className="text-[20px] font-medium text-gray-600 text-center mt-2">{feature.description}</p>
+              <h3 className="text-[20px] lg:text-[25px] font-bold text-gray-900 text-center">{feature.title}</h3>
+              <p className="text-[14px] lg:text-[18px] font-medium text-gray-600 text-center leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>

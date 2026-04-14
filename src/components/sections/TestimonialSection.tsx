@@ -39,9 +39,6 @@ export default function TestimonialSection() {
             <p className="mt-3 text-gray-600 text-sm">
               &ldquo;이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다. 교육 받기 전과 비교하면 인생이 바뀐 기분입니다!&rdquo;
             </p>
-            <Link href={`/${locale}/board/reviews`} className="inline-block mt-2 text-sm text-point font-semibold hover:underline">
-              더보기 &rarr;
-            </Link>
           </div>
 
           {/* Right: Latest Reviews */}
@@ -58,9 +55,6 @@ export default function TestimonialSection() {
                   <Image src={item.image} alt={item.alt} width={300} height={300} className="w-full object-contain" />
                 </Link>
               ))}
-            </div>
-            <div className="text-right mb-3">
-              <Link href={`/${locale}/board/reviews`} className="text-xs text-point hover:underline">자세히보기 &rarr;</Link>
             </div>
 
             {/* Row 2 - comming-class-wrap */}

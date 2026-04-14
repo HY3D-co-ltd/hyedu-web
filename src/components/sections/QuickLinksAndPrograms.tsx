@@ -117,7 +117,7 @@ export default function QuickLinksAndPrograms() {
             {programs.map((prog, i) => (
               <SwiperSlide key={`${prog.href}-${i}`}>
                 <Link href={`/${locale}${prog.href}`} className="block mx-[20px]">
-                  <div className="flex flex-col bg-[#ececeb] rounded-[10px] pt-[15px] min-h-[290px]">
+                  <div className="flex flex-col bg-[#ececeb] rounded-[10px] pt-[15px] h-[290px]">
                     <div className="flex justify-center">
                       <Image
                         src={prog.image}

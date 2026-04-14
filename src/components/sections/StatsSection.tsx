@@ -22,14 +22,14 @@ export default function StatsSection() {
               <p className="text-sm text-gray-500 mt-1">참여인원</p>
             </div>
             <div className="text-center border border-gray-200 rounded-lg px-6 py-4">
-              <p className="text-3xl md:text-4xl font-bold text-point">245개처</p>
+              <p className="text-3xl md:text-4xl font-bold text-point">245개 단체</p>
               <p className="text-sm text-gray-500 mt-1">참여 학교 및 기관</p>
             </div>
           </div>
         </div>
 
         {/* Partner logos - GRID, not scrolling */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-[30px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-[30px] bg-[#e8f5e9] rounded-lg p-6">
           {partnerImages.map((src, i) => (
             <div key={i} className="relative h-14 flex items-center justify-center">
               <Image
