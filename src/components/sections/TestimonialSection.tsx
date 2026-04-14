@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
 
 const reviewImages = [
   '/images/programs/detail/main/comming-class01_01.png',
@@ -12,6 +14,8 @@ const reviewImages = [
 ];
 
 export default function TestimonialSection() {
+  const locale = useLocale();
+
   return (
     <section className="py-16 px-6 bg-gray-50" aria-label="YouTube 및 최신 후기">
       <div className="max-w-6xl mx-auto">
@@ -34,6 +38,12 @@ export default function TestimonialSection() {
               &ldquo;이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다.
               교육 받기 전과 비교하면 인생이 바뀐 기분입니다!&rdquo;
             </p>
+            <Link
+              href={`/${locale}/board/reviews`}
+              className="inline-block mt-3 text-sm text-primary font-semibold hover:underline"
+            >
+              자세히보기 &rarr;
+            </Link>
           </div>
 
           {/* Right: Latest Reviews */}
@@ -56,6 +66,12 @@ export default function TestimonialSection() {
                 </div>
               ))}
             </div>
+            <Link
+              href={`/${locale}/board/reviews`}
+              className="inline-block mt-4 text-sm text-primary font-semibold hover:underline"
+            >
+              자세히보기 &rarr;
+            </Link>
           </div>
         </div>
       </div>

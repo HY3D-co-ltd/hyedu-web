@@ -40,9 +40,17 @@ export default function AgeRecommendation() {
   return (
     <section className="py-16 px-6 bg-gray-50" aria-label="연령대별 맞춤 교육 추천">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
-          연령대별 맞춤 교육 추천
-        </h2>
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            연령대별 맞춤 교육 추천
+          </h2>
+          <Link
+            href={`/${locale}/programs`}
+            className="text-sm text-primary font-semibold hover:underline"
+          >
+            모든 교육 보기 &rarr;
+          </Link>
+        </div>
 
         {/* Tabs */}
         <div className="flex justify-center gap-2 mb-10">
