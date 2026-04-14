@@ -69,68 +69,76 @@ export default function QuickLinksAndPrograms() {
 
   return (
     <section className="py-8 px-4 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-5">
-          {/* LEFT: Quick Links - 가로형 리스트 */}
-          <div className="lg:w-[240px] flex-shrink-0">
-            <div className="flex flex-row flex-wrap lg:flex-col gap-0 bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
-              {quickLinkGroups.map((group, gi) => (
-                <div key={gi} className="border-b border-gray-200 last:border-b-0 px-3 py-2">
-                  <p className="text-xs font-bold text-gray-800 mb-1">{group.title}</p>
-                  <div className="flex flex-wrap gap-x-2 gap-y-0">
-                    {group.links.map((link, li) => (
-                      <Link
-                        key={li}
-                        href={`/${locale}${link.href}`}
-                        className="text-[11px] text-gray-500 hover:text-primary transition-colors whitespace-nowrap"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              <div className="px-3 py-2 bg-gray-100">
-                <Link
-                  href={`/${locale}/about`}
-                  className="flex items-center gap-1 text-xs font-bold text-primary hover:text-primary-dark"
-                >
-                  교육 소개 바로 가기 →
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT: BEST Programs Slider */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded">BEST</span>
-              <h2 className="text-lg font-bold text-gray-900">인기 프로그램</h2>
-            </div>
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              spaceBetween={12}
-              slidesPerView={1}
-              breakpoints={{ 480: { slidesPerView: 2 }, 768: { slidesPerView: 3 }, 1024: { slidesPerView: 4 } }}
+      <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
+        {/* Quick Links - horizontal rows stacked vertically */}
+        <div className="mb-8">
+          {quickLinkGroups.map((group, gi) => (
+            <div
+              key={gi}
+              className="flex flex-col sm:flex-row gap-2 sm:gap-[60px] py-2 border-b border-gray-200 last:border-b-0"
             >
-              {programs.map((prog, i) => (
-                <SwiperSlide key={`${prog.href}-${i}`}>
-                  <Link href={`/${locale}${prog.href}`} className="block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="relative aspect-[4/3]">
-                      <Image src={prog.image} alt={prog.title} fill className="object-cover" />
-                    </div>
-                    <div className="p-2">
-                      <h5 className="text-xs font-bold text-gray-900 line-clamp-2 mb-0.5">{prog.title}</h5>
-                      <span className="text-[10px] text-gray-400">{prog.category}</span>
-                      <p className="text-xs font-semibold text-primary mt-0.5">{prog.price}</p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+              <p className="text-[20px] font-bold text-gray-900 w-auto sm:w-[145px] shrink-0 leading-[1em]">
+                {group.title}
+              </p>
+              <ul className="flex flex-wrap items-center gap-[15px] sm:gap-[20px]">
+                {group.links.map((link, li) => (
+                  <li key={li}>
+                    <Link
+                      href={`/${locale}${link.href}`}
+                      className={`text-[15px] font-medium ${
+                        li === group.links.length - 1
+                          ? 'text-point'
+                          : 'text-[#333]'
+                      } hover:underline`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Program Slider - BELOW the links (con02) */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="bg-point text-white text-xs font-bold px-2 py-0.5 rounded">BEST</span>
+            <h2 className="text-lg font-bold text-gray-900">인기 프로그램</h2>
           </div>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            navigation
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            spaceBetween={0}
+            slidesPerView={1}
+            breakpoints={{ 480: { slidesPerView: 2 }, 768: { slidesPerView: 3 }, 1024: { slidesPerView: 4 } }}
+          >
+            {programs.map((prog, i) => (
+              <SwiperSlide key={`${prog.href}-${i}`}>
+                <Link href={`/${locale}${prog.href}`} className="block mx-[20px]">
+                  <div className="flex flex-col bg-[#ececeb] rounded-[10px] pt-[15px] min-h-[290px]">
+                    <div className="flex justify-center">
+                      <Image
+                        src={prog.image}
+                        alt={prog.title}
+                        width={200}
+                        height={130}
+                        className="w-[200px] h-[130px] object-contain"
+                      />
+                    </div>
+                    <div className="text-center p-4">
+                      <h5 className="text-[20px] font-bold text-[#333] mt-[25px] mb-[7px] line-clamp-2">
+                        {prog.title}
+                      </h5>
+                      <p className="text-[15px] font-bold text-[#777]">{prog.category}</p>
+                      <p className="text-[20px] font-bold text-point mt-2">{prog.price}</p>
+                    </div>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>

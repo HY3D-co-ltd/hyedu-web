@@ -12,26 +12,33 @@ const features = [
 export default function FeatureSection() {
   return (
     <section className="py-12 px-4 bg-white">
-      <div className="max-w-5xl mx-auto">
+      <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
         <h2 className="text-xl font-bold text-center text-gray-900 mb-8">
-          4차산업기술교육 답은 <span className="text-primary">한양미래연구소</span>에 있습니다
+          4차산업기술교육 답은 <span className="text-point">한양미래연구소</span>에 있습니다
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[40px]">
           {features.map((feature) => (
-            <div key={feature.title} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
-              <div className="relative w-full">
+            <div key={feature.title} className="flex flex-col items-center">
+              {/* Feature card with background image */}
+              <div
+                className="relative h-[490px] xl:h-[490px] lg:h-[400px] md:h-[400px] w-full flex flex-col items-center justify-center gap-[40px]"
+                style={{
+                  backgroundImage: 'url(/images/main/feature-bg.png)',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'contain',
+                }}
+              >
                 <Image
                   src={feature.image}
                   alt={feature.title}
-                  width={320}
-                  height={200}
-                  className="w-full h-auto"
+                  width={300}
+                  height={260}
+                  className="h-[260px] lg:h-[200px] md:h-[120px] w-full object-none lg:object-contain md:object-contain"
                 />
               </div>
-              <div className="p-3">
-                <h3 className="text-sm font-bold text-gray-900 mb-1">{feature.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{feature.description}</p>
-              </div>
+              <h3 className="text-[25px] font-bold text-gray-900 mt-4">{feature.title}</h3>
+              <p className="text-[20px] font-medium text-gray-600 text-center mt-2">{feature.description}</p>
             </div>
           ))}
         </div>

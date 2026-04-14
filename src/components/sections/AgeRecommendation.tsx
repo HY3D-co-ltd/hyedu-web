@@ -40,48 +40,71 @@ export default function AgeRecommendation() {
 
   return (
     <section className="py-10 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-5">
-          <span className="text-xs font-semibold text-primary">연령대별</span>
-          <h2 className="text-xl font-bold text-gray-900">맞춤 교육 추천</h2>
-        </div>
-
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 text-sm font-semibold border transition-colors first:rounded-l-md last:rounded-r-md ${
-                  activeTab === tab ? 'bg-primary text-white border-primary' : 'bg-white text-gray-600 border-gray-300 hover:text-primary'
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+      <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
+        <div className="relative mb-6">
+          <div className="text-center mb-5">
+            <span className="text-xs font-semibold text-point">연령대별</span>
+            <h2 className="text-xl font-bold text-gray-900">맞춤 교육 추천</h2>
           </div>
-          <Link href={`/${locale}/programs`} className="text-sm text-gray-500 hover:text-primary flex items-center gap-1">
-            모든 교육 보기 <span>›</span>
+
+          {/* Tabs - pill style */}
+          <div className="flex justify-center mb-4">
+            <div className="flex w-fit bg-[#ddd] py-[10px] px-[20px] rounded-[30px]">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-[35px] py-[5px] rounded-[20px] text-[18px] font-semibold transition-colors ${
+                    activeTab === tab
+                      ? 'bg-[#333] text-white'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* "모든 교육 보기" - absolute right top */}
+          <Link
+            href={`/${locale}/programs`}
+            className="absolute right-0 top-0 text-sm text-gray-500 hover:text-point flex items-center gap-1"
+          >
+            모든 교육 보기 <span>&rsaquo;</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-5">
+        {/* Tab content - 3 col grid, each item is horizontal (image left, info right) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-[60px] pt-[35px]">
           {cards.map((card) => (
-            <Link key={card.title + card.category} href={`/${locale}${card.href}`} className="block bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-shadow">
-              <div className="relative aspect-[4/3]">
-                <Image src={card.image} alt={card.title} fill className="object-contain bg-gray-50" sizes="(max-width: 768px) 33vw, 280px" />
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] text-gray-400">{card.category}</span>
-                <h5 className="text-sm font-bold text-gray-900 line-clamp-2">{card.title}</h5>
-                <p className="text-sm font-semibold text-primary mt-1">{card.price}</p>
+            <Link
+              key={card.title + card.category}
+              href={`/${locale}${card.href}`}
+              className="flex gap-[20px] items-start hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src={card.image}
+                alt={card.title}
+                width={95}
+                height={95}
+                className="w-[95px] h-[95px] object-contain shrink-0"
+              />
+              <div>
+                <span className="text-[15px] font-bold text-[#777]">{card.category}</span>
+                <h5 className="text-[20px] font-bold text-[#333] my-[10px] leading-tight">{card.title}</h5>
+                <p className="text-[18px] font-bold text-point">{card.price}</p>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="text-center">
-          <Link href={`/${locale}/contact`} className="inline-block bg-primary text-white font-semibold rounded px-6 py-2 text-sm hover:bg-primary-dark">
+        {/* CTA button */}
+        <div className="flex justify-center">
+          <Link
+            href={`/${locale}/contact`}
+            className="block w-[200px] py-[10px] bg-[#333] text-white text-[20px] font-bold text-center rounded-[30px] hover:bg-[#222] transition-colors"
+          >
             교육 문의하기
           </Link>
         </div>
