@@ -1,43 +1,105 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
-import { youthClubs } from '@/data/youth-clubs';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
-import { YouthClub } from '@/types';
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  await params;
   return {
-    title:
-      locale === 'ko'
-        ? '청소년 동아리 | 로봇코딩·메이커·STEAM 동아리'
-        : 'Youth Clubs | Robot Coding · Maker · STEAM Clubs',
+    title: '청소년 동아리 | 로봇코딩·메이커·STEAM 동아리',
     description:
-      locale === 'ko'
-        ? '청소년 동아리 프로그램: 3D펜 디자이너, 3D프린터 모델링, VR 영상, 드론 농구, 자율주행자동차 동아리. 중·고등학생 대상 창의융합 동아리 교육.'
-        : 'Youth club programs: 3D pen designer, 3D printer modeling, VR video, drone basketball, autonomous driving clubs for middle and high school students.',
-    keywords:
-      locale === 'ko'
-        ? ['청소년 동아리', '로봇코딩 동아리', '메이커 동아리', 'STEAM 동아리', '창업 동아리', '3D프린팅 동아리', '드론 동아리', 'VR 동아리']
-        : ['youth club', 'robot coding club', 'maker club', 'STEAM club', 'startup club'],
+      '청소년 동아리 프로그램: 3D펜 디자이너, 3D프린터 모델링, VR 영상, 드론 농구, 자율주행자동차 동아리. 각 지역별 청소년 수련관, 학교, 문화센터 등의 교육기관에 방문하여 첨단 장비와 미래기술을 활용한 수준별 체험 프로그램.',
+    keywords: [
+      '청소년 동아리',
+      '로봇코딩 동아리',
+      '메이커 동아리',
+      'STEAM 동아리',
+      '창업 동아리',
+      '3D프린팅 동아리',
+      '드론 동아리',
+      'VR 동아리',
+    ],
   };
 }
 
-const categoryLabels: Record<YouthClub['category'], { ko: string; en: string }> = {
-  maker: { ko: '메이커', en: 'Maker' },
-  coding: { ko: '코딩', en: 'Coding' },
-  steam: { ko: 'STEAM', en: 'STEAM' },
-  startup: { ko: '창업', en: 'Startup' },
-};
+type Category = 'all' | 'maker' | 'coding' | 'steam' | 'startup';
 
-const targetLabels: Record<string, { ko: string; en: string }> = {
-  elementary: { ko: '초등학생', en: 'Elementary' },
-  middle: { ko: '중학생', en: 'Middle School' },
-  high: { ko: '고등학생', en: 'High School' },
-};
+interface ClubProgram {
+  category: 'maker' | 'coding' | 'steam' | 'startup';
+  categoryLabel: string;
+  title: string;
+  subtitle: string;
+  target: string;
+  output: string;
+  price: string;
+  image: string;
+}
+
+const programs: ClubProgram[] = [
+  {
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    title: '3D펜 디자이너',
+    subtitle: 'Tinker CAD를 활용한 3D모델링 실습',
+    target: '초등/중등/고등/성인',
+    output: '3D펜 창작품',
+    price: '1회기 1인 29,500원',
+    image: '/images/programs/maker_activity_2_3d_pen.png',
+  },
+  {
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    title: '3D프린터 모델링 전문가',
+    subtitle: '4차산업혁명 직업 체험 교실',
+    target: '초등/중등/고등/성인',
+    output: '3D모델링 파일',
+    price: '1회기 1인 22,000원',
+    image: '/images/programs/maker_activity_1_3d_printer.png',
+  },
+  {
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    title: 'VR 영상 디자이너',
+    subtitle: '4차산업혁명 직업 체험 교실',
+    target: '초등/중등',
+    output: 'VR 콘텐츠',
+    price: '1회기 1인 26,000원',
+    image: '/images/programs/maker_activity_3_vr_movie.png',
+  },
+  {
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    title: '드론 농구 전문가',
+    subtitle: '4차산업혁명 직업 체험 교실',
+    target: '초등/중등/고등/성인',
+    output: '-',
+    price: '1회기 1인 28,500원',
+    image: '/images/programs/maker_activity_5_drone_steam.png',
+  },
+  {
+    category: 'coding',
+    categoryLabel: '코딩 교육',
+    title: '자율주행자동차 엔지니어',
+    subtitle: '4차산업혁명 직업 체험 교실',
+    target: '중등/고등/성인',
+    output: '자율주행자동차 주행 알고리즘',
+    price: '1회기 1인 30,000원',
+    image: '/images/programs/maker_activity_7_autonomous_car.png',
+  },
+];
+
+const categoryTabs: { key: Category; label: string }[] = [
+  { key: 'all', label: 'ALL' },
+  { key: 'maker', label: '메이커 융합 교육' },
+  { key: 'coding', label: '코딩 교육' },
+  { key: 'steam', label: 'STEAM 교육' },
+  { key: 'startup', label: '창업 교육' },
+];
 
 export default async function YouthClubPage({
   params,
@@ -46,124 +108,118 @@ export default async function YouthClubPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const isKo = locale === 'ko';
-
-  const categories: YouthClub['category'][] = ['maker', 'coding', 'steam', 'startup'];
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: isKo ? '홈' : 'Home', href: `/${locale}` },
-          { name: isKo ? '청소년 동아리' : 'Youth Clubs', href: `/${locale}/youth-club` },
+          { name: '홈', href: `/${locale}` },
+          { name: '청소년 동아리', href: `/${locale}/youth-club` },
         ]}
       />
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-emerald-600 to-teal-500 py-24 px-6 text-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-widest opacity-80 mb-3">
-            {isKo ? '청소년 동아리' : 'Youth Clubs'}
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            {isKo ? '청소년 동아리' : 'Youth Club Programs'}
+      {/* Hero Section */}
+      <section className="bg-[#f8f9fa] py-16 md:py-20 border-b border-gray-200">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-5">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            청소년 동아리 <span className="text-point">(장회기)</span>
           </h1>
-          <p className="text-xl opacity-90">
-            {isKo
-              ? '창의·융합·도전으로 성장하는 청소년 동아리 프로그램'
-              : 'Youth club programs for creative, convergent, and challenging growth'}
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-3xl">
+            각 지역별 청소년 수련관, 학교, 문화센터 등의 교육기관에 방문하여
+            첨단 장비와 미래기술을 활용한 수준별 체험 프로그램
           </p>
         </div>
       </section>
 
-      {/* Category sections */}
-      {categories.map((category) => {
-        const clubsInCategory = youthClubs.filter((c) => c.category === category);
-        if (clubsInCategory.length === 0) return null;
-        const label = categoryLabels[category];
+      {/* Category Tabs */}
+      <section className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-5">
+          <nav className="flex gap-1 overflow-x-auto py-3 scrollbar-hide" aria-label="프로그램 카테고리">
+            {categoryTabs.map((tab) => (
+              <span
+                key={tab.key}
+                className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-medium transition-colors cursor-default ${
+                  tab.key === 'all'
+                    ? 'bg-point text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {tab.label}
+              </span>
+            ))}
+          </nav>
+        </div>
+      </section>
 
-        return (
-          <section
-            key={category}
-            className="py-16 px-6 even:bg-gray-50 odd:bg-white"
-            aria-label={isKo ? label.ko : label.en}
-          >
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                  {isKo ? label.ko : label.en}
-                </h2>
-                <span className="px-3 py-1 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-700">
-                  {clubsInCategory.length}{isKo ? '개' : ' programs'}
-                </span>
-              </div>
+      {/* Program Cards */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {programs.map((program) => (
+              <article
+                key={program.title}
+                className="rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group"
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                  <Image
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {/* Category Badge */}
+                  <span className="absolute top-3 left-3 bg-point text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {program.categoryLabel}
+                  </span>
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {clubsInCategory.map((club) => (
-                  <article
-                    key={club.slug}
-                    className="rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
-                  >
-                    {/* Thumbnail placeholder */}
-                    <div className="h-40 bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
-                      <span className="text-4xl">🔬</span>
+                {/* Content */}
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">
+                    {program.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-4">
+                    {program.subtitle}
+                  </p>
+
+                  <div className="space-y-2 text-sm">
+                    <div className="flex">
+                      <span className="text-gray-500 w-16 flex-shrink-0">대상</span>
+                      <span className="text-gray-800">{program.target}</span>
                     </div>
-
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                          {isKo ? label.ko : label.en}
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">
-                        {isKo ? club.title : club.titleEn}
-                      </h3>
-
-                      <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                        {isKo ? club.description : club.descriptionEn}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {club.target.map((t) => (
-                          <span
-                            key={t}
-                            className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600"
-                          >
-                            {isKo ? targetLabels[t].ko : targetLabels[t].en}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="pt-3 border-t border-gray-100">
-                        <span className="text-sm font-semibold text-emerald-600">{club.price}</span>
-                      </div>
+                    <div className="flex">
+                      <span className="text-gray-500 w-16 flex-shrink-0">산출물</span>
+                      <span className="text-gray-800">{program.output}</span>
                     </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-        );
-      })}
+                    <div className="flex">
+                      <span className="text-gray-500 w-16 flex-shrink-0">교육비용</span>
+                      <span className="font-semibold text-point">{program.price}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* CTA */}
-      <section className="py-16 px-6 bg-gradient-to-br from-emerald-600 to-teal-500 text-white text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            {isKo ? '동아리 신청 문의' : 'Club Inquiry'}
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 bg-point">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-5 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            교육 신청하기
           </h2>
-          <p className="text-lg opacity-90 mb-8">
-            {isKo
-              ? '학교·기관 단체 신청은 카카오톡 또는 전화로 문의해 주세요.'
-              : 'For group applications from schools or institutions, contact us via KakaoTalk or phone.'}
+          <p className="text-white/80 text-base md:text-lg mb-8 max-w-xl mx-auto">
+            학교·기관 단체 신청은 카카오톡 또는 전화로 문의해 주세요.
           </p>
-          <a
+          <Link
             href={`/${locale}/contact`}
-            className="inline-block bg-white text-emerald-700 font-bold px-8 py-3 rounded-full hover:bg-emerald-50 transition-colors duration-200"
+            className="inline-block bg-white text-point font-bold px-8 py-3.5 rounded-full hover:bg-gray-100 transition-colors duration-200 text-base"
           >
-            {isKo ? '문의하기' : 'Contact Us'}
-          </a>
+            교육 신청하기
+          </Link>
         </div>
       </section>
     </>
