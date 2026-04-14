@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import './globals.css';
 
 export function generateStaticParams() {
@@ -26,9 +28,15 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        {/* GTM script placeholder — insert Google Tag Manager snippet here */}
+        {/* Naver WCS script placeholder — insert Naver Web Analytics snippet here */}
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Header />
+          <main>{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
