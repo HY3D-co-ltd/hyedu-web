@@ -1,0 +1,60 @@
+import { Booth } from '@/types';
+
+export const booths: Booth[] = [
+  {
+    slug: '3d-printing-booth',
+    title: '3D프린팅 체험 부스',
+    titleEn: '3D Printing Experience Booth',
+    description: '디자인씽킹을 통한 3D 창작품 만들기 체험 부스입니다. 3D 모델링과 프린팅 과정을 직접 경험합니다.',
+    descriptionEn: 'An experience booth for creating 3D works through design thinking. Directly experience 3D modeling and printing processes.',
+    thumbnail: '/images/booths/3d-printing.png',
+  },
+  {
+    slug: '3d-pen-booth',
+    title: '3D펜 체험 부스 - 나의 인생 좌우명',
+    titleEn: '3D Pen Booth - My Life Motto',
+    description: '3D펜을 활용하여 나만의 인생 좌우명을 입체적으로 표현하는 체험 부스입니다.',
+    descriptionEn: 'An experience booth where you express your life motto in 3D using a 3D pen.',
+    thumbnail: '/images/booths/3d-pen.png',
+  },
+  {
+    slug: 'vr-booth',
+    title: 'VR 체험 부스 - 나만의 프로필 영상 제작',
+    titleEn: 'VR Booth - My Profile Video Production',
+    description: 'VR 기술을 활용하여 나만의 프로필 영상을 제작하는 체험 부스입니다.',
+    descriptionEn: 'An experience booth where you create your own profile video using VR technology.',
+    thumbnail: '/images/booths/vr.png',
+  },
+  {
+    slug: 'ar-booth',
+    title: 'AR 체험 부스 - 인터렉티브 영상 콘텐츠 제작',
+    titleEn: 'AR Booth - Interactive Video Content Creation',
+    description: 'AR 기술로 인터렉티브 영상 콘텐츠를 제작하는 체험 부스입니다.',
+    descriptionEn: 'An experience booth creating interactive video content with AR technology.',
+    thumbnail: '/images/booths/ar.png',
+  },
+  {
+    slug: 'drone-booth',
+    title: '드론 체험 부스 - STEAM 교육',
+    titleEn: 'Drone Booth - STEAM Education',
+    description: '드론의 원리를 배우고 직접 조종해보는 STEAM 교육 체험 부스입니다.',
+    descriptionEn: 'A STEAM education booth where you learn drone principles and practice piloting.',
+    thumbnail: '/images/booths/drone.png',
+  },
+  {
+    slug: 'robot-coding-booth',
+    title: '로봇 코딩 체험 부스',
+    titleEn: 'Robot Coding Experience Booth',
+    description: '로봇을 코딩으로 제어하며 프로그래밍의 재미를 느끼는 체험 부스입니다.',
+    descriptionEn: 'An experience booth where you control robots with coding and enjoy programming.',
+    thumbnail: '/images/booths/robot-coding.png',
+  },
+  {
+    slug: 'autonomous-driving-booth',
+    title: '자율주행자동차 체험 부스',
+    titleEn: 'Autonomous Driving Car Experience Booth',
+    description: '자율주행 기술을 체험하고 미래 교통 기술을 알아보는 체험 부스입니다.',
+    descriptionEn: 'An experience booth where you explore autonomous driving technology and future transportation.',
+    thumbnail: '/images/booths/autonomous-driving.png',
+  },
+];
