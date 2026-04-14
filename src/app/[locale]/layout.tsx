@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Popup from '@/components/layout/Popup';
 import { OrganizationJsonLd } from '@/components/seo/JsonLd';
 import './globals.css';
 
@@ -39,6 +40,7 @@ export default async function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <Popup />
         </NextIntlClientProvider>
       </body>
     </html>
