@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
 import { history } from '@/data/history';
-import { partners } from '@/data/partners';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 export async function generateMetadata({
@@ -62,64 +61,6 @@ const coreValues = [
   },
 ];
 
-const programs = [
-  {
-    title: '한양청소년캠프',
-    image: '/images/main/hyedu_program_4_campus_tour.png',
-    target: '창업 메이커를 꿈꾸는 초·중·고등학생',
-    duration: '일일캠프 | 1박2일 | 2박3일',
-    price: '1인 120,000원~450,000원',
-  },
-  {
-    title: '찾아가는 체험교실(1회기)',
-    image: '/images/main/hyedu_program_2_visit_class.png',
-    target: '창업 메이커를 꿈꾸는 초·중·고등학생, 성인',
-    duration: '1회 2교시(90-100분) | 3교시(120-150분)',
-    price: '1인 22,000원~프로그램별 상이',
-  },
-  {
-    title: '찾아가는 체험교실(장회기)',
-    image: '/images/about/company01_7.jpg',
-    target: '창업 메이커를 꿈꾸는 초·중·고등학생, 성인',
-    duration: '2회 이상 (프로그램별 상이)',
-    price: '1인 22,000원~프로그램별 상이',
-  },
-  {
-    title: '4차산업혁명 특강',
-    image: '/images/about/introduce_4_4th_industrial_lecture.jpg',
-    target: '4차산업혁명 시대를 살아가는 학생, 교사, 학부모',
-    duration: '1회 60-100분',
-    price: '1인 22,000원 (50인 이상 단체는 별도 문의)',
-  },
-  {
-    title: '메이커동아리',
-    image: '/images/about/company01_8.jpg',
-    target: '창업 메이커를 꿈꾸는 초·중·고등학생',
-    duration: '2회기 이상 (1회기 2교시(90-100분) | 3교시(120-150분))',
-    price: '1인 22,000원~프로그램별 상이',
-  },
-  {
-    title: '메이커 부스 운영',
-    image: '/images/main/hyedu_program_3_maker_booth.png',
-    target: '특별한 행사, 축제를 기획하는 학교·지자체',
-    duration: '별도 문의',
-    price: '200만원~별도 문의',
-  },
-  {
-    title: '청소년 창업 교실',
-    image: '/images/about/introduce_7_entrepreneurship_class.jpg',
-    target: '미래의 CEO를 꿈꾸는 초·중·고등학생',
-    duration: '8회기 (1회기 90분)',
-    price: '1인 160,000원 (VAT별도)',
-  },
-  {
-    title: '나의 창업 이야기 (CEO 특강)',
-    image: '/images/about/introduce_8_ceo_lecture.jpg',
-    target: '미래의 CEO를 꿈꾸는 중·고등학생',
-    duration: '1회 100-120분',
-    price: '1인 22,000원 (50인 이상 단체는 별도 문의)',
-  },
-];
 
 export default async function AboutPage({
   params,
@@ -270,9 +211,12 @@ export default async function AboutPage({
       {/* 5. 핵심 가치 */}
       <section className="py-16 md:py-20 px-6 bg-gray-50" aria-label="핵심 가치">
         <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-2">
             핵심 가치
           </h2>
+          <p className="text-lg md:text-xl font-semibold text-center text-gray-600 mb-10">
+            기술기반 미래인재육성
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {coreValues.map((value) => (
               <div
@@ -301,97 +245,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* 6. 프로그램 소개 */}
-      <section className="py-16 md:py-20 px-6 bg-white" aria-label="프로그램 소개">
-        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
-            프로그램 소개
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {programs.map((program) => (
-              <div
-                key={program.title}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden border border-gray-100"
-              >
-                <div className="aspect-[4/3] relative">
-                  <Image
-                    src={program.image}
-                    alt={program.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4 space-y-2">
-                  <h3 className="text-base font-bold text-gray-900">
-                    {program.title}
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    <span className="font-semibold">대상:</span> {program.target}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    <span className="font-semibold">기간:</span> {program.duration}
-                  </p>
-                  <p className="text-sm font-semibold text-point">
-                    {program.price}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. 교육 현황 */}
-      <section className="py-16 md:py-20 px-6 bg-point text-white" aria-label="교육 현황">
-        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-            교육 현황
-          </h2>
-          <p className="text-center text-lg md:text-xl mb-10 opacity-90">
-            한양 미래 연구소는 지금까지 총 <strong className="text-2xl md:text-3xl">17,150명</strong>의 학생들과 함께했습니다.
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-            <div className="flex gap-8 md:gap-16">
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold">17,150<span className="text-xl">명</span></p>
-                <p className="text-sm mt-2 opacity-80">참여 인원</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold">245<span className="text-xl">개처</span></p>
-                <p className="text-sm mt-2 opacity-80">참여 학교·기관</p>
-              </div>
-            </div>
-            <div className="w-full md:w-auto max-w-[400px]">
-              <Image
-                src="/images/about/company01_3.png"
-                alt="교육 현황"
-                width={400}
-                height={280}
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. 협력 기관 */}
-      <section className="py-16 md:py-20 px-6 bg-gray-50" aria-label="협력 기관">
-        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
-            협력 기관
-          </h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-            {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="flex items-center justify-center rounded-lg border border-gray-200 bg-white px-2 py-3 text-xs md:text-sm text-gray-600 font-medium text-center hover:border-point hover:text-point transition-colors duration-200"
-              >
-                {partner.name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 이하 프로그램소개, 교육현황, 협력기관 섹션은 메인에서 이미 표시하므로 제거 */}
     </>
   );
 }
