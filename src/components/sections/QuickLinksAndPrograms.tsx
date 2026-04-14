@@ -57,10 +57,6 @@ const quickLinkGroups: QuickLinkGroup[] = [
       { label: '전체 보기', href: '/special-lecture' },
     ],
   },
-  {
-    title: '교육 소개 바로 가기',
-    links: [{ label: '교육 소개 바로 가기 →', href: '/about' }],
-  },
 ];
 
 const programs = [
@@ -122,39 +118,40 @@ export default function QuickLinksAndPrograms() {
     <section className="py-10 px-6 bg-white" aria-label="바로가기 및 인기 프로그램">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* LEFT: Quick Links */}
-          <div className="lg:w-[280px] flex-shrink-0">
-            <div className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+          {/* LEFT: Quick Links Sidebar */}
+          <div className="lg:w-[260px] flex-shrink-0">
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
               {quickLinkGroups.map((group, gi) => (
-                <div key={gi} className="border-b border-gray-200 last:border-b-0">
-                  <details className="group">
-                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors text-sm font-bold text-gray-800">
-                      {group.title}
-                      {group.links.length > 1 && (
-                        <svg
-                          className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      )}
-                    </summary>
-                    <div className="px-4 pb-3 space-y-1">
-                      {group.links.map((link, li) => (
+                <div key={gi} className="link-wrap border-b border-gray-100 last:border-b-0 px-4 py-3">
+                  <p className="text-sm font-bold text-gray-800 border-l-[3px] border-primary pl-2 mb-2">
+                    {group.title}
+                  </p>
+                  <ul className="space-y-1 pl-3">
+                    {group.links.map((link, li) => (
+                      <li key={li}>
                         <Link
-                          key={li}
                           href={`/${locale}${link.href}`}
                           className="block text-xs text-gray-500 hover:text-primary transition-colors py-0.5"
                         >
                           {link.label}
                         </Link>
-                      ))}
-                    </div>
-                  </details>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
+              {/* Direct link: 교육 소개 바로 가기 */}
+              <div className="px-4 py-3 bg-gray-50">
+                <Link
+                  href={`/${locale}/about`}
+                  className="flex items-center justify-between text-sm font-bold text-primary hover:text-primary-dark transition-colors"
+                >
+                  <span>교육 소개 바로 가기</span>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -188,12 +185,12 @@ export default function QuickLinksAndPrograms() {
                       />
                     </div>
                     <div className="p-3">
-                      <span className="inline-block text-xs font-semibold text-white bg-primary rounded-full px-3 py-0.5 mb-1">
-                        {prog.category}
-                      </span>
-                      <h3 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2">
+                      <h5 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2">
                         {prog.title}
-                      </h3>
+                      </h5>
+                      <small className="inline-block text-xs text-gray-500 mb-1">
+                        {prog.category}
+                      </small>
                       <p className="text-sm font-semibold text-primary">{prog.price}</p>
                     </div>
                   </Link>
