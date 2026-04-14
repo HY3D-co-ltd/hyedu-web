@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
-import { onlineCourses } from '@/data/online-courses';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
-import { OnlineCourse } from '@/types';
 
 export async function generateMetadata({
   params,
@@ -26,17 +25,98 @@ export async function generateMetadata({
   };
 }
 
-const categoryLabels: Record<OnlineCourse['category'], { ko: string; en: string }> = {
-  maker: { ko: '메이커 융합', en: 'Maker Convergence' },
-  coding: { ko: '코딩', en: 'Coding' },
-  special: { ko: '특강', en: 'Special Lectures' },
-};
+type Category = 'all' | 'maker' | 'coding' | 'special';
 
-const typeLabels: Record<OnlineCourse['type'], { ko: string; en: string; color: string }> = {
-  live: { ko: '실시간', en: 'Live', color: 'bg-blue-100 text-blue-700' },
-  video: { ko: '영상', en: 'Video', color: 'bg-purple-100 text-purple-700' },
-  both: { ko: '실시간+영상', en: 'Live+Video', color: 'bg-orange-100 text-orange-700' },
-};
+interface CourseItem {
+  title: string;
+  category: Category;
+  categoryLabel: string;
+  target: string;
+  deliverable: string;
+  priceLive?: string;
+  priceVideo?: string;
+  priceNote?: string;
+  image: string;
+}
+
+const courses: CourseItem[] = [
+  {
+    title: '3D프린팅 전문가',
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    target: '초등/중등/고등',
+    deliverable: '3D모델링 파일',
+    priceLive: '실시간 1인 22,000원',
+    priceVideo: '동영상 1인 20,000원',
+    image: '/images/online/maker_activity_1_3d_printer.png',
+  },
+  {
+    title: '3D펜 디자이너',
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    target: '초등/중등/고등',
+    deliverable: '3D펜, 3D펜 창작품',
+    priceVideo: '동영상 제공 1인 20,000원',
+    priceNote: '(3D 펜 재료비 20,000원 별도)',
+    image: '/images/online/maker_activity_2_3d_pen.png',
+  },
+  {
+    title: '초음파 센서로 "로봇 쓰레기통" 만들기',
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    target: '초등/중등',
+    deliverable: '로봇 쓰레기통',
+    priceLive: '실시간 1인 30,000원',
+    priceVideo: '동영상 제공 1인 25,000원',
+    image: '/images/online/online_maker03.png',
+  },
+  {
+    title: '적외선 센서로 "강아지 자동차" 만들기',
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    target: '초등/중등',
+    deliverable: '강아지 자동차',
+    priceLive: '실시간 1인 25,000원',
+    priceVideo: '동영상 1인 22,000원',
+    image: '/images/online/online_maker04.png',
+  },
+  {
+    title: '"블루투스 스피커" 만들기',
+    category: 'maker',
+    categoryLabel: '메이커 융합 교육',
+    target: '초등/중등',
+    deliverable: '블루투스 스피커',
+    priceLive: '실시간 1인 27,000원',
+    priceVideo: '동영상 제공 1인 22,000원',
+    image: '/images/online/online_maker05.png',
+  },
+  {
+    title: '메타버스의 이해와 제페토 체험',
+    category: 'coding',
+    categoryLabel: '코딩 교육',
+    target: '초등/중등/고등/성인',
+    deliverable: '자신만의 메타버스 콘텐츠',
+    priceLive: '실시간 1인 25,000원',
+    image: '/images/online/online_coding07.png',
+  },
+  {
+    title: '4차 산업혁명과 청소년 기업가정신',
+    category: 'special',
+    categoryLabel: '특강',
+    target: '초등/중등/고등',
+    deliverable: '',
+    priceLive: '실시간 1인 22,000원',
+    priceVideo: '동영상 1인 20,000원',
+    image: '/images/online/online_special01.png',
+  },
+];
+
+const filterTabs: { key: Category; label: string }[] = [
+  { key: 'all', label: 'ALL' },
+  { key: 'maker', label: '메이커 융합 교육' },
+  { key: 'coding', label: '코딩 교육' },
+  { key: 'special', label: '특강' },
+];
 
 export default async function OnlinePage({
   params,
@@ -45,138 +125,127 @@ export default async function OnlinePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const isKo = locale === 'ko';
-
-  const categories: OnlineCourse['category'][] = ['maker', 'coding', 'special'];
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: isKo ? '홈' : 'Home', href: `/${locale}` },
-          { name: isKo ? '온라인 교육' : 'Online Education', href: `/${locale}/online` },
+          { name: '홈', href: `/${locale}` },
+          { name: '온라인 교육', href: `/${locale}/online` },
         ]}
       />
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-indigo-500 py-24 px-6 text-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-widest opacity-80 mb-3">
-            {isKo ? '온라인 교육' : 'Online Education'}
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            {isKo ? '온라인 교육' : 'Online Education'}
+      {/* Hero Section */}
+      <section className="bg-point py-16 md:py-20 text-white text-center">
+        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Online Education
           </h1>
-          <p className="text-xl opacity-90">
-            {isKo
-              ? '언제 어디서든 배울 수 있는 한양미래연구소 온라인 프로그램'
-              : 'Hanyang Future Lab online programs — learn anytime, anywhere'}
+          <p className="text-lg md:text-xl font-medium opacity-90">
+            온라인 교육 (실시간/영상강의)
           </p>
         </div>
       </section>
 
-      {/* Type legend */}
-      <section className="py-8 px-6 bg-gray-50 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto flex flex-wrap gap-4 justify-center">
-          {Object.entries(typeLabels).map(([key, val]) => (
-            <span key={key} className={`px-3 py-1 rounded-full text-sm font-semibold ${val.color}`}>
-              {isKo ? val.ko : val.en}
-            </span>
-          ))}
+      {/* Intro */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4 text-center">
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            인공지능, 메타버스, 3D프린팅 등 4차산업혁명 핵심 기술을
+            <br className="hidden md:block" />
+            시간과 장소의 제약 없이 최신 미래기술을 쉽고 재미있게 배우는 온라인 교육 프로그램
+          </p>
         </div>
       </section>
 
-      {/* Category sections */}
-      {categories.map((category, sectionIndex) => {
-        const coursesInCategory = onlineCourses.filter((c) => c.category === category);
-        if (coursesInCategory.length === 0) return null;
-        const label = categoryLabels[category];
+      {/* Filter Tabs */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 pb-6">
+            {filterTabs.map((tab) => (
+              <button
+                key={tab.key}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-200 ${
+                  tab.key === 'all'
+                    ? 'bg-point text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-point hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        return (
-          <section
-            key={category}
-            className={`py-16 px-6 ${sectionIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
-            aria-label={isKo ? label.ko : label.en}
-          >
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                  {isKo ? label.ko : label.en}
-                </h2>
-                <span className="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-700">
-                  {coursesInCategory.length}{isKo ? '개' : ' courses'}
-                </span>
-              </div>
+      {/* Course Cards */}
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {courses.map((course, index) => (
+              <article
+                key={index}
+                className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200"
+              >
+                {/* Image */}
+                <div className="relative w-full aspect-[4/3] bg-gray-100">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {coursesInCategory.map((course) => {
-                  const typeInfo = typeLabels[course.type];
-                  return (
-                    <article
-                      key={course.slug}
-                      className="rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
-                    >
-                      {/* Thumbnail placeholder */}
-                      <div className="h-40 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
-                        <span className="text-4xl">💻</span>
-                      </div>
+                {/* Content */}
+                <div className="p-5">
+                  {/* Category Badge */}
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-point/10 text-point mb-3">
+                    {course.categoryLabel}
+                  </span>
 
-                      <div className="p-5">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${typeInfo.color}`}>
-                            {isKo ? typeInfo.ko : typeInfo.en}
-                          </span>
-                        </div>
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-gray-900 mb-3 leading-snug">
+                    {course.title}
+                  </h3>
 
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {isKo ? course.title : course.titleEn}
-                        </h3>
+                  {/* Details */}
+                  <div className="space-y-1.5 text-sm text-gray-600">
+                    <p>
+                      <span className="font-semibold text-gray-800">대상:</span>{' '}
+                      {course.target}
+                    </p>
+                    {course.deliverable && (
+                      <p>
+                        <span className="font-semibold text-gray-800">결과물:</span>{' '}
+                        {course.deliverable}
+                      </p>
+                    )}
+                  </div>
 
-                        <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                          {isKo ? course.description : course.descriptionEn}
-                        </p>
-
-                        <div className="pt-3 border-t border-gray-100 space-y-1">
-                          {course.priceLive && (
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="text-gray-500">{isKo ? '실시간' : 'Live'}</span>
-                              <span className="font-semibold text-blue-600">{course.priceLive}</span>
-                            </div>
-                          )}
-                          {course.priceVideo && (
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="text-gray-500">{isKo ? '영상' : 'Video'}</span>
-                              <span className="font-semibold text-purple-600">{course.priceVideo}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* CTA */}
-      <section className="py-16 px-6 bg-gradient-to-br from-blue-600 to-indigo-500 text-white text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            {isKo ? '온라인 수업 신청' : 'Enroll in Online Classes'}
-          </h2>
-          <p className="text-lg opacity-90 mb-8">
-            {isKo
-              ? '카카오톡 또는 전화로 문의 후 신청하세요.'
-              : 'Contact us via KakaoTalk or phone to apply.'}
-          </p>
-          <a
-            href={`/${locale}/contact`}
-            className="inline-block bg-white text-blue-700 font-bold px-8 py-3 rounded-full hover:bg-blue-50 transition-colors duration-200"
-          >
-            {isKo ? '문의하기' : 'Contact Us'}
-          </a>
+                  {/* Pricing */}
+                  <div className="mt-4 pt-3 border-t border-gray-100 space-y-1 text-sm">
+                    {course.priceLive && (
+                      <p className="text-point font-semibold">
+                        {course.priceLive}
+                      </p>
+                    )}
+                    {course.priceVideo && (
+                      <p className="text-point font-semibold">
+                        {course.priceVideo}
+                      </p>
+                    )}
+                    {course.priceNote && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {course.priceNote}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </>
