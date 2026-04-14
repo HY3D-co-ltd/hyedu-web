@@ -18,7 +18,8 @@
     "eduRequest": "Apply",
     "contactUs": "Contact / Apply",
     "events": "Events",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "gallery": "Gallery"
   },
   "footer": {
     "company": "Hi-Starter Inc.",
@@ -29,6 +30,186 @@
     "email": "EMAIL: hyedu0829@gmail.com",
     "hours": "Weekdays 9AM-6PM (Lunch 12PM-1PM)",
     "holiday": "Closed on weekends and holidays",
-    "inquiry": "Inquiry: KakaoTalk Channel 'Hanyang Future Lab'"
+    "inquiry": "Inquiry: KakaoTalk Channel 'Hanyang Future Lab'",
+    "operationInfo": "Operation Info",
+    "sns": "SNS"
+  },
+  "popup": {
+    "hideToday": "Don't show today",
+    "close": "Close",
+    "learnMore": "Learn More"
+  },
+  "home": {
+    "hero": {
+      "slide1Title": "Education That Changes One Person's Life",
+      "slide1Subtitle": "Prepare for the future with top-level experiential education in AI, robot coding, and autonomous driving.",
+      "slide1Cta": "View Programs",
+      "slide2Title": "Experience Classes That Come to You",
+      "slide2Subtitle": "On-site education delivered directly to schools and institutions. Experience the best classes without leaving.",
+      "slide2Cta": "Apply for Classes",
+      "slide3Title": "Hanyang Camp",
+      "slide3Subtitle": "Create a special experience intensively exploring AI, robots, and autonomous driving at our vacation camp.",
+      "slide3Cta": "Learn About Camp"
+    },
+    "stats": {
+      "participants": "Participants",
+      "schools": "Schools & Institutions"
+    },
+    "programPreview": {
+      "title": "Education Programs",
+      "learnMore": "Learn More",
+      "experienceClass": "Experience Classes",
+      "experienceClassDesc": "Direct school & institution visits",
+      "booth": "Experience Booths",
+      "boothDesc": "Event & festival booths",
+      "camp": "Camps",
+      "campDesc": "Intensive vacation camps"
+    },
+    "testimonials": {
+      "title": "Participant Reviews",
+      "author": "Student Participant"
+    },
+    "partners": {
+      "title": "Partner Organizations"
+    }
+  },
+  "programs": {
+    "title": "Experience Classes",
+    "subtitle": "AI · Coding · Maker customized education that comes to your school",
+    "filterLabel": "Category",
+    "targetLabel": "Grade",
+    "filterAll": "All",
+    "filterAI": "AI",
+    "filterCoding": "Coding",
+    "filterMaker": "Maker",
+    "filterSteam": "STEAM",
+    "targetAll": "All",
+    "targetElementary": "Elementary",
+    "targetMiddle": "Middle",
+    "targetHigh": "High",
+    "targetAdult": "Adult",
+    "noResults": "No programs match the selected filters.",
+    "totalCount": "{count} programs"
+  },
+  "board": {
+    "loading": "Loading...",
+    "noPosts": "No posts yet.",
+    "noPhotos": "No photos yet.",
+    "close": "Close",
+    "reviews": "Education Reviews",
+    "reviewsSubtitle": "Stories from those who experienced our education",
+    "events": "Events & Competitions",
+    "eventsSubtitle": "Competitions and events participated by Hanyang Future Lab",
+    "gallery": "Photo Gallery",
+    "gallerySubtitle": "Capturing the educational moments at Hanyang Future Lab"
+  },
+  "contact": {
+    "title": "Apply / Contact",
+    "subtitle": "Feel free to contact us anytime with your questions",
+    "methodsTitle": "Contact Methods",
+    "methodsSubtitle": "Contact us through any of the methods below",
+    "kakao": "KakaoTalk",
+    "kakaoDesc": "Chat with us in real-time via KakaoTalk channel",
+    "kakaoBtn": "Open Channel",
+    "email": "Email",
+    "emailDesc": "Send detailed inquiries via email",
+    "phone": "Phone",
+    "phoneDesc": "Call us for a quick response",
+    "applyFormTitle": "Fill Out Application Form",
+    "applyFormDesc": "Click the button below to fill out the education application form. Our staff will contact you after reviewing.",
+    "applyFormBtn": "Fill Out Application",
+    "applyFormNote": "After submitting, we will follow up via KakaoTalk or phone.",
+    "cancellationTitle": "Cancellation & Refund Policy",
+    "experiencePolicyTitle": "Experience Class Cancellation & Change Policy",
+    "campPolicyTitle": "Camp / Booth Refund Policy",
+    "policyTiming": "Timing",
+    "policyCancellation": "Cancellation",
+    "policyChanges": "Changes",
+    "campPolicyTiming": "Timing",
+    "campPolicyRefund": "Refund Policy",
+    "policyNote": "※ Cancellations due to force majeure (natural disasters, extreme weather, etc.) will be handled separately.",
+    "faqTitle": "Frequently Asked Questions",
+    "locationTitle": "Location",
+    "address": "Address",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "businessHours": "Business Hours",
+    "businessHoursValue": "Weekdays 09:00 - 18:00"
+  },
+  "about": {
+    "title": "Hanyang Future Lab",
+    "subtitle": "Education that changes one person's life",
+    "featuresTitle": "6 Features of 4th Industrial Education",
+    "featuresSubtitle": "Our differentiated approach to education",
+    "historyTitle": "History",
+    "partnersTitle": "Partner Organizations"
+  },
+  "youthClub": {
+    "title": "Youth Club Programs",
+    "subtitle": "Youth club programs for creative, convergent, and challenging growth",
+    "ctaTitle": "Club Inquiry",
+    "ctaDesc": "For group applications from schools or institutions, contact us via KakaoTalk or phone.",
+    "ctaBtn": "Contact Us",
+    "programs": " programs"
+  },
+  "online": {
+    "title": "Online Education",
+    "subtitle": "Hanyang Future Lab online programs — learn anytime, anywhere",
+    "ctaTitle": "Enroll in Online Classes",
+    "ctaDesc": "Contact us via KakaoTalk or phone to apply.",
+    "ctaBtn": "Contact Us",
+    "live": "Live",
+    "video": "Video",
+    "liveVideo": "Live+Video",
+    "courses": " courses"
+  },
+  "specialLecture": {
+    "title": "Special Lectures",
+    "subtitle": "Practical lecture programs with field experts",
+    "ctaTitle": "Lecture Inquiry",
+    "ctaDesc": "For school or group applications, contact us via KakaoTalk or phone.",
+    "ctaBtn": "Contact Us",
+    "lectureLabel": "Lecture",
+    "duration": "Duration",
+    "price": "Price",
+    "programComponents": "Program Components"
+  },
+  "booth": {
+    "title": "Creative Experience Booths",
+    "subtitle": "Cutting-edge technology experience booths for festivals, events, and fairs",
+    "listTitle": "Available Booths",
+    "listSubtitle": "We operate 7 types of creative experience booths",
+    "infoTitle": "Booth Operation Info",
+    "operatingCost": "Operating Cost",
+    "operatingCostValue": "From ₩2,000,000",
+    "operatingCostDesc": "Varies by booth type and size",
+    "method": "Operation Method",
+    "methodValue": "On-site Operation",
+    "methodDesc": "We visit and operate at your event venue",
+    "howToApply": "How to Apply",
+    "howToApplyValue": "KakaoTalk / Phone",
+    "howToApplyDesc": "Schedule and fees negotiated individually",
+    "includedTitle": "What is Included",
+    "ctaTitle": "Book a Booth",
+    "ctaDesc": "Share your event schedule and venue and we will provide a custom quote.",
+    "ctaBtn": "Contact Us"
+  },
+  "camp": {
+    "title": "Camps",
+    "subtitle": "4th Industrial Revolution immersive camp programs for growth",
+    "typesTitle": "Camp Types",
+    "typesSubtitle": "We offer group, individual, and competition preparation camps",
+    "programsTitle": "Camp Programs",
+    "programsSubtitle": "Camp programs for experiencing various 4th Industrial Revolution technologies",
+    "youthCamp": "Hanyang Youth Camp",
+    "youthCampBadge": "Group Camp",
+    "saturdayCamp": "Saturday Camp",
+    "saturdayCampBadge": "Individual Camp",
+    "competitionCamp": "Competition Prep Camp",
+    "competitionCampBadge": "Competition Prep",
+    "ctaTitle": "Camp Inquiry",
+    "ctaDesc": "For group camps, contact us via KakaoTalk or phone. For Saturday camps, book via Naver.",
+    "ctaGroupBtn": "Group Inquiry",
+    "ctaNaverBtn": "Naver Booking (Saturday)"
   }
 }

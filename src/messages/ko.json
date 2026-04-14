@@ -18,7 +18,8 @@
     "eduRequest": "교육 신청",
     "contactUs": "교육신청/문의",
     "events": "대회&행사",
-    "reviews": "교육 후기"
+    "reviews": "교육 후기",
+    "gallery": "이미지 갤러리"
   },
   "footer": {
     "company": "(주)하이스타터",
@@ -29,6 +30,186 @@
     "email": "EMAIL: hyedu0829@gmail.com",
     "hours": "주중 9시 ~ 18시 (점심시간 12시 ~ 13시)",
     "holiday": "주말 및 공휴일 휴무",
-    "inquiry": "교육 문의: 카카오톡 채널 '한양미래연구소'"
+    "inquiry": "교육 문의: 카카오톡 채널 '한양미래연구소'",
+    "operationInfo": "운영 안내",
+    "sns": "SNS"
+  },
+  "popup": {
+    "hideToday": "오늘 하루 안보기",
+    "close": "닫기",
+    "learnMore": "자세히 보기"
+  },
+  "home": {
+    "hero": {
+      "slide1Title": "한 사람의 인생을 바꾸는 교육",
+      "slide1Subtitle": "AI 인공지능 · 로봇코딩 · 자율주행 분야의 최고 수준 체험 교육으로 미래를 준비하세요.",
+      "slide1Cta": "프로그램 보기",
+      "slide2Title": "찾아가는 체험교실",
+      "slide2Subtitle": "학교와 기관으로 직접 찾아가는 현장 밀착형 교육. 이동 없이 최고의 체험 수업을 받아보세요.",
+      "slide2Cta": "체험교실 신청",
+      "slide3Title": "한양 캠프",
+      "slide3Subtitle": "방학 특별 캠프로 AI · 로봇 · 자율주행을 집중 탐구하는 특별한 경험을 만들어 드립니다.",
+      "slide3Cta": "캠프 알아보기"
+    },
+    "stats": {
+      "participants": "참여인원",
+      "schools": "참여 학교/기관"
+    },
+    "programPreview": {
+      "title": "교육 프로그램",
+      "learnMore": "자세히 보기",
+      "experienceClass": "찾아가는 체험교실",
+      "experienceClassDesc": "학교·기관 직접 방문 교육",
+      "booth": "체험 부스",
+      "boothDesc": "행사·축제 체험 부스 운영",
+      "camp": "캠프",
+      "campDesc": "방학 특별 집중 캠프"
+    },
+    "testimonials": {
+      "title": "참여자 후기",
+      "author": "참여 학생"
+    },
+    "partners": {
+      "title": "협력 기관"
+    }
+  },
+  "programs": {
+    "title": "찾아가는 체험교실",
+    "subtitle": "학교로 찾아가는 AI·코딩·메이커 맞춤형 교육",
+    "filterLabel": "분야",
+    "targetLabel": "대상",
+    "filterAll": "전체",
+    "filterAI": "AI 인공지능",
+    "filterCoding": "코딩",
+    "filterMaker": "메이커 융합",
+    "filterSteam": "STEAM",
+    "targetAll": "전체",
+    "targetElementary": "초등",
+    "targetMiddle": "중등",
+    "targetHigh": "고등",
+    "targetAdult": "성인",
+    "noResults": "해당 조건의 프로그램이 없습니다.",
+    "totalCount": "총 {count}개 프로그램"
+  },
+  "board": {
+    "loading": "로딩 중...",
+    "noPosts": "게시물이 없습니다.",
+    "noPhotos": "게시물이 없습니다.",
+    "close": "닫기",
+    "reviews": "교육 후기",
+    "reviewsSubtitle": "한양미래연구소 교육을 경험한 분들의 이야기",
+    "events": "대회 & 행사",
+    "eventsSubtitle": "한양미래연구소가 참여한 대회와 행사 소식",
+    "gallery": "이미지 갤러리",
+    "gallerySubtitle": "한양미래연구소의 교육 현장을 담았습니다"
+  },
+  "contact": {
+    "title": "교육 신청 / 문의",
+    "subtitle": "궁금한 점이 있으시면 언제든지 문의해 주세요",
+    "methodsTitle": "문의 방법",
+    "methodsSubtitle": "아래 방법으로 언제든 문의해 주세요",
+    "kakao": "카카오톡 문의",
+    "kakaoDesc": "카카오톡 채널로 실시간 문의하세요",
+    "kakaoBtn": "채널 바로가기",
+    "email": "이메일 문의",
+    "emailDesc": "자세한 문의는 이메일로 보내주세요",
+    "phone": "전화 문의",
+    "phoneDesc": "전화로 빠르게 문의하세요",
+    "applyFormTitle": "교육 신청서 작성",
+    "applyFormDesc": "아래 버튼을 클릭하여 교육 신청서를 작성해 주세요. 담당자가 확인 후 연락드립니다.",
+    "applyFormBtn": "신청서 작성하기",
+    "applyFormNote": "신청서 작성 후 카카오톡 또는 전화로 추가 확인 연락을 드립니다.",
+    "cancellationTitle": "취소/환불 규정",
+    "experiencePolicyTitle": "체험교실 취소/변경 규정",
+    "campPolicyTitle": "캠프/부스 환불 규정",
+    "policyTiming": "취소/변경 시점",
+    "policyCancellation": "취소 규정",
+    "policyChanges": "변경 규정",
+    "campPolicyTiming": "취소 시점",
+    "campPolicyRefund": "환불 규정",
+    "policyNote": "※ 천재지변, 기상이변 등 불가항력적 사유로 인한 취소 시 별도 협의됩니다.",
+    "faqTitle": "자주 묻는 질문",
+    "locationTitle": "오시는 길",
+    "address": "주소",
+    "phoneLabel": "전화",
+    "emailLabel": "이메일",
+    "businessHours": "운영시간",
+    "businessHoursValue": "평일 09:00 - 18:00"
+  },
+  "about": {
+    "title": "한양미래연구소",
+    "subtitle": "한 사람의 인생을 바꾸는 교육을 제공합니다",
+    "featuresTitle": "4차산업기술교육의 6가지 특징",
+    "featuresSubtitle": "한양미래연구소만의 차별화된 교육 방식",
+    "historyTitle": "연혁",
+    "partnersTitle": "협력 기관"
+  },
+  "youthClub": {
+    "title": "청소년 동아리",
+    "subtitle": "창의·융합·도전으로 성장하는 청소년 동아리 프로그램",
+    "ctaTitle": "동아리 신청 문의",
+    "ctaDesc": "학교·기관 단체 신청은 카카오톡 또는 전화로 문의해 주세요.",
+    "ctaBtn": "문의하기",
+    "programs": "개"
+  },
+  "online": {
+    "title": "온라인 교육",
+    "subtitle": "언제 어디서든 배울 수 있는 한양미래연구소 온라인 프로그램",
+    "ctaTitle": "온라인 수업 신청",
+    "ctaDesc": "카카오톡 또는 전화로 문의 후 신청하세요.",
+    "ctaBtn": "문의하기",
+    "live": "실시간",
+    "video": "영상",
+    "liveVideo": "실시간+영상",
+    "courses": "개"
+  },
+  "specialLecture": {
+    "title": "전문인 특강",
+    "subtitle": "현장 전문가와 함께하는 실전 강연 프로그램",
+    "ctaTitle": "특강 신청 문의",
+    "ctaDesc": "학교·기관 단체 신청은 카카오톡 또는 전화로 문의해 주세요.",
+    "ctaBtn": "문의하기",
+    "lectureLabel": "특강",
+    "duration": "강연 시간",
+    "price": "참가비",
+    "programComponents": "프로그램 구성"
+  },
+  "booth": {
+    "title": "창의체험 부스",
+    "subtitle": "축제·행사·박람회에서 만나는 첨단 기술 체험 부스",
+    "listTitle": "운영 부스 목록",
+    "listSubtitle": "총 7종의 창의체험 부스를 운영합니다",
+    "infoTitle": "부스 운영 안내",
+    "operatingCost": "운영 비용",
+    "operatingCostValue": "200만원부터",
+    "operatingCostDesc": "부스 종류 및 규모에 따라 상이",
+    "method": "운영 방식",
+    "methodValue": "출장 운영",
+    "methodDesc": "행사 장소로 직접 방문 운영",
+    "howToApply": "신청 방법",
+    "howToApplyValue": "카카오톡/전화 문의",
+    "howToApplyDesc": "일정 및 요금 개별 협의",
+    "includedTitle": "부스 운영 포함 사항",
+    "ctaTitle": "부스 운영 신청",
+    "ctaDesc": "행사 일정과 장소를 알려주시면 맞춤 견적을 드립니다.",
+    "ctaBtn": "문의하기"
+  },
+  "camp": {
+    "title": "캠프",
+    "subtitle": "몰입형 체험으로 성장하는 4차산업혁명 캠프 프로그램",
+    "typesTitle": "캠프 유형 안내",
+    "typesSubtitle": "단체·개인·경진대회 대비 등 다양한 캠프 유형을 운영합니다",
+    "programsTitle": "캠프 프로그램",
+    "programsSubtitle": "다양한 4차산업혁명 기술을 체험하는 캠프 프로그램",
+    "youthCamp": "한양청소년 캠프",
+    "youthCampBadge": "단체 캠프",
+    "saturdayCamp": "토요캠프",
+    "saturdayCampBadge": "개인 캠프",
+    "competitionCamp": "경진대회 대비 캠프",
+    "competitionCampBadge": "대회 대비",
+    "ctaTitle": "캠프 신청 문의",
+    "ctaDesc": "단체 캠프는 카카오톡 또는 전화로, 토요캠프는 네이버 예약으로 신청해 주세요.",
+    "ctaGroupBtn": "단체 문의하기",
+    "ctaNaverBtn": "네이버 예약 (토요캠프)"
   }
 }
