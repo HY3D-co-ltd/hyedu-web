@@ -13,14 +13,14 @@ export default function FeatureSection() {
   return (
     <section className="py-12 px-4 bg-white">
       <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-        <h2 className="text-[25px] md:text-[30px] lg:text-[40px] font-bold text-center text-gray-900 mb-8">
+        <h2 className="text-[20px] sm:text-[25px] md:text-[30px] lg:text-[40px] font-bold text-center text-gray-900 mb-8">
           4차산업기술교육 답은 <span className="text-point">한양미래연구소</span>에 있습니다
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-[30px]">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="relative w-full aspect-[3/4] flex flex-col items-center justify-center gap-4 p-6 rounded-md overflow-hidden"
+              className="relative w-full aspect-[3/4] flex flex-col items-center justify-center gap-2 sm:gap-3 p-2 sm:p-3 md:p-4 rounded-md overflow-hidden"
               style={{
                 backgroundImage: 'url(/images/main/feature-bg.png)',
                 backgroundRepeat: 'no-repeat',
@@ -28,17 +28,17 @@ export default function FeatureSection() {
                 backgroundSize: '100% 100%',
               }}
             >
-              <div className="relative w-full flex-1 flex items-center justify-center">
+              <div className="relative w-full flex-1 flex items-center justify-center px-2">
                 <Image
                   src={feature.image}
                   alt={feature.title}
-                  width={300}
-                  height={200}
-                  className="w-full max-w-[250px] h-auto object-contain"
+                  width={200}
+                  height={130}
+                  className="w-full max-w-[120px] sm:max-w-[150px] md:max-w-[180px] lg:max-w-[200px] h-auto object-contain"
                 />
               </div>
-              <h3 className="text-[20px] lg:text-[25px] font-bold text-gray-900 text-center">{feature.title}</h3>
-              <p className="text-[14px] lg:text-[18px] font-medium text-gray-600 text-center leading-relaxed">{feature.description}</p>
+              <h3 className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[20px] font-bold text-gray-900 text-center leading-tight">{feature.title}</h3>
+              <p className="text-[10px] sm:text-[11px] md:text-[13px] lg:text-[15px] font-medium text-gray-600 text-center leading-snug">{feature.description}</p>
             </div>
           ))}
         </div>
