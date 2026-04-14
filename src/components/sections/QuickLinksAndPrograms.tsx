@@ -77,7 +77,7 @@ export default function QuickLinksAndPrograms() {
               key={gi}
               className="flex flex-col sm:flex-row gap-2 sm:gap-[60px] py-2 border-b border-gray-200 last:border-b-0"
             >
-              <p className="text-[20px] font-bold text-gray-900 w-auto sm:w-[145px] shrink-0 leading-[1em]">
+              <p className="text-[18px] sm:text-[20px] font-bold text-gray-900 w-auto sm:w-[200px] shrink-0 leading-[1.2em] whitespace-nowrap">
                 {group.title}
               </p>
               <ul className="flex flex-wrap items-center gap-[15px] sm:gap-[20px]">
