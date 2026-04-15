@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ui/Img';
 import { useLocale } from 'next-intl';
 import { withBasePath } from '@/lib/basePath';
 

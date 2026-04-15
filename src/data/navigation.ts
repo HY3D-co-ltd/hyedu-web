@@ -22,5 +22,7 @@ export const navigationItems: NavItem[] = [
       { label: '경진대회 대비 캠프', labelKey: 'nav.campCompetition', href: '/camp/competition' },
     ],
   },
+  { label: '대회&행사', labelKey: 'nav.events', href: '/board/events' },
+  { label: '교육 후기', labelKey: 'nav.reviews', href: '/board/reviews' },
   { label: '교육 신청', labelKey: 'nav.eduRequest', href: '/contact' },
 ];

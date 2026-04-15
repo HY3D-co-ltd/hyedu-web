@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { programs } from '@/data/programs';

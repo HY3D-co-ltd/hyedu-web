@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { history } from '@/data/history';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';

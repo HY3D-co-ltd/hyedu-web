@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from '@/components/ui/Img';
 import { useLocale } from 'next-intl';
 import Slider from '@/components/ui/Slider';
 
