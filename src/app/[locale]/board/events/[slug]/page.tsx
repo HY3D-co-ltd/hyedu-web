@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { eventPosts } from '@/data/boardPosts';
 import { eventDetails } from '@/data/boardPostDetails';
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 function idFromSlug(slug: string): string {
   const m = slug.match(/^(\d+)(?:-|$)/);
@@ -26,11 +26,33 @@ export async function generateMetadata({
   const detail = eventDetails[id];
   if (!detail) return {};
   const isKo = locale === 'ko';
+  const url = `https://hyedu.kr/${locale}/board/events/${slug}`;
+  const title = isKo
+    ? `${detail.title} | 한양미래연구소 대회&행사`
+    : `${detail.title} | Hanyang Future Lab Events`;
   return {
-    title: isKo
-      ? `${detail.title} | 한양미래연구소 대회&행사`
-      : `${detail.title} | Hanyang Future Lab Events`,
+    title,
     description: detail.title,
+    alternates: {
+      canonical: url,
+      languages: {
+        ko: `https://hyedu.kr/ko/board/events/${slug}`,
+        en: `https://hyedu.kr/en/board/events/${slug}`,
+      },
+    },
+    openGraph: {
+      type: 'article',
+      title,
+      description: detail.title,
+      url,
+      publishedTime: detail.date || undefined,
+      authors: [detail.author],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: detail.title,
+    },
   };
 }
 
@@ -51,8 +73,19 @@ export default async function EventDetailPage({
   const prev = idx < eventPosts.length - 1 ? eventPosts[idx + 1] : null;
   const next = idx > 0 ? eventPosts[idx - 1] : null;
 
+  const url = `https://hyedu.kr/${locale}/board/events/${slug}`;
+  const postMeta = eventPosts.find((p) => p.id === id);
+
   return (
     <>
+      <ArticleJsonLd
+        headline={detail.title}
+        author={detail.author}
+        datePublished={detail.date || undefined}
+        url={url}
+        image={postMeta?.thumbnail}
+        locale={locale}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: isKo ? '홈' : 'Home', href: `/${locale}` },

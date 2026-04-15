@@ -183,6 +183,58 @@ export function ReviewsJsonLd({
   );
 }
 
+// ─── ArticleJsonLd (Blog/NewsArticle for board posts) ────────────────────────
+
+export function ArticleJsonLd({
+  headline,
+  author,
+  datePublished,
+  url,
+  image,
+  description,
+  locale,
+}: {
+  headline: string;
+  author: string;
+  datePublished?: string;
+  url: string;
+  image?: string;
+  description?: string;
+  locale: string;
+}) {
+  const isKo = locale === 'ko';
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description: description ?? headline,
+    inLanguage: isKo ? 'ko-KR' : 'en-US',
+    author: {
+      '@type': 'Organization',
+      name: isKo ? '한양미래연구소' : 'Hanyang Future Lab',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: isKo ? '한양미래연구소' : 'Hanyang Future Lab',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://hyedu.kr/images/logo/logo.jpg',
+      },
+    },
+    ...(datePublished && { datePublished, dateModified: datePublished }),
+    ...(image && { image }),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 // ─── BreadcrumbJsonLd ─────────────────────────────────────────────────────────
 
 export function BreadcrumbJsonLd({

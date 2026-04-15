@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { reviewPosts } from '@/data/boardPosts';
 import { reviewDetails } from '@/data/boardPostDetails';
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 // Extract numeric ID prefix from slug like "329-ai-led-mood-lamp..."
 function idFromSlug(slug: string): string {
@@ -27,11 +27,33 @@ export async function generateMetadata({
   const detail = reviewDetails[id];
   if (!detail) return {};
   const isKo = locale === 'ko';
+  const url = `https://hyedu.kr/${locale}/board/reviews/${slug}`;
+  const title = isKo
+    ? `${detail.title} | 한양미래연구소 교육 후기`
+    : `${detail.title} | Hanyang Future Lab Reviews`;
   return {
-    title: isKo
-      ? `${detail.title} | 한양미래연구소 교육 후기`
-      : `${detail.title} | Hanyang Future Lab Reviews`,
+    title,
     description: detail.title,
+    alternates: {
+      canonical: url,
+      languages: {
+        ko: `https://hyedu.kr/ko/board/reviews/${slug}`,
+        en: `https://hyedu.kr/en/board/reviews/${slug}`,
+      },
+    },
+    openGraph: {
+      type: 'article',
+      title,
+      description: detail.title,
+      url,
+      publishedTime: detail.date || undefined,
+      authors: [detail.author],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: detail.title,
+    },
   };
 }
 
@@ -52,8 +74,19 @@ export default async function ReviewDetailPage({
   const prev = idx < reviewPosts.length - 1 ? reviewPosts[idx + 1] : null;
   const next = idx > 0 ? reviewPosts[idx - 1] : null;
 
+  const url = `https://hyedu.kr/${locale}/board/reviews/${slug}`;
+  const postMeta = reviewPosts.find((p) => p.id === id);
+
   return (
     <>
+      <ArticleJsonLd
+        headline={detail.title}
+        author={detail.author}
+        datePublished={detail.date || undefined}
+        url={url}
+        image={postMeta?.thumbnail}
+        locale={locale}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: isKo ? '홈' : 'Home', href: `/${locale}` },

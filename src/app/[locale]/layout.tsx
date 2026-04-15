@@ -12,10 +12,70 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: '한양미래연구소 | No.1 교육 플랫폼',
-  description: '초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행, 메이커교육, STEAM교육 전문 플랫폼. 찾아가는 체험교실, 캠프, 온라인 교육 제공.',
-};
+const SITE_URL = 'https://hyedu.kr';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isKo = locale === 'ko';
+  const siteName = isKo ? '한양미래연구소' : 'Hanyang Future Lab';
+  const title = isKo
+    ? '한양미래연구소 | AI·로봇코딩·자율주행 No.1 교육 플랫폼'
+    : 'Hanyang Future Lab | AI · Robot Coding · Autonomous Driving Education Platform';
+  const description = isKo
+    ? '초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행, 메이커교육, STEAM교육 전문 플랫폼. 찾아가는 체험교실, 캠프, 온라인 교육 제공.'
+    : 'Specialized education platform for AI, robot coding, autonomous driving, maker, and STEAM programs for K-12 students. On-site classes, camps, and online courses.';
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: {
+        ko: `${SITE_URL}/ko`,
+        en: `${SITE_URL}/en`,
+        'x-default': `${SITE_URL}/ko`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      siteName,
+      locale: isKo ? 'ko_KR' : 'en_US',
+      alternateLocale: isKo ? 'en_US' : 'ko_KR',
+      title,
+      description,
+      url: `${SITE_URL}/${locale}`,
+      images: [
+        {
+          url: '/images/logo/logo.jpg',
+          width: 800,
+          height: 400,
+          alt: siteName,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/logo/logo.jpg'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

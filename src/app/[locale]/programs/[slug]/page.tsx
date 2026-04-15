@@ -47,12 +47,36 @@ export async function generateMetadata({
   const title = isKo ? program.title : program.titleEn;
   const desc = isKo ? program.description : program.descriptionEn;
 
+  const fullTitle = isKo ? `${title} | 한양미래연구소` : `${title} | Hanyang Future Lab`;
+  const url = `https://hyedu.kr/${locale}/programs/${slug}`;
+  const ogImage = program.thumbnail || '/images/logo/logo.jpg';
+
   return {
-    title: isKo ? `${title} | 한양미래연구소` : `${title} | Hanyang Future Lab`,
+    title: fullTitle,
     description: desc,
     keywords: isKo
       ? [title, 'AI교육', '체험교실', '한양미래연구소']
       : [title, 'AI education', 'experience class', 'Hanyang Future Lab'],
+    alternates: {
+      canonical: url,
+      languages: {
+        ko: `https://hyedu.kr/ko/programs/${slug}`,
+        en: `https://hyedu.kr/en/programs/${slug}`,
+      },
+    },
+    openGraph: {
+      type: 'article',
+      title: fullTitle,
+      description: desc,
+      url,
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description: desc,
+      images: [ogImage],
+    },
   };
 }
 
