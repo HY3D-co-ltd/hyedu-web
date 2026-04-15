@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/special-lecture',
     '/booth',
     '/camp',
+    '/camp/saturday',
+    '/camp/competition',
     '/contact',
     '/board/reviews',
     '/board/events',

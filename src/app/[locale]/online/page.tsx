@@ -25,97 +25,103 @@ export async function generateMetadata({
   };
 }
 
+type Bi = { ko: string; en: string };
+const pick = (b: Bi, isKo: boolean) => (isKo ? b.ko : b.en);
+
 type Category = 'all' | 'maker' | 'coding' | 'special';
 
 interface CourseItem {
-  title: string;
+  title: Bi;
   category: Category;
-  categoryLabel: string;
-  target: string;
-  deliverable: string;
-  priceLive?: string;
-  priceVideo?: string;
-  priceNote?: string;
+  categoryLabel: Bi;
+  target: Bi;
+  deliverable: Bi;
+  priceLive?: Bi;
+  priceVideo?: Bi;
+  priceNote?: Bi;
   image: string;
 }
 
 const courses: CourseItem[] = [
   {
-    title: '3D프린팅 전문가',
+    title: { ko: '3D프린팅 전문가', en: '3D Printing Expert' },
     category: 'maker',
-    categoryLabel: '메이커 융합 교육',
-    target: '초등/중등/고등',
-    deliverable: '3D모델링 파일',
-    priceLive: '실시간 1인 22,000원',
-    priceVideo: '동영상 1인 20,000원',
+    categoryLabel: { ko: '메이커 융합 교육', en: 'Maker Convergence' },
+    target: { ko: '초등/중등/고등', en: 'Elementary / Middle / High' },
+    deliverable: { ko: '3D모델링 파일', en: '3D modeling file' },
+    priceLive: { ko: '실시간 1인 22,000원', en: 'Live: KRW 22,000 / person' },
+    priceVideo: { ko: '동영상 1인 20,000원', en: 'Video: KRW 20,000 / person' },
     image: '/images/online/maker_activity_1_3d_printer.png',
   },
   {
-    title: '3D펜 디자이너',
+    title: { ko: '3D펜 디자이너', en: '3D Pen Designer' },
     category: 'maker',
-    categoryLabel: '메이커 융합 교육',
-    target: '초등/중등/고등',
-    deliverable: '3D펜, 3D펜 창작품',
-    priceVideo: '동영상 제공 1인 20,000원',
-    priceNote: '(3D 펜 재료비 20,000원 별도)',
+    categoryLabel: { ko: '메이커 융합 교육', en: 'Maker Convergence' },
+    target: { ko: '초등/중등/고등', en: 'Elementary / Middle / High' },
+    deliverable: { ko: '3D펜, 3D펜 창작품', en: '3D pen, 3D pen creation' },
+    priceVideo: { ko: '동영상 제공 1인 20,000원', en: 'Video: KRW 20,000 / person' },
+    priceNote: {
+      ko: '(3D 펜 재료비 20,000원 별도)',
+      en: '(3D pen materials KRW 20,000 charged separately)',
+    },
     image: '/images/online/maker_activity_2_3d_pen.png',
   },
   {
-    title: '초음파 센서로 "로봇 쓰레기통" 만들기',
+    title: { ko: '초음파 센서로 "로봇 쓰레기통" 만들기', en: 'Build a Robot Trash Can with an Ultrasonic Sensor' },
     category: 'maker',
-    categoryLabel: '메이커 융합 교육',
-    target: '초등/중등',
-    deliverable: '로봇 쓰레기통',
-    priceLive: '실시간 1인 30,000원',
-    priceVideo: '동영상 제공 1인 25,000원',
+    categoryLabel: { ko: '메이커 융합 교육', en: 'Maker Convergence' },
+    target: { ko: '초등/중등', en: 'Elementary / Middle' },
+    deliverable: { ko: '로봇 쓰레기통', en: 'Robot trash can' },
+    priceLive: { ko: '실시간 1인 30,000원', en: 'Live: KRW 30,000 / person' },
+    priceVideo: { ko: '동영상 제공 1인 25,000원', en: 'Video: KRW 25,000 / person' },
     image: '/images/online/online_maker03.png',
   },
   {
-    title: '적외선 센서로 "강아지 자동차" 만들기',
+    title: { ko: '적외선 센서로 "강아지 자동차" 만들기', en: 'Build a Puppy Car with an IR Sensor' },
     category: 'maker',
-    categoryLabel: '메이커 융합 교육',
-    target: '초등/중등',
-    deliverable: '강아지 자동차',
-    priceLive: '실시간 1인 25,000원',
-    priceVideo: '동영상 1인 22,000원',
+    categoryLabel: { ko: '메이커 융합 교육', en: 'Maker Convergence' },
+    target: { ko: '초등/중등', en: 'Elementary / Middle' },
+    deliverable: { ko: '강아지 자동차', en: 'Puppy car' },
+    priceLive: { ko: '실시간 1인 25,000원', en: 'Live: KRW 25,000 / person' },
+    priceVideo: { ko: '동영상 1인 22,000원', en: 'Video: KRW 22,000 / person' },
     image: '/images/online/online_maker04.png',
   },
   {
-    title: '"블루투스 스피커" 만들기',
+    title: { ko: '"블루투스 스피커" 만들기', en: 'Build a Bluetooth Speaker' },
     category: 'maker',
-    categoryLabel: '메이커 융합 교육',
-    target: '초등/중등',
-    deliverable: '블루투스 스피커',
-    priceLive: '실시간 1인 27,000원',
-    priceVideo: '동영상 제공 1인 22,000원',
+    categoryLabel: { ko: '메이커 융합 교육', en: 'Maker Convergence' },
+    target: { ko: '초등/중등', en: 'Elementary / Middle' },
+    deliverable: { ko: '블루투스 스피커', en: 'Bluetooth speaker' },
+    priceLive: { ko: '실시간 1인 27,000원', en: 'Live: KRW 27,000 / person' },
+    priceVideo: { ko: '동영상 제공 1인 22,000원', en: 'Video: KRW 22,000 / person' },
     image: '/images/online/online_maker05.png',
   },
   {
-    title: '메타버스의 이해와 제페토 체험',
+    title: { ko: '메타버스의 이해와 제페토 체험', en: 'Understanding the Metaverse with ZEPETO' },
     category: 'coding',
-    categoryLabel: '코딩 교육',
-    target: '초등/중등/고등/성인',
-    deliverable: '자신만의 메타버스 콘텐츠',
-    priceLive: '실시간 1인 25,000원',
+    categoryLabel: { ko: '코딩 교육', en: 'Coding' },
+    target: { ko: '초등/중등/고등/성인', en: 'Elementary / Middle / High / Adult' },
+    deliverable: { ko: '자신만의 메타버스 콘텐츠', en: 'Your own metaverse content' },
+    priceLive: { ko: '실시간 1인 25,000원', en: 'Live: KRW 25,000 / person' },
     image: '/images/online/online_coding07.png',
   },
   {
-    title: '4차 산업혁명과 청소년 기업가정신',
+    title: { ko: '4차 산업혁명과 청소년 기업가정신', en: '4th Industrial Revolution & Youth Entrepreneurship' },
     category: 'special',
-    categoryLabel: '특강',
-    target: '초등/중등/고등',
-    deliverable: '',
-    priceLive: '실시간 1인 22,000원',
-    priceVideo: '동영상 1인 20,000원',
+    categoryLabel: { ko: '특강', en: 'Special Lecture' },
+    target: { ko: '초등/중등/고등', en: 'Elementary / Middle / High' },
+    deliverable: { ko: '', en: '' },
+    priceLive: { ko: '실시간 1인 22,000원', en: 'Live: KRW 22,000 / person' },
+    priceVideo: { ko: '동영상 1인 20,000원', en: 'Video: KRW 20,000 / person' },
     image: '/images/online/online_special01.png',
   },
 ];
 
-const filterTabs: { key: Category; label: string }[] = [
-  { key: 'all', label: 'ALL' },
-  { key: 'maker', label: '메이커 융합 교육' },
-  { key: 'coding', label: '코딩 교육' },
-  { key: 'special', label: '특강' },
+const filterTabs: { key: Category; label: Bi }[] = [
+  { key: 'all', label: { ko: 'ALL', en: 'ALL' } },
+  { key: 'maker', label: { ko: '메이커 융합 교육', en: 'Maker Convergence' } },
+  { key: 'coding', label: { ko: '코딩 교육', en: 'Coding' } },
+  { key: 'special', label: { ko: '특강', en: 'Special Lecture' } },
 ];
 
 export default async function OnlinePage({
@@ -125,24 +131,23 @@ export default async function OnlinePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const isKo = locale === 'ko';
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: '홈', href: `/${locale}` },
-          { name: '온라인 교육', href: `/${locale}/online` },
+          { name: isKo ? '홈' : 'Home', href: `/${locale}` },
+          { name: isKo ? '온라인 교육' : 'Online Education', href: `/${locale}/online` },
         ]}
       />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="bg-point py-16 md:py-20 text-white text-center">
         <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Online Education
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Online Education</h1>
           <p className="text-lg md:text-xl font-medium opacity-90">
-            온라인 교육 (실시간/영상강의)
+            {isKo ? '온라인 교육 (실시간/영상강의)' : 'Online Classes (Live / Video)'}
           </p>
         </div>
       </section>
@@ -151,9 +156,19 @@ export default async function OnlinePage({
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto px-4 text-center">
           <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            인공지능, 메타버스, 3D프린팅 등 4차산업혁명 핵심 기술을
-            <br className="hidden md:block" />
-            시간과 장소의 제약 없이 최신 미래기술을 쉽고 재미있게 배우는 온라인 교육 프로그램
+            {isKo ? (
+              <>
+                인공지능, 메타버스, 3D프린팅 등 4차산업혁명 핵심 기술을
+                <br className="hidden md:block" />
+                시간과 장소의 제약 없이 최신 미래기술을 쉽고 재미있게 배우는 온라인 교육 프로그램
+              </>
+            ) : (
+              <>
+                AI, metaverse, 3D printing, and other core 4th-IR technologies
+                <br className="hidden md:block" />
+                — fun, easy online programs that let students learn the latest future tech anytime, anywhere.
+              </>
+            )}
           </p>
         </div>
       </section>
@@ -171,7 +186,7 @@ export default async function OnlinePage({
                     : 'bg-gray-100 text-gray-600 hover:bg-point hover:text-white'
                 }`}
               >
-                {tab.label}
+                {pick(tab.label, isKo)}
               </button>
             ))}
           </div>
@@ -187,59 +202,51 @@ export default async function OnlinePage({
                 key={index}
                 className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200"
               >
-                {/* Image */}
                 <div className="relative w-full aspect-[4/3] bg-gray-100">
                   <Image
                     src={course.image}
-                    alt={course.title}
+                    alt={pick(course.title, isKo)}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
 
-                {/* Content */}
                 <div className="p-5">
-                  {/* Category Badge */}
                   <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-point/10 text-point mb-3">
-                    {course.categoryLabel}
+                    {pick(course.categoryLabel, isKo)}
                   </span>
 
-                  {/* Title */}
                   <h3 className="text-lg font-bold text-gray-900 mb-3 leading-snug">
-                    {course.title}
+                    {pick(course.title, isKo)}
                   </h3>
 
-                  {/* Details */}
                   <div className="space-y-1.5 text-sm text-gray-600">
                     <p>
-                      <span className="font-semibold text-gray-800">대상:</span>{' '}
-                      {course.target}
+                      <span className="font-semibold text-gray-800">
+                        {isKo ? '대상:' : 'Target:'}
+                      </span>{' '}
+                      {pick(course.target, isKo)}
                     </p>
-                    {course.deliverable && (
+                    {pick(course.deliverable, isKo) && (
                       <p>
-                        <span className="font-semibold text-gray-800">결과물:</span>{' '}
-                        {course.deliverable}
+                        <span className="font-semibold text-gray-800">
+                          {isKo ? '결과물:' : 'Deliverable:'}
+                        </span>{' '}
+                        {pick(course.deliverable, isKo)}
                       </p>
                     )}
                   </div>
 
-                  {/* Pricing */}
                   <div className="mt-4 pt-3 border-t border-gray-100 space-y-1 text-sm">
                     {course.priceLive && (
-                      <p className="text-point font-semibold">
-                        {course.priceLive}
-                      </p>
+                      <p className="text-point font-semibold">{pick(course.priceLive, isKo)}</p>
                     )}
                     {course.priceVideo && (
-                      <p className="text-point font-semibold">
-                        {course.priceVideo}
-                      </p>
+                      <p className="text-point font-semibold">{pick(course.priceVideo, isKo)}</p>
                     )}
                     {course.priceNote && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {course.priceNote}
-                      </p>
+                      <p className="text-red-500 text-xs mt-1">{pick(course.priceNote, isKo)}</p>
                     )}
                   </div>
                 </div>

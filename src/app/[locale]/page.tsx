@@ -10,15 +10,25 @@ import FeatureSection from '@/components/sections/FeatureSection';
 import ContactSection from '@/components/sections/ContactSection';
 import MapSection from '@/components/sections/MapSection';
 
-export const metadata: Metadata = {
-  title: '한양미래연구소 | AI교육·로봇코딩·자율주행 No.1 체험교실',
-  description:
-    '초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행자동차 체험교실. 찾아가는 체험교실, 캠프, 온라인 교육. 17,150명 참여.',
-  keywords: [
-    'AI교육', '로봇코딩', '자율주행', '체험교실', '코딩교육',
-    'STEAM교육', '초등학생 AI', '중학생 코딩', '고등학생 캠프',
-  ],
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isKo = locale === 'ko';
+  return {
+    title: isKo
+      ? '한양미래연구소 | AI교육·로봇코딩·자율주행 No.1 체험교실'
+      : 'Hanyang Future Lab | AI · Robot Coding · Autonomous Driving — No.1 Experience Classes',
+    description: isKo
+      ? '초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행자동차 체험교실. 찾아가는 체험교실, 캠프, 온라인 교육. 17,150명 참여.'
+      : 'AI education, robot coding, and autonomous-driving experience classes for K-12 students. On-site classes, camps, and online programs. 17,150 participants.',
+    keywords: isKo
+      ? ['AI교육', '로봇코딩', '자율주행', '체험교실', '코딩교육', 'STEAM교육', '초등학생 AI', '중학생 코딩', '고등학생 캠프']
+      : ['AI education', 'robot coding', 'autonomous driving', 'experience class', 'coding education', 'STEAM education', 'K-12 AI', 'youth camp'],
+  };
+}
 
 export default async function HomePage({
   params,

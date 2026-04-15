@@ -1,10 +1,19 @@
+'use client';
+
+import { useLocale } from 'next-intl';
+
 export default function MapSection() {
+  const isKo = useLocale() === 'ko';
   return (
     <section className="py-12 px-4 bg-white">
       <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-        <h2 className="text-xl font-bold text-center text-gray-900 mb-2">오시는 길</h2>
+        <h2 className="text-xl font-bold text-center text-gray-900 mb-2">
+          {isKo ? '오시는 길' : 'Location'}
+        </h2>
         <p className="text-center text-sm text-gray-600 mb-6">
-          경기도 안산시 상록구 한양대학로 55 5공학관 창업실
+          {isKo
+            ? '경기도 안산시 상록구 한양대학로 55 5공학관 창업실'
+            : '55 Hanyangdaehak-ro, Engineering Bldg. 5 Startup Room, Sangnok-gu, Ansan, Gyeonggi-do'}
         </p>
         <div className="w-full overflow-hidden">
           <iframe
@@ -15,7 +24,7 @@ export default function MapSection() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="한양미래연구소 위치"
+            title={isKo ? '한양미래연구소 위치' : 'Hanyang Future Lab location'}
           />
         </div>
       </div>

@@ -9,7 +9,7 @@ export function OrganizationJsonLd({ locale }: { locale: string }) {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'EducationalOrganization'],
     name: isKo ? '한양미래연구소' : 'Hanyang Future Lab',
-    alternateName: '(주)하이스타터',
+    alternateName: isKo ? '(주)하이스타터' : 'Histarter co.,ltd',
     url: 'https://hyedu.kr',
     logo: 'https://hyedu.kr/images/logo/logo.jpg',
     description: isKo
@@ -32,7 +32,7 @@ export function OrganizationJsonLd({ locale }: { locale: string }) {
     foundingDate: '2020',
     founder: {
       '@type': 'Person',
-      name: '이정욱',
+      name: isKo ? '이정욱' : 'Lee Jeong Uk',
     },
     knowsAbout: [
       'AI Education',
@@ -132,6 +132,49 @@ export function FAQJsonLd({
     })),
   };
 
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// ─── ReviewsJsonLd (Course에 부착되는 aggregateRating + reviews) ──────────────
+
+export function ReviewsJsonLd({
+  itemName,
+  reviews,
+}: {
+  itemName: string;
+  reviews: { author: string; rating: number; content: string }[];
+}) {
+  if (reviews.length === 0) return null;
+  const avg =
+    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: itemName,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: avg.toFixed(1),
+      reviewCount: reviews.length,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: reviews.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: r.content,
+    })),
+  };
   return (
     <script
       type="application/ld+json"

@@ -41,7 +41,7 @@ export default function Footer() {
 
           {/* Column 2: Inquiry Hours */}
           <div className="space-y-2">
-            <p className="text-white font-semibold text-lg mb-3">운영 안내</p>
+            <p className="text-white font-semibold text-lg mb-3">{t('operationInfo')}</p>
             <p className="text-sm">{t('hours')}</p>
             <p className="text-sm">{t('holiday')}</p>
             <p className="text-sm mt-4">{t('inquiry')}</p>

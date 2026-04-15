@@ -13,7 +13,7 @@ export const programs: Program[] = [
     price: '1인 45,000원 (최소 20명)',
     priceEn: '45,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail01/study_01_01.png',
+    thumbnail: '/images/programs/new-programai01.png',
     images: [
       '/images/programs/detail/detail01/study_01_01.png',
       '/images/programs/detail/detail01/study_01_02.gif',
@@ -62,7 +62,7 @@ export const programs: Program[] = [
     price: '1인 24,000원 (최소 20명)',
     priceEn: '24,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail02/study_02_01.png',
+    thumbnail: '/images/programs/new-programai03.png',
     images: [
       '/images/programs/detail/detail02/study_02_01.png',
       '/images/programs/detail/detail02/study_02_02.png',
@@ -105,7 +105,7 @@ export const programs: Program[] = [
     price: '1인 25,000원 (최소 20명)',
     priceEn: '25,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail03/study_03_01.png',
+    thumbnail: '/images/programs/2023_visit_coding_1.png',
     images: [
       '/images/programs/detail/detail03/study_03_01.png',
       '/images/programs/detail/detail03/study_03_02.gif',
@@ -142,6 +142,7 @@ export const programs: Program[] = [
   },
   {
     slug: 'autonomous-driving',
+    clubAvailable: true,
     category: 'ai',
     title: '자율주행자동차 엔지니어',
     titleEn: 'Autonomous Driving Engineer',
@@ -151,7 +152,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail04/study_04_01.png',
+    thumbnail: '/images/programs/maker_activity_7_autonomous_car.png',
     images: [
       '/images/programs/detail/detail04/study_04_01.png',
       '/images/programs/detail/detail04/study_04_02.gif',
@@ -185,6 +186,7 @@ export const programs: Program[] = [
   // ===== 코딩 교육 (category: 'coding') =====
   {
     slug: 'microbit-arcade-game',
+    clubAvailable: true,
     category: 'coding',
     title: '마이크로비트로 만드는 아케이드 게임',
     titleEn: 'Arcade Games with Micro:bit',
@@ -194,7 +196,7 @@ export const programs: Program[] = [
     price: '대여 1인 30,000원 / 소장 1인 82,500원 (최소 20명)',
     priceEn: 'Rental 30,000 KRW / Purchase 82,500 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail06/study_05_01.png',
+    thumbnail: '/images/programs/new-programai02.png',
     images: [
       '/images/programs/detail/detail06/study_05_01.png',
       '/images/programs/detail/detail06/study_05_02.png',
@@ -237,7 +239,7 @@ export const programs: Program[] = [
     price: '1인 99,000원 (최소 20명)',
     priceEn: '99,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail07/study_07_01.png',
+    thumbnail: '/images/programs/2020_visit_new_coding23.png',
     images: [
       '/images/programs/detail/detail07/study_07_01.png',
       '/images/programs/detail/detail07/study_07_02.gif',
@@ -271,6 +273,8 @@ export const programs: Program[] = [
   },
   {
     slug: 'smart-home',
+    clubAvailable: true,
+    multiSession: true,
     category: 'coding',
     title: '스마트홈 전문가',
     titleEn: 'Smart Home Expert',
@@ -280,7 +284,7 @@ export const programs: Program[] = [
     price: '1인 150,000원 (회기당 추가 250,000원, 최소 20명)',
     priceEn: '150,000 KRW per person (250,000 KRW per additional session, min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail08/study_08_01.png',
+    thumbnail: '/images/programs/2020_visit_new_coding24.png',
     images: [
       '/images/programs/detail/detail08/study_08_01.png',
       '/images/programs/detail/detail08/study_08_02.png',
@@ -314,6 +318,7 @@ export const programs: Program[] = [
   },
   {
     slug: 'robot-coding-pingpong',
+    clubAvailable: true,
     category: 'coding',
     title: '로봇코딩 전문가(핑퐁 로봇)',
     titleEn: 'Robot Coding Expert (PingPong Robot)',
@@ -323,7 +328,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail09/study_09_01.png',
+    thumbnail: '/images/programs/maker_activity_6_robot_coding.png',
     images: [
       '/images/programs/detail/detail09/study_09_01.png',
       '/images/programs/detail/detail09/study_09_02.png',
@@ -364,7 +369,7 @@ export const programs: Program[] = [
     price: '1인 22,000원 (최소 20명)',
     priceEn: '22,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail10/study_10_01.png',
+    thumbnail: '/images/programs/2020_visit_new_coding04.png',
     images: [
       '/images/programs/detail/detail10/study_10_01.png',
       '/images/programs/detail/detail10/study_10_02.png',
@@ -405,7 +410,7 @@ export const programs: Program[] = [
     price: '1인 22,000원 (최소 20명)',
     priceEn: '22,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail11/study_11_01.png',
+    thumbnail: '/images/programs/2020_visit_new_coding05.png',
     images: [
       '/images/programs/detail/detail11/study_11_01.png',
       '/images/programs/detail/detail11/study_11_02.png',
@@ -439,6 +444,7 @@ export const programs: Program[] = [
   // ===== 메이커 융합 교육 (category: 'maker') =====
   {
     slug: 'drone-expert',
+    clubAvailable: true,
     category: 'maker',
     title: '드론 전문가',
     titleEn: 'Drone Expert',
@@ -448,7 +454,7 @@ export const programs: Program[] = [
     price: '1인 28,500원 (최소 20명)',
     priceEn: '28,500 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail12/study_12_01.png',
+    thumbnail: '/images/programs/maker_activity_5_drone_steam.png',
     images: [
       '/images/programs/detail/detail12/study_12_01.png',
       '/images/programs/detail/detail12/study_12_02.gif',
@@ -480,6 +486,7 @@ export const programs: Program[] = [
   },
   {
     slug: 'vr-ar-designer',
+    clubAvailable: true,
     category: 'maker',
     title: 'VR/AR 디자이너',
     titleEn: 'VR/AR Designer',
@@ -489,7 +496,7 @@ export const programs: Program[] = [
     price: '1인 26,000원 (최소 20명)',
     priceEn: '26,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail13/study_13_01.png',
+    thumbnail: '/images/programs/new-programai08.png',
     images: [
       '/images/programs/detail/detail13/study_13_01.png',
       '/images/programs/detail/detail13/study_13_02.png',
@@ -530,7 +537,7 @@ export const programs: Program[] = [
     price: '1인 25,000원 (최소 20명)',
     priceEn: '25,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail14/study_14_01.png',
+    thumbnail: '/images/programs/2020_visit_new_maker01.png',
     images: [
       '/images/programs/detail/detail14/study_14_01.png',
       '/images/programs/detail/detail14/study_14_02.png',
@@ -575,7 +582,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail15/study_15_01.png',
+    thumbnail: '/images/programs/maker_activity_2_3d_pen.png',
     images: [
       '/images/programs/detail/detail15/study_15_01.png',
       '/images/programs/detail/detail15/study_15_02.png',
@@ -609,6 +616,7 @@ export const programs: Program[] = [
   },
   {
     slug: '3d-printer-expert',
+    clubAvailable: true,
     category: 'maker',
     title: '3D프린터 전문가',
     titleEn: '3D Printer Expert',
@@ -618,7 +626,7 @@ export const programs: Program[] = [
     price: '1인 22,000원 (최소 20명)',
     priceEn: '22,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail16/study_16_01.png',
+    thumbnail: '/images/programs/maker_activity_1_3d_printer.png',
     images: [
       '/images/programs/detail/detail16/study_16_01.png',
       '/images/programs/detail/detail16/study_16_02.png',
@@ -650,6 +658,8 @@ export const programs: Program[] = [
   },
   {
     slug: '3d-printing-pen-combo',
+    clubAvailable: true,
+    multiSession: true,
     category: 'maker',
     title: '3D프린팅+3D펜 체험',
     titleEn: '3D Printing + 3D Pen Experience',
@@ -659,7 +669,7 @@ export const programs: Program[] = [
     price: '1인 40,000원 (최소 20명)',
     priceEn: '40,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail17/study_17_01.png',
+    thumbnail: '/images/programs/2020_visit_new_maker02.png',
     images: [
       '/images/programs/detail/detail17/study_17_01.png',
       '/images/programs/detail/detail17/study_17_02.png',
@@ -700,7 +710,7 @@ export const programs: Program[] = [
     price: '1인 25,000원 (최소 20명)',
     priceEn: '25,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail18/study_18_01.png',
+    thumbnail: '/images/programs/2023_visit_maker_1.png',
     images: [
       '/images/programs/detail/detail18/study_18_01.png',
       '/images/programs/detail/detail18/study_18_02.png',
@@ -741,7 +751,7 @@ export const programs: Program[] = [
     price: '1인 33,000원 (최소 20명)',
     priceEn: '33,000 KRW per person (min. 20)',
     duration: '2교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail19/study_19_01.png',
+    thumbnail: '/images/programs/new-programai04.png',
     images: [
       '/images/programs/detail/detail19/study_19_01.png',
       '/images/programs/detail/detail19/study_19_02.png',
@@ -782,7 +792,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail20/study_20_01.png',
+    thumbnail: '/images/programs/new-programai05.png',
     images: [
       '/images/programs/detail/detail20/study_20_01.png',
       '/images/programs/detail/detail20/study_20_02.gif',
@@ -823,7 +833,7 @@ export const programs: Program[] = [
     price: '1인 33,000원 (최소 20명)',
     priceEn: '33,000 KRW per person (min. 20)',
     duration: '3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail21/study_21_01.png',
+    thumbnail: '/images/programs/new-programai06.png',
     images: [
       '/images/programs/detail/detail21/study_21_01.png',
       '/images/programs/detail/detail21/study_21_02.gif',
@@ -864,7 +874,7 @@ export const programs: Program[] = [
     price: '1인 33,000원 (최소 20명)',
     priceEn: '33,000 KRW per person (min. 20)',
     duration: '2교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail22/study_22_01.png',
+    thumbnail: '/images/programs/2020_visit_new_coding19.png',
     images: [
       '/images/programs/detail/detail22/study_22_01.png',
       '/images/programs/detail/detail22/study_22_02.png',
@@ -905,7 +915,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail23/study_23_01.png',
+    thumbnail: '/images/programs/new-programai07.png',
     images: [
       '/images/programs/detail/detail23/study_23_01.png',
       '/images/programs/detail/detail23/study_23_02.gif',
@@ -948,7 +958,7 @@ export const programs: Program[] = [
     price: '1인 33,000원 (최소 20명)',
     priceEn: '33,000 KRW per person (min. 20)',
     duration: '2교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail24/study_24_01.png',
+    thumbnail: '/images/programs/2020_visit_new_steam03.png',
     images: [
       '/images/programs/detail/detail24/study_24_01.png',
       '/images/programs/detail/detail24/study_24_02.png',
@@ -989,7 +999,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail25/study_25_01.png',
+    thumbnail: '/images/programs/2020_visit_new_steam04.png',
     images: [
       '/images/programs/detail/detail25/study_25_01.png',
       '/images/programs/detail/detail25/study_25_02.png',
@@ -1030,7 +1040,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/detail/detail26/study_26_01.png',
+    thumbnail: '/images/programs/2023_visit_new_steam01.png',
     images: [
       '/images/programs/detail/detail26/study_26_01.png',
       '/images/programs/detail/detail26/study_26_02.gif',

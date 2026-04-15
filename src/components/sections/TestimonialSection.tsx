@@ -5,68 +5,103 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 
 const reviewRow1 = [
-  { image: '/images/programs/detail/main/comming-class01_01.png', alt: '전북유니텍', href: '/board/reviews' },
-  { image: '/images/programs/detail/main/comming-class01_02.png', alt: '진성고', href: '/board/reviews' },
-  { image: '/images/programs/detail/main/comming-class01_03.png', alt: '서문여고', href: '/board/reviews' },
+  { image: '/images/programs/detail/main/comming-class01_01.png', altKo: '전북유니텍', altEn: 'Jeonbuk Unitech', href: '/board/reviews' },
+  { image: '/images/programs/detail/main/comming-class01_02.png', altKo: '진성고', altEn: 'Jinseong High School', href: '/board/reviews' },
+  { image: '/images/programs/detail/main/comming-class01_03.png', altKo: '서문여고', altEn: 'Seomun Girls\' High School', href: '/board/reviews' },
 ];
 
 const reviewRow2 = [
-  { image: '/images/programs/detail/main/comming-class02_01.png', alt: '9가지 체험', href: 'https://blog.naver.com/hyhyedu/223515904796' },
-  { image: '/images/programs/detail/main/comming-class02_02.png', alt: 'VR 디자이너', href: 'https://blog.naver.com/hyhyedu/223514634459' },
-  { image: '/images/programs/detail/main/comming-class02_03.png', alt: '빅데이터', href: 'https://blog.naver.com/hyhyedu/223514508319' },
+  { image: '/images/programs/detail/main/comming-class02_01.png', altKo: '9가지 체험', altEn: '9 activities', href: 'https://blog.naver.com/hyhyedu/223515904796' },
+  { image: '/images/programs/detail/main/comming-class02_02.png', altKo: 'VR 디자이너', altEn: 'VR designer', href: 'https://blog.naver.com/hyhyedu/223514634459' },
+  { image: '/images/programs/detail/main/comming-class02_03.png', altKo: '빅데이터', altEn: 'Big data', href: 'https://blog.naver.com/hyhyedu/223514508319' },
 ];
 
 export default function TestimonialSection() {
   const locale = useLocale();
+  const isKo = locale === 'ko';
 
   return (
     <section className="py-12 px-4 bg-gray-50">
       <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-        {/* YouTube + Reviews grid */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_0.8fr] gap-[40px] mx-0 md:mx-[100px]">
           {/* Left: YouTube */}
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">교육을 받고 꿈이 생겼어요</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">
+              {isKo ? '교육을 받고 꿈이 생겼어요' : 'The class gave me a new dream'}
+            </h2>
             <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md">
               <iframe
                 src="https://www.youtube.com/embed/eBueNdGAvGg?rel=0&showinfo=0"
-                title="한양미래연구소 교육 후기"
+                title={isKo ? '한양미래연구소 교육 후기' : 'Hanyang Future Lab Class Review'}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               />
             </div>
             <p className="mt-3 text-gray-600 text-sm">
-              &ldquo;이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다. 교육 받기 전과 비교하면 인생이 바뀐 기분입니다!&rdquo;
+              {isKo
+                ? '\u201C이전에는 알지 못했던 분야를 배우며 새로운 꿈이 생겼습니다. 교육 받기 전과 비교하면 인생이 바뀐 기분입니다!\u201D'
+                : '\u201CLearning about a field I never knew, I found a new dream. Compared to before the class, I feel like my life has changed!\u201D'}
             </p>
           </div>
 
           {/* Right: Latest Reviews */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold text-gray-900">최신 후기</h2>
+              <h2 className="text-xl font-bold text-gray-900">
+                {isKo ? '최신 후기' : 'Latest Reviews'}
+              </h2>
             </div>
-            <p className="text-sm text-gray-500 mb-3">한양미래연구소는 아이들의 꿈을 보육하며 인생을 바꿀 수 있는 체험교육을 제공합니다</p>
+            <p className="text-sm text-gray-500 mb-3">
+              {isKo
+                ? '한양미래연구소는 아이들의 꿈을 보육하며 인생을 바꿀 수 있는 체험교육을 제공합니다'
+                : 'Hanyang Future Lab nurtures children\u2019s dreams and delivers life-changing hands-on education.'}
+            </p>
 
-            {/* Row 1 - comming-class-wrap */}
+            {/* Row 1 */}
             <div className="grid grid-cols-3 mb-2">
               {reviewRow1.map((item, i) => (
                 <Link key={i} href={`/${locale}${item.href}`} className="overflow-hidden hover:opacity-80 transition-opacity">
-                  <Image src={item.image} alt={item.alt} width={300} height={300} className="w-full object-contain" />
+                  <Image
+                    src={item.image}
+                    alt={isKo ? item.altKo : item.altEn}
+                    width={300}
+                    height={300}
+                    className="w-full object-contain"
+                  />
                 </Link>
               ))}
             </div>
 
-            {/* Row 2 - comming-class-wrap */}
+            {/* Row 2 */}
             <div className="grid grid-cols-3 mb-2">
               {reviewRow2.map((item, i) => (
-                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="overflow-hidden hover:opacity-80 transition-opacity">
-                  <Image src={item.image} alt={item.alt} width={300} height={300} className="w-full object-contain" />
+                <a
+                  key={i}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="overflow-hidden hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src={item.image}
+                    alt={isKo ? item.altKo : item.altEn}
+                    width={300}
+                    height={300}
+                    className="w-full object-contain"
+                  />
                 </a>
               ))}
             </div>
             <div className="text-right">
-              <a href="https://blog.naver.com/hyhyedu" target="_blank" rel="noopener noreferrer" className="text-xs text-point hover:underline">자세히보기 &rarr;</a>
+              <a
+                href="https://blog.naver.com/hyhyedu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-point hover:underline"
+              >
+                {isKo ? '자세히보기' : 'View more'} &rarr;
+              </a>
             </div>
           </div>
         </div>

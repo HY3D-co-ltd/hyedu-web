@@ -54,7 +54,7 @@ export const history: HistoryItem[] = [
       { title: '한양대학교 ERICA, 중앙대학교, 광운대학교 등 5개 학교에서 청년 창업교육, 창업아이디어톤 등의 행사 기획, 운영(총 24회 진행)', titleEn: 'Youth startup education at 5 universities including Hanyang ERICA (24 sessions)' },
       { title: '동대문청소년수련관 교육협력 MOU 체결', titleEn: 'Dongdaemun Youth Center Education MOU' },
       { title: '한양대학교 ERICA 캠퍼스 산학협력 가족기업 등록', titleEn: 'Hanyang ERICA Industry-Academia Family Company Registration' },
-      { title: '(주)하이스타터 법인설립 - \'한양미래연구소\' 교육사업부문 분사', titleEn: 'Hi-Starter Inc. Founded - Hanyang Future Lab Education Division' },
+      { title: '(주)하이스타터 법인설립 - \'한양미래연구소\' 교육사업부문 분사', titleEn: 'Histarter co.,ltd Founded — Hanyang Future Lab Education Division spun off' },
     ],
   },
 ];

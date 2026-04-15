@@ -9,18 +9,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isKo = locale === 'ko';
   return {
-    title: '교육 신청/문의 | 한양미래연구소',
-    description:
-      '한양미래연구소 교육 신청 및 문의. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로 문의하세요. 경진대회 대비반, 토요캠프 네이버 예약.',
-    keywords: [
-      '한양미래연구소 문의',
-      '교육 신청',
-      '카카오톡 문의',
-      '교육 예약',
-      '경진대회 대비반',
-      '토요캠프',
-    ],
+    title: isKo ? '교육 신청/문의 | 한양미래연구소' : 'Contact / Apply | Hanyang Future Lab',
+    description: isKo
+      ? '한양미래연구소 교육 신청 및 문의. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로 문의하세요. 경진대회 대비반, 토요캠프 네이버 예약.'
+      : 'Apply and inquire at Hanyang Future Lab via KakaoTalk, email (hyedu0829@gmail.com), or phone (+82-70-8064-0829). Naver booking for Competition Prep and Saturday Camps.',
+    keywords: isKo
+      ? ['한양미래연구소 문의', '교육 신청', '카카오톡 문의', '교육 예약', '경진대회 대비반', '토요캠프']
+      : ['Hanyang Future Lab contact', 'education apply', 'KakaoTalk inquiry', 'competition prep', 'Saturday camp'],
   };
 }
 
@@ -31,13 +28,14 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const isKo = locale === 'ko';
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: '홈', href: `/${locale}` },
-          { name: '교육 신청/문의', href: `/${locale}/contact` },
+          { name: isKo ? '홈' : 'Home', href: `/${locale}` },
+          { name: isKo ? '교육 신청/문의' : 'Contact', href: `/${locale}/contact` },
         ]}
       />
 
@@ -48,7 +46,7 @@ export default async function ContactPage({
             Education Application / Education Inquiry
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            교육 신청 / 문의
+            {isKo ? '교육 신청 / 문의' : 'Apply / Contact'}
           </h1>
         </div>
       </section>
@@ -66,15 +64,15 @@ export default async function ContactPage({
             >
               <Image
                 src="/images/main/kakao.png"
-                alt="카카오톡"
+                alt={isKo ? '카카오톡' : 'KakaoTalk'}
                 width={48}
                 height={48}
               />
               <span className="text-lg font-bold text-gray-900">
-                카카오톡 바로가기
+                {isKo ? '카카오톡 바로가기' : 'Open KakaoTalk'}
               </span>
               <span className="text-sm text-gray-500">
-                카카오톡 채널에서 편하게 문의하세요
+                {isKo ? '카카오톡 채널에서 편하게 문의하세요' : 'Chat with us on our KakaoTalk channel'}
               </span>
             </a>
 
@@ -85,19 +83,17 @@ export default async function ContactPage({
             >
               <Image
                 src="/images/main/mail.svg"
-                alt="이메일"
+                alt={isKo ? '이메일' : 'Email'}
                 width={48}
                 height={48}
               />
               <span className="text-lg font-bold text-gray-900">
-                메일 전송하기
+                {isKo ? '메일 전송하기' : 'Send Email'}
               </span>
-              <span className="text-sm text-gray-500">
-                hyedu0829@gmail.com
-              </span>
+              <span className="text-sm text-gray-500">hyedu0829@gmail.com</span>
             </a>
 
-            {/* Naver Booking - 경진대회 대비반 / 토요캠프 */}
+            {/* Naver Booking */}
             <a
               href="https://booking.naver.com/booking/12/bizes/252156"
               target="_blank"
@@ -106,17 +102,27 @@ export default async function ContactPage({
             >
               <Image
                 src="/images/main/naver.png"
-                alt="네이버 예약"
+                alt={isKo ? '네이버 예약' : 'Naver Booking'}
                 width={48}
                 height={48}
               />
               <span className="text-lg font-bold text-gray-900">
-                경진대회 대비반/
-                <br />
-                토요캠프 신청하기
+                {isKo ? (
+                  <>
+                    경진대회 대비반/
+                    <br />
+                    토요캠프 신청하기
+                  </>
+                ) : (
+                  <>
+                    Competition Prep /
+                    <br />
+                    Saturday Camp Booking
+                  </>
+                )}
               </span>
               <span className="text-sm text-gray-500">
-                네이버 예약으로 바로 신청
+                {isKo ? '네이버 예약으로 바로 신청' : 'Apply directly via Naver Booking'}
               </span>
             </a>
           </div>
@@ -128,7 +134,11 @@ export default async function ContactPage({
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] flex justify-center">
           <Image
             src="/images/main/inquiry01_01.png"
-            alt="카카오톡에서 한양미래연구소 채널을 추가하세요. QR 스캔 시 채널로 이동합니다."
+            alt={
+              isKo
+                ? '카카오톡에서 한양미래연구소 채널을 추가하세요. QR 스캔 시 채널로 이동합니다.'
+                : 'Add the Hanyang Future Lab channel on KakaoTalk. Scan the QR to open the channel.'
+            }
             width={500}
             height={500}
             className="w-full max-w-[500px] h-auto"
@@ -141,7 +151,11 @@ export default async function ContactPage({
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] flex justify-center">
           <Image
             src="/images/main/inquiry01_02.png"
-            alt="빠른 답변을 원하신다면 070-8064-0829. 업무 시간: 평일 09:00~18:00 (점심시간 12:00~13:00) 주말 및 공휴일 휴무"
+            alt={
+              isKo
+                ? '빠른 답변을 원하신다면 070-8064-0829. 업무 시간: 평일 09:00~18:00 (점심시간 12:00~13:00) 주말 및 공휴일 휴무'
+                : 'For fast responses call +82-70-8064-0829. Hours: Weekdays 09:00–18:00 (lunch 12:00–13:00). Closed on weekends and holidays.'
+            }
             width={500}
             height={500}
             className="w-full max-w-[500px] h-auto"

@@ -13,16 +13,17 @@ const slides = [
 
 export default function HeroSection() {
   const locale = useLocale();
+  const isKo = locale === 'ko';
 
   return (
-    <section aria-label="메인 배너">
+    <section aria-label={isKo ? '메인 배너' : 'Main banner'}>
       <Slider autoplay loop className="w-full">
         {slides.map((slide, index) => {
           const content = (
             <div key={index} className="relative w-full aspect-[16/6] md:aspect-[16/5]">
               <Image
                 src={slide.image}
-                alt={`슬라이드 ${index + 1}`}
+                alt={isKo ? `슬라이드 ${index + 1}` : `Slide ${index + 1}`}
                 fill
                 className="object-cover"
                 priority={index === 0}

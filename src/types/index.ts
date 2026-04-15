@@ -14,6 +14,10 @@ export interface Program {
   curriculum: string[];
   curriculumEn: string[];
   faq: { question: string; questionEn: string; answer: string; answerEn: string }[];
+  /** 교육 추천 정리표에 "동아리" 배지 표시 여부 */
+  clubAvailable?: boolean;
+  /** 교육 추천 정리표에 "다회기" 배지 표시 여부 */
+  multiSession?: boolean;
 }
 
 export interface YouthClub {

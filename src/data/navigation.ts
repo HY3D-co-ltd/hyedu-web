@@ -13,6 +13,14 @@ export const navigationItems: NavItem[] = [
     ],
   },
   { label: '체험 부스', labelKey: 'nav.booth', href: '/booth' },
-  { label: '캠프', labelKey: 'nav.camp', href: '/camp' },
+  {
+    label: '캠프',
+    labelKey: 'nav.camp',
+    children: [
+      { label: '한양청소년캠프', labelKey: 'nav.campYouth', href: '/camp' },
+      { label: '토요캠프', labelKey: 'nav.campSaturday', href: '/camp/saturday' },
+      { label: '경진대회 대비 캠프', labelKey: 'nav.campCompetition', href: '/camp/competition' },
+    ],
+  },
   { label: '교육 신청', labelKey: 'nav.eduRequest', href: '/contact' },
 ];
