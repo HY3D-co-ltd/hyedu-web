@@ -60,14 +60,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const post of reviewPosts) {
       entries.push({
-        url: `${baseUrl}/${locale}/board/reviews/${post.id}`,
+        url: `${baseUrl}/${locale}/board/reviews/${post.slug}`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.5,
         alternates: {
           languages: {
-            ko: `${baseUrl}/ko/board/reviews/${post.id}`,
-            en: `${baseUrl}/en/board/reviews/${post.id}`,
+            ko: `${baseUrl}/ko/board/reviews/${post.slug}`,
+            en: `${baseUrl}/en/board/reviews/${post.slug}`,
           },
         },
       });
@@ -75,14 +75,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const post of eventPosts) {
       entries.push({
-        url: `${baseUrl}/${locale}/board/events/${post.id}`,
+        url: `${baseUrl}/${locale}/board/events/${post.slug}`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.5,
         alternates: {
           languages: {
-            ko: `${baseUrl}/ko/board/events/${post.id}`,
-            en: `${baseUrl}/en/board/events/${post.id}`,
+            ko: `${baseUrl}/ko/board/events/${post.slug}`,
+            en: `${baseUrl}/en/board/events/${post.slug}`,
           },
         },
       });

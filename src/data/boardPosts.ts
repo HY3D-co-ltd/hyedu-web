@@ -1,5 +1,6 @@
 export interface StaticBoardPost {
   id: string;
+  slug: string;
   title: string;
   thumbnail: string;
   date: string;
@@ -9,6 +10,7 @@ export interface StaticBoardPost {
 export const eventPosts: StaticBoardPost[] = [
   {
     id: "316",
+    slug: "316-renewable-energy-saturday-camp",
     title: "신재생 에너지 토요 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/edit_the_poster_image_replace_the_central_student_1770873146546.png",
     date: "2026-02-12",
@@ -16,6 +18,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "315",
+    slug: "315-ai-robot-engineer-saturday-camp",
     title: "AI 로봇 엔지니어 토요 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/marketing_poster_1_for_ai_robot_engineer_camp_focu_1770712165518.png",
     date: "2026-02-12",
@@ -23,6 +26,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "314",
+    slug: "314-app-game-developer-saturday-camp",
     title: "앱/게임 개발자 토요 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/premium_educational_camp_hero_poster_in_916_verti_1770708459793.png",
     date: "2026-02-12",
@@ -30,6 +34,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "313",
+    slug: "313-music-tech-engineer-saturday-camp",
     title: "뮤직 테크 엔지니어 토요 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/포스터2.png",
     date: "2026-02-09",
@@ -37,6 +42,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "312",
+    slug: "312-hanyang-youth-ai-space-fusion-camp",
     title: "한양대 청소년 AI·우주체험 융합 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/썸네일.jpg",
     date: "2025-12-19",
@@ -44,6 +50,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "302",
+    slug: "302-hanyang-youth-machine-learning-ai-camp",
     title: "한양 청소년 머신러닝 AI 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/학교배포용_포스터_수리데이터사이언스캠프[한양미래연구소]__2_.png",
     date: "2025-12-12",
@@ -51,6 +58,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "301",
+    slug: "301-2026-competition-prep-camp",
     title: "2026 경진대회대비 캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/경진대회대비캠프_썸네일.png",
     date: "2025-12-12",
@@ -58,6 +66,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "300",
+    slug: "300-2026-hanyang-youth-saturday-camp",
     title: "2026 한양청소년 토요캠프",
     thumbnail: "https://hyedu.kr/skin/thumb/한양청소년_토요캠프_썸네일.png",
     date: "2025-12-12",
@@ -65,6 +74,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "299",
+    slug: "299-2025-national-university-sw-startup-ideathon",
     title: "2025 전국 대학생 SW 창업 아이디어톤",
     thumbnail: "https://hyedu.kr/skin/thumb/001_1.png",
     date: "2025-12-10",
@@ -72,6 +82,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "298",
+    slug: "298-2025-erica-ai-robot-startup-ideathon",
     title: "2025 ERICA 제1회 지능형로봇 창업 아이디어톤",
     thumbnail: "https://hyedu.kr/skin/thumb/포스터.png",
     date: "2025-12-10",
@@ -79,6 +90,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "297",
+    slug: "297-2025-paichai-smart-ict-makerthon",
     title: "2025 배재대학교 제3회 스마트ICT융합 메이커톤",
     thumbnail: "https://hyedu.kr/skin/thumb/[카톡프로필]25배재대메이커톤.png",
     date: "2025-12-10",
@@ -86,6 +98,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "296",
+    slug: "296-2025-erica-software-up-sw-startup-ideathon",
     title: "2025 ERICA Software-Up!   제13회 SW창업 아이디어톤(오프라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/001.png",
     date: "2025-12-10",
@@ -93,6 +106,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "295",
+    slug: "295-2024-national-university-sw-startup-ideathon",
     title: "2024 전국 대학생  SW 창업 아이디어톤(온·오프라인 혼합 운영)",
     thumbnail: "https://hyedu.kr/skin/thumb/1.png",
     date: "2025-12-10",
@@ -100,6 +114,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "294",
+    slug: "294-2023-national-university-sw-startup-ideathon",
     title: "2023 전국 대학생  SW 창업 아이디어톤(온·오프라인 혼합 운영)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1_3.png",
     date: "2025-12-10",
@@ -107,6 +122,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "293",
+    slug: "293-2023-paichai-smart-ict-makerthon",
     title: "2023 배재대학교 제1회 스마트ICT융합 메이커톤(온·오프라인 혼합 운영)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1_2.png",
     date: "2025-12-10",
@@ -114,6 +130,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "292",
+    slug: "292-2023-erica-software-up-sw-startup-ideathon",
     title: "2023 ERICA Software-Up!   제11회 SW창업 아이디어톤(오프라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1_3.jpg",
     date: "2025-12-10",
@@ -121,6 +138,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "291",
+    slug: "291-2022-sw-startup-makerthon-app-iot",
     title: "2022 제4회 SW 창업 메이커톤(App·IoT) (오프라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1_2.jpg",
     date: "2025-12-10",
@@ -128,6 +146,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "290",
+    slug: "290-2022-dongseoul-maker-ideathon-bootcamp",
     title: "동서울대학교 2022 메이커융합 아이디어 부트 캠프(온라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/[카톡프로필]22_동서울대부트캠프.png",
     date: "2025-12-10",
@@ -135,6 +154,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "289",
+    slug: "289-2022-erica-software-up-sw-startup-ideathon-offline",
     title: "2022 ERICA Software-Up!   제9회 SW창업 아이디어톤(오프라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1_1.png",
     date: "2025-12-10",
@@ -142,6 +162,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "288",
+    slug: "288-2022-erica-software-up-sw-startup-ideathon-online",
     title: "2022 ERICA Software-Up!   제8회 SW창업 아이디어톤(온라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/슬라이드1.png",
     date: "2025-12-10",
@@ -149,6 +170,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "287",
+    slug: "287-2021-national-university-sw-startup-ideathon-online",
     title: "2021 전국 대학생 SW창업 아이디어톤(온라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/[카드뉴스]2021전국아이디어톤__1_.png",
     date: "2025-12-10",
@@ -156,6 +178,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "286",
+    slug: "286-2021-sw-startup-makerthon-app-iot-online",
     title: "2021 제3회SW창업 메이커톤(App·IoT) (온라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/[카드뉴스]제3회sw창업메이커톤__1_.jpg",
     date: "2025-12-10",
@@ -163,6 +186,7 @@ export const eventPosts: StaticBoardPost[] = [
   },
   {
     id: "285",
+    slug: "285-2021-erica-software-up-sw-startup-ideathon-online",
     title: "2021 ERICA Software-Up! 제7회 SW창업아이디어톤(온라인)",
     thumbnail: "https://hyedu.kr/skin/thumb/[카드뉴스]7회아이디어톤__1_.png",
     date: "2025-12-10",
@@ -173,6 +197,7 @@ export const eventPosts: StaticBoardPost[] = [
 export const reviewPosts: StaticBoardPost[] = [
   {
     id: "329",
+    slug: "329-ai-led-mood-lamp-ganghwa-girls-high",
     title: "강화여고에서 진행된 AI LED 무드등 제작기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__18_.png",
     date: "",
@@ -180,6 +205,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "328",
+    slug: "328-algeomath-coding-webapp-ansan-seongan-high",
     title: "안산 성안고 고3수학 수업, 알지오매스X코딩으로 웹앱 개발까지!",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__17_.png",
     date: "",
@@ -187,6 +213,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "327",
+    slug: "327-generative-ai-avatar-video-beombak-high",
     title: "범박고 윤리 기반 생성형 AI 아바타 영상 제작기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__16_.png",
     date: "",
@@ -194,6 +221,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "326",
+    slug: "326-drone-education-iwol-elementary",
     title: "이월초 4차 산업에 맞춤형 핵심 기술 드론교육 진행기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__15_.png",
     date: "",
@@ -201,6 +229,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "325",
+    slug: "325-ai-basics-experience-sanae-high",
     title: "사내고등학교에서 진행된 창의적 AI 인공지능 기초 체험 프로그램 후기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__12_.png",
     date: "",
@@ -208,6 +237,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "324",
+    slug: "324-no-code-chatbot-ganghwa-girls-high",
     title: "강화여자고등학교에서 진행된 노코딩 챗봇 제작기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__11_.png",
     date: "",
@@ -215,6 +245,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "323",
+    slug: "323-neobot-coding-autonomous-driving-samyuk-elementary",
     title: "삼육초등학교에서 네오봇코딩으로 만난 자율주행의 세계",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__10_.png",
     date: "",
@@ -222,6 +253,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "322",
+    slug: "322-bluetooth-speaker-career-ganghwa-girls-high",
     title: "강화여고 체험수업, 블루투스 스피커 만들기로 시작하는 진로탐색",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__9_.png",
     date: "",
@@ -229,6 +261,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "321",
+    slug: "321-drone-education-seohae-high",
     title: "서해고등학교 드론 교육: 이론과 실기, 두 마리 토끼 잡은 현장",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__8_.png",
     date: "",
@@ -236,6 +269,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "320",
+    slug: "320-robot-arm-ar-musilbit-kindergarten-wonju",
     title: "원주 무실빛유치원에서 만난 로봇팔 제어와 증강현실 체험기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__6_.png",
     date: "",
@@ -243,6 +277,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "319",
+    slug: "319-snail-robot-ai-iho-middle",
     title: "AI 교육의 새 시대 이호중학교 달팽이 로봇 체험",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__1_.png",
     date: "",
@@ -250,6 +285,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "318",
+    slug: "318-generative-ai-education-beombak-high",
     title: "범박고등학교 생성형AI 교육, 미래 역량 키우는 즐거운 탐험",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__2_.png",
     date: "",
@@ -257,6 +293,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "317",
+    slug: "317-ultrasonic-smart-robot-trashcan-sujeong-youth-center",
     title: "수정유스센터 코딩, 초음파 센서로 스마트 로봇 휴지통을 만들다!",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__5_.png",
     date: "",
@@ -264,6 +301,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "284",
+    slug: "284-smart-house-block-coding-taejongdae-elementary",
     title: "태종대초등학교 스마트 하우스 블록코딩 체험 솔직 후기",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__4_.png",
     date: "",
@@ -271,6 +309,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "283",
+    slug: "283-augmented-reality-burim-elementary",
     title: "부림초등학교 증강현실 체험 교육으로 미래 인재를 먼저 키우다.",
     thumbnail: "https://hyedu.kr/skin/thumb/제목을_입력해주세요.__14_.png",
     date: "",
@@ -278,6 +317,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "272",
+    slug: "272-experience-class-cheongpyeong-high-electronics",
     title: "[교육후기]찾아가는 체험교실: 청평고등학교(관내 전자과 진학 희망 중학생을 대상으로 한 학과 체험)",
     thumbnail: "https://hyedu.kr/skin/thumb/청평고_중등__썸네일.jpg",
     date: "",
@@ -285,6 +325,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "271",
+    slug: "271-experience-class-yeoju-sangpum-middle",
     title: "[교육후기] 찾아가는 체험교실: 여주상품중학교",
     thumbnail: "https://hyedu.kr/skin/thumb/여주상품중_썸네일.jpg",
     date: "",
@@ -292,6 +333,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "267",
+    slug: "267-experience-class-gajeong-high",
     title: "[교육후기]찾아가는 체험교실: 가정고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/가정고_썸네일.jpg",
     date: "",
@@ -299,6 +341,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "266",
+    slug: "266-hanyang-youth-camp-ansan-technical-high",
     title: "[캠프 후기] 한양청소년캠프: 안산공업고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/안산공고_썸네일.jpg",
     date: "",
@@ -306,6 +349,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "265",
+    slug: "265-experience-class-icheon-dawon",
     title: "[교육후기] 찾아가는 체험교실: 이천다원학교",
     thumbnail: "https://hyedu.kr/skin/thumb/다원학교_썸네일.jpg",
     date: "",
@@ -313,6 +357,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "264",
+    slug: "264-youth-club-seomun-girls-high",
     title: "[교육후기]청소년 동아리: 서문여자고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/서문여고_썸네일_1.jpg",
     date: "",
@@ -320,6 +365,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "263",
+    slug: "263-experience-class-hyeonhwa-high",
     title: "[교육후기] 찾아가는 체험교실: 현화고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/현화고_드론_썸네일.jpg",
     date: "",
@@ -327,6 +373,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "262",
+    slug: "262-experience-class-osan-high",
     title: "[교육후기] 찾아가는 체험교실: 오산고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/홈페이지_썸네일.jpg",
     date: "",
@@ -334,6 +381,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "260",
+    slug: "260-2024-national-youth-opensw-game-python-competition",
     title: "한양대와 함께하는 2024 전국 청소년 오픈SW GAME 코딩 대회 With 파이썬 참가자 모집",
     thumbnail: "https://hyedu.kr/skin/thumb/[포스터]_최종_2024_전국_청소년_오픈sw_game_코딩대회with_파이썬.jpg",
     date: "",
@@ -341,6 +389,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "257",
+    slug: "257-experience-class-jeonbuk-unitech-high",
     title: "[교육후기] 찾아가는 체험교실: 전북유니텍고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/유니텍_썸네일.jpg",
     date: "",
@@ -348,6 +397,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "256",
+    slug: "256-experience-class-jinseong-high",
     title: "[교육후기] 찾아가는 체험교실: 진성고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/진성고_썸네일.jpg",
     date: "",
@@ -355,6 +405,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "255",
+    slug: "255-experience-class-seomun-girls-high",
     title: "[교육후기] 찾아가는 체험교실: 서문여자고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/서문여고_썸네일.jpg",
     date: "",
@@ -362,6 +413,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "254",
+    slug: "254-experience-class-sangwon-high",
     title: "[교육후기] 찾아가는 체험교실: 상원고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/상원고_썸네일.jpg",
     date: "",
@@ -369,6 +421,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "253",
+    slug: "253-experience-class-yangpyeong-high",
     title: "[교육후기] 찾아가는 체험교실: 양평고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/양평고_썸네일.jpg",
     date: "",
@@ -376,6 +429,7 @@ export const reviewPosts: StaticBoardPost[] = [
   },
   {
     id: "252",
+    slug: "252-experience-class-incheon-munhak-info-high",
     title: "[교육후기] 찾아가는 체험교실: 인천문학정보고등학교",
     thumbnail: "https://hyedu.kr/skin/thumb/문학고_썸네일.jpg",
     date: "",

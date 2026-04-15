@@ -31,7 +31,7 @@ export default function ReviewsPage() {
           {reviewPosts.map((post) => (
             <Link
               key={post.id}
-              href={`/${locale}/board/reviews/${post.id}`}
+              href={`/${locale}/board/reviews/${post.slug}`}
               className="group border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white"
             >
               <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
