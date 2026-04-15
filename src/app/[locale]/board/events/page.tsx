@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { eventPosts } from '@/data/boardPosts';
 
@@ -28,11 +29,9 @@ export default function EventsPage() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {eventPosts.map((post) => (
-            <a
+            <Link
               key={post.id}
-              href={post.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/${locale}/board/events/${post.id}`}
               className="group border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white"
             >
               <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
@@ -58,7 +57,7 @@ export default function EventsPage() {
                   <p className="text-xs text-gray-500">{post.date}</p>
                 )}
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

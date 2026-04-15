@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { programs } from '@/data/programs';
+import { eventPosts, reviewPosts } from '@/data/boardPosts';
 
 export const dynamic = 'force-static';
 
@@ -52,6 +53,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             ko: `${baseUrl}/ko/programs/${program.slug}`,
             en: `${baseUrl}/en/programs/${program.slug}`,
+          },
+        },
+      });
+    }
+
+    for (const post of reviewPosts) {
+      entries.push({
+        url: `${baseUrl}/${locale}/board/reviews/${post.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.5,
+        alternates: {
+          languages: {
+            ko: `${baseUrl}/ko/board/reviews/${post.id}`,
+            en: `${baseUrl}/en/board/reviews/${post.id}`,
+          },
+        },
+      });
+    }
+
+    for (const post of eventPosts) {
+      entries.push({
+        url: `${baseUrl}/${locale}/board/events/${post.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.5,
+        alternates: {
+          languages: {
+            ko: `${baseUrl}/ko/board/events/${post.id}`,
+            en: `${baseUrl}/en/board/events/${post.id}`,
           },
         },
       });

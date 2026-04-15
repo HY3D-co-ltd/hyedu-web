@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* BBS post content — make inline images responsive and centered,
+   override legacy color/font styles baked into the HTML. */
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 8px;
+}
+
+.post-content p,
+.post-content span {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: 1.8 !important;
+  text-align: center;
+  margin: 0 0 1em;
+}
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.post-content iframe,
+.post-content video {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 16px auto;
+  display: block;
+}
