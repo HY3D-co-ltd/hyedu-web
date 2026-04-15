@@ -8,6 +8,7 @@ import { cancellationPolicies } from '@/data/cancellation-policy';
 import { CourseJsonLd, FAQJsonLd, BreadcrumbJsonLd, ReviewsJsonLd } from '@/components/seo/JsonLd';
 import AgeRecommendation from '@/components/sections/AgeRecommendation';
 import ContactSection from '@/components/sections/ContactSection';
+import { withBasePath } from '@/lib/basePath';
 import MapSection from '@/components/sections/MapSection';
 
 type Bi = { ko: string; en: string };
@@ -805,7 +806,7 @@ export default async function ProgramDetailPage({
                 key={feature.image}
                 className="relative w-full aspect-[3/4] flex flex-col items-center justify-center gap-2 sm:gap-3 p-2 sm:p-3 md:p-4 rounded-md overflow-hidden"
                 style={{
-                  backgroundImage: 'url(/images/main/feature-bg.png)',
+                  backgroundImage: `url(${withBasePath('/images/main/feature-bg.png')})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
                   backgroundSize: '100% 100%',

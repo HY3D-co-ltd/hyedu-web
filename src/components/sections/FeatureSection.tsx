@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
+import { withBasePath } from '@/lib/basePath';
 
 type Bi = { ko: string; en: string };
 const pick = (b: Bi, isKo: boolean) => (isKo ? b.ko : b.en);
@@ -79,7 +80,7 @@ export default function FeatureSection() {
               key={feature.image}
               className="relative w-full aspect-[3/4] flex flex-col items-center justify-center gap-2 sm:gap-3 p-2 sm:p-3 md:p-4 rounded-md overflow-hidden"
               style={{
-                backgroundImage: 'url(/images/main/feature-bg.png)',
+                backgroundImage: `url(${withBasePath('/images/main/feature-bg.png')})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: '100% 100%',
