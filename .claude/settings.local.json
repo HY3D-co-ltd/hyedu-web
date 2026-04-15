@@ -26,7 +26,8 @@
       "Bash(cd:*)",
       "Bash(node -e ' *)",
       "WebFetch(domain:hyedu.kr)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(awk NR>=200 && NR<=295 *)"
     ]
   }
 }
