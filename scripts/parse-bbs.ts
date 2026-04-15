@@ -9,17 +9,17 @@ type Post = {
 
 function parse(html: string): Post[] {
   const posts: Post[] = [];
-  const blockRe = /<div class="col-xs-12 col-sm-3 dhb-txt-box-type-b[^>]*"[\s\S]*?<\/div>\s*<\/div>/g;
-  const blocks = html.match(blockRe) ?? [];
-  for (const block of blocks) {
-    const idMatch = block.match(/class='btnRead'\s+value='(\d+)'/);
-    const titleMatch = block.match(/<a[^>]*class='btnRead'[^>]*>([\s\S]*?)<\/a>/);
-    const thumbMatch = block.match(/<img[^>]+src='([^']+)'/);
-    const dateMatch = block.match(/<span class='regdate'>([^<]+)<\/span>/);
+  // Split by the block marker and discard the pre-list part
+  const chunks = html.split('col-xs-12 col-sm-3 dhb-txt-box-type-b').slice(1);
+  for (const chunk of chunks) {
+    const idMatch = chunk.match(/class='btnRead'\s+value='(\d+)'/);
+    const titleMatch = chunk.match(/<strong>\s*<a[^>]*class='btnRead'[^>]*>([\s\S]*?)<\/a>\s*<\/strong>/);
+    const thumbMatch = chunk.match(/<img[^>]+src='([^']+)'/);
+    const dateMatch = chunk.match(/<span class='regdate'>([^<]+)<\/span>/);
     if (!idMatch || !titleMatch) continue;
     posts.push({
       id: idMatch[1],
-      title: titleMatch[1].replace(/<[^>]+>/g, '').trim(),
+      title: titleMatch[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').trim(),
       thumbnail: thumbMatch ? thumbMatch[1] : '',
       date: dateMatch ? dateMatch[1].split(' ')[0] : '',
     });
@@ -45,4 +45,4 @@ for (const [k, fs_list] of Object.entries(files)) {
 }
 
 console.log(JSON.stringify(result, null, 2));
-console.log(`events: ${result.events.length}, reviews: ${result.reviews.length}`);
+console.error(`events: ${result.events.length}, reviews: ${result.reviews.length}`);
