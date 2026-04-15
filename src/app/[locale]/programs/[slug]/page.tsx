@@ -81,8 +81,8 @@ export default async function ProgramDetailPage({
   // Cancellation policy for experience type
   const policy = cancellationPolicies.find((p) => p.type === 'experience');
 
-  // Limit images to 6 for the photo grid
-  const displayImages = program.images.slice(0, 6);
+  // Use all images for the photo section
+  const displayImages = program.images;
 
   return (
     <>
@@ -96,6 +96,32 @@ export default async function ProgramDetailPage({
           { name: title, href: `/${locale}/programs/${slug}` },
         ]}
       />
+
+      {/* ============================================ */}
+      {/* con00: 히어로 배너 */}
+      {/* ============================================ */}
+      <section className="relative w-full overflow-hidden">
+        <div className="relative w-full h-[200px] md:h-[280px]">
+          <Image
+            src="/images/sub/subTop.png"
+            alt="배경"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <span className="inline-block bg-point text-white text-[12px] md:text-[14px] font-bold px-4 py-1.5 rounded-full mb-3">
+              {categoryLabel}
+            </span>
+            <h1 className="text-[22px] md:text-[32px] lg:text-[38px] font-bold text-gray-900 leading-tight">
+              {title}
+            </h1>
+            <p className="text-[13px] md:text-[16px] text-gray-600 mt-2">
+              {locale === 'ko' ? program.titleEn : program.title}
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ============================================ */}
       {/* con01: 추천드립니다 */}
@@ -334,12 +360,13 @@ export default async function ProgramDetailPage({
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-[900px] mx-auto">
               {displayImages.map((img, idx) => (
-                <div key={idx} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100">
+                <div key={idx} className="rounded-lg overflow-hidden bg-gray-100">
                   <Image
                     src={img}
                     alt={`${title} 교육사진 ${idx + 1}`}
-                    fill
-                    className="object-cover"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto"
                     sizes="(max-width: 768px) 50vw, 33vw"
                   />
                 </div>
@@ -383,39 +410,34 @@ export default async function ProgramDetailPage({
       </section>
 
       {/* ============================================ */}
-      {/* con05: 리뷰 & 만족도 */}
+      {/* con05: 고객 만족도 & 리뷰 (세로 나열 - 원본 상품상세 스타일) */}
       {/* ============================================ */}
       <section className="py-14 px-4 bg-white">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-              <Image
-                src="/images/sub/true_review01_01.png"
-                alt="리뷰"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-              <Image
-                src="/images/sub/true_review01_02.png"
-                alt="만족도 설문조사"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-              <Image
-                src="/images/sub/true_review01_03.png"
-                alt="커리큘럼"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-          </div>
+        <div className="mx-auto max-w-[800px] flex flex-col items-center gap-0">
+          {/* 고객 만족도 UP 배너 */}
+          <Image
+            src="/images/sub/true_review01_03.png"
+            alt="탄탄한 커리큘럼과 맞춤 전문 케어로 고객 만족도 UP!"
+            width={800}
+            height={400}
+            className="w-full h-auto"
+          />
+          {/* 만족도 설문조사 */}
+          <Image
+            src="/images/sub/true_review01_02.png"
+            alt="한양미래연구소 교육 만족도 설문조사"
+            width={800}
+            height={400}
+            className="w-full h-auto"
+          />
+          {/* 솔직 리뷰 */}
+          <Image
+            src="/images/sub/true_review01_01.png"
+            alt="솔직 리뷰"
+            width={800}
+            height={600}
+            className="w-full h-auto"
+          />
         </div>
       </section>
 
