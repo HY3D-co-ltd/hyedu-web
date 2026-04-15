@@ -6,3 +6,6 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .cache/
+firebase-debug.log
+tsconfig.tsbuildinfo
+camp*.html
