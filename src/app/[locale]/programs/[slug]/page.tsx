@@ -98,28 +98,6 @@ export default async function ProgramDetailPage({
       />
 
       {/* ============================================ */}
-      {/* 상단 버튼 바: 교육 신청하기 + 커리큘럼 보기 */}
-      {/* ============================================ */}
-      <section className="bg-white border-b border-gray-200">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-4 py-4 flex flex-wrap gap-3 justify-center">
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-block bg-point text-white font-bold text-[15px] px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
-          >
-            교육 신청하기
-          </Link>
-          <a
-            href="https://drive.google.com/file/d/1RTJPXvJd2IE_O_nKL_8qsMHqfCeSVwQH/view"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[#333] text-white font-bold text-[15px] px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
-          >
-            커리큘럼 보기
-          </a>
-        </div>
-      </section>
-
-      {/* ============================================ */}
       {/* con01: 추천드립니다 */}
       {/* ============================================ */}
       <section className="py-14 px-4 bg-[#f7f8fc]">
