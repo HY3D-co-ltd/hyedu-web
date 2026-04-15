@@ -33,6 +33,9 @@ export async function generateMetadata({
     metadataBase: new URL(SITE_URL),
     title,
     description,
+    keywords: isKo
+      ? ['AI교육', '로봇교육', '한양미래연구소', '체험교실', '청소년 캠프', '4차산업혁명 교육']
+      : ['AI education', 'robot education', 'Hanyang Future Lab', 'experience class', 'youth camp', '4th industrial revolution education'],
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
       languages: {

@@ -20,8 +20,8 @@ export async function generateMetadata({
         : 'Hanyang Future Lab online education: 3D printing, 3D pen, ultrasonic robot, metaverse, 4th industrial revolution. Live, video, and combined online classes.',
     keywords:
       locale === 'ko'
-        ? ['온라인 교육', 'AI 온라인 수업', '메이커 온라인', '코딩 온라인', '3D프린팅 온라인', '메타버스 교육']
-        : ['online education', 'AI online class', 'maker online', 'coding online', '3D printing online'],
+        ? ['온라인 교육', 'AI교육', '로봇교육', 'AI 온라인 수업', '메이커 온라인', '코딩 온라인', '3D프린팅 온라인', '메타버스 교육']
+        : ['online education', 'AI education', 'robot education', 'AI online class', 'maker online', 'coding online', '3D printing online'],
   };
 }
 

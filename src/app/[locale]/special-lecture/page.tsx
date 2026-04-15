@@ -19,8 +19,8 @@ export async function generateMetadata({
       ? '한양미래연구소 전문인 특강: 4차산업혁명과 청소년 기업가정신 특강, 스타트업 CEO가 들려주는 창업 이야기. 60~120분 강연 프로그램.'
       : 'Hanyang Future Lab specialist lectures: 4th Industrial Revolution & Youth Entrepreneurship lecture, and Startup CEO Stories. 60–120 minute lecture programs.',
     keywords: isKo
-      ? ['전문인 특강', '기업가정신 특강', '4차산업혁명 특강', '스타트업 특강', '청소년 특강']
-      : ['specialist lecture', 'entrepreneurship lecture', '4th industrial revolution lecture', 'startup lecture', 'youth lecture'],
+      ? ['전문인 특강', 'AI교육', '로봇교육', '기업가정신 특강', '4차산업혁명 특강', '스타트업 특강', '청소년 특강']
+      : ['specialist lecture', 'AI education', 'robot education', 'entrepreneurship lecture', '4th industrial revolution lecture', 'startup lecture', 'youth lecture'],
   };
 }
 

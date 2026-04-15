@@ -19,8 +19,8 @@ export async function generateMetadata({
       ? '청소년 동아리 프로그램: 3D펜 디자이너, 3D프린터 모델링, VR 영상, 드론 농구, 자율주행자동차 동아리. 각 지역별 청소년 수련관, 학교, 문화센터 등의 교육기관에 방문하여 첨단 장비와 미래기술을 활용한 수준별 체험 프로그램.'
       : 'Youth club programs: 3D Pen Designer, 3D Printer Modeling, VR Video, Drone Basketball, Autonomous Driving. On-site visits to youth training centers, schools, and culture centers — leveled hands-on programs with advanced equipment and future technologies.',
     keywords: isKo
-      ? ['청소년 동아리', '로봇코딩 동아리', '메이커 동아리', 'STEAM 동아리', '창업 동아리', '3D프린팅 동아리', '드론 동아리', 'VR 동아리']
-      : ['youth club', 'robot coding club', 'maker club', 'STEAM club', 'startup club', '3D printing club', 'drone club', 'VR club'],
+      ? ['청소년 동아리', 'AI교육', '로봇교육', '로봇코딩 동아리', '메이커 동아리', 'STEAM 동아리', '창업 동아리', '3D프린팅 동아리', '드론 동아리']
+      : ['youth club', 'AI education', 'robot education', 'robot coding club', 'maker club', 'STEAM club', 'startup club', '3D printing club', 'drone club'],
   };
 }
 

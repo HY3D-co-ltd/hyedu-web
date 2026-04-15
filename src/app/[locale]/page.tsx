@@ -25,8 +25,8 @@ export async function generateMetadata({
       ? '초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행자동차 체험교실. 찾아가는 체험교실, 캠프, 온라인 교육. 17,150명 참여.'
       : 'AI education, robot coding, and autonomous-driving experience classes for K-12 students. On-site classes, camps, and online programs. 17,150 participants.',
     keywords: isKo
-      ? ['AI교육', '로봇코딩', '자율주행', '체험교실', '코딩교육', 'STEAM교육', '초등학생 AI', '중학생 코딩', '고등학생 캠프']
-      : ['AI education', 'robot coding', 'autonomous driving', 'experience class', 'coding education', 'STEAM education', 'K-12 AI', 'youth camp'],
+      ? ['AI교육', '로봇교육', '로봇코딩', '자율주행', '체험교실', '코딩교육', 'STEAM교육', '한양미래연구소', '청소년 캠프']
+      : ['AI education', 'robot education', 'robot coding', 'autonomous driving', 'experience class', 'coding education', 'STEAM education', 'Hanyang Future Lab', 'youth camp'],
   };
 }
 

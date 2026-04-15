@@ -21,8 +21,8 @@ export async function generateMetadata({
         : 'Hanyang Convergence Engineering Camp for creative talent development. 3D printing, VR/AR, drones, robot coding, autonomous driving, and entrepreneurship programs in 1-day / 1-night 2-day / 2-night 3-day formats.',
     keywords:
       locale === 'ko'
-        ? ['한양청소년캠프', '청소년 캠프', '4차산업 캠프', '3D프린팅 캠프', 'VR 캠프', '드론 캠프', '로봇코딩 캠프', '경진대회 대비 캠프', '토요캠프']
-        : ['Hanyang youth camp', 'convergence engineering camp', '3D printing camp', 'drone camp', 'robot coding camp', 'competition camp', 'Saturday camp'],
+        ? ['한양청소년캠프', '청소년 캠프', 'AI교육', '로봇교육', '4차산업 캠프', '3D프린팅 캠프', 'VR 캠프', '드론 캠프', '로봇코딩 캠프', '경진대회 대비 캠프', '토요캠프']
+        : ['Hanyang youth camp', 'AI education', 'robot education', 'convergence engineering camp', '3D printing camp', 'drone camp', 'robot coding camp', 'competition camp', 'Saturday camp'],
   };
 }
 

@@ -16,8 +16,8 @@ export async function generateMetadata({
       ? '한양미래연구소 교육 신청 및 문의. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로 문의하세요. 경진대회 대비반, 토요캠프 네이버 예약.'
       : 'Apply and inquire at Hanyang Future Lab via KakaoTalk, email (hyedu0829@gmail.com), or phone (+82-70-8064-0829). Naver booking for Competition Prep and Saturday Camps.',
     keywords: isKo
-      ? ['한양미래연구소 문의', '교육 신청', '카카오톡 문의', '교육 예약', '경진대회 대비반', '토요캠프']
-      : ['Hanyang Future Lab contact', 'education apply', 'KakaoTalk inquiry', 'competition prep', 'Saturday camp'],
+      ? ['한양미래연구소 문의', 'AI교육', '로봇교육', '교육 신청', '카카오톡 문의', '교육 예약', '경진대회 대비반', '토요캠프']
+      : ['Hanyang Future Lab contact', 'AI education', 'robot education', 'education apply', 'KakaoTalk inquiry', 'competition prep', 'Saturday camp'],
   };
 }
 

@@ -20,8 +20,8 @@ export async function generateMetadata({
         : 'Hanyang Future Lab booth operation: 4th industrial revolution maker-activity programs operated as booths at events and festivals.',
     keywords:
       locale === 'ko'
-        ? ['창의체험 부스', '부스 운영', '3D프린팅 부스', 'VR 부스', 'AR 부스', '드론 부스', '로봇코딩 부스', '자율주행 부스', '메이커 액티비티']
-        : ['experience booth', 'booth operation', '3D printing booth', 'VR booth', 'AR booth', 'drone booth', 'robot coding booth'],
+        ? ['창의체험 부스', 'AI교육', '로봇교육', '부스 운영', '3D프린팅 부스', 'VR 부스', 'AR 부스', '드론 부스', '로봇코딩 부스', '메이커 액티비티']
+        : ['experience booth', 'AI education', 'robot education', 'booth operation', '3D printing booth', 'VR booth', 'AR booth', 'drone booth', 'robot coding booth'],
   };
 }
 

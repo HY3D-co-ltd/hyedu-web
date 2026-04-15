@@ -55,8 +55,8 @@ export async function generateMetadata({
     title: fullTitle,
     description: desc,
     keywords: isKo
-      ? [title, 'AI교육', '체험교실', '한양미래연구소']
-      : [title, 'AI education', 'experience class', 'Hanyang Future Lab'],
+      ? [title, 'AI교육', '로봇교육', '체험교실', '한양미래연구소']
+      : [title, 'AI education', 'robot education', 'experience class', 'Hanyang Future Lab'],
     alternates: {
       canonical: url,
       languages: {
