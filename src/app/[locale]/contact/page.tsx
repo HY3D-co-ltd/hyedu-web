@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import DownloadQR from '@/components/ui/DownloadQR';
+
+const PROGRAM_PDF_URL = 'https://hyedu.kr/files/2026-programs-overview.pdf';
 
 export async function generateMetadata({
   params,
@@ -48,7 +51,7 @@ export default async function ContactPage({
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
             {isKo ? '교육 신청 / 문의' : 'Apply / Contact'}
           </h1>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-overview.pdf`}
               download
@@ -72,6 +75,11 @@ export default async function ContactPage({
               </svg>
               {isKo ? '모든 프로그램 한눈에 보기 (PDF)' : 'View All Programs (PDF)'}
             </a>
+            <DownloadQR
+              url={PROGRAM_PDF_URL}
+              label={isKo ? 'QR로 받기' : 'Scan to Download'}
+              sublabel={isKo ? '모바일 카메라로 스캔' : 'Scan with your phone'}
+            />
           </div>
         </div>
       </section>
