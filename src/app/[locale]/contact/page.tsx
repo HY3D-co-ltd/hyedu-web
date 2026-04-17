@@ -48,6 +48,31 @@ export default async function ContactPage({
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
             {isKo ? '교육 신청 / 문의' : 'Apply / Contact'}
           </h1>
+          <div className="mt-8">
+            <a
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-overview.pdf`}
+              download
+              className="inline-flex items-center gap-3 bg-point text-white font-semibold rounded-xl px-7 py-4 hover:opacity-90 transition-all shadow-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {isKo ? '모든 프로그램 한눈에 보기 (PDF)' : 'View All Programs (PDF)'}
+            </a>
+          </div>
         </div>
       </section>
 
