@@ -2,9 +2,19 @@
 
 import Image from '@/components/ui/Img';
 import { useLocale } from 'next-intl';
+import type { MouseEvent } from 'react';
 
 export default function ContactSection() {
-  const isKo = useLocale() === 'ko';
+  const locale = useLocale();
+  const isKo = locale === 'ko';
+
+  const handlePhoneClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (!isMobile) {
+      e.preventDefault();
+      window.location.href = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/${locale}/phone/`;
+    }
+  };
   return (
     <section className="py-12 px-4 bg-gray-50">
       <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] text-center">
@@ -37,11 +47,12 @@ export default function ContactSection() {
             {isKo ? '카카오톡 바로가기' : 'Open KakaoTalk'}
           </a>
           <a
-            href="mailto:hyedu0829@gmail.com"
+            href="tel:070-8064-0829"
+            onClick={handlePhoneClick}
             className="flex items-center gap-3 bg-point text-white font-semibold rounded-xl px-8 py-4 hover:opacity-90 transition-all shadow-md"
           >
-            <Image src="/images/main/mail.svg" alt={isKo ? '메일' : 'Email'} width={32} height={32} />
-            {isKo ? '메일 전송하기' : 'Send Email'}
+            <Image src="/images/main/phone.svg" alt={isKo ? '전화' : 'Phone'} width={32} height={32} />
+            {isKo ? '전화 문의하기' : 'Call Us'}
           </a>
         </div>
         {/* 전화번호/업무시간 이미지 */}

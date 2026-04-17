@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/camp/saturday',
     '/camp/competition',
     '/contact',
+    '/phone',
     '/board/reviews',
     '/board/events',
     '/board/gallery',
