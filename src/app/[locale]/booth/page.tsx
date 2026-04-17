@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
@@ -215,12 +216,12 @@ export default async function BoothPage({
                 )}
               </p>
               <div className="flex flex-wrap gap-3 mt-6">
-                <a
+                <Link
                   href={`/${locale}/contact`}
                   className="inline-block bg-white text-point font-semibold px-6 py-2.5 rounded hover:bg-gray-100 transition-colors text-sm"
                 >
                   {isKo ? '교육 신청하기' : 'Apply'}
-                </a>
+                </Link>
                 <a
                   href="https://drive.google.com/file/d/1dUVYRHxN3hCptN1VLIN8h_9yV1nuwioT/view?usp=sharing"
                   target="_blank"
