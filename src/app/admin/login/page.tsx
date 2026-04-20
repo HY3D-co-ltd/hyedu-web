@@ -2,6 +2,7 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { isLoggedIn, loginWithCredentials } from '@/lib/admin-auth';
+import { adminHref } from '@/lib/admin-paths';
 
 export default function AdminLoginPage() {
   const [id, setId] = useState('');
@@ -12,7 +13,7 @@ export default function AdminLoginPage() {
   // 이미 로그인되어 있으면 대시보드로
   useEffect(() => {
     if (isLoggedIn()) {
-      window.location.replace('/admin/');
+      window.location.replace(adminHref('/admin/'));
     }
   }, []);
 
@@ -22,7 +23,7 @@ export default function AdminLoginPage() {
     setError(null);
     const ok = loginWithCredentials(id, password);
     if (ok) {
-      window.location.replace('/admin/');
+      window.location.replace(adminHref('/admin/'));
     } else {
       setError('아이디 또는 비밀번호가 올바르지 않습니다.');
       setLoading(false);

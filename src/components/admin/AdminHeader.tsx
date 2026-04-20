@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getStoredUsername, logout } from '@/lib/admin-auth';
+import { adminHref } from '@/lib/admin-paths';
 
 export default function AdminHeader() {
   const [username, setUsername] = useState<string | null>(null);
@@ -13,7 +14,7 @@ export default function AdminHeader() {
 
   function handleLogout() {
     logout();
-    window.location.replace('/admin/login/');
+    window.location.replace(adminHref('/admin/login/'));
   }
 
   return (

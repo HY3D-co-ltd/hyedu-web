@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { isLoggedIn } from '@/lib/admin-auth';
+import { adminHref } from '@/lib/admin-paths';
 
 type AuthState = 'checking' | 'authed' | 'anon';
 
@@ -12,7 +13,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
     if (isLoggedIn()) {
       setState('authed');
     } else {
-      window.location.replace('/admin/login/');
+      window.location.replace(adminHref('/admin/login/'));
     }
   }, []);
 
