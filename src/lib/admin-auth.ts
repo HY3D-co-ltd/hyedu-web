@@ -2,13 +2,51 @@
 
 /**
  * 관리자 인증 유틸리티.
- * - GitHub Personal Access Token(PAT)을 localStorage 에 저장/조회/삭제
- * - 토큰 유효성 검증은 GitHub `GET /user` 호출
- * - 토큰은 절대 서버로 전송되지 않음 (브라우저 내부에만 존재)
+ *
+ * 두 개의 "자물쇠"가 있습니다:
+ *
+ *  1) 로그인 자물쇠 (아이디/비밀번호)  — 관리자 UI에 들어오기 위한 가벼운 게이트
+ *  2) GitHub 토큰                   — 실제로 저장소에 글을 쓸 때 사용하는 진짜 권한
+ *
+ * 로그인 자물쇠는 클라이언트에 저장되므로 방어력이 약하지만,
+ * GitHub 토큰이 없으면 아무것도 쓰지 못하므로 실제 피해는 제한적입니다.
  */
 
+import { ADMIN_CREDENTIALS } from './admin-config';
+
+const SESSION_KEY = 'hyedu_admin_session';
 const TOKEN_KEY = 'hyedu_admin_token';
 const USERNAME_KEY = 'hyedu_admin_username';
+
+// ============================================================
+// 1) 로그인 세션 (아이디/비밀번호)
+// ============================================================
+
+export function isLoggedIn(): boolean {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem(SESSION_KEY) === '1';
+}
+
+export function loginWithCredentials(id: string, password: string): boolean {
+  if (
+    id.trim() === ADMIN_CREDENTIALS.id &&
+    password === ADMIN_CREDENTIALS.password
+  ) {
+    localStorage.setItem(SESSION_KEY, '1');
+    return true;
+  }
+  return false;
+}
+
+export function logout() {
+  localStorage.removeItem(SESSION_KEY);
+  // 토큰은 남겨둠 — 다시 로그인 시 재입력 없이 이어서 사용 가능.
+  // 완전히 지우려면 clearGithubToken() 별도 호출.
+}
+
+// ============================================================
+// 2) GitHub 토큰 (실제 쓰기 권한)
+// ============================================================
 
 export function getStoredToken(): string | null {
   if (typeof window === 'undefined') return null;
@@ -20,12 +58,12 @@ export function getStoredUsername(): string | null {
   return localStorage.getItem(USERNAME_KEY);
 }
 
-export function setStoredAuth(token: string, username: string) {
+export function setStoredToken(token: string, username: string) {
   localStorage.setItem(TOKEN_KEY, token);
   localStorage.setItem(USERNAME_KEY, username);
 }
 
-export function clearStoredAuth() {
+export function clearGithubToken() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USERNAME_KEY);
 }

@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import AdminGuard from '@/components/admin/AdminGuard';
 import AdminHeader from '@/components/admin/AdminHeader';
+import { getStoredToken } from '@/lib/admin-auth';
 
 const cards = [
   {
@@ -35,6 +37,9 @@ export default function AdminDashboardPage() {
           관리할 항목을 선택하세요. 변경 사항은 저장 시 자동으로 사이트에 반영됩니다
           (1-2분 소요).
         </p>
+
+        <GithubConnectionBanner />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {cards.map((c) => (
             <Link
@@ -52,5 +57,36 @@ export default function AdminDashboardPage() {
         </div>
       </main>
     </AdminGuard>
+  );
+}
+
+function GithubConnectionBanner() {
+  const [hasToken, setHasToken] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setHasToken(!!getStoredToken());
+  }, []);
+
+  if (hasToken === null) return null; // 초기 렌더 중
+  if (hasToken) return null; // 연결되어 있으면 배너 숨김
+
+  return (
+    <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50 p-5 flex items-start justify-between gap-4">
+      <div>
+        <p className="font-semibold text-amber-900 mb-1">
+          ⚠️ 처음이신가요? GitHub 연결이 필요해요
+        </p>
+        <p className="text-sm text-amber-800">
+          글을 저장하려면 먼저 "연결 설정" 페이지에서 GitHub 토큰을 등록해주세요.
+          한 번만 하시면 됩니다.
+        </p>
+      </div>
+      <Link
+        href="/admin/settings/"
+        className="shrink-0 bg-amber-600 text-white font-semibold rounded-lg px-4 py-2 text-sm hover:bg-amber-700 transition-colors"
+      >
+        연결 설정하기
+      </Link>
+    </div>
   );
 }

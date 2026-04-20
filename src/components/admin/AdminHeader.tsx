@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { clearStoredAuth, getStoredUsername } from '@/lib/admin-auth';
+import { getStoredUsername, logout } from '@/lib/admin-auth';
 
 export default function AdminHeader() {
   const [username, setUsername] = useState<string | null>(null);
@@ -12,7 +12,7 @@ export default function AdminHeader() {
   }, []);
 
   function handleLogout() {
-    clearStoredAuth();
+    logout();
     window.location.replace('/admin/login/');
   }
 
@@ -33,12 +33,15 @@ export default function AdminHeader() {
             <Link href="/admin/events/" className="hover:text-gray-900">
               대회 &amp; 행사
             </Link>
+            <Link href="/admin/settings/" className="hover:text-gray-900">
+              설정
+            </Link>
           </nav>
         </div>
         <div className="flex items-center gap-3">
           {username && (
-            <span className="hidden sm:inline text-sm text-gray-500">
-              {username}
+            <span className="hidden sm:inline text-xs text-gray-400">
+              GitHub: {username}
             </span>
           )}
           <button
