@@ -10,6 +10,14 @@
     "serve": "npx http-server out -p 3000 -c-1 --cors"
   },
   "dependencies": {
+    "@tiptap/extension-color": "^3.22.4",
+    "@tiptap/extension-image": "^3.22.4",
+    "@tiptap/extension-link": "^3.22.4",
+    "@tiptap/extension-text-align": "^3.22.4",
+    "@tiptap/extension-text-style": "^3.22.4",
+    "@tiptap/extension-underline": "^3.22.4",
+    "@tiptap/react": "^3.22.4",
+    "@tiptap/starter-kit": "^3.22.4",
     "firebase": "^11.0.0",
     "next": "^15.0.0",
     "next-intl": "^3.26.0",

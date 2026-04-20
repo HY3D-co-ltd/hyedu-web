@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Modal from './Modal';
+import RichEditor from './RichEditor';
+import ImageField from './ImageField';
 import { getStoredToken } from '@/lib/admin-auth';
 import {
   loadReviews,
@@ -179,8 +181,12 @@ export default function BoardManager({ kind }: { kind: Kind }) {
                     <p className="font-medium text-gray-900 line-clamp-2">
                       {post.title}
                     </p>
-                    <p className="text-xs text-gray-500 mt-0.5 truncate">
-                      {post.slug}
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      {post.body ? (
+                        <span className="text-green-600">내부 작성</span>
+                      ) : (
+                        <span className="text-gray-400">외부 링크 (BBS)</span>
+                      )}
                     </p>
                   </td>
                   <td className="px-4 py-2 text-gray-500 text-xs">
@@ -218,6 +224,7 @@ export default function BoardManager({ kind }: { kind: Kind }) {
         size="lg"
       >
         <BoardPostForm
+          kind={kind}
           onSubmit={handleCreate}
           onCancel={() => setCreating(false)}
           saving={saving}
@@ -232,6 +239,7 @@ export default function BoardManager({ kind }: { kind: Kind }) {
       >
         {editing && (
           <BoardPostForm
+            kind={kind}
             initial={editing}
             onSubmit={handleUpdate}
             onCancel={() => setEditing(null)}
@@ -244,22 +252,25 @@ export default function BoardManager({ kind }: { kind: Kind }) {
   );
 }
 
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-가-힣]/g, '')
-    .replace(/\s+/g, '-')
-    .slice(0, 80);
+/**
+ * 제목 + 날짜 + 랜덤 6자 → URL 안전한 slug 자동 생성.
+ * 예: 20260420-a3b5c9
+ */
+function autoSlug(date: string): string {
+  const datePart = date.replace(/-/g, '') || new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const rand = Math.random().toString(36).slice(2, 8);
+  return `${datePart}-${rand}`;
 }
 
 function BoardPostForm({
+  kind,
   initial,
   onSubmit,
   onCancel,
   saving,
   error,
 }: {
+  kind: Kind;
   initial?: StaticBoardPost;
   onSubmit: (post: StaticBoardPost) => void;
   onCancel: () => void;
@@ -268,32 +279,30 @@ function BoardPostForm({
 }) {
   const today = new Date().toISOString().slice(0, 10);
   const [title, setTitle] = useState(initial?.title ?? '');
-  const [slug, setSlug] = useState(initial?.slug ?? '');
   const [thumbnail, setThumbnail] = useState(initial?.thumbnail ?? '');
   const [date, setDate] = useState(initial?.date || today);
-  const [href, setHref] = useState(initial?.href ?? '');
-  const [autoSlug, setAutoSlug] = useState(!initial);
+  const [body, setBody] = useState(initial?.body ?? '');
 
-  function handleTitleChange(value: string) {
-    setTitle(value);
-    if (autoSlug) setSlug(slugify(value));
-  }
+  const imageFolder = `board/${kind}`;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const slug = initial?.slug || autoSlug(date);
     const post: StaticBoardPost = {
       id: initial?.id ?? newId(),
-      slug: slug.trim() || slugify(title),
+      slug,
       title: title.trim(),
-      thumbnail: thumbnail.trim(),
+      thumbnail,
       date,
-      href: href.trim(),
+      href: initial?.href ?? '', // 새 글은 href 없음; 기존 글은 유지
+      body: body.trim() || undefined,
+      author: initial?.author ?? '관리자',
     };
     onSubmit(post);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           제목 <span className="text-red-500">*</span>
@@ -301,65 +310,18 @@ function BoardPostForm({
         <input
           type="text"
           value={title}
-          onChange={(e) => handleTitleChange(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           required
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
         />
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          주소용 영문 ID (slug) <span className="text-red-500">*</span>
-        </label>
-        <div className="flex gap-2 items-center">
-          <input
-            type="text"
-            value={slug}
-            onChange={(e) => {
-              setAutoSlug(false);
-              setSlug(e.target.value);
-            }}
-            required
-            className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm font-mono"
-          />
-          {!autoSlug && (
-            <button
-              type="button"
-              onClick={() => {
-                setAutoSlug(true);
-                setSlug(slugify(title));
-              }}
-              className="text-xs text-gray-500 hover:text-gray-900 whitespace-nowrap"
-            >
-              자동
-            </button>
-          )}
-        </div>
-        <p className="text-xs text-gray-500 mt-1">
-          URL 주소에 들어가는 짧은 영문 식별자. 기본적으로 제목을 바탕으로 자동 생성됩니다.
-        </p>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          썸네일 이미지 URL
-        </label>
-        <input
-          type="url"
-          value={thumbnail}
-          onChange={(e) => setThumbnail(e.target.value)}
-          placeholder="https://..."
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
-        />
-        {thumbnail && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={thumbnail}
-            alt="미리보기"
-            className="mt-2 w-40 h-40 rounded-lg object-cover bg-gray-100"
-          />
-        )}
-      </div>
+      <ImageField
+        label="썸네일"
+        folder={imageFolder}
+        value={thumbnail}
+        onChange={setThumbnail}
+      />
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -375,18 +337,15 @@ function BoardPostForm({
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          연결 URL <span className="text-red-500">*</span>
+          본문 <span className="text-red-500">*</span>
         </label>
-        <input
-          type="url"
-          value={href}
-          onChange={(e) => setHref(e.target.value)}
-          placeholder="https://..."
-          required
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+        <RichEditor
+          value={body}
+          onChange={setBody}
+          imageFolder={imageFolder}
         />
         <p className="text-xs text-gray-500 mt-1">
-          글을 클릭했을 때 이동할 주소 (외부 사이트 또는 내부 상세 페이지).
+          굵게/기울임/색/크기/이미지 삽입 등을 사용할 수 있습니다. 이미지는 삽입 시 자동으로 축소됩니다.
         </p>
       </div>
 
@@ -407,7 +366,7 @@ function BoardPostForm({
         </button>
         <button
           type="submit"
-          disabled={saving}
+          disabled={saving || !title.trim() || !body.trim()}
           className="px-5 py-2 text-sm bg-point text-white font-semibold rounded-lg hover:opacity-90 disabled:opacity-50"
         >
           {saving ? '저장 중...' : '저장'}

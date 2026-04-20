@@ -5,6 +5,7 @@ import Link from 'next/link';
 import AdminGuard from '@/components/admin/AdminGuard';
 import AdminHeader from '@/components/admin/AdminHeader';
 import Modal from '@/components/admin/Modal';
+import ImageField from '@/components/admin/ImageField';
 import {
   AdminPopup,
   loadPopups,
@@ -323,15 +324,13 @@ function PopupForm({
         />
       </Field>
 
-      <Field label="이미지 URL" hint="https://... 로 시작하는 전체 주소">
-        <input
-          type="url"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="https://..."
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
-        />
-      </Field>
+      <ImageField
+        label="이미지"
+        folder="popups"
+        value={imageUrl}
+        onChange={setImageUrl}
+        aspect="wide"
+      />
 
       <Field label="클릭 시 이동할 링크 (선택)">
         <input

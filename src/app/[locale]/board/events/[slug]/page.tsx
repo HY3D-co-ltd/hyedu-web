@@ -2,13 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { eventPosts } from '@/data/boardPosts';
+import { eventPosts, StaticBoardPost } from '@/data/boardPosts';
 import { eventDetails } from '@/data/boardPostDetails';
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 function idFromSlug(slug: string): string {
   const m = slug.match(/^(\d+)(?:-|$)/);
   return m ? m[1] : slug;
+}
+
+function resolveDetail(post: StaticBoardPost | undefined) {
+  if (!post) return null;
+  if (post.body) {
+    return {
+      title: post.title,
+      author: post.author ?? '관리자',
+      date: post.date,
+      body: post.body,
+    };
+  }
+  const detail = eventDetails[idFromSlug(post.slug)];
+  return detail ?? null;
 }
 
 export function generateStaticParams() {
@@ -22,8 +36,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const id = idFromSlug(slug);
-  const detail = eventDetails[id];
+  const post = eventPosts.find((p) => p.slug === slug);
+  const detail = resolveDetail(post);
   if (!detail) return {};
   const isKo = locale === 'ko';
   const url = `https://hyedu.kr/${locale}/board/events/${slug}`;
@@ -65,16 +79,15 @@ export default async function EventDetailPage({
   setRequestLocale(locale);
   const isKo = locale === 'ko';
 
-  const id = idFromSlug(slug);
-  const detail = eventDetails[id];
-  if (!detail) notFound();
+  const post = eventPosts.find((p) => p.slug === slug);
+  const detail = resolveDetail(post);
+  if (!post || !detail) notFound();
 
-  const idx = eventPosts.findIndex((p) => p.id === id);
+  const idx = eventPosts.findIndex((p) => p.slug === slug);
   const prev = idx < eventPosts.length - 1 ? eventPosts[idx + 1] : null;
   const next = idx > 0 ? eventPosts[idx - 1] : null;
 
   const url = `https://hyedu.kr/${locale}/board/events/${slug}`;
-  const postMeta = eventPosts.find((p) => p.id === id);
 
   return (
     <>
@@ -83,7 +96,7 @@ export default async function EventDetailPage({
         author={detail.author}
         datePublished={detail.date || undefined}
         url={url}
-        image={postMeta?.thumbnail}
+        image={post.thumbnail}
         locale={locale}
       />
       <BreadcrumbJsonLd

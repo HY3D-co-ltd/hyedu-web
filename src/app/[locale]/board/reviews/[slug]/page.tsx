@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { reviewPosts } from '@/data/boardPosts';
+import { reviewPosts, StaticBoardPost } from '@/data/boardPosts';
 import { reviewDetails } from '@/data/boardPostDetails';
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
@@ -10,6 +10,21 @@ import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 function idFromSlug(slug: string): string {
   const m = slug.match(/^(\d+)(?:-|$)/);
   return m ? m[1] : slug;
+}
+
+/** 관리자 작성 post.body 또는 크롤링된 reviewDetails 중 있는 쪽을 반환. */
+function resolveDetail(post: StaticBoardPost | undefined) {
+  if (!post) return null;
+  if (post.body) {
+    return {
+      title: post.title,
+      author: post.author ?? '관리자',
+      date: post.date,
+      body: post.body,
+    };
+  }
+  const detail = reviewDetails[idFromSlug(post.slug)];
+  return detail ?? null;
 }
 
 export function generateStaticParams() {
@@ -23,8 +38,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const id = idFromSlug(slug);
-  const detail = reviewDetails[id];
+  const post = reviewPosts.find((p) => p.slug === slug);
+  const detail = resolveDetail(post);
   if (!detail) return {};
   const isKo = locale === 'ko';
   const url = `https://hyedu.kr/${locale}/board/reviews/${slug}`;
@@ -66,16 +81,15 @@ export default async function ReviewDetailPage({
   setRequestLocale(locale);
   const isKo = locale === 'ko';
 
-  const id = idFromSlug(slug);
-  const detail = reviewDetails[id];
-  if (!detail) notFound();
+  const post = reviewPosts.find((p) => p.slug === slug);
+  const detail = resolveDetail(post);
+  if (!post || !detail) notFound();
 
-  const idx = reviewPosts.findIndex((p) => p.id === id);
+  const idx = reviewPosts.findIndex((p) => p.slug === slug);
   const prev = idx < reviewPosts.length - 1 ? reviewPosts[idx + 1] : null;
   const next = idx > 0 ? reviewPosts[idx - 1] : null;
 
   const url = `https://hyedu.kr/${locale}/board/reviews/${slug}`;
-  const postMeta = reviewPosts.find((p) => p.id === id);
 
   return (
     <>
@@ -84,7 +98,7 @@ export default async function ReviewDetailPage({
         author={detail.author}
         datePublished={detail.date || undefined}
         url={url}
-        image={postMeta?.thumbnail}
+        image={post.thumbnail}
         locale={locale}
       />
       <BreadcrumbJsonLd
