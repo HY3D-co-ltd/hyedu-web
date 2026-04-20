@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import DownloadQR from '@/components/ui/DownloadQR';
 
-const PROGRAM_PDF_URL = 'https://HY3D-co-ltd.github.io/hyedu-web/files/2026-programs-overview.pdf';
+const PROGRAM_PDF_URL = 'https://hyedu.kr/files/2026-programs-overview.pdf';
 
 export async function generateMetadata({
   params,

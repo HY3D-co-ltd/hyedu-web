@@ -2,7 +2,7 @@ import QRCode from 'qrcode';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const TARGET_URL = 'https://HY3D-co-ltd.github.io/hyedu-web/files/2026-programs-overview.pdf';
+const TARGET_URL = 'https://hyedu.kr/files/2026-programs-overview.pdf';
 const OUT_DIR = join(process.cwd(), 'public', 'files');
 const PNG_PATH = join(OUT_DIR, '2026-programs-overview-qr.png');
 const SVG_PATH = join(OUT_DIR, '2026-programs-overview-qr.svg');
