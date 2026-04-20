@@ -9,5 +9,5 @@
  */
 export const ADMIN_CREDENTIALS = {
   id: 'admin',
-  password: 'hyedu0829',
+  password: '1234!',
 };
