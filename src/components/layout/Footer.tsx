@@ -78,6 +78,15 @@ export default function Footer() {
         <div className="mt-10 pt-6 border-t border-gray-700 text-center">
           <p className="text-sm text-gray-500">
             &copy; {new Date().getFullYear()} {t('company')}. All rights reserved.
+            {/* 관리자 전용 링크 — 의도적으로 눈에 띄지 않게 처리됨. */}
+            <Link
+              href="/admin/login/"
+              aria-label="관리자"
+              title="관리자"
+              className="ml-3 inline-block align-middle text-gray-800 hover:text-gray-400 transition-colors select-none"
+            >
+              ·
+            </Link>
           </p>
         </div>
       </div>
