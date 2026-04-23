@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { eventPosts } from '@/data/boardPosts';
+import BoardThumbnail from '@/components/ui/BoardThumbnail';
 
 export default function EventsPage() {
   const locale = useLocale();
@@ -34,20 +35,13 @@ export default function EventsPage() {
               href={`/${locale}/board/events/${post.slug}`}
               className="group border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white"
             >
-              <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
-                {post.thumbnail ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={post.thumbnail}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">
-                    📣
-                  </div>
-                )}
+              <div className="relative w-full aspect-[3/4] bg-gray-50 overflow-hidden">
+                <BoardThumbnail
+                  src={post.thumbnail}
+                  alt={post.title}
+                  fallbackEmoji="📣"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <div className="p-4">
                 <h2 className="font-semibold text-[14px] md:text-[15px] text-gray-900 leading-snug line-clamp-2 mb-2 min-h-[2.5em]">
