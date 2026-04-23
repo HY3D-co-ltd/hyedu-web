@@ -22,7 +22,8 @@ export const navigationItems: NavItem[] = [
       { label: '경진대회 대비 캠프', labelKey: 'nav.campCompetition', href: '/camp/competition' },
     ],
   },
-  { label: '대회&행사', labelKey: 'nav.events', href: '/board/events' },
-  { label: '교육 후기', labelKey: 'nav.reviews', href: '/board/reviews' },
+  // 관리자 요청으로 임시 숨김 (콘텐츠 준비 중). 복원 시 아래 두 줄 주석 해제.
+  // { label: '대회&행사', labelKey: 'nav.events', href: '/board/events' },
+  // { label: '교육 후기', labelKey: 'nav.reviews', href: '/board/reviews' },
   { label: '교육 신청', labelKey: 'nav.eduRequest', href: '/contact' },
 ];
