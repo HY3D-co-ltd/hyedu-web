@@ -76,7 +76,7 @@ export default function ProgramsClient({ locale }: { locale: string }) {
               {isKo ? '교육 신청하기' : 'Apply'}
             </Link>
             <a
-              href="https://drive.google.com/file/d/1RTJPXvJd2IE_O_nKL_8qsMHqfCeSVwQH/view?usp=sharing"
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-curriculum.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#333] text-white font-bold text-[15px] px-8 py-3 rounded-full hover:bg-[#222] transition-colors"
