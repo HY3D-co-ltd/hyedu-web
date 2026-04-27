@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 
 const EVENTS_PATH = path.resolve('src/data/boards/events.json');
 
@@ -120,3 +121,8 @@ events.sort((a, b) => {
 
 fs.writeFileSync(EVENTS_PATH, JSON.stringify(events, null, 2) + '\n', 'utf-8');
 console.log(`Total events: ${events.length}`);
+
+// SNS 미리보기용 OG PNG 자동 생성 (포스터 SVG → PNG).
+// 카카오톡·페이스북·라인·슬랙 등이 SVG 미지원이므로 필수.
+console.log('\n--- Generating SNS preview PNGs ---');
+execSync('node scripts/generate-og-images.mjs', { stdio: 'inherit' });

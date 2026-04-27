@@ -175,7 +175,7 @@ const meta = {
 
 > **SEO 필드 검증**: `description`, `eventStartDate`, `venueName`, `price` 4개는 누락 시 EventJsonLd가 출력되지 않는다. 반드시 채울 것.
 
-### 5. 스크립트 실행
+### 5. 스크립트 실행 (OG PNG 자동 생성 포함)
 
 ```bash
 node scripts/inject-events.mjs
@@ -187,7 +187,15 @@ Updated event 317 (XXXXX chars)
 Updated event 318 (XXXXX chars)
 Added event 319 (XXXXX chars)
 Total events: 26
+
+--- Generating SNS preview PNGs ---
+Generated: 319-{slug}-og.png
+Done. Generated: 1, Skipped (up-to-date): 2
 ```
+
+> 자동으로 `scripts/generate-og-images.mjs`도 호출되어 SVG 포스터를 1210×1704 PNG로 변환한다.
+> **이 PNG는 카카오톡·페이스북·라인·슬랙 링크 미리보기 (og:image) 용**이며, 없으면 SNS 썸네일이 표시되지 않는다.
+> SVG og:image는 모든 SNS가 미지원이므로 PNG 변환 필수.
 
 ### 6. 빌드 검증
 
@@ -236,6 +244,8 @@ GitHub Actions가 자동 배포한다.
 - [ ] `events.json` 신규 entry에 `description`, `eventStartDate`, `eventEndDate`, `venueName`, `venueAddress`, `price`, `capacity`, `faqs` 모두 채워짐
 - [ ] 본문 HTML에도 평문으로 일시·장소·가격·정원 정보가 노출됨 (이미지 안에만 매몰 X)
 - [ ] FAQ 섹션이 본문에 있고, `faqs` 배열에도 동일 내용 (FAQJsonLd 활성화)
+- [ ] `public/images/board/events/{slug}-og.png` 가 생성되었는지 확인 (SNS 링크 미리보기용)
+- [ ] 빌드 후 `out/ko/board/events/{slug}/index.html` 에 og:image가 `-og.png` 로 끝나는지 확인 (SVG 아님)
 - [ ] 빌드 후 `out/ko/board/events/{slug}/index.html` 에 `<script type="application/ld+json">` 가 EventJsonLd, FAQJsonLd, ArticleJsonLd, BreadcrumbJsonLd 4개 모두 포함되는지 확인
 - [ ] 배포 후 https://search.google.com/test/rich-results 에서 신규 URL 통과 확인
 - [ ] (가능하면) https://hyedu.kr/sitemap.xml 에 신규 URL 포함 확인
@@ -251,6 +261,8 @@ GitHub Actions가 자동 배포한다.
 | 카드들이 다른 높이 | 콘텐츠 길이 차이 | `height: 128px` 고정 + flex column |
 | Next.js dev 서버 모듈 못 찾음 | `.next` 캐시 손상 | `rm -rf .next` 후 `npm run dev` 재시작 |
 | dev 서버 포트 3000 이미 사용 중 | 이전 프로세스 남음 | 자동으로 3001로 fallback (URL 확인) |
+| 카카오톡·페이스북에 썸네일 안 뜸 | SVG는 SNS 미리보기 미지원 | `node scripts/inject-events.mjs` 실행 시 자동으로 -og.png 생성됨. 안 됐으면 `node scripts/generate-og-images.mjs` 직접 실행 |
+| 카톡 미리보기가 캐시된 상태로 안 바뀜 | 카카오 캐시 | 카카오톡 링크 새로 공유 또는 시간(~수 시간) 대기. 또는 URL에 `?v=2` 같은 쿼리 추가하여 강제 갱신 |
 
 ## 참고 자료
 

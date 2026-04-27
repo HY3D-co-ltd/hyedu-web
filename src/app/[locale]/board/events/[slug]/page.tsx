@@ -51,8 +51,10 @@ export async function generateMetadata({
     : `${detail.title} | Hanyang Future Lab Events`;
   // SEO/AEO: prefer structured description, fall back to title.
   const description = post?.description ?? detail.title;
+  // 카카오톡·페이스북 등은 SVG og:image 미지원. SVG → PNG로 변환된 -og.png 사용.
+  // (scripts/generate-og-images.mjs 가 모든 이벤트 SVG를 PNG로 자동 생성)
   const ogImage = post?.thumbnail
-    ? `https://hyedu.kr${post.thumbnail}`
+    ? `https://hyedu.kr${post.thumbnail.replace(/\.svg$/, '-og.png')}`
     : undefined;
   return {
     title,
@@ -132,7 +134,11 @@ export default async function EventDetailPage({
           venueName={post.venueName}
           venueAddress={post.venueAddress}
           url={url}
-          image={post.thumbnail ? `https://hyedu.kr${post.thumbnail}` : undefined}
+          image={
+            post.thumbnail
+              ? `https://hyedu.kr${post.thumbnail.replace(/\.svg$/, '-og.png')}`
+              : undefined
+          }
           price={post.price}
           capacity={post.capacity}
           sponsorName={post.sponsorName}
