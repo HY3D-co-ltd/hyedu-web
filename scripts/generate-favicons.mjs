@@ -1,5 +1,9 @@
 /**
- * 한양미래연구소 로고에서 큐브 부분만 추출하여 다양한 사이즈 파비콘 생성.
+ * 한양미래연구소 큐브 로고에서 다양한 사이즈 파비콘 생성.
+ *
+ * 입력 우선순위:
+ *  1. public/images/logo/logo-cube.png (투명 배경 큐브 원본 — 권장)
+ *  2. public/images/logo/logo.jpg (전체 로고 — fallback, 흰 배경 자동 제거)
  *
  * 출력:
  *  - src/app/icon.png       (32x32, Next.js 자동 인식 favicon)
@@ -13,11 +17,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const LOGO_PATH = path.resolve('public/images/logo/logo.jpg');
-
-// logo.jpg 는 250x60. 큐브는 leftmost 60x60 정사각형 영역에 위치.
-// 로고에 텍스트 "한양미래연구소"가 함께 있어서 파비콘에는 부적합.
-const CUBE_REGION = { left: 0, top: 0, width: 60, height: 60 };
+const CUBE_PNG = path.resolve('public/images/logo/logo-cube.png');
+const LOGO_JPG = path.resolve('public/images/logo/logo.jpg');
 
 const outputs = [
   { path: path.resolve('src/app/icon.png'), size: 32 },
@@ -26,26 +27,26 @@ const outputs = [
   { path: path.resolve('public/icon-512.png'), size: 512 },
 ];
 
-// 1. logo.jpg에서 큐브 영역 추출 후 raw RGBA 픽셀 데이터로 변환.
-const { data, info } = await sharp(LOGO_PATH)
-  .extract(CUBE_REGION)
-  .ensureAlpha()
-  .raw()
-  .toBuffer({ resolveWithObject: true });
+let cubeBuffer;
 
-// 2. 흰색에 가까운 픽셀(R,G,B 모두 > 235)의 alpha를 0(투명)으로 설정.
-// 큐브 디자인 자체에는 흰색이 없으므로 안전하게 배경만 제거됨.
-for (let i = 0; i < data.length; i += 4) {
-  const r = data[i];
-  const g = data[i + 1];
-  const b = data[i + 2];
-  if (r > 235 && g > 235 && b > 235) {
-    data[i + 3] = 0;
+if (fs.existsSync(CUBE_PNG)) {
+  // 케이스 1: 투명 배경 큐브 PNG 원본 사용 (가장 깔끔)
+  console.log(`Using transparent cube PNG: ${path.relative(process.cwd(), CUBE_PNG)}`);
+  cubeBuffer = fs.readFileSync(CUBE_PNG);
+} else {
+  // 케이스 2: logo.jpg에서 좌측 큐브 영역 추출 + 흰 배경 자동 제거 (fallback)
+  console.log(`Cube PNG not found. Falling back to logo.jpg crop + white removal.`);
+  const { data, info } = await sharp(LOGO_JPG)
+    .extract({ left: 0, top: 0, width: 60, height: 60 })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    if (r > 235 && g > 235 && b > 235) data[i + 3] = 0;
   }
+  cubeBuffer = await sharp(data, { raw: info }).png().toBuffer();
 }
-
-// 3. 알파 채널 적용된 큐브를 다시 sharp 객체로 변환.
-const cubeBuffer = await sharp(data, { raw: info }).png().toBuffer();
 
 for (const { path: outPath, size } of outputs) {
   const dir = path.dirname(outPath);
