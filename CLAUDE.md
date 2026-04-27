@@ -203,6 +203,11 @@ Tailwind with custom tokens in `tailwind.config.ts`: `primary` (blue #2563eb), `
 - 게시판 유형: reviews / events / gallery
 - (갤러리의 경우) 이미지 URL
 
+> **대회&행사 게시판에 신규 교육·부트캠프 페이지를 디자인 시스템에 맞춰 등록할 때**는
+> `.claude/skills/add-event/SKILL.md`의 워크플로우를 따른다.
+> Claude Code 사용자는 "행사 추가해줘", "교육 페이지 만들어줘" 같은 요청에 자동으로 트리거된다.
+> 수동 등록(비-Claude 직원)은 `.claude/skills/add-event/README.md` 참고.
+
 ### 시나리오 8: 팝업 추가/수정
 
 팝업은 Firestore `popups` 컬렉션에서 관리됩니다.

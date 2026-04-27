@@ -4,7 +4,12 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { eventPosts, StaticBoardPost } from '@/data/boardPosts';
 import { eventDetails } from '@/data/boardPostDetails';
-import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import {
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+  EventJsonLd,
+  FAQJsonLd,
+} from '@/components/seo/JsonLd';
 
 function idFromSlug(slug: string): string {
   const m = slug.match(/^(\d+)(?:-|$)/);
@@ -44,9 +49,14 @@ export async function generateMetadata({
   const title = isKo
     ? `${detail.title} | 한양미래연구소 대회&행사`
     : `${detail.title} | Hanyang Future Lab Events`;
+  // SEO/AEO: prefer structured description, fall back to title.
+  const description = post?.description ?? detail.title;
+  const ogImage = post?.thumbnail
+    ? `https://hyedu.kr${post.thumbnail}`
+    : undefined;
   return {
     title,
-    description: detail.title,
+    description,
     alternates: {
       canonical: url,
       languages: {
@@ -57,15 +67,17 @@ export async function generateMetadata({
     openGraph: {
       type: 'article',
       title,
-      description: detail.title,
+      description,
       url,
       publishedTime: detail.date || undefined,
       authors: [detail.author],
+      ...(ogImage && { images: [{ url: ogImage }] }),
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description: detail.title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
     },
   };
 }
@@ -97,6 +109,7 @@ export default async function EventDetailPage({
         datePublished={detail.date || undefined}
         url={url}
         image={post.thumbnail}
+        description={post.description}
         locale={locale}
       />
       <BreadcrumbJsonLd
@@ -109,6 +122,29 @@ export default async function EventDetailPage({
           { name: detail.title, href: `/${locale}/board/events/${slug}` },
         ]}
       />
+      {/* Schema.org Event — Google Events 카드, 리치 결과에 노출 */}
+      {post.eventStartDate && post.venueName && (
+        <EventJsonLd
+          name={detail.title}
+          description={post.description ?? detail.title}
+          startDate={post.eventStartDate}
+          endDate={post.eventEndDate}
+          venueName={post.venueName}
+          venueAddress={post.venueAddress}
+          url={url}
+          image={post.thumbnail ? `https://hyedu.kr${post.thumbnail}` : undefined}
+          price={post.price}
+          capacity={post.capacity}
+          sponsorName={post.sponsorName}
+          locale={locale}
+        />
+      )}
+      {/* Schema.org FAQPage — Google FAQ 리치 스니펫 + AEO(ChatGPT 인용) 강화 */}
+      {post.faqs && post.faqs.length > 0 && (
+        <FAQJsonLd
+          faqs={post.faqs.map((f) => ({ question: f.question, answer: f.answer }))}
+        />
+      )}
 
       <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-12">
         <div className="max-w-4xl mx-auto px-4">

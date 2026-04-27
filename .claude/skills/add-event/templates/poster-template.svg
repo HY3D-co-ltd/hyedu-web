@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  신규 행사 A4 포스터 템플릿 (썸네일 + 본문 상단 이미지로 사용)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  사용법:
+  1. 이 파일을 public/images/board/events/{slug}.svg 로 복사
+  2. {{...}} 자리표시자를 실제 내용으로 교체
+  3. 필요 없는 그룹은 삭제, 위치 조정은 transform 좌표로
+
+  참고할 완성 예시:
+  - public/images/board/events/317-ai-agent-intensive-bootcamp.svg
+  - public/images/board/events/318-ai-ceo-basic-training.svg
+
+  주요 좌표:
+  - 캔버스: 605 x 852 (A4)
+  - 상단 그라디언트: 0~340
+  - 흰 배경 카드 영역: 370~680
+  - 협찬 배너 (선택): 678~710
+  - 하단 EVENT INFO: 722~810
+  - 최하단 준비물: 810~842
+-->
+<svg width="100%" viewBox="0 0 605 852" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>{{교육이름}} 포스터 — 한양미래연구소</title>
+<desc>{{날짜 + 장소 + 한 줄 설명}}</desc>
+<defs>
+<linearGradient id="topGrad" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#0E4194"/>
+<stop offset="100%" stop-color="#0A2E6C"/>
+</linearGradient>
+</defs>
+
+<!-- 흰 배경 -->
+<rect x="0" y="0" width="595" height="842" fill="#FFFFFF"/>
+
+<!-- 상단 그라디언트 영역 -->
+<rect x="0" y="0" width="595" height="340" fill="url(#topGrad)"/>
+
+<!-- 좌측 상단 브랜드 라벨 (노란 vertical bar + 텍스트) -->
+<rect x="40" y="40" width="3" height="22" fill="#FFD93D"/>
+<text x="52" y="56" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#FFD93D" letter-spacing="2">HANYANG FUTURE INSTITUTE</text>
+<text x="52" y="71" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.75" letter-spacing="0.5">한양미래연구소</text>
+
+<!-- 우측 상단 부제 -->
+<text x="555" y="56" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.7" text-anchor="end" letter-spacing="1">{{PROGRAM_TYPE}} · 2026</text>
+
+<!-- 노란 카테고리 배지 -->
+<rect x="40" y="100" width="140" height="26" fill="#FFD93D" rx="2"/>
+<text x="110" y="118" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0A2E6C" text-anchor="middle" letter-spacing="0.5">{{CATEGORY EN LABEL}}</text>
+
+<!-- 서브 카피 (메인 위) -->
+<text x="40" y="168" font-family="'Pretendard',sans-serif" font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.85">{{서브 카피 1행}}</text>
+<text x="40" y="188" font-family="'Pretendard',sans-serif" font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.85">{{서브 카피 2행}}</text>
+
+<!-- 메인 카피 -->
+<text x="40" y="240" font-family="'Pretendard',sans-serif" font-size="44" font-weight="500" fill="#FFFFFF" letter-spacing="-1">{{메인 카피 1행}}</text>
+<text x="40" y="290" font-family="'Pretendard',sans-serif" font-size="44" font-weight="500" fill="#FFD93D" letter-spacing="-1">{{메인 카피 2행 — 노란 강조}}</text>
+
+<!-- 한 줄 설명 -->
+<text x="40" y="320" font-family="'Pretendard',sans-serif" font-size="13" font-weight="400" fill="#FFFFFF" opacity="0.7">{{한 줄 설명}}</text>
+
+<!-- 핵심 통계 박스 (3개) -->
+<rect x="40" y="370" width="515" height="80" fill="#F8F9FB" stroke="#E5E8EE" stroke-width="0.5" rx="4"/>
+
+<g transform="translate(60, 390)">
+<circle cx="14" cy="14" r="14" fill="#E6EEFB"/>
+<text x="14" y="19" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#0E4194" text-anchor="middle">{{숫자}}</text>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">{{stat 1 메인}}</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">{{stat 1 보충}}</text>
+</g>
+
+<g transform="translate(230, 390)">
+<rect x="2" y="4" width="24" height="18" fill="none" stroke="#0E4194" stroke-width="1.2" rx="1.5"/>
+<rect x="6" y="22" width="16" height="2" fill="#0E4194"/>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">{{stat 2 메인}}</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">{{stat 2 보충}}</text>
+</g>
+
+<g transform="translate(400, 390)">
+<path d="M4,18 L10,12 L14,16 L22,8" fill="none" stroke="#0E4194" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="22" cy="8" r="2" fill="#0E4194"/>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">{{stat 3 메인}}</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">{{stat 3 보충}}</text>
+</g>
+
+<!-- 본 영역 섹션 라벨 -->
+<text x="40" y="495" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#0E4194" letter-spacing="1">{{SECTION LABEL EN}}</text>
+<line x1="40" y1="503" x2="100" y2="503" stroke="#0E4194" stroke-width="1.5"/>
+
+<!-- 섹션 제목 -->
+<text x="40" y="525" font-family="'Pretendard',sans-serif" font-size="20" font-weight="500" fill="#1A1A1A">{{섹션 제목}}</text>
+
+<!-- 카드 영역 (2~3 카드, 흰 배경 + 파란 좌측 보더) -->
+<!-- 카드 1 -->
+<g transform="translate(40, 545)">
+<rect x="0" y="0" width="250" height="118" fill="#FFFFFF" stroke="#0E4194" stroke-width="1" rx="4"/>
+<rect x="0" y="0" width="250" height="3" fill="#0E4194"/>
+<text x="14" y="28" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#0E4194" letter-spacing="1">{{TAG 01}}</text>
+<text x="14" y="55" font-family="'Pretendard',sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">{{카드1 제목 큰글씨}}</text>
+<text x="14" y="74" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#5F5E5A">{{카드1 부제}}</text>
+<line x1="14" y1="84" x2="40" y2="84" stroke="#FFD93D" stroke-width="1.5"/>
+<text x="14" y="102" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">{{카드1 설명 1행}}</text>
+<text x="14" y="115" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">{{카드1 설명 2행}}</text>
+</g>
+
+<!-- 카드 2 (transform translate(305, 545)로 같은 구조 복사) -->
+
+<!-- 협찬 배너 (선택 — 협찬 없으면 이 블록 삭제하고 SPECIAL 텍스트로 교체) -->
+<rect x="40" y="678" width="515" height="32" fill="#FFFBEB" stroke="#FFE082" stroke-width="0.8" rx="4"/>
+<text x="55" y="697" font-family="'Pretendard',sans-serif" font-size="10" font-weight="700" fill="#B8860B" letter-spacing="2">SPONSORED BY</text>
+<text x="160" y="697" font-family="'Pretendard',sans-serif" font-size="12" font-weight="700" fill="#1A1A1A">{{협찬사}}</text>
+<text x="555" y="697" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#666" text-anchor="end">{{우측 보조 안내}}</text>
+
+<!-- 하단 EVENT INFO 블록 (짙은 블루) -->
+<rect x="0" y="722" width="595" height="88" fill="#0E4194"/>
+
+<text x="40" y="745" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#FFD93D" letter-spacing="2">EVENT INFORMATION</text>
+
+<g transform="translate(40, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">DATE</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">{{2026. M. D (요일)}}</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">{{시작 - 종료 시각}}</text>
+</g>
+
+<line x1="170" y1="760" x2="170" y2="800" stroke="#FFFFFF" stroke-width="0.5" opacity="0.25"/>
+
+<g transform="translate(190, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">VENUE</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">{{장소 메인}}</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">{{장소 세부}}</text>
+</g>
+
+<line x1="360" y1="760" x2="360" y2="800" stroke="#FFFFFF" stroke-width="0.5" opacity="0.25"/>
+
+<g transform="translate(380, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">{{TARGET 또는 FEE}}</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">{{대상 또는 가격}}</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">{{보충 안내}}</text>
+</g>
+
+<!-- 최하단 footer (준비물 + 문의) -->
+<rect x="0" y="810" width="595" height="32" fill="#0A2E6C"/>
+<text x="40" y="830" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.7">준비물 · {{준비물 안내}}</text>
+<text x="555" y="830" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#FFD93D" text-anchor="end">신청 문의 · 한양미래연구소</text>
+</svg>

@@ -235,6 +235,93 @@ export function ArticleJsonLd({
   );
 }
 
+// ─── EventJsonLd (Schema.org Event for /board/events 게시판) ─────────────────
+
+export function EventJsonLd({
+  name,
+  description,
+  startDate,
+  endDate,
+  venueName,
+  venueAddress,
+  url,
+  image,
+  price,
+  currency = 'KRW',
+  organizerName,
+  sponsorName,
+  capacity,
+  locale,
+}: {
+  name: string;
+  description: string;
+  startDate: string; // ISO 8601, e.g. "2026-05-16T10:00:00+09:00"
+  endDate?: string;
+  venueName: string;
+  venueAddress?: string;
+  url: string;
+  image?: string;
+  price?: number | 'free';
+  currency?: string;
+  organizerName?: string;
+  sponsorName?: string;
+  capacity?: number;
+  locale: string;
+}) {
+  const isKo = locale === 'ko';
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationEvent',
+    name,
+    description,
+    inLanguage: isKo ? 'ko-KR' : 'en-US',
+    startDate,
+    ...(endDate && { endDate }),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: venueName,
+      ...(venueAddress && {
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: venueAddress,
+          addressCountry: 'KR',
+        },
+      }),
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: organizerName ?? (isKo ? '한양미래연구소' : 'Hanyang Future Lab'),
+      url: 'https://hyedu.kr',
+    },
+    ...(sponsorName && {
+      sponsor: { '@type': 'Organization', name: sponsorName },
+    }),
+    ...(image && { image }),
+    ...(capacity && { maximumAttendeeCapacity: capacity }),
+    url,
+    offers: {
+      '@type': 'Offer',
+      url,
+      availability: 'https://schema.org/InStock',
+      validFrom: new Date().toISOString(),
+      ...(price === 'free' || price === 0
+        ? { price: 0, priceCurrency: currency }
+        : price !== undefined
+          ? { price, priceCurrency: currency }
+          : { price: 0, priceCurrency: currency }),
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 // ─── BreadcrumbJsonLd ─────────────────────────────────────────────────────────
 
 export function BreadcrumbJsonLd({
