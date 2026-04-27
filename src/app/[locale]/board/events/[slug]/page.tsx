@@ -53,6 +53,7 @@ export async function generateMetadata({
   const description = post?.description ?? detail.title;
   // 카카오톡·페이스북 등은 SVG og:image 미지원. SVG → PNG로 변환된 -og.png 사용.
   // (scripts/generate-og-images.mjs 가 모든 이벤트 SVG를 PNG로 자동 생성)
+  // 차원 1210x1704 — generate-og-images.mjs 와 일치해야 함.
   const ogImage = post?.thumbnail
     ? `https://hyedu.kr${post.thumbnail.replace(/\.svg$/, '-og.png')}`
     : undefined;
@@ -73,7 +74,18 @@ export async function generateMetadata({
       url,
       publishedTime: detail.date || undefined,
       authors: [detail.author],
-      ...(ogImage && { images: [{ url: ogImage }] }),
+      // 카카오톡·페이스북 호환성: width/height/type 명시하면 즉시 정확하게 표시.
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            width: 1210,
+            height: 1704,
+            type: 'image/png',
+            alt: detail.title,
+          },
+        ],
+      }),
     },
     twitter: {
       card: 'summary_large_image',
