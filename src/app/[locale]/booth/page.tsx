@@ -223,7 +223,7 @@ export default async function BoothPage({
                   {isKo ? '교육 신청하기' : 'Apply'}
                 </Link>
                 <a
-                  href="https://drive.google.com/file/d/1dUVYRHxN3hCptN1VLIN8h_9yV1nuwioT/view?usp=sharing"
+                  href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-booth-curriculum.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block border border-white text-white font-semibold px-6 py-2.5 rounded hover:bg-white/10 transition-colors text-sm"
