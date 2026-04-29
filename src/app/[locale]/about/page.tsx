@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { history } from '@/data/history';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import CoreValuesMindMap from '@/components/sections/CoreValuesMindMap';
 
 export async function generateMetadata({
   params,
@@ -256,42 +257,8 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* 핵심 가치 */}
-      <section className="py-16 md:py-20 px-6 bg-gray-50" aria-label={isKo ? '핵심 가치' : 'Core Values'}>
-        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-2">
-            {isKo ? '핵심 가치' : 'Core Values'}
-          </h2>
-          <p className="text-lg md:text-xl font-semibold text-center text-gray-600 mb-10">
-            {isKo ? '기술기반 미래인재육성' : 'Developing Future Talent Through Technology'}
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {coreValues.map((value) => (
-              <div
-                key={value.title.ko}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden"
-              >
-                <div className="aspect-[4/3] relative bg-gray-100">
-                  <Image
-                    src={value.image}
-                    alt={pick(value.title, isKo)}
-                    fill
-                    className="object-contain p-4"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base md:text-lg font-bold text-point mb-2">
-                    {pick(value.title, isKo)}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {pick(value.description, isKo)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 핵심 가치 — 미래지향 마인드맵 */}
+      <CoreValuesMindMap isKo={isKo} />
     </>
   );
 }

@@ -43,7 +43,7 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
-      const json = (await res.json()) as { success?: string };
+      const json = (await res.json()) as { success?: string | boolean };
       if (json.success !== 'true' && json.success !== true) {
         throw new Error('전송 실패 응답');
       }
