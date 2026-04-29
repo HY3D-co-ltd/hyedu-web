@@ -146,13 +146,13 @@ export default function ProgramsClient({ locale }: { locale: string }) {
                       href={`/${locale}/programs/${program.slug}`}
                       className="block border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-white"
                     >
-                      <div className="flex items-center justify-center p-4 bg-gray-50">
+                      <div className="relative w-full aspect-[4/3] bg-gray-50 overflow-hidden">
                         <Image
                           src={program.thumbnail}
                           alt={title}
-                          width={200}
-                          height={150}
-                          className="w-full max-w-[180px] h-auto object-contain"
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-contain p-1"
                         />
                       </div>
                       <div className="p-3">
