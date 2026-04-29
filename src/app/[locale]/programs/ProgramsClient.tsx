@@ -43,7 +43,10 @@ export default function ProgramsClient({ locale }: { locale: string }) {
   const [searchKeyword, setSearchKeyword] = useState('');
   const isKo = locale === 'ko';
 
-  const filtered = programs.filter((p) => {
+  // hidden:true 인 프로그램은 모든 노출에서 제외
+  const visiblePrograms = programs.filter((p) => !p.hidden);
+
+  const filtered = visiblePrograms.filter((p) => {
     const matchCategory = activeCategory === 'all' || p.category === activeCategory;
     const title = isKo ? p.title : p.titleEn;
     const matchSearch =
@@ -134,8 +137,8 @@ export default function ProgramsClient({ locale }: { locale: string }) {
             <>
               <p className="text-sm text-gray-500 mb-4">
                 {isKo
-                  ? `전체 ${programs.length}건 중 ${filtered.length}건의 결과입니다.`
-                  : `${filtered.length} of ${programs.length} programs match.`}
+                  ? `전체 ${visiblePrograms.length}건 중 ${filtered.length}건의 결과입니다.`
+                  : `${filtered.length} of ${visiblePrograms.length} programs match.`}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {filtered.map((program) => {

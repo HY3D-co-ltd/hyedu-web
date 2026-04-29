@@ -18,6 +18,8 @@ export interface Program {
   clubAvailable?: boolean;
   /** 교육 추천 정리표에 "다회기" 배지 표시 여부 */
   multiSession?: boolean;
+  /** true 면 프로그램 목록·SEO 등 모든 노출에서 숨김. 상세 페이지도 생성 안 함. */
+  hidden?: boolean;
 }
 
 export interface YouthClub {

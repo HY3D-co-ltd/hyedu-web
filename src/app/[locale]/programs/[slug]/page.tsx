@@ -30,7 +30,9 @@ const categoryLabelEn: Record<string, string> = {
 export function generateStaticParams() {
   const locales = ['ko', 'en'];
   return locales.flatMap((locale) =>
-    programs.map((p) => ({ locale, slug: p.slug }))
+    programs
+      .filter((p) => !p.hidden) // 숨김 프로그램은 정적 페이지 생성 X
+      .map((p) => ({ locale, slug: p.slug }))
   );
 }
 
@@ -90,7 +92,7 @@ export default async function ProgramDetailPage({
   const isKo = locale === 'ko';
 
   const program = programs.find((p) => p.slug === slug);
-  if (!program) notFound();
+  if (!program || program.hidden) notFound();
 
   const title = isKo ? program.title : program.titleEn;
   const altTitle = isKo ? program.titleEn : program.title;

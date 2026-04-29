@@ -658,6 +658,7 @@ export const programs: Program[] = [
   },
   {
     slug: '3d-printing-pen-combo',
+    hidden: true, // 관리자 요청 임시 숨김. 복원 시 이 줄만 삭제.
     clubAvailable: true,
     multiSession: true,
     category: 'maker',
@@ -949,6 +950,7 @@ export const programs: Program[] = [
   // ===== STEAM 교육 (category: 'steam') =====
   {
     slug: 'led-mood-light',
+    hidden: true, // 관리자 요청 임시 숨김. 복원 시 이 줄만 삭제.
     category: 'steam',
     title: 'LED 무드등 만들기',
     titleEn: 'LED Mood Light Making',
@@ -990,6 +992,7 @@ export const programs: Program[] = [
   },
   {
     slug: '3d-pen-led-interior',
+    hidden: true, // 관리자 요청 임시 숨김. 복원 시 이 줄만 삭제.
     category: 'steam',
     title: '3D펜으로 LED 인테리어 소품 만들기',
     titleEn: 'LED Interior Props with 3D Pen',

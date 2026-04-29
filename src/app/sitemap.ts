@@ -45,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const program of programs) {
+      if (program.hidden) continue; // 숨김 처리된 프로그램은 sitemap 에서 제외
       entries.push({
         url: `${baseUrl}/${locale}/programs/${program.slug}`,
         lastModified: new Date(),
