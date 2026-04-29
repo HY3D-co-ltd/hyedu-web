@@ -32,6 +32,9 @@ const MAPPINGS: Array<{ photo: string; currentThumb: string; outBase: string }> 
   { photo: '야경디자이너.png', currentThumb: '/images/programs/new-programai07.png', outBase: 'photo-night-design' },
   { photo: '어플리케이션 개발자.png', currentThumb: '/images/programs/2020_visit_new_coding05.png', outBase: 'photo-app-dev' },
   { photo: '유튜브.png', currentThumb: '/images/programs/2020_visit_new_maker01.png', outBase: 'photo-youtube' },
+  { photo: '자율주행자동차.png', currentThumb: '/images/programs/maker_activity_7_autonomous_car.png', outBase: 'photo-autonomous-car' },
+  { photo: '핑퐁로봇.png', currentThumb: '/images/programs/maker_activity_6_robot_coding.png', outBase: 'photo-pingpong-robot' },
+  { photo: 'VR 디자이너.png', currentThumb: '/images/programs/new-programai08.png', outBase: 'photo-vr-designer' },
 ];
 
 async function main() {

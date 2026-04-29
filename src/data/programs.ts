@@ -152,7 +152,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/maker_activity_7_autonomous_car.png',
+    thumbnail: '/images/programs/photo-autonomous-car.jpg',
     images: [
       '/images/programs/detail/detail04/study_04_01.png',
       '/images/programs/detail/detail04/study_04_02.gif',
@@ -328,7 +328,7 @@ export const programs: Program[] = [
     price: '1인 30,000원 (최소 20명)',
     priceEn: '30,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/maker_activity_6_robot_coding.png',
+    thumbnail: '/images/programs/photo-pingpong-robot.jpg',
     images: [
       '/images/programs/detail/detail09/study_09_01.png',
       '/images/programs/detail/detail09/study_09_02.png',
@@ -496,7 +496,7 @@ export const programs: Program[] = [
     price: '1인 26,000원 (최소 20명)',
     priceEn: '26,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/new-programai08.png',
+    thumbnail: '/images/programs/photo-vr-designer.jpg',
     images: [
       '/images/programs/detail/detail13/study_13_01.png',
       '/images/programs/detail/detail13/study_13_02.png',
