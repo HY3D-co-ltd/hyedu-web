@@ -3,22 +3,24 @@
 import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
+import { reviewPosts } from '@/data/boardPosts';
 
-const reviewRow1 = [
-  { image: '/images/programs/detail/main/comming-class01_01.png', altKo: '전북유니텍', altEn: 'Jeonbuk Unitech', href: '/board/reviews' },
-  { image: '/images/programs/detail/main/comming-class01_02.png', altKo: '진성고', altEn: 'Jinseong High School', href: '/board/reviews' },
-  { image: '/images/programs/detail/main/comming-class01_03.png', altKo: '서문여고', altEn: 'Seomun Girls\' High School', href: '/board/reviews' },
-];
-
-const reviewRow2 = [
-  { image: '/images/programs/detail/main/comming-class02_01.png', altKo: '9가지 체험', altEn: '9 activities', href: 'https://blog.naver.com/hyhyedu/223515904796' },
-  { image: '/images/programs/detail/main/comming-class02_02.png', altKo: 'VR 디자이너', altEn: 'VR designer', href: 'https://blog.naver.com/hyhyedu/223514634459' },
-  { image: '/images/programs/detail/main/comming-class02_03.png', altKo: '빅데이터', altEn: 'Big data', href: 'https://blog.naver.com/hyhyedu/223514508319' },
-];
+/**
+ * 교육 후기 게시판(reviews.json) 에 글이 추가/수정되면 자동으로 이 영역도 갱신.
+ * 빌드 시점에 reviews.json 을 import 하므로, 관리자 페이지에서 글을 저장하면
+ * GitHub Actions 재배포 후 1-2분 내 메인의 6개 후기에 반영된다.
+ */
+function getLatestReviews(count: number) {
+  return [...reviewPosts]
+    .filter((p) => p.thumbnail) // 썸네일 없는 글은 제외
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    .slice(0, count);
+}
 
 export default function TestimonialSection() {
   const locale = useLocale();
   const isKo = locale === 'ko';
+  const latest = getLatestReviews(6);
 
   return (
     <section className="py-12 px-4 bg-gray-50">
@@ -45,7 +47,7 @@ export default function TestimonialSection() {
             </p>
           </div>
 
-          {/* Right: Latest Reviews */}
+          {/* Right: Latest Reviews — reviews.json 에서 자동 로드 */}
           <div>
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-xl font-bold text-gray-900">
@@ -58,50 +60,36 @@ export default function TestimonialSection() {
                 : 'Hanyang Future Lab nurtures children\u2019s dreams and delivers life-changing hands-on education.'}
             </p>
 
-            {/* Row 1 */}
-            <div className="grid grid-cols-3 mb-2">
-              {reviewRow1.map((item, i) => (
-                <Link key={i} href={`/${locale}${item.href}`} className="overflow-hidden hover:opacity-80 transition-opacity">
-                  <Image
-                    src={item.image}
-                    alt={isKo ? item.altKo : item.altEn}
-                    width={300}
-                    height={300}
-                    className="w-full object-contain"
-                  />
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {latest.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/${locale}/board/reviews/${post.slug}`}
+                  className="overflow-hidden rounded hover:opacity-80 transition-opacity"
+                  title={post.title}
+                >
+                  <div className="relative w-full aspect-square bg-gray-100">
+                    {post.thumbnail && (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={post.thumbnail}
+                        alt={post.title}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
                 </Link>
               ))}
             </div>
 
-            {/* Row 2 */}
-            <div className="grid grid-cols-3 mb-2">
-              {reviewRow2.map((item, i) => (
-                <a
-                  key={i}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="overflow-hidden hover:opacity-80 transition-opacity"
-                >
-                  <Image
-                    src={item.image}
-                    alt={isKo ? item.altKo : item.altEn}
-                    width={300}
-                    height={300}
-                    className="w-full object-contain"
-                  />
-                </a>
-              ))}
-            </div>
             <div className="text-right">
-              <a
-                href="https://blog.naver.com/hyhyedu"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={`/${locale}/board/reviews`}
                 className="text-xs text-point hover:underline"
               >
                 {isKo ? '자세히보기' : 'View more'} &rarr;
-              </a>
+              </Link>
             </div>
           </div>
         </div>
