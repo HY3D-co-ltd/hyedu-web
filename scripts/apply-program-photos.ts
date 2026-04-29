@@ -35,6 +35,7 @@ const MAPPINGS: Array<{ photo: string; currentThumb: string; outBase: string }> 
   { photo: '자율주행자동차.png', currentThumb: '/images/programs/maker_activity_7_autonomous_car.png', outBase: 'photo-autonomous-car' },
   { photo: '핑퐁로봇.png', currentThumb: '/images/programs/maker_activity_6_robot_coding.png', outBase: 'photo-pingpong-robot' },
   { photo: 'VR 디자이너.png', currentThumb: '/images/programs/new-programai08.png', outBase: 'photo-vr-designer' },
+  { photo: '블루투스 스피커.png', currentThumb: '/images/programs/new-programai06.png', outBase: 'photo-bluetooth-speaker' },
 ];
 
 async function main() {
