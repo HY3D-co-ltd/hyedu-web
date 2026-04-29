@@ -9,3 +9,4 @@ next-env.d.ts
 firebase-debug.log
 tsconfig.tsbuildinfo
 camp*.html
+recover-tmp/
