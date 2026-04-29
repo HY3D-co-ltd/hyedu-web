@@ -3,6 +3,7 @@
 import Image from '@/components/ui/Img';
 import { useLocale } from 'next-intl';
 import type { MouseEvent } from 'react';
+import ApplicationForm from './ApplicationForm';
 
 export default function ContactSection() {
   const locale = useLocale();
@@ -55,20 +56,8 @@ export default function ContactSection() {
             {isKo ? '전화 문의하기' : 'Call Us'}
           </a>
         </div>
-        {/* 전화번호/업무시간 이미지 */}
-        <div className="flex justify-center">
-          <Image
-            src="/images/main/inquiry01_02.png"
-            alt={
-              isKo
-                ? '교육 문의 전화번호 070-8064-0829 업무시간 안내'
-                : 'Inquiry phone +82-70-8064-0829 and business hours'
-            }
-            width={600}
-            height={200}
-            className="w-full max-w-[600px] h-auto"
-          />
-        </div>
+        {/* 교육 신청 폼 — 제출 시 hyedu0829@gmail.com 으로 메일 발송 */}
+        <ApplicationForm isKo={isKo} />
       </div>
     </section>
   );
