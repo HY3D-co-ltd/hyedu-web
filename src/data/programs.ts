@@ -62,7 +62,7 @@ export const programs: Program[] = [
     price: '1인 24,000원 (최소 20명)',
     priceEn: '24,000 KRW per person (min. 20)',
     duration: '2~3교시 (1교시 40~50분)',
-    thumbnail: '/images/programs/new-programai03.png',
+    thumbnail: '/images/programs/new-programai03.jpg',
     images: [
       '/images/programs/detail/detail02/study_02_01.png',
       '/images/programs/detail/detail02/study_02_02.png',
