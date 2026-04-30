@@ -37,3 +37,40 @@
   margin: 16px auto;
   display: block;
 }
+
+/* ===== 모바일 반응형 안전망 (post-content 전체) =====
+   1차 방어선: `auto-fit + minmax()` 패턴 (CLAUDE.md / SKILL.md 참고).
+   2차 방어선: 누가 미래에 인라인으로 `repeat(2/3/4, 1fr)` 또는 고정 px 그리드를 또 작성해도,
+   `<= 640px` 화면에서는 자동으로 1열로 접혀 한국어 텍스트가 한 글자씩 떨어지지 않게 한다.
+
+   Firestore에서 비-개발자가 직접 HTML을 넣어도 모바일이 깨지지 않도록 하는 최후의 보루.  */
+@media (max-width: 640px) {
+  /* 1) repeat(N, 1fr) 패턴 — 1열 강제 */
+  .post-content [style*="repeat(2,"],
+  .post-content [style*="repeat(3,"],
+  .post-content [style*="repeat(4,"],
+  .post-content [style*="repeat(2 ,"],
+  .post-content [style*="repeat(3 ,"],
+  .post-content [style*="repeat(4 ,"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 2) 인라인 그리드의 자식이 컨테이너 폭을 넘지 못하게 (그리드 아이템의 기본 min-width 0 강제) */
+  .post-content [style*="display:grid"] > * {
+    min-width: 0;
+  }
+
+  /* 3) 한국어 친화 줄바꿈 — 단어 단위로 끊되 긴 URL/단어는 어느 위치에서나 끊김 허용 */
+  .post-content {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  /* 4) 표는 항상 가로 스크롤 (래퍼를 잊고 작성해도) */
+  .post-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+}

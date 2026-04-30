@@ -147,6 +147,18 @@ Tailwind with custom tokens in `tailwind.config.ts`: `primary` (blue #2563eb), `
 4. 가로 스크롤바가 의도하지 않게 등장하지 않는지 확인
 5. (선택) `out/` 빌드물에서 자동 grep — `repeat\((2|3|4),1fr\)` 매치 0개 확인
 
+### 모바일 반응형 3중 방어선 (어떻게 안전한가)
+
+이 프로젝트는 모바일 깨짐 방지를 위한 다층 방어를 갖추고 있다:
+
+| 층 | 위치 | 역할 |
+|---|---|---|
+| 1차: 페이지 래퍼 | `[slug]/page.tsx`의 `<article className="max-w-4xl mx-auto px-4">` | 본문이 화면 폭 따라 자동 fit |
+| 2차: 인라인 `auto-fit + minmax()` | 본문 HTML 작성 시 (위 표 참고) | 카드가 콘텐츠 폭에 따라 자동 reflow |
+| **3차: globals.css 안전망** | `src/app/[locale]/globals.css`의 `@media (max-width: 640px)` 섹션 | **누가 또 `repeat(3,1fr)` 써도 모바일에서 강제 1열로 접힘** |
+
+3차 안전망 덕분에 Firestore에서 비-개발자가 HTML을 직접 붙여넣거나, 향후 누군가 인라인 그리드 규칙을 잊어도 **모바일이 깨지지 않는다**. 그래도 1차·2차를 매번 지키는 게 원칙 — 안전망은 망일 뿐 정답이 아니다.
+
 ## 콘텐츠 추가 시나리오별 가이드
 
 ### 시나리오 1: 새 교육 프로그램(찾아가는 체험교실) 추가
