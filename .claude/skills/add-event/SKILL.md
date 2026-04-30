@@ -132,6 +132,36 @@ cp public/images/board/events/318-ai-ceo-basic-training.svg \
 - baseline 정렬이 필요하면 `align-items:baseline` (절대 `flex-end` 쓰지 마라 — 폰트 크기 다를 때 어긋남)
 - STATS 카드처럼 4개 카드 정렬할 때는 `height` 고정 + flex column 구조로 모든 요소가 동일 Y좌표에 오도록
 
+**🚨 모바일 반응형 (절대 위반 금지 — 한 글자씩 떨어지는 사고의 원인)**:
+
+본문 HTML은 `dangerouslySetInnerHTML`로 들어가므로 미디어쿼리를 인라인으로 못 쓴다.
+**모든 그리드는 반드시 `auto-fit + minmax()` 형식**으로 작성해 자동 reflow되게 해라:
+
+| ❌ 절대 금지 | ✅ 필수 |
+|---|---|
+| `grid-template-columns:repeat(4,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(140px,1fr))` (STATS) |
+| `grid-template-columns:repeat(3,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(220px,1fr))` (PROBLEM/TARGET) |
+| `grid-template-columns:repeat(2,1fr)` (info) | `grid-template-columns:repeat(auto-fit,minmax(220px,1fr))` |
+| `grid-template-columns:repeat(2,1fr)` (긴 카드) | `grid-template-columns:repeat(auto-fit,minmax(280px,1fr))` (SOLUTION/PRICING) |
+
+`minmax()` 최소값 가이드:
+- STATS (숫자 + 짧은 라벨): `140px`
+- INFO 2x2 (짧은 한글): `220px`
+- PROBLEM/TARGET 카드 (한글 본문 2~3줄): `220~240px`
+- SOLUTION/PRICING 카드 (긴 본문 + 리스트): `260~280px`
+
+**표(`<table>`)는 가로 스크롤 래퍼 필수**:
+
+```html
+<!-- ❌ 모바일에서 잘림 -->
+<div style="overflow:hidden;"><table>...</table></div>
+
+<!-- ✅ -->
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <table style="width:100%;min-width:560px;...">...</table>
+</div>
+```
+
 ### 4. inject 스크립트에 신규 행사 등록 (SEO 필드 모두 포함)
 
 `scripts/inject-events.mjs`의 `meta` 객체에 추가. **SEO 필드 누락 금지**:
@@ -236,8 +266,15 @@ GitHub Actions가 자동 배포한다.
 - [ ] 4개 STATS 카드의 설명 텍스트도 모두 같은 Y좌표
 - [ ] 어두운 배경 안의 텍스트가 흰색으로 보이는지 (prose 스타일 덮어쓰기 잘 됐는지)
 - [ ] 그라디언트 박스의 강조 텍스트가 잘 보이는지
-- [ ] 모바일에서도 그리드(`grid-template-columns: repeat(N, 1fr)`)가 깨지지 않는지 — 필요시 `@media` 미디어쿼리 대신 그리드 자동 reflow 사용
 - [ ] 포스터 SVG가 본문 내부에 잘 렌더링되는지
+
+### 📱 모바일 반응형 (필수 — 매번 검증)
+
+- [ ] 본문 HTML grep: `repeat\((2|3|4),1fr\)` → **0개** 여야 함 (있으면 `auto-fit + minmax`로 변경)
+- [ ] 360px 너비(소형 안드로이드)에서 한국어 텍스트가 한 글자씩 세로로 떨어지지 않음
+- [ ] 390px 너비(iPhone)에서 가로 스크롤바 없음
+- [ ] 비교 표가 모바일에서 잘리지 않고 가로 스크롤 가능
+- [ ] 크롬 DevTools → Toggle device toolbar (Ctrl+Shift+M) → iPhone SE / Galaxy S8+ 에서 끝까지 스크롤하며 깨짐 없는지 확인
 
 ## SEO/AEO 검증 체크리스트 (배포 전 필수)
 

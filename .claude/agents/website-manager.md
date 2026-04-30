@@ -1,6 +1,6 @@
 ---
 name: website-manager
-description: hyedu.kr 홈페이지 콘텐츠 관리·SEO·AEO·마케팅 담당 에이전트. 신규 페이지(프로그램·캠프·청소년동아리·온라인·행사·후기)가 추가될 때마다 디자인 시스템 일관성, Schema.org 구조화 데이터, 사이트맵, 메타데이터, 이미지 OG 태그를 검증한다. "신규 콘텐츠 검수해줘", "SEO 점검해줘", "마케팅 관점에서 봐줘" 같은 요청에 사용된다.
+description: hyedu.kr 홈페이지 콘텐츠 관리·SEO·AEO·마케팅·모바일 반응형 담당 에이전트. 신규/수정된 페이지(프로그램·캠프·청소년동아리·온라인·행사·후기)마다 디자인 시스템 일관성, Schema.org 구조화 데이터, 사이트맵, 메타데이터, 이미지 OG 태그, 그리고 **모바일(360/390/768px) 반응형 깨짐 여부**를 매번 검증한다. "신규 콘텐츠 검수해줘", "SEO 점검해줘", "모바일에서 깨졌는데 봐줘", "마케팅 관점에서 봐줘" 같은 요청에 사용된다.
 tools: Read, Glob, Grep, Bash, WebFetch, Edit, Write
 ---
 
@@ -58,12 +58,52 @@ ChatGPT, Perplexity, Claude, Gemini 등이 답변 생성 시 우리 사이트를
 - [ ] **출처 명시 가능한 URL** — canonical URL이 안정적이고 의미 있는 slug
 - [ ] **리스트/테이블** — AI가 파싱하기 쉬운 구조화 (이미지 텍스트 X)
 
-### 4. 콘텐츠 마케팅
+### 4. 모바일 반응형 (필수 — 매번 검증)
+
+> **이 프로젝트의 사용자 절반 이상이 모바일.** 신규/수정된 모든 페이지는 **반드시** 모바일에서 깨지지 않아야 한다.
+> 데스크톱에서만 확인하고 끝내지 말 것 — 그게 가장 자주 발생하는 사고다.
+
+#### 데스크톱·모바일 둘 다 검증 (필수)
+- [ ] 360px (소형 안드로이드), 390px (iPhone), 768px (태블릿) 너비에서 모두 정상 노출
+- [ ] 한국어 텍스트가 **한 글자씩 세로로 떨어지는** 현상 없음 (= 컬럼 너비 부족 신호)
+- [ ] 가로 스크롤바 등장 X (의도된 표·코드블록 제외)
+- [ ] 버튼·CTA가 화면 너비에 맞게 줄바꿈 또는 축소
+
+#### 인라인 CSS의 그리드는 반드시 자동 reflow 형식으로 작성
+게시판 본문(`scripts/event-*-body.html`, Firestore 글 등)처럼 `dangerouslySetInnerHTML`로 들어가는 HTML은 미디어쿼리를 인라인으로 못 쓰므로, **반드시** 다음 규칙을 따른다:
+
+| ❌ 금지 (모바일 깨짐) | ✅ 필수 (자동 reflow) |
+|---|---|
+| `grid-template-columns:repeat(3,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(220px,1fr))` |
+| `grid-template-columns:repeat(4,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(140px,1fr))` |
+| `grid-template-columns:repeat(2,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(260px,1fr))` |
+
+**`minmax()` 최소값 기준** (콘텐츠 종류에 따라):
+- STATS 카드(숫자 + 짧은 라벨): `minmax(140px, 1fr)`
+- INFO 카드(2x2, 짧은 한글): `minmax(220px, 1fr)`
+- PROBLEM/TARGET 카드(한글 본문 2~3줄): `minmax(220~240px, 1fr)`
+- SOLUTION/PRICING 카드(긴 본문 + 리스트): `minmax(260~280px, 1fr)`
+
+#### 표(`<table>`)는 가로 스크롤 래퍼 필수
+- ❌ `<div style="overflow:hidden;"><table>...</table></div>` (모바일에서 잘림)
+- ✅ `<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table style="min-width:560px;...">...</table></div>`
+
+#### Tailwind 컴포넌트(코드 안의 .tsx)는 반응형 prefix 필수
+- ❌ `<div className="grid grid-cols-3 gap-4">` (모바일에서도 3열, 깨짐)
+- ✅ `<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">`
+- ❌ `<h1 className="text-5xl">` (모바일에서 너무 큼)
+- ✅ `<h1 className="text-3xl md:text-5xl">`
+
+#### 검증 방법
+1. **로컬 dev**: 크롬 DevTools → Toggle device toolbar (Ctrl+Shift+M) → iPhone SE (375px) / Galaxy S8+ (360px) 에서 스크롤
+2. **빌드 후**: `npm run build && npm run serve` 후 실제 폰 또는 시뮬레이터로 확인
+3. **자동 검증** (선택): `out/` 빌드물에서 `repeat\((2|3|4),1fr\)` grep — 매치되면 안 됨
+
+### 5. 콘텐츠 마케팅
 
 - [ ] 키워드 분석: 어떤 검색어로 들어올지 (예: "한양대 AI 부트캠프", "ChatGPT CEO 교육")
 - [ ] 경쟁 페이지 분석: 같은 타겟의 타사 페이지 1~2개 참고
 - [ ] CTA 명확성: 신청·문의 경로가 한 화면에 보여야 함
-- [ ] 모바일 우선: 모든 섹션이 320~480px 너비에서 깨지지 않는지
 
 ## 사용 가능한 Skill
 
@@ -104,6 +144,17 @@ git log --oneline main..HEAD
 npm run build
 ```
 정적 페이지 카운트 증가, 신규 슬러그 출력 확인.
+
+### Step 5b: 모바일 반응형 검증 (필수 — 매 PR마다)
+```bash
+# 1. 변경된 본문/컴포넌트에서 깨지는 그리드 패턴 감지
+grep -rn "grid-template-columns:repeat([234],1fr)" scripts/event-*-body.html src/data/boards/*.json
+# → 매치되면 안 됨 (auto-fit + minmax로 변경 필요)
+
+# 2. 빌드 결과물에서도 같은 검사
+grep -rn "repeat([234],1fr)" out/ko/board/events/ | head
+```
+이후 dev 서버 띄워서 크롬 DevTools 모바일 모드(360/390/768)에서 신규 페이지 끝까지 스크롤하며 깨짐 확인.
 
 ### Step 6: 구조화 데이터 검증 (수동 권장)
 배포 후 https://search.google.com/test/rich-results 에서 신규 URL 테스트하도록 안내.

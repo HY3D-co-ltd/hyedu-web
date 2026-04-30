@@ -91,8 +91,61 @@ Tailwind with custom tokens in `tailwind.config.ts`: `primary` (blue #2563eb), `
 
 1. **사용자가 정보를 빠뜨리면 직접 물어봐라** — 필수 항목이 누락된 채로 코드에 반영하지 마라
 2. **기존 양식을 반드시 따라라** — `src/data/` 파일들의 기존 데이터 형식과 동일하게 작성
-3. **빌드 확인 필수** — 모든 변경 후 `npm run build`로 빌드 성공 확인
-4. **커밋 & 푸시** — 변경 완료 후 git commit + push
+3. **모바일 반응형은 무조건 검증해라** — 데스크톱만 보고 끝내지 마라. 신규/수정된 모든 UI는 360px·390px·768px 너비에서 정상 노출되어야 한다 (자세한 규칙은 아래 "모바일 반응형 — 절대 원칙" 참고)
+4. **빌드 확인 필수** — 모든 변경 후 `npm run build`로 빌드 성공 확인
+5. **커밋 & 푸시** — 변경 완료 후 git commit + push
+
+## 모바일 반응형 — 절대 원칙
+
+> **이 사이트의 사용자 절반 이상이 모바일에서 본다.** 데스크톱에서만 확인하고 "잘 된다"고 하면 사고가 난다.
+> 신규 페이지 추가, 게시판 본문 작성, 컴포넌트 수정 등 **모든 UI 변경**은 매번 모바일 검증을 거친다.
+
+### Tailwind 컴포넌트 (.tsx) — 반응형 prefix 필수
+```tsx
+// ❌ 모바일에서 깨짐 (3열 강제)
+<div className="grid grid-cols-3 gap-4">
+
+// ✅
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+// ❌ 모바일에서 폰트 너무 큼
+<h1 className="text-5xl">
+
+// ✅
+<h1 className="text-3xl md:text-5xl">
+```
+
+### 게시판 본문 HTML / `dangerouslySetInnerHTML` 컨텐츠
+인라인 CSS는 미디어쿼리를 못 쓰므로 **반드시 `auto-fit + minmax()` 형식**으로 작성해 자동 reflow되게 해라.
+
+| ❌ 절대 금지 (모바일에서 한 글자씩 떨어짐) | ✅ 필수 |
+|---|---|
+| `grid-template-columns:repeat(2,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(220px,1fr))` 또는 `minmax(280px,1fr)` |
+| `grid-template-columns:repeat(3,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(220px,1fr))` |
+| `grid-template-columns:repeat(4,1fr)` | `grid-template-columns:repeat(auto-fit,minmax(140px,1fr))` |
+
+`minmax()` 최소값은 콘텐츠 종류에 따라:
+- STATS 카드(숫자+짧은 라벨): `140px`
+- INFO/PROBLEM/TARGET 카드(한글 본문): `220~240px`
+- SOLUTION/PRICING 카드(긴 본문+리스트): `260~280px`
+
+### 표(`<table>`) — 가로 스크롤 래퍼 필수
+```html
+<!-- ❌ 모바일에서 잘리거나 깨짐 -->
+<div style="overflow:hidden;"><table>...</table></div>
+
+<!-- ✅ -->
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <table style="width:100%;min-width:560px;...">...</table>
+</div>
+```
+
+### 검증 방법 (배포 전 필수)
+1. 크롬 DevTools → Toggle device toolbar (Ctrl+Shift+M)
+2. iPhone SE (375px) / Galaxy S8+ (360px) 너비로 끝까지 스크롤
+3. 한국어 텍스트가 한 글자씩 세로로 떨어지지 않는지 확인 (= 컬럼 너비 부족 신호)
+4. 가로 스크롤바가 의도하지 않게 등장하지 않는지 확인
+5. (선택) `out/` 빌드물에서 자동 grep — `repeat\((2|3|4),1fr\)` 매치 0개 확인
 
 ## 콘텐츠 추가 시나리오별 가이드
 
