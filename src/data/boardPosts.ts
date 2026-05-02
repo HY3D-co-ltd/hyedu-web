@@ -9,6 +9,14 @@ export interface StaticBoardPost {
 
 export const eventPosts: StaticBoardPost[] = [
   {
+    id: "319",
+    slug: "319-ai-agent-ceo-website-education",
+    title: "[모집] 6/7(토) AI 에이전트 CEO 과정 — 홈페이지 개발·디자인·운영 자동화 교육",
+    thumbnail: "/images/events/ceo-ai-website-education-thumb.png",
+    date: "2026-05-02",
+    href: "https://hyedu.kr/bbs/bbs/view.php?bbs_no=13&data_no=319",
+  },
+  {
     id: "316",
     slug: "316-renewable-energy-saturday-camp",
     title: "신재생 에너지 토요 캠프",
