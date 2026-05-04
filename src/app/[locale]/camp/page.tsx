@@ -395,7 +395,7 @@ export default async function CampPage({
                   {isKo ? '교육 신청하기' : 'Apply'}
                 </Link>
                 <a
-                  href="https://drive.google.com/file/d/1rjt2OWqfIieT6ifW2gvEP95oxj6VSL7f/view?usp=sharing"
+                  href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-youth-camp-curriculum.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block border border-white text-white font-semibold px-6 py-2.5 rounded hover:bg-white/10 transition-colors text-sm"
