@@ -1,0 +1,116 @@
+<svg width="100%" viewBox="0 0 605 852" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>AI CEO 기본교육 포스터 — 한양미래연구소</title>
+<desc>2026년 5월 2일 한양대학교 ERICA에서 진행되는 AI CEO 기본교육 포스터</desc>
+<defs>
+<linearGradient id="topGrad318" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#0E4194"/>
+<stop offset="100%" stop-color="#0A2E6C"/>
+</linearGradient>
+</defs>
+
+<rect x="0" y="0" width="595" height="842" fill="#FFFFFF"/>
+
+<rect x="0" y="0" width="595" height="340" fill="url(#topGrad318)"/>
+
+<rect x="40" y="40" width="3" height="22" fill="#FFD93D"/>
+<text x="52" y="56" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#FFD93D" letter-spacing="2">HANYANG FUTURE INSTITUTE</text>
+<text x="52" y="71" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.75" letter-spacing="0.5">한양미래연구소</text>
+
+<text x="555" y="56" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.7" text-anchor="end" letter-spacing="1">CEO BASIC TRAINING · 2026</text>
+
+<rect x="40" y="100" width="140" height="26" fill="#FFD93D" rx="2"/>
+<text x="110" y="118" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0A2E6C" text-anchor="middle" letter-spacing="0.5">FOR CEO &amp; EXECUTIVES</text>
+
+<text x="40" y="168" font-family="'Pretendard',sans-serif" font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.85">코딩은 몰라도 됩니다.</text>
+<text x="40" y="188" font-family="'Pretendard',sans-serif" font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.85">'이게 되면 좋겠다'는 상상력만 있으면 됩니다.</text>
+
+<text x="40" y="240" font-family="'Pretendard',sans-serif" font-size="44" font-weight="500" fill="#FFFFFF" letter-spacing="-1">AI를 모르는 CEO는</text>
+<text x="40" y="290" font-family="'Pretendard',sans-serif" font-size="44" font-weight="500" fill="#FFD93D" letter-spacing="-1">살아남을 수 없습니다.</text>
+
+<text x="40" y="320" font-family="'Pretendard',sans-serif" font-size="13" font-weight="400" fill="#FFFFFF" opacity="0.7">ChatGPT · Gemini 실무 활용 일일 집중과정</text>
+
+<rect x="40" y="370" width="515" height="80" fill="#F8F9FB" stroke="#E5E8EE" stroke-width="0.5" rx="4"/>
+
+<g transform="translate(60, 390)">
+<circle cx="14" cy="14" r="14" fill="#E6EEFB"/>
+<text x="14" y="19" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#0E4194" text-anchor="middle">10</text>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">10명 한정 모집</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">CEO + 임직원 소수정예</text>
+</g>
+
+<g transform="translate(230, 390)">
+<rect x="2" y="4" width="24" height="18" fill="none" stroke="#0E4194" stroke-width="1.2" rx="1.5"/>
+<rect x="6" y="22" width="16" height="2" fill="#0E4194"/>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">AI 보조강사 3명</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">옆에서 1:1 멘토링</text>
+</g>
+
+<g transform="translate(400, 390)">
+<path d="M4,18 L10,12 L14,16 L22,8" fill="none" stroke="#0E4194" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="22" cy="8" r="2" fill="#0E4194"/>
+<text x="40" y="13" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#0E4194">건설산업 실무 특화</text>
+<text x="40" y="29" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#5F5E5A">우리 회사 사례로 실습</text>
+</g>
+
+<text x="40" y="495" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#0E4194" letter-spacing="1">WHAT YOU LEARN</text>
+<line x1="40" y1="503" x2="100" y2="503" stroke="#0E4194" stroke-width="1.5"/>
+
+<text x="40" y="525" font-family="'Pretendard',sans-serif" font-size="20" font-weight="500" fill="#1A1A1A">CEO가 직접 다뤄야 할 AI 도구</text>
+
+<g transform="translate(40, 545)">
+<rect x="0" y="0" width="250" height="118" fill="#FFFFFF" stroke="#0E4194" stroke-width="1" rx="4"/>
+<rect x="0" y="0" width="250" height="3" fill="#0E4194"/>
+<text x="14" y="28" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#0E4194" letter-spacing="1">TOOL 01</text>
+<text x="14" y="55" font-family="'Pretendard',sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">ChatGPT</text>
+<text x="14" y="74" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#5F5E5A">by OpenAI</text>
+<line x1="14" y1="84" x2="40" y2="84" stroke="#FFD93D" stroke-width="1.5"/>
+<text x="14" y="102" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">보고서·기획서·이메일 작성</text>
+<text x="14" y="115" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">아이디어 발상부터 정리까지</text>
+</g>
+
+<g transform="translate(305, 545)">
+<rect x="0" y="0" width="250" height="118" fill="#FFFFFF" stroke="#0E4194" stroke-width="1" rx="4"/>
+<rect x="0" y="0" width="250" height="3" fill="#0E4194"/>
+<text x="14" y="28" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#0E4194" letter-spacing="1">TOOL 02</text>
+<text x="14" y="55" font-family="'Pretendard',sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">Gemini</text>
+<text x="14" y="74" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#5F5E5A">by Google</text>
+<line x1="14" y1="84" x2="40" y2="84" stroke="#FFD93D" stroke-width="1.5"/>
+<text x="14" y="102" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">데이터 분석·시각화·번역</text>
+<text x="14" y="115" font-family="'Pretendard',sans-serif" font-size="10.5" font-weight="400" fill="#444441">Google 워크스페이스 통합</text>
+</g>
+
+<rect x="40" y="678" width="515" height="32" fill="#FFFBEB" stroke="#FFE082" stroke-width="0.8" rx="4"/>
+<text x="55" y="697" font-family="'Pretendard',sans-serif" font-size="10" font-weight="700" fill="#B8860B" letter-spacing="2">SPONSORED BY</text>
+<text x="160" y="697" font-family="'Pretendard',sans-serif" font-size="12" font-weight="700" fill="#1A1A1A">(주)다운종합건설</text>
+<text x="555" y="697" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#666" text-anchor="end">초청 기업 무료 교육</text>
+
+<rect x="0" y="722" width="595" height="88" fill="#0E4194"/>
+
+<text x="40" y="745" font-family="'Pretendard',sans-serif" font-size="11" font-weight="500" fill="#FFD93D" letter-spacing="2">EVENT INFORMATION</text>
+
+<g transform="translate(40, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">DATE</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">2026. 5. 2 (토)</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">10:00 - 16:00</text>
+</g>
+
+<line x1="170" y1="760" x2="170" y2="800" stroke="#FFFFFF" stroke-width="0.5" opacity="0.25"/>
+
+<g transform="translate(190, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">VENUE</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">한양대 ERICA</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">창업보육센터 219-1호</text>
+</g>
+
+<line x1="360" y1="760" x2="360" y2="800" stroke="#FFFFFF" stroke-width="0.5" opacity="0.25"/>
+
+<g transform="translate(380, 760)">
+<text x="0" y="14" font-family="'Pretendard',sans-serif" font-size="9" font-weight="500" fill="#FFFFFF" opacity="0.6" letter-spacing="1">TARGET</text>
+<text x="0" y="32" font-family="'Pretendard',sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">중소기업 CEO</text>
+<text x="0" y="46" font-family="'Pretendard',sans-serif" font-size="11" font-weight="400" fill="#FFFFFF" opacity="0.85">+ 임직원 동반 환영</text>
+</g>
+
+<rect x="0" y="810" width="595" height="32" fill="#0A2E6C"/>
+<text x="40" y="830" font-family="'Pretendard',sans-serif" font-size="10" font-weight="400" fill="#FFFFFF" opacity="0.7">준비물 · 노트북 필수 지참 (실습은 노트북으로 진행)</text>
+<text x="555" y="830" font-family="'Pretendard',sans-serif" font-size="10" font-weight="500" fill="#FFD93D" text-anchor="end">신청 문의 · 한양미래연구소</text>
+</svg>
