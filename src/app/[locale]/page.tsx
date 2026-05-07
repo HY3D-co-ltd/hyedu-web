@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import HeroSection from '@/components/sections/HeroSection';
 import QuickLinksAndPrograms from '@/components/sections/QuickLinksAndPrograms';
 import AgeRecommendation from '@/components/sections/AgeRecommendation';
+import NationwideNetwork from '@/components/sections/NationwideNetwork';
 import StatsSection from '@/components/sections/StatsSection';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import RecommendSection from '@/components/sections/RecommendSection';
@@ -43,6 +44,7 @@ export default async function HomePage({
       <HeroSection />
       <QuickLinksAndPrograms />
       <AgeRecommendation />
+      <NationwideNetwork />
       <StatsSection />
       <TestimonialSection />
       <RecommendSection />

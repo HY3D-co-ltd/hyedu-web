@@ -68,13 +68,13 @@ export default function CoreValuesMindMap({ isKo }: { isKo: boolean }) {
 
       <div className="relative max-w-[1170px] mx-auto text-center">
         {/* 헤더 */}
-        <p className="text-sm md:text-base font-mono tracking-[0.4em] text-cyan-300/80 mb-3">
+        <p className="text-base md:text-lg font-mono tracking-[0.4em] text-cyan-300/80 mb-4">
           CORE VALUES
         </p>
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-3">
+        <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
           {isKo ? '핵심 가치' : 'Core Values'}
         </h2>
-        <p className="text-lg md:text-2xl font-medium text-cyan-200/90 mb-10 md:mb-14">
+        <p className="text-xl md:text-3xl font-semibold text-cyan-200/90 mb-12 md:mb-16">
           {isKo
             ? '기술기반 미래인재육성'
             : 'Developing Future Talent Through Technology'}
@@ -124,7 +124,7 @@ export default function CoreValuesMindMap({ isKo }: { isKo: boolean }) {
                 }}
               />
               <div
-                className="relative w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full flex items-center justify-center"
+                className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full flex items-center justify-center"
                 style={{
                   background:
                     'radial-gradient(circle at 30% 30%, #06b6d4 0%, #1e3a8a 60%, #0a0f24 100%)',
@@ -134,13 +134,13 @@ export default function CoreValuesMindMap({ isKo }: { isKo: boolean }) {
                 }}
               >
                 <div className="text-center px-3">
-                  <p className="text-[11px] sm:text-xs md:text-sm font-mono tracking-widest text-cyan-300 mb-1.5">
+                  <p className="text-xs sm:text-sm md:text-base font-mono tracking-widest text-cyan-300 mb-2">
                     HANYANG · FUTURE
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg font-bold text-white leading-tight">
+                  <p className="text-base sm:text-lg md:text-xl font-bold text-white leading-tight">
                     {isKo ? '한양미래연구소' : 'Hanyang Future Lab'}
                   </p>
-                  <p className="text-base sm:text-lg md:text-2xl font-extrabold leading-tight bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent mt-1">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent mt-1.5">
                     {isKo ? '핵심 가치' : 'CORE VALUES'}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export default function CoreValuesMindMap({ isKo }: { isKo: boolean }) {
               }}
             >
               <div
-                className="px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full backdrop-blur text-white font-bold text-sm sm:text-base md:text-lg whitespace-nowrap transition-all hover:scale-110 cursor-default"
+                className="px-5 sm:px-7 md:px-9 py-3 sm:py-3.5 md:py-4 rounded-full backdrop-blur text-white font-bold text-base sm:text-lg md:text-xl whitespace-nowrap transition-all hover:scale-110 cursor-default"
                 style={{
                   background:
                     'linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,41,59,0.85))',
