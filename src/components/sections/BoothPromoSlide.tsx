@@ -61,7 +61,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
 
             {/* 메인 헤드라인 */}
-            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.15] tracking-tight mb-2 lg:mb-3 text-gray-900">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.3] tracking-tight mb-2 lg:mb-3 text-gray-900">
               {isKo ? (
                 <>
                   AI · 로봇 · VR/AR · 코딩

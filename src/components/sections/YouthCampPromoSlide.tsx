@@ -64,7 +64,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
 
             {/* 메인 헤드라인 */}
-            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.15] tracking-tight mb-2 lg:mb-3">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.3] tracking-tight mb-2 lg:mb-3">
               {isKo ? (
                 <>
                   한양대학교 ERICA에서 시작하는
