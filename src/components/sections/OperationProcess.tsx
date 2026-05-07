@@ -384,9 +384,19 @@ export default function OperationProcess() {
                   )}
                 </h3>
                 <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                  {isKo
-                    ? '제안서 · 강사 섭외 · 기자재 · 보고서 · 정산까지. 학교 담당자는 딱 한 분만 계셔도 충분합니다.'
-                    : 'Proposal, instructors, equipment, reports, billing — your one contact handles all.'}
+                  {isKo ? (
+                    <>
+                      제안서 · 강사 섭외 · 기자재 · 보고서 · 정산까지.
+                      <br />
+                      학교 담당자는 딱 한 분만 계셔도 충분합니다.
+                    </>
+                  ) : (
+                    <>
+                      Proposal, instructors, equipment, reports, billing.
+                      <br />
+                      Your one contact handles all.
+                    </>
+                  )}
                 </p>
               </div>
               <div className="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-3.5">
