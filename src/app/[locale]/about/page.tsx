@@ -17,8 +17,8 @@ export async function generateMetadata({
       ? '한양미래연구소 소개 | AI교육·로봇코딩 전문 교육기관'
       : 'About Hanyang Future Lab | AI Education & Robot Coding Institute',
     description: isKo
-      ? '한양미래연구소는 초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행, STEAM교육 전문 기관입니다. 17,150명 참여, 245개 학교 협력.'
-      : 'Hanyang Future Lab is a specialized institute for AI education, robot coding, autonomous driving, and STEAM programs for K-12 students. 17,150 participants and 245 school partnerships.',
+      ? '한양미래연구소는 초등·중등·고등학생 대상 AI교육, 로봇코딩, 자율주행, STEAM교육 전문 기관입니다. 누적 참가자 4만명+, 245개 학교 협력.'
+      : 'Hanyang Future Lab is a specialized institute for AI education, robot coding, autonomous driving, and STEAM programs for K-12 students. 40,000+ participants and 245 school partnerships.',
   };
 }
 
