@@ -199,13 +199,6 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
         </div>
       </div>
 
-      {/* 우상단 PDF 라벨 */}
-      <div className="hidden sm:flex absolute top-4 right-4 md:top-6 md:right-8 items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-md border border-orange-200 text-gray-800 text-[10px] md:text-xs font-bold tracking-wide">
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-3.5 md:h-3.5 text-rose-500">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
-        </svg>
-        PDF
-      </div>
     </div>
   );
 }
