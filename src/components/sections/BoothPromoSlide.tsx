@@ -64,19 +64,19 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             <h2 className="font-extrabold mb-2 lg:mb-3 text-gray-900">
               {isKo ? (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.3] mb-1 md:mb-2 lg:mb-3 pb-1">
+                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] mb-2 md:mb-3 lg:mb-4">
                     AI · 로봇 · VR/AR · 코딩
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent pb-1">
                     재미있는 체험부스 한눈에!
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.3] mb-1 md:mb-2 lg:mb-3 pb-1">
+                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] mb-2 md:mb-3 lg:mb-4">
                     AI · Robot · VR/AR · Coding
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent pb-1">
                     Fun Booth Programs!
                   </span>
                 </>
