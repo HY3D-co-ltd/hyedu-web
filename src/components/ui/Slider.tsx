@@ -12,6 +12,7 @@ interface SliderProps {
   slidesPerView?: number | 'auto';
   spaceBetween?: number;
   loop?: boolean;
+  autoHeight?: boolean;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export default function Slider({
   slidesPerView = 1,
   spaceBetween = 20,
   loop = true,
+  autoHeight = false,
   className = '',
 }: SliderProps) {
   return (
@@ -32,6 +34,7 @@ export default function Slider({
       slidesPerView={slidesPerView}
       spaceBetween={spaceBetween}
       loop={loop}
+      autoHeight={autoHeight}
       className={className}
     >
       {children.map((child, index) => (

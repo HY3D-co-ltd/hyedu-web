@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <section aria-label={isKo ? '메인 배너' : 'Main banner'}>
-      <Slider autoplay loop className="w-full">
+      <Slider autoplay loop autoHeight className="w-full">
         {slides.map((slide, index) => {
           if (slide.type === 'booth') {
             return (

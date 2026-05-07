@@ -18,18 +18,18 @@ export default function StatsSection() {
           <h2 className="text-[40px] font-bold text-gray-900 mb-6">
             {isKo ? (
               <>
-                한양미래연구소는 지금까지 총 <span className="text-point">17,150</span>명의 학생들과 함께했습니다.
+                한양미래연구소는 지금까지 총 <span className="text-point">4만명+</span>의 학생들과 함께했습니다.
               </>
             ) : (
               <>
-                Hanyang Future Lab has worked with a total of <span className="text-point">17,150</span> students so far.
+                Hanyang Future Lab has worked with a total of <span className="text-point">40,000+</span> students so far.
               </>
             )}
           </h2>
           <div className="flex justify-center gap-8 md:gap-16">
             <div className="text-center border border-gray-200 rounded-lg px-6 py-4">
               <p className="text-3xl md:text-4xl font-bold text-point">
-                {isKo ? '17,150명' : '17,150'}
+                {isKo ? '4만명+' : '40,000+'}
               </p>
               <p className="text-sm text-gray-500 mt-1">
                 {isKo ? '참여인원' : 'Participants'}
