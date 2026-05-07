@@ -51,20 +51,20 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
       />
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-12 gap-4 md:gap-6 w-full max-w-[1280px] mx-auto items-center">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-10 lg:px-14 xl:px-16">
+        <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-10 w-full max-w-[1440px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
           <div className="col-span-12 md:col-span-7 lg:col-span-7 text-white">
             {/* 라벨 */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 md:py-1.5 rounded-full bg-amber-400 shadow-lg shadow-amber-400/40 mb-2 md:mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] md:text-xs font-extrabold tracking-[0.18em] text-amber-950 uppercase">
+            <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-amber-400 shadow-lg shadow-amber-400/40 mb-2 md:mb-3 lg:mb-4">
+              <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
+              <span className="text-[10px] md:text-xs lg:text-sm font-extrabold tracking-[0.18em] text-amber-950 uppercase">
                 {isKo ? '🎓 NEW · 한양 청소년 캠프' : '🎓 NEW · YOUTH CAMP'}
               </span>
             </div>
 
             {/* 메인 헤드라인 */}
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-[32px] font-extrabold leading-[1.2] tracking-tight mb-2">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.15] tracking-tight mb-2 lg:mb-3">
               {isKo ? (
                 <>
                   한양대학교 ERICA에서 시작하는
@@ -85,7 +85,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </h2>
 
             {/* 서브카피 — 선생님 어필 포인트 */}
-            <p className="text-xs sm:text-[13px] md:text-sm lg:text-[15px] text-blue-100/95 leading-relaxed mb-2 md:mb-3 max-w-2xl font-medium">
+            <p className="text-xs sm:text-[13px] md:text-base lg:text-lg xl:text-xl text-blue-100/95 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
               {isKo ? (
                 <>
                   진학 동기부여 + 한양대학생 멘토링 + 완성 결과물 + 수료증까지.
@@ -102,7 +102,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </p>
 
             {/* 강조 칩 */}
-            <div className="hidden sm:flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
+            <div className="hidden sm:flex flex-wrap gap-1.5 md:gap-2 lg:gap-2.5 mb-3 md:mb-4 lg:mb-5">
               {[
                 { ko: '✓ ERICA 캠퍼스 투어', en: '✓ Campus Tour' },
                 { ko: '✓ 한양대학생 멘토링', en: '✓ Hanyang Student Mentoring' },
@@ -112,7 +112,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
               ].map((t, i) => (
                 <span
                   key={i}
-                  className="px-2.5 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs lg:text-sm font-bold text-amber-50 bg-amber-400/20 border border-amber-300/50 backdrop-blur-sm shadow-sm"
+                  className="px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[10px] md:text-xs lg:text-base font-bold text-amber-50 bg-amber-400/20 border border-amber-300/50 backdrop-blur-sm shadow-sm"
                 >
                   {isKo ? t.ko : t.en}
                 </span>
@@ -121,7 +121,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
 
             {/* CTA 버튼 */}
             <div className="flex items-center gap-3 md:gap-4">
-              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-6 py-2.5 md:py-3 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white font-extrabold text-xs md:text-sm lg:text-base shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.65)] hover:scale-105 transition-all">
+              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white font-extrabold text-xs md:text-sm lg:text-lg shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.65)] hover:scale-105 transition-all">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -132,8 +132,8 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
 
           {/* 우측 — 4가지 차별점 카드 (2x2) — 모바일에서도 표시 */}
           <div className="col-span-12 md:col-span-5 lg:col-span-5 flex justify-center md:justify-end items-center mt-3 md:mt-0">
-            <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[400px]">
-              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3">
+            <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[520px] xl:max-w-[580px]">
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-4">
                 {[
                   {
                     no: '01',
@@ -178,32 +178,32 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
                 ].map((c, i) => (
                   <div
                     key={i}
-                    className="group relative rounded-xl p-2.5 sm:p-3 md:p-3 lg:p-4 bg-white/15 backdrop-blur-md border-[1.5px] border-white/30 hover:bg-white/25 hover:-translate-y-0.5 hover:scale-[1.02] transition-all overflow-hidden"
+                    className="group relative rounded-xl lg:rounded-2xl p-2.5 sm:p-3 md:p-3 lg:p-5 xl:p-6 bg-white/15 backdrop-blur-md border-[1.5px] border-white/30 hover:bg-white/25 hover:-translate-y-0.5 hover:scale-[1.02] transition-all overflow-hidden"
                     style={{ boxShadow: `0 6px 18px ${c.shadowColor}` }}
                   >
                     {/* 모서리 컬러 강조 */}
                     <div
                       aria-hidden
-                      className={`absolute -top-6 -right-6 w-16 h-16 rounded-full opacity-40 blur-xl bg-gradient-to-br ${c.accent}`}
+                      className={`absolute -top-6 -right-6 w-16 h-16 lg:w-24 lg:h-24 rounded-full opacity-40 blur-xl bg-gradient-to-br ${c.accent}`}
                     />
                     {/* 좌측 컬러 바 */}
                     <div
                       aria-hidden
-                      className={`absolute top-0 left-0 bottom-0 w-[3px] bg-gradient-to-b ${c.accent}`}
+                      className={`absolute top-0 left-0 bottom-0 w-[3px] lg:w-1 bg-gradient-to-b ${c.accent}`}
                     />
                     <div className="relative">
-                      <div className="flex items-start justify-between mb-1 sm:mb-1.5">
+                      <div className="flex items-start justify-between mb-1 sm:mb-1.5 lg:mb-2.5">
                         <span
-                          className={`text-xs sm:text-sm lg:text-base font-black bg-gradient-to-r ${c.accent} bg-clip-text text-transparent tracking-wider`}
+                          className={`text-xs sm:text-sm lg:text-xl font-black bg-gradient-to-r ${c.accent} bg-clip-text text-transparent tracking-wider`}
                         >
                           {c.no}
                         </span>
-                        <span className="text-sm sm:text-base lg:text-lg leading-none drop-shadow-md">{c.icon}</span>
+                        <span className="text-sm sm:text-base lg:text-2xl leading-none drop-shadow-md">{c.icon}</span>
                       </div>
-                      <p className="text-white text-[11px] sm:text-xs lg:text-[13px] font-extrabold leading-tight mb-0.5 sm:mb-1 drop-shadow">
+                      <p className="text-white text-[11px] sm:text-xs lg:text-base xl:text-lg font-extrabold leading-tight mb-0.5 sm:mb-1 lg:mb-1.5 drop-shadow">
                         {isKo ? c.titleKo : c.titleEn}
                       </p>
-                      <p className="text-blue-50/90 text-[9px] sm:text-[10px] lg:text-[11px] font-semibold leading-snug whitespace-pre-line">
+                      <p className="text-blue-50/90 text-[9px] sm:text-[10px] lg:text-[13px] xl:text-sm font-semibold leading-snug whitespace-pre-line">
                         {isKo ? c.descKo : c.descEn}
                       </p>
                     </div>

@@ -48,20 +48,20 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
       <span aria-hidden className="hidden lg:block absolute top-1/2 right-8 text-2xl animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '1s' }}>🎉</span>
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-12 gap-4 md:gap-6 w-full max-w-[1280px] mx-auto items-center">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-10 lg:px-14 xl:px-16">
+        <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-10 w-full max-w-[1440px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
           <div className="col-span-12 md:col-span-7 lg:col-span-7">
             {/* NEW 라벨 */}
-            <div className="inline-flex items-center gap-2 px-3 md:px-3.5 py-1 md:py-1.5 rounded-full bg-orange-500 shadow-lg shadow-orange-500/30 mb-2.5 md:mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] md:text-xs font-extrabold tracking-[0.2em] text-white uppercase">
+            <div className="inline-flex items-center gap-2 px-3 md:px-3.5 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-orange-500 shadow-lg shadow-orange-500/30 mb-2.5 md:mb-3 lg:mb-4">
+              <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
+              <span className="text-[10px] md:text-xs lg:text-sm font-extrabold tracking-[0.2em] text-white uppercase">
                 {isKo ? '🎯 NEW · 체험부스 커리큘럼' : '🎯 NEW · BOOTH'}
               </span>
             </div>
 
             {/* 메인 헤드라인 */}
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-[32px] font-extrabold leading-[1.2] tracking-tight mb-2 text-gray-900">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] font-extrabold leading-[1.15] tracking-tight mb-2 lg:mb-3 text-gray-900">
               {isKo ? (
                 <>
                   AI · 로봇 · VR/AR · 코딩
@@ -82,14 +82,14 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </h2>
 
             {/* 서브카피 */}
-            <p className="text-xs sm:text-[13px] md:text-sm lg:text-[15px] text-gray-700 leading-relaxed mb-2 md:mb-3 max-w-xl font-medium">
+            <p className="text-xs sm:text-[13px] md:text-base lg:text-lg xl:text-xl text-gray-700 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
               {isKo
                 ? '23종 프로그램 · 4개 거점 · 베테랑 강사진. 행사·축제·기관에 딱 맞는 체험부스를 PDF에서 확인하세요!'
                 : '23 programs · 4 hubs · expert instructors. Find the perfect booth lineup for your event!'}
             </p>
 
             {/* 키워드 태그 */}
-            <div className="hidden sm:flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
+            <div className="hidden sm:flex flex-wrap gap-1.5 md:gap-2 lg:gap-2.5 mb-3 md:mb-4 lg:mb-5">
               {[
                 { ko: '#AI오락실', en: '#AIArcade', color: 'bg-sky-100 text-sky-700 border-sky-300' },
                 { ko: '#로봇축구', en: '#RobotSoccer', color: 'bg-emerald-100 text-emerald-700 border-emerald-300' },
@@ -99,7 +99,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
               ].map((t, i) => (
                 <span
                   key={i}
-                  className={`px-2.5 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs lg:text-sm font-bold border ${t.color}`}
+                  className={`px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[10px] md:text-xs lg:text-base font-bold border ${t.color}`}
                 >
                   {isKo ? t.ko : t.en}
                 </span>
@@ -108,7 +108,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
 
             {/* CTA 버튼 */}
             <div className="flex items-center gap-3 md:gap-4">
-              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-6 py-2.5 md:py-3 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-extrabold text-xs md:text-sm lg:text-base shadow-[0_8px_30px_rgba(236,72,153,0.45)] hover:shadow-[0_12px_40px_rgba(236,72,153,0.65)] hover:scale-105 transition-all">
+              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-extrabold text-xs md:text-sm lg:text-lg shadow-[0_8px_30px_rgba(236,72,153,0.45)] hover:shadow-[0_12px_40px_rgba(236,72,153,0.65)] hover:scale-105 transition-all">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -117,10 +117,10 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
           </div>
 
-          {/* 우측 — 4개 카테고리 사진 카드 (작게) */}
+          {/* 우측 — 4개 카테고리 사진 카드 */}
           <div className="col-span-12 md:col-span-5 lg:col-span-5 flex justify-center md:justify-end items-center mt-3 md:mt-0">
-            <div className="relative w-full max-w-[340px] md:max-w-[300px] lg:max-w-[400px] aspect-square">
-              <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 h-full">
+            <div className="relative w-full max-w-[340px] md:max-w-[300px] lg:max-w-[520px] xl:max-w-[580px] aspect-square">
+              <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-4 h-full">
                 {/* AI */}
                 <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-[3px] border-white shadow-[0_8px_22px_rgba(0,0,0,0.13)] hover:shadow-[0_14px_32px_rgba(56,189,248,0.40)] transition-all hover:-translate-y-1 hover:rotate-[-1deg]">
                   <img
@@ -129,11 +129,11 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-3.5 text-white">
-                    <p className="text-base sm:text-lg lg:text-2xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>AI</p>
-                    <p className="text-[10px] lg:text-xs font-semibold mt-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '오락실 · 윤리' : 'Arcade · Ethics'}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-4 text-white">
+                    <p className="text-base sm:text-lg lg:text-3xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>AI</p>
+                    <p className="text-[10px] lg:text-sm font-semibold mt-1 lg:mt-1.5" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '오락실 · 윤리' : 'Arcade · Ethics'}</p>
                   </div>
-                  <span className="absolute top-1.5 right-1.5 lg:top-2 lg:right-2 text-sm lg:text-lg drop-shadow-md">🤖</span>
+                  <span className="absolute top-1.5 right-1.5 lg:top-3 lg:right-3 text-sm lg:text-2xl drop-shadow-md">🤖</span>
                 </div>
 
                 {/* ROBOT */}
@@ -144,11 +144,11 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-3.5 text-white">
-                    <p className="text-base sm:text-lg lg:text-2xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>{isKo ? '로봇' : 'ROBOT'}</p>
-                    <p className="text-[10px] lg:text-xs font-semibold mt-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '축구 · 자율주행' : 'Soccer · Auto'}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-4 text-white">
+                    <p className="text-base sm:text-lg lg:text-3xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>{isKo ? '로봇' : 'ROBOT'}</p>
+                    <p className="text-[10px] lg:text-sm font-semibold mt-1 lg:mt-1.5" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '축구 · 자율주행' : 'Soccer · Auto'}</p>
                   </div>
-                  <span className="absolute top-1.5 right-1.5 lg:top-2 lg:right-2 text-sm lg:text-lg drop-shadow-md">⚽</span>
+                  <span className="absolute top-1.5 right-1.5 lg:top-3 lg:right-3 text-sm lg:text-2xl drop-shadow-md">⚽</span>
                 </div>
 
                 {/* VR / AR */}
@@ -159,11 +159,11 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-3.5 text-white">
-                    <p className="text-base sm:text-lg lg:text-2xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>VR / AR</p>
-                    <p className="text-[10px] lg:text-xs font-semibold mt-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '메타버스 · 해부학' : 'Meta · Anatomy'}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-4 text-white">
+                    <p className="text-base sm:text-lg lg:text-3xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>VR / AR</p>
+                    <p className="text-[10px] lg:text-sm font-semibold mt-1 lg:mt-1.5" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '메타버스 · 해부학' : 'Meta · Anatomy'}</p>
                   </div>
-                  <span className="absolute top-1.5 right-1.5 lg:top-2 lg:right-2 text-sm lg:text-lg drop-shadow-md">🥽</span>
+                  <span className="absolute top-1.5 right-1.5 lg:top-3 lg:right-3 text-sm lg:text-2xl drop-shadow-md">🥽</span>
                 </div>
 
                 {/* CODING */}
@@ -174,11 +174,11 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-3.5 text-white">
-                    <p className="text-base sm:text-lg lg:text-2xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>{isKo ? '코딩' : 'CODING'}</p>
-                    <p className="text-[10px] lg:text-xs font-semibold mt-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '아케이드 · 메이커' : 'Arcade · Maker'}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-4 text-white">
+                    <p className="text-base sm:text-lg lg:text-3xl font-extrabold leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>{isKo ? '코딩' : 'CODING'}</p>
+                    <p className="text-[10px] lg:text-sm font-semibold mt-1 lg:mt-1.5" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{isKo ? '아케이드 · 메이커' : 'Arcade · Maker'}</p>
                   </div>
-                  <span className="absolute top-1.5 right-1.5 lg:top-2 lg:right-2 text-sm lg:text-lg drop-shadow-md">💻</span>
+                  <span className="absolute top-1.5 right-1.5 lg:top-3 lg:right-3 text-sm lg:text-2xl drop-shadow-md">💻</span>
                 </div>
               </div>
             </div>
