@@ -5,19 +5,22 @@ import Image from '@/components/ui/Img';
 import { useLocale } from 'next-intl';
 import Slider from '@/components/ui/Slider';
 import BoothPromoSlide from './BoothPromoSlide';
+import YouthCampPromoSlide from './YouthCampPromoSlide';
 
 type Slide =
   | { type: 'image'; image: string; href: string | null }
-  | { type: 'booth' };
+  | { type: 'booth' }
+  | { type: 'camp' };
 
 const slides: Slide[] = [
   { type: 'image', image: '/images/slide/slide01.png', href: null },
   { type: 'booth' },
-  { type: 'image', image: '/images/slide/slide02.png', href: '/camp' },
+  { type: 'camp' },
   { type: 'image', image: '/images/slide/slide03.png', href: '/programs' },
 ];
 
 const BOOTH_PDF_URL = 'https://hyedu.kr/files/2026-booth-curriculum.pdf';
+const CAMP_PDF_URL = 'https://hyedu.kr/files/2026-youth-camp-curriculum.pdf';
 
 export default function HeroSection() {
   const locale = useLocale();
@@ -38,6 +41,21 @@ export default function HeroSection() {
                 aria-label={isKo ? '2026 체험부스 커리큘럼 PDF 다운로드' : '2026 Booth Curriculum PDF'}
               >
                 <BoothPromoSlide isKo={isKo} />
+              </a>
+            );
+          }
+
+          if (slide.type === 'camp') {
+            return (
+              <a
+                key={index}
+                href={CAMP_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+                aria-label={isKo ? '2026 한양 청소년 캠프 커리큘럼 PDF 다운로드' : '2026 Youth Camp Curriculum PDF'}
+              >
+                <YouthCampPromoSlide isKo={isKo} />
               </a>
             );
           }
