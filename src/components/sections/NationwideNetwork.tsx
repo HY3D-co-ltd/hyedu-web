@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: (
       // 출장비 절감 — 지갑 + 하강 화살표
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 md:w-10 md:h-10">
         <rect x="3" y="6" width="18" height="13" rx="2" />
         <path d="M3 10h18" />
         <path d="M16 14.5l2 2 3-3" />
@@ -19,7 +19,7 @@ const benefits = [
   {
     icon: (
       // 첨단 기자재 — 칩
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 md:w-10 md:h-10">
         <rect x="6" y="6" width="12" height="12" rx="2" />
         <rect x="9" y="9" width="6" height="6" />
         <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
@@ -31,7 +31,7 @@ const benefits = [
   {
     icon: (
       // 어디서나 — 핀
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 md:w-10 md:h-10">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
         <circle cx="12" cy="10" r="3" />
       </svg>
@@ -80,22 +80,22 @@ export default function NationwideNetwork() {
 
         {/* 본문: 좌(혜택 카드 3개) | 우(지도 이미지) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* 좌측 — 혜택 + 거점 칩 */}
+          {/* 좌측 — 혜택 카드 (크게) */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <ul className="space-y-4">
+            <ul className="space-y-5 md:space-y-6">
               {benefits.map((b, i) => (
                 <li
                   key={i}
-                  className="group flex gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all"
+                  className="group flex gap-5 md:gap-6 p-6 md:p-8 bg-white rounded-2xl border border-gray-100 shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_28px_rgba(51,102,102,0.12)] hover:-translate-y-1 transition-all"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-point/10 text-point flex items-center justify-center group-hover:bg-point group-hover:text-white transition-colors">
+                  <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-point/10 text-point flex items-center justify-center group-hover:bg-point group-hover:text-white transition-colors">
                     {b.icon}
                   </div>
-                  <div>
-                    <h3 className="text-[17px] font-bold text-gray-900 mb-1">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-2 md:mb-3 leading-tight">
                       {isKo ? b.title.ko : b.title.en}
                     </h3>
-                    <p className="text-[13px] text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="text-sm md:text-base text-gray-600 whitespace-pre-line leading-relaxed">
                       {isKo ? b.desc.ko : b.desc.en}
                     </p>
                   </div>
@@ -125,22 +125,6 @@ export default function NationwideNetwork() {
                   height={1024}
                   className="w-full h-auto rounded-2xl"
                 />
-              </div>
-
-              {/* 하단 데이터 라벨 */}
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                <div className="text-center bg-white rounded-xl border border-gray-100 py-3">
-                  <p className="text-[11px] text-gray-500 mb-0.5">{isKo ? '운영 거점' : 'Hubs'}</p>
-                  <p className="text-[18px] font-bold text-gray-900">{isKo ? '4 + 1' : '4 + 1'}</p>
-                </div>
-                <div className="text-center bg-white rounded-xl border border-gray-100 py-3">
-                  <p className="text-[11px] text-gray-500 mb-0.5">{isKo ? '커버 지역' : 'Coverage'}</p>
-                  <p className="text-[18px] font-bold text-gray-900">{isKo ? '전국' : 'Nationwide'}</p>
-                </div>
-                <div className="text-center bg-white rounded-xl border border-gray-100 py-3">
-                  <p className="text-[11px] text-gray-500 mb-0.5">{isKo ? '참여 기관' : 'Partners'}</p>
-                  <p className="text-[18px] font-bold text-point">245+</p>
-                </div>
               </div>
             </div>
           </div>
