@@ -171,55 +171,220 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* 기업소개 */}
-      <section className="py-16 md:py-20 px-6 bg-gray-50">
-        <div className="max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
-            {isKo ? '기업소개' : 'Company Overview'}
-          </h2>
-          <div className="flex flex-col lg:flex-row gap-10 items-center">
-            <div className="w-full lg:w-1/3 flex justify-center">
-              <Image
-                src="/images/about/logo02.png"
-                alt={isKo ? '한양미래연구소 로고' : 'Hanyang Future Lab logo'}
-                width={280}
-                height={120}
-                className="w-auto h-auto max-w-[280px]"
-              />
+      {/* 기업소개 — 한양미래연구소란? (마케팅 차별화 포인트) */}
+      <section className="relative py-16 md:py-24 px-6 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
+        {/* 배경 장식 */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-point/5 blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
+        </div>
+
+        <div className="relative max-w-[1170px] 2xl:max-w-[1280px] mx-auto">
+          {/* 섹션 라벨 + 헤드라인 */}
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-xs md:text-sm font-bold tracking-[0.2em] text-point uppercase mb-3">
+              {isKo ? 'WHO WE ARE' : 'WHO WE ARE'}
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+              {isKo ? (
+                <>
+                  <span className="inline-block text-point">| </span>
+                  한양미래연구소란?
+                </>
+              ) : (
+                <>
+                  <span className="inline-block text-point">| </span>
+                  What is Hanyang Future Lab?
+                </>
+              )}
+            </h2>
+            <p className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+              {isKo
+                ? '한양대학교에서 시작된 검증된 4차산업·AI 교육기관, 5가지 차별점으로 증명합니다.'
+                : 'Started at Hanyang University — a verified institute proven by 5 differentiators.'}
+            </p>
+          </div>
+
+          {/* 5가지 차별점 카드 (별점 + 강조 키워드 + 설명 + 배경 이미지) */}
+          <div className="space-y-4 md:space-y-5 mb-12">
+            {[
+              {
+                stars: 1,
+                keyword: isKo ? '한양대' : 'Hanyang',
+                sub: isKo ? '명문 대학 출범' : 'University Origin',
+                desc: isKo
+                  ? '2019년 한양대학교에서 시작된 4차산업 교육기관으로, 대학 연계와 뛰어난 인력풀을 활용해 AI 모델 개발 · 캠퍼스 멘토링 · 방문형 캠프를 운영합니다.'
+                  : 'A 4th industrial revolution education institute that started at Hanyang University in 2019, leveraging university partnerships and top-tier talent for AI model development, campus mentoring, and on-site camps.',
+                bgImage: '/images/main/hyedu_program_4_campus_tour.png',
+              },
+              {
+                stars: 2,
+                keyword: '250명',
+                keywordEn: '250',
+                sub: isKo ? '검증된 베테랑 강사' : 'Verified Expert Instructors',
+                desc: isKo
+                  ? '전국 250명의 우수 강사풀을 보유. 공개 입찰 경쟁으로 강의를 배정하여, 가장 우수한 검증된 베테랑 강사가 강의의 품질을 책임집니다.'
+                  : 'A nationwide pool of 250 top instructors. Open bidding ensures only the most verified veterans deliver each class — guaranteed quality.',
+                bgImage: '/images/about/introduce_7_entrepreneurship_class.jpg',
+              },
+              {
+                stars: 3,
+                keyword: '4만명',
+                keywordEn: '40K',
+                sub: isKo ? '누적 참가자' : 'Cumulative Participants',
+                desc: isKo
+                  ? '지속적인 다분야 커리큘럼 개발, 기관 맞춤형 제안, 체계적이고 꼼꼼한 사전 준비 끝에 누적 참가자 4만명 이상이 선택한 검증된 기관입니다.'
+                  : 'Through ongoing multi-field curriculum development, custom institution proposals, and meticulous preparation — over 40,000 participants chose us.',
+                bgImage: '/images/main/hyedu_program_2_visit_class.png',
+              },
+              {
+                stars: 4,
+                keyword: '4거점',
+                keywordEn: '4 Hubs',
+                sub: isKo ? '전국 어디서나' : 'Nationwide Coverage',
+                desc: isKo
+                  ? '수도권 본사 및 전국 4개 거점(충청·전라 / 강원 / 부울경) 운영으로 출장비 부담을 낮추고, 어디서나 첨단 기자재 활용 수업이 가능합니다.'
+                  : 'HQ in the capital region and 4 nationwide hubs (Honam / Gangwon / BuULGyeong) reduce travel cost and enable cutting-edge classes anywhere.',
+                bgImage: '/images/network/nationwide-map.png',
+              },
+              {
+                stars: 5,
+                keyword: '8단계',
+                keywordEn: '8-Step',
+                sub: isKo ? '체계적 운영 시스템' : 'Systematic Operation',
+                desc: isKo
+                  ? '제안서부터 사후 보고서까지 이어지는 8단계 체계적 시스템으로 기관의 업무 부담은 최소화하고 강의의 질은 최대로 끌어올렸습니다.'
+                  : 'An 8-step systematic process from proposal to post-event report — minimizing institutional workload while maximizing class quality.',
+                bgImage: '/images/about/company01_8.jpg',
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="group relative flex flex-col sm:flex-row items-stretch bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(51,102,102,0.12)] hover:-translate-y-0.5 transition-all overflow-hidden"
+              >
+                {/* 좌측 — 배경 사진 + 최소 오버레이 + 별점 + 키워드 */}
+                <div className="flex-shrink-0 w-full sm:w-[220px] md:w-[260px] relative overflow-hidden min-h-[200px] sm:min-h-[220px]">
+                  {/* 배경 이미지 */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url('${item.bgImage}')` }}
+                  />
+                  {/* 하단 그라디언트만 적용 (사진 잘 보이게, 글씨 부분만 어둡게) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
+
+                  {/* 콘텐츠 */}
+                  <div className="relative z-10 h-full p-5 md:p-6 flex flex-col items-center justify-end text-white">
+                    {/* 별점 */}
+                    <div className="flex gap-0.5 mb-2 md:mb-2.5">
+                      {[...Array(5)].map((_, idx) => (
+                        <svg
+                          key={idx}
+                          viewBox="0 0 24 24"
+                          className={`w-4 h-4 md:w-[18px] md:h-[18px] ${idx < item.stars ? 'text-yellow-300' : 'text-white/40'}`}
+                          fill="currentColor"
+                          style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))' }}
+                        >
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
+                    {/* 메인 키워드 (대형) */}
+                    <p
+                      className="text-4xl md:text-[46px] font-black leading-none tracking-tight"
+                      style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.9)' }}
+                    >
+                      {isKo ? item.keyword : (item.keywordEn || item.keyword)}
+                    </p>
+                    {/* 부제 */}
+                    <p
+                      className="mt-2 text-[12px] md:text-[13px] font-semibold tracking-wide text-center px-2"
+                      style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
+                    >
+                      {item.sub}
+                    </p>
+                  </div>
+
+                  {/* 우측 화살표 (호버 시) */}
+                  <div className="hidden sm:block absolute top-1/2 -right-2.5 -translate-y-1/2 w-5 h-5 bg-white rotate-45 border-l border-b border-gray-100 group-hover:bg-gray-50 transition-colors z-10" />
+                </div>
+
+                {/* 우측 — 설명 */}
+                <div className="flex-1 p-6 md:p-7 flex items-center">
+                  <p className="text-[15px] md:text-base text-gray-700 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 하단 통합 통계 박스 (CTA 강조) */}
+          <div className="relative bg-gradient-to-r from-point to-point/85 rounded-3xl p-6 md:p-8 text-white shadow-xl overflow-hidden">
+            {/* 장식 점 */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5 blur-2xl" />
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-white/5 blur-2xl" />
             </div>
-            <div className="w-full lg:w-2/3 space-y-5">
-              <p className="text-gray-700 leading-relaxed">
-                {isKo ? (
-                  <>
-                    한양미래연구소는 2020년에 하이스타터 법인 수립 이후 현재까지 전국에 약 <strong className="text-point">200명</strong>의 강사풀 네트워크를 토대로 <strong className="text-point">72개이상</strong>의 커리큘럼으로 구성된 찾아가는 체험교실과 경진대회 대비와 청소년 토요 캠프를 포함한 청소년 캠프, 축제를 위한 체험부스도 운영 중에 있습니다.
-                  </>
-                ) : (
-                  <>
-                    Since Histarter co.,ltd was founded in 2020, Hanyang Future Lab has grown a nationwide network of about <strong className="text-point">200 instructors</strong> delivering <strong className="text-point">72+ curricula</strong> through on-site experience classes, youth camps (including Saturday and competition prep), and festival booths.
-                  </>
-                )}
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                {isKo
-                  ? '메이커 융합 교육, 코딩 교육, STEAM 교육, 창업 교육과 같이 4차산업혁명 시대에 한 사람의 인생을 바꿀 수 있는 체험교육을 제공합니다.'
-                  : 'We provide life-changing hands-on education for the 4th Industrial Revolution era — maker convergence, coding, STEAM, and entrepreneurship.'}
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            <div className="relative">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8">
+                <div>
+                  <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-80 mb-1.5">
+                    {isKo ? 'BY THE NUMBERS' : 'BY THE NUMBERS'}
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-extrabold">
+                    {isKo
+                      ? '숫자로 증명하는 한양미래연구소'
+                      : 'Hanyang Future Lab — Proven by Numbers'}
+                  </h3>
+                </div>
+                <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/15 rounded-full backdrop-blur-sm">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-yellow-300" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  <span className="text-xs font-semibold tracking-wide">
+                    {isKo ? '검증된 교육 파트너' : 'Verified Partner'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                 {[
-                  { value: isKo ? '200명' : '200', labelKo: '강사 네트워크', labelEn: 'Instructor Network' },
-                  { value: isKo ? '72종+' : '72+', labelKo: '커리큘럼', labelEn: 'Curricula' },
-                  { value: isKo ? '245개처' : '245', labelKo: '참여 학교·기관', labelEn: 'Partner Schools' },
-                  { value: isKo ? '17,150명' : '17,150', labelKo: '참여 인원', labelEn: 'Participants' },
+                  { value: '250명+', valueEn: '250+', labelKo: '강사 네트워크', labelEn: 'Instructors' },
+                  { value: '72종+', valueEn: '72+', labelKo: '커리큘럼', labelEn: 'Curricula' },
+                  { value: '245개처+', valueEn: '245+', labelKo: '참여 학교·기관', labelEn: 'Partners' },
+                  { value: '4만명+', valueEn: '40K+', labelKo: '누적 참가자', labelEn: 'Participants' },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-white rounded-lg p-4 text-center shadow-sm">
-                    <p className="text-2xl font-bold text-point">{stat.value}</p>
-                    <p className="text-sm text-gray-500 mt-1">
+                  <div
+                    key={i}
+                    className="bg-white/15 backdrop-blur-sm rounded-xl p-4 md:p-5 text-center border border-white/20 hover:bg-white/20 transition-colors"
+                  >
+                    <p className="text-2xl md:text-[28px] font-extrabold leading-none mb-1.5">
+                      {isKo ? stat.value : stat.valueEn}
+                    </p>
+                    <p className="text-[11px] md:text-xs font-semibold opacity-90">
                       {isKo ? stat.labelKo : stat.labelEn}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* 한 줄 메시지 (하단) */}
+          <div className="mt-10 md:mt-12 flex flex-col items-center text-center">
+            <p className="text-base md:text-lg text-gray-700 max-w-2xl leading-relaxed">
+              {isKo ? (
+                <>
+                  메이커 융합 · 코딩 · STEAM · 창업 교육으로<br className="hidden md:inline" />
+                  {' '}<strong className="text-point">한 사람의 인생을 바꾸는 체험교육</strong>을 제공합니다.
+                </>
+              ) : (
+                <>
+                  Maker, coding, STEAM, and entrepreneurship education<br className="hidden md:inline" />
+                  {' '}— <strong className="text-point">life-changing hands-on learning</strong>.
+                </>
+              )}
+            </p>
           </div>
         </div>
       </section>
