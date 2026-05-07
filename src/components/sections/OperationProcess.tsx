@@ -343,45 +343,57 @@ export default function OperationProcess() {
           ))}
         </div>
 
-        {/* 하단 CTA 강조 박스 — 밝은 파랑 그라디언트 */}
+        {/* 하단 CTA 강조 박스 — 파스텔 연두색 디자인 */}
         <div className="mt-14 md:mt-20">
           <div
-            className="relative rounded-3xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 p-6 md:p-10 text-white overflow-hidden"
-            style={{ boxShadow: '0 20px 50px rgba(14,165,233,0.35)' }}
+            className="relative rounded-3xl bg-gradient-to-br from-lime-200 via-emerald-200 to-green-300 p-6 md:p-10 overflow-hidden"
+            style={{ boxShadow: '0 20px 50px rgba(132,204,22,0.30)' }}
           >
+            {/* 부드러운 글로우 점 */}
             <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/20 blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-cyan-200/30 blur-3xl" />
-              <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-white/15 blur-2xl" />
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/40 blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-lime-300/40 blur-3xl" />
+              <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-white/30 blur-2xl" />
             </div>
+            {/* 도트 패턴 */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-30"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle, rgba(34,197,94,0.4) 1px, transparent 1px)',
+                backgroundSize: '28px 28px',
+              }}
+            />
+
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
               <div className="md:col-span-2">
-                <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-50 mb-2 drop-shadow">
-                  {isKo ? 'WHY CHOOSE US' : 'WHY CHOOSE US'}
+                <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-700 mb-2">
+                  {isKo ? '🌱 WHY CHOOSE US' : '🌱 WHY CHOOSE US'}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-2 drop-shadow">
+                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-2 text-emerald-950">
                   {isKo
                     ? '맡기시면 처음부터 끝까지, 모든 것이 준비됩니다.'
                     : 'From start to finish — we handle everything.'}
                 </h3>
-                <p className="text-base md:text-lg text-cyan-50/95 leading-relaxed">
+                <p className="text-base md:text-lg text-emerald-900/85 leading-relaxed font-medium">
                   {isKo
                     ? '제안서 · 강사 섭외 · 기자재 · 보고서 · 정산까지. 학교 담당자는 딱 한 분만 계셔도 충분합니다.'
                     : 'Proposal, instructors, equipment, reports, billing — your one contact handles all.'}
                 </p>
               </div>
               <div className="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-4">
-                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none">8단계</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '체계적 시스템' : 'Step System'}</p>
+                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
+                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">8단계</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '체계적 시스템' : 'Step System'}</p>
                 </div>
-                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none">100%</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '서류 완비' : 'Full Docs'}</p>
+                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
+                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">100%</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '서류 완비' : 'Full Docs'}</p>
                 </div>
-                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none">1:1</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '담당자 배정' : 'Dedicated Lead'}</p>
+                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
+                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">1:1</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '담당자 배정' : 'Dedicated Lead'}</p>
                 </div>
               </div>
             </div>
