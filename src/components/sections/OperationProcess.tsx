@@ -343,41 +343,45 @@ export default function OperationProcess() {
           ))}
         </div>
 
-        {/* 하단 CTA 강조 박스 */}
+        {/* 하단 CTA 강조 박스 — 밝은 파랑 그라디언트 */}
         <div className="mt-14 md:mt-20">
-          <div className="relative rounded-3xl bg-gradient-to-r from-point via-point/95 to-point/85 p-6 md:p-10 text-white overflow-hidden shadow-xl">
+          <div
+            className="relative rounded-3xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 p-6 md:p-10 text-white overflow-hidden"
+            style={{ boxShadow: '0 20px 50px rgba(14,165,233,0.35)' }}
+          >
             <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/10 blur-2xl" />
-              <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-white/10 blur-2xl" />
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/20 blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-cyan-200/30 blur-3xl" />
+              <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-white/15 blur-2xl" />
             </div>
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
               <div className="md:col-span-2">
-                <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-80 mb-2">
+                <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-50 mb-2 drop-shadow">
                   {isKo ? 'WHY CHOOSE US' : 'WHY CHOOSE US'}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-2">
+                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-2 drop-shadow">
                   {isKo
                     ? '맡기시면 처음부터 끝까지, 모든 것이 준비됩니다.'
                     : 'From start to finish — we handle everything.'}
                 </h3>
-                <p className="text-base md:text-lg opacity-90 leading-relaxed">
+                <p className="text-base md:text-lg text-cyan-50/95 leading-relaxed">
                   {isKo
                     ? '제안서 · 강사 섭외 · 기자재 · 보고서 · 정산까지. 학교 담당자는 딱 한 분만 계셔도 충분합니다.'
                     : 'Proposal, instructors, equipment, reports, billing — your one contact handles all.'}
                 </p>
               </div>
               <div className="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-4">
-                <div className="text-center md:text-left bg-white/15 backdrop-blur-sm rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/20">
+                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
                   <p className="text-2xl md:text-3xl font-black leading-none">8단계</p>
-                  <p className="text-[11px] md:text-sm font-semibold opacity-90 mt-1">{isKo ? '체계적 시스템' : 'Step System'}</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '체계적 시스템' : 'Step System'}</p>
                 </div>
-                <div className="text-center md:text-left bg-white/15 backdrop-blur-sm rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/20">
+                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
                   <p className="text-2xl md:text-3xl font-black leading-none">100%</p>
-                  <p className="text-[11px] md:text-sm font-semibold opacity-90 mt-1">{isKo ? '서류 완비' : 'Full Docs'}</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '서류 완비' : 'Full Docs'}</p>
                 </div>
-                <div className="text-center md:text-left bg-white/15 backdrop-blur-sm rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/20">
+                <div className="text-center md:text-left bg-white/25 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white/40 shadow-md">
                   <p className="text-2xl md:text-3xl font-black leading-none">1:1</p>
-                  <p className="text-[11px] md:text-sm font-semibold opacity-90 mt-1">{isKo ? '담당자 배정' : 'Dedicated Lead'}</p>
+                  <p className="text-[11px] md:text-sm font-semibold text-cyan-50 mt-1">{isKo ? '담당자 배정' : 'Dedicated Lead'}</p>
                 </div>
               </div>
             </div>
