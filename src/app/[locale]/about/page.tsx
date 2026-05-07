@@ -212,9 +212,15 @@ export default async function AboutPage({
                 stars: 1,
                 keyword: isKo ? '한양대' : 'Hanyang',
                 sub: isKo ? '명문 대학 출범' : 'University Origin',
-                desc: isKo
-                  ? '2019년 한양대학교에서 시작된 4차산업 교육기관으로, 대학 연계와 뛰어난 인력풀을 활용해 AI 모델 개발 · 캠퍼스 멘토링 · 방문형 캠프를 운영합니다.'
-                  : 'A 4th industrial revolution education institute that started at Hanyang University in 2019, leveraging university partnerships and top-tier talent for AI model development, campus mentoring, and on-site camps.',
+                desc: isKo ? (
+                  <>
+                    <strong className="text-point">2019년 한양대학교</strong>에서 시작된 4차산업 교육기관으로, <strong className="text-gray-900">대학 연계 · 뛰어난 인력풀</strong>을 활용해 <strong className="text-gray-900">AI 모델 개발 · 캠퍼스 멘토링 · 방문형 캠프</strong>를 운영합니다.
+                  </>
+                ) : (
+                  <>
+                    Started at <strong className="text-point">Hanyang University in 2019</strong>, leveraging <strong className="text-gray-900">university partnerships &amp; top-tier talent</strong> for <strong className="text-gray-900">AI model development, campus mentoring, and on-site camps</strong>.
+                  </>
+                ),
                 bgImage: '/images/main/hyedu_program_4_campus_tour.png',
               },
               {
@@ -222,9 +228,15 @@ export default async function AboutPage({
                 keyword: '250명',
                 keywordEn: '250',
                 sub: isKo ? '검증된 베테랑 강사' : 'Verified Expert Instructors',
-                desc: isKo
-                  ? '전국 250명의 우수 강사풀을 보유. 공개 입찰 경쟁으로 강의를 배정하여, 가장 우수한 검증된 베테랑 강사가 강의의 품질을 책임집니다.'
-                  : 'A nationwide pool of 250 top instructors. Open bidding ensures only the most verified veterans deliver each class — guaranteed quality.',
+                desc: isKo ? (
+                  <>
+                    <strong className="text-point">전국 250명</strong>의 우수 강사풀 보유. <strong className="text-gray-900">공개 입찰 경쟁</strong>으로 강의를 배정하여, 가장 <strong className="text-gray-900">우수한 검증된 베테랑 강사</strong>가 강의의 품질을 책임집니다.
+                  </>
+                ) : (
+                  <>
+                    A nationwide pool of <strong className="text-point">250 top instructors</strong>. <strong className="text-gray-900">Open bidding</strong> ensures only the <strong className="text-gray-900">most verified veterans</strong> deliver each class — guaranteed quality.
+                  </>
+                ),
                 bgImage: '/images/about/introduce_7_entrepreneurship_class.jpg',
               },
               {
@@ -232,9 +244,15 @@ export default async function AboutPage({
                 keyword: '4만명',
                 keywordEn: '40K',
                 sub: isKo ? '누적 참가자' : 'Cumulative Participants',
-                desc: isKo
-                  ? '지속적인 다분야 커리큘럼 개발, 기관 맞춤형 제안, 체계적이고 꼼꼼한 사전 준비 끝에 누적 참가자 4만명 이상이 선택한 검증된 기관입니다.'
-                  : 'Through ongoing multi-field curriculum development, custom institution proposals, and meticulous preparation — over 40,000 participants chose us.',
+                desc: isKo ? (
+                  <>
+                    지속적인 <strong className="text-gray-900">다분야 커리큘럼 개발</strong>, <strong className="text-gray-900">기관 맞춤형 제안</strong>, 체계적이고 꼼꼼한 사전 준비 끝에 <strong className="text-point">누적 참가자 4만명 이상</strong>이 선택한 검증된 기관입니다.
+                  </>
+                ) : (
+                  <>
+                    Through ongoing <strong className="text-gray-900">multi-field curriculum development</strong>, <strong className="text-gray-900">custom proposals</strong>, and meticulous preparation — <strong className="text-point">over 40,000 participants</strong> chose us.
+                  </>
+                ),
                 bgImage: '/images/main/hyedu_program_2_visit_class.png',
               },
               {
@@ -242,9 +260,15 @@ export default async function AboutPage({
                 keyword: '4거점',
                 keywordEn: '4 Hubs',
                 sub: isKo ? '전국 어디서나' : 'Nationwide Coverage',
-                desc: isKo
-                  ? '수도권 본사 및 전국 4개 거점(충청·전라 / 강원 / 부울경) 운영으로 출장비 부담을 낮추고, 어디서나 첨단 기자재 활용 수업이 가능합니다.'
-                  : 'HQ in the capital region and 4 nationwide hubs (Honam / Gangwon / BuULGyeong) reduce travel cost and enable cutting-edge classes anywhere.',
+                desc: isKo ? (
+                  <>
+                    수도권 본사 및 <strong className="text-point">전국 4개 거점</strong>(충청·전라 / 강원 / 부울경) 운영으로 <strong className="text-gray-900">출장비 부담을 낮추고</strong>, 어디서나 <strong className="text-gray-900">첨단 기자재 활용</strong> 수업이 가능합니다.
+                  </>
+                ) : (
+                  <>
+                    HQ in the capital region and <strong className="text-point">4 nationwide hubs</strong> (Honam / Gangwon / BuULGyeong) <strong className="text-gray-900">reduce travel cost</strong> and enable <strong className="text-gray-900">cutting-edge classes</strong> anywhere.
+                  </>
+                ),
                 bgImage: '/images/network/nationwide-map.png',
               },
               {
@@ -252,9 +276,15 @@ export default async function AboutPage({
                 keyword: '8단계',
                 keywordEn: '8-Step',
                 sub: isKo ? '체계적 운영 시스템' : 'Systematic Operation',
-                desc: isKo
-                  ? '제안서부터 사후 보고서까지 이어지는 8단계 체계적 시스템으로 기관의 업무 부담은 최소화하고 강의의 질은 최대로 끌어올렸습니다.'
-                  : 'An 8-step systematic process from proposal to post-event report — minimizing institutional workload while maximizing class quality.',
+                desc: isKo ? (
+                  <>
+                    제안서부터 사후 보고서까지 이어지는 <strong className="text-point">8단계 체계적 시스템</strong>으로 <strong className="text-gray-900">기관의 업무 부담은 최소화</strong>하고 <strong className="text-gray-900">강의의 질은 최대</strong>로 끌어올렸습니다.
+                  </>
+                ) : (
+                  <>
+                    An <strong className="text-point">8-step systematic process</strong> from proposal to post-event report — <strong className="text-gray-900">minimizing institutional workload</strong> while <strong className="text-gray-900">maximizing class quality</strong>.
+                  </>
+                ),
                 bgImage: '/images/about/company01_8.jpg',
               },
             ].map((item, i) => (
@@ -263,7 +293,7 @@ export default async function AboutPage({
                 className="group relative flex flex-col sm:flex-row items-stretch bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(51,102,102,0.12)] hover:-translate-y-0.5 transition-all overflow-hidden"
               >
                 {/* 좌측 — 배경 사진 + 최소 오버레이 + 별점 + 키워드 */}
-                <div className="flex-shrink-0 w-full sm:w-[220px] md:w-[260px] relative overflow-hidden min-h-[200px] sm:min-h-[220px]">
+                <div className="flex-shrink-0 w-full sm:w-[240px] md:w-[280px] lg:w-[300px] relative overflow-hidden min-h-[220px] sm:min-h-[240px]">
                   {/* 배경 이미지 */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
@@ -290,14 +320,14 @@ export default async function AboutPage({
                     </div>
                     {/* 메인 키워드 (대형) */}
                     <p
-                      className="text-4xl md:text-[46px] font-black leading-none tracking-tight"
+                      className="text-[44px] md:text-[52px] lg:text-[60px] font-black leading-none tracking-tight"
                       style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.9)' }}
                     >
                       {isKo ? item.keyword : (item.keywordEn || item.keyword)}
                     </p>
                     {/* 부제 */}
                     <p
-                      className="mt-2 text-[12px] md:text-[13px] font-semibold tracking-wide text-center px-2"
+                      className="mt-2.5 md:mt-3 text-sm md:text-base font-bold tracking-wide text-center px-2"
                       style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
                     >
                       {item.sub}
@@ -308,9 +338,9 @@ export default async function AboutPage({
                   <div className="hidden sm:block absolute top-1/2 -right-2.5 -translate-y-1/2 w-5 h-5 bg-white rotate-45 border-l border-b border-gray-100 group-hover:bg-gray-50 transition-colors z-10" />
                 </div>
 
-                {/* 우측 — 설명 */}
-                <div className="flex-1 p-6 md:p-7 flex items-center">
-                  <p className="text-[15px] md:text-base text-gray-700 leading-relaxed">
+                {/* 우측 — 설명 (마케팅 강조) */}
+                <div className="flex-1 p-6 md:p-8 lg:p-10 flex items-center">
+                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-[1.7] md:leading-[1.75] font-medium">
                     {item.desc}
                   </p>
                 </div>
