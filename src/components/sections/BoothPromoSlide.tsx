@@ -4,7 +4,7 @@
  */
 export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
   return (
-    <div className="relative w-full aspect-[16/6] md:aspect-[16/5] overflow-hidden bg-gradient-to-br from-[#fff8f0] via-[#fff3e6] to-[#ffe9d6]">
+    <div className="relative w-full min-h-[460px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[16/5] overflow-hidden bg-gradient-to-br from-[#fff8f0] via-[#fff3e6] to-[#ffe9d6]">
       {/* 밝은 배경 도트 패턴 */}
       <div
         aria-hidden
@@ -48,7 +48,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
       <span aria-hidden className="hidden lg:block absolute top-1/2 right-8 text-2xl animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '1s' }}>🎉</span>
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center px-6 md:px-12 lg:px-20">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-12 gap-4 md:gap-6 w-full max-w-[1280px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
           <div className="col-span-12 md:col-span-7 lg:col-span-6">
@@ -117,10 +117,10 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
           </div>
 
-          {/* 우측 — 4개 카테고리 사진 카드 (크게) */}
-          <div className="hidden md:flex md:col-span-5 lg:col-span-6 justify-end items-center">
+          {/* 우측 — 4개 카테고리 사진 카드 (모바일에서도 표시) */}
+          <div className="col-span-12 md:col-span-5 lg:col-span-6 flex justify-center md:justify-end items-center mt-3 md:mt-0">
             <div className="relative w-full max-w-[480px] lg:max-w-[560px] aspect-square">
-              <div className="relative grid grid-cols-2 gap-4 lg:gap-5 h-full">
+              <div className="relative grid grid-cols-2 gap-2.5 sm:gap-4 lg:gap-5 h-full">
                 {/* AI */}
                 <div className="group relative rounded-2xl overflow-hidden border-[4px] border-white shadow-[0_10px_28px_rgba(0,0,0,0.14)] hover:shadow-[0_16px_36px_rgba(56,189,248,0.40)] transition-all hover:-translate-y-1 hover:rotate-[-1deg]">
                   <img
@@ -184,13 +184,10 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
           </div>
 
-          {/* 모바일 — 하단 카테고리 띠 */}
-          <div className="md:hidden col-span-12 mt-2">
+          {/* 모바일 칩 띠 — 카드가 모바일에서도 보이므로 숨김 */}
+          <div className="hidden col-span-12 mt-2">
             <div className="flex items-center gap-2 text-[10px] font-bold">
               <span className="px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 border border-sky-300">🤖 AI</span>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300">⚽ {isKo ? '로봇' : 'ROBOT'}</span>
-              <span className="px-2 py-0.5 rounded-full bg-fuchsia-100 text-fuchsia-700 border border-fuchsia-300">🥽 VR/AR</span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-300">💻 {isKo ? '코딩' : 'CODE'}</span>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@
  */
 export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
   return (
-    <div className="relative w-full aspect-[16/6] md:aspect-[16/5] overflow-hidden bg-gradient-to-br from-[#0b1d3a] via-[#15346d] to-[#1e4ea8]">
+    <div className="relative w-full min-h-[480px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[16/5] overflow-hidden bg-gradient-to-br from-[#0b1d3a] via-[#15346d] to-[#1e4ea8]">
       {/* 배경 — ERICA 캠퍼스 사진 */}
       <div
         aria-hidden
@@ -51,7 +51,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
       />
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center px-6 md:px-12 lg:px-20">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-12 gap-4 md:gap-6 w-full max-w-[1280px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
           <div className="col-span-12 md:col-span-7 lg:col-span-7 text-white">
@@ -130,10 +130,10 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
           </div>
 
-          {/* 우측 — 4가지 차별점 카드 (2x2, 크게·강조) */}
-          <div className="hidden md:flex md:col-span-5 lg:col-span-5 justify-end items-center">
+          {/* 우측 — 4가지 차별점 카드 (2x2, 크게·강조) — 모바일에서도 표시 */}
+          <div className="col-span-12 md:col-span-5 lg:col-span-5 flex justify-center md:justify-end items-center mt-3 md:mt-0">
             <div className="relative w-full max-w-[480px]">
-              <div className="grid grid-cols-2 gap-3 lg:gap-4">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:gap-4">
                 {[
                   {
                     no: '01',
@@ -178,7 +178,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
                 ].map((c, i) => (
                   <div
                     key={i}
-                    className="group relative rounded-2xl p-4 md:p-5 lg:p-6 bg-white/15 backdrop-blur-md border-2 border-white/30 hover:bg-white/25 hover:-translate-y-1 hover:scale-[1.03] transition-all overflow-hidden"
+                    className="group relative rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 bg-white/15 backdrop-blur-md border-2 border-white/30 hover:bg-white/25 hover:-translate-y-1 hover:scale-[1.03] transition-all overflow-hidden"
                     style={{ boxShadow: `0 8px 24px ${c.shadowColor}` }}
                   >
                     {/* 모서리 컬러 강조 (크게) */}
@@ -192,18 +192,18 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
                       className={`absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b ${c.accent}`}
                     />
                     <div className="relative">
-                      <div className="flex items-start justify-between mb-2 lg:mb-2.5">
+                      <div className="flex items-start justify-between mb-1.5 sm:mb-2 lg:mb-2.5">
                         <span
-                          className={`text-base lg:text-lg font-black bg-gradient-to-r ${c.accent} bg-clip-text text-transparent tracking-wider`}
+                          className={`text-sm sm:text-base lg:text-lg font-black bg-gradient-to-r ${c.accent} bg-clip-text text-transparent tracking-wider`}
                         >
                           {c.no}
                         </span>
-                        <span className="text-xl lg:text-2xl leading-none drop-shadow-md">{c.icon}</span>
+                        <span className="text-base sm:text-xl lg:text-2xl leading-none drop-shadow-md">{c.icon}</span>
                       </div>
-                      <p className="text-white text-sm lg:text-[15px] font-extrabold leading-tight mb-1.5 drop-shadow">
+                      <p className="text-white text-[12px] sm:text-sm lg:text-[15px] font-extrabold leading-tight mb-1 sm:mb-1.5 drop-shadow">
                         {isKo ? c.titleKo : c.titleEn}
                       </p>
-                      <p className="text-blue-50/90 text-[11px] lg:text-[12px] font-semibold leading-snug whitespace-pre-line">
+                      <p className="text-blue-50/90 text-[10px] sm:text-[11px] lg:text-[12px] font-semibold leading-snug whitespace-pre-line">
                         {isKo ? c.descKo : c.descEn}
                       </p>
                     </div>
@@ -213,8 +213,8 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </div>
           </div>
 
-          {/* 모바일 — 하단 차별점 칩 */}
-          <div className="md:hidden col-span-12 mt-1.5">
+          {/* 모바일 — 하단 차별점 칩 (이제 카드가 보이므로 숨김) */}
+          <div className="hidden col-span-12 mt-1.5">
             <div className="flex items-center gap-1.5 text-[10px] font-bold text-amber-100">
               <span className="px-1.5 py-0.5 rounded-full bg-amber-400/15 border border-amber-300/40">🎓 ERICA</span>
               <span className="px-1.5 py-0.5 rounded-full bg-cyan-400/15 border border-cyan-300/40">👩‍🏫 멘토</span>
