@@ -86,13 +86,23 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
 
             {/* 서브카피 — 선생님 어필 포인트 */}
             <p className="text-[12px] sm:text-sm md:text-base lg:text-lg text-blue-100/95 leading-relaxed mb-3 md:mb-5 max-w-2xl font-medium">
-              {isKo
-                ? '진학 동기부여 + 한양대학생 멘토링 + 완성 결과물 + 수료증까지. 학교·기관 일정에 맞춘 맞춤형 프로그램으로 구성 가능합니다.'
-                : 'Motivation + Hanyang student mentoring + finished projects + certificates. Programs tailored to your school schedule.'}
+              {isKo ? (
+                <>
+                  진학 동기부여 + 한양대학생 멘토링 + 완성 결과물 + 수료증까지.
+                  <br />
+                  학교·기관 일정에 맞춘 맞춤형 프로그램으로 구성 가능합니다.
+                </>
+              ) : (
+                <>
+                  Motivation + Hanyang student mentoring + finished projects + certificates.
+                  <br />
+                  Programs tailored to your school schedule.
+                </>
+              )}
             </p>
 
-            {/* 강조 칩 */}
-            <div className="hidden sm:flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+            {/* 강조 칩 (크게) */}
+            <div className="hidden sm:flex flex-wrap gap-2 md:gap-2.5 mb-4 md:mb-6">
               {[
                 { ko: '✓ ERICA 캠퍼스 투어', en: '✓ Campus Tour' },
                 { ko: '✓ 한양대학생 멘토링', en: '✓ Hanyang Student Mentoring' },
@@ -102,7 +112,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
               ].map((t, i) => (
                 <span
                   key={i}
-                  className="px-2 md:px-2.5 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-bold text-amber-100 bg-amber-400/15 border border-amber-300/40 backdrop-blur-sm"
+                  className="px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs md:text-sm lg:text-base font-bold text-amber-50 bg-amber-400/20 border border-amber-300/50 backdrop-blur-sm shadow-sm"
                 >
                   {isKo ? t.ko : t.en}
                 </span>
