@@ -343,58 +343,74 @@ export default function OperationProcess() {
           ))}
         </div>
 
-        {/* 하단 CTA 강조 박스 — 파스텔 연두색 디자인 */}
+        {/* 하단 CTA 강조 박스 — 신뢰감 있는 클린 디자인 (브랜드 point 컬러 활용) */}
         <div className="mt-14 md:mt-20">
           <div
-            className="relative rounded-3xl bg-gradient-to-br from-lime-200 via-emerald-200 to-green-300 p-6 md:p-10 overflow-hidden"
-            style={{ boxShadow: '0 20px 50px rgba(132,204,22,0.30)' }}
+            className="relative rounded-3xl bg-white p-6 md:p-10 overflow-hidden"
+            style={{
+              boxShadow: '0 20px 50px rgba(51,102,102,0.10), 0 4px 12px rgba(0,0,0,0.04)',
+              border: '1px solid #e5e7eb',
+            }}
           >
-            {/* 부드러운 글로우 점 */}
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/40 blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-lime-300/40 blur-3xl" />
-              <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-white/30 blur-2xl" />
-            </div>
-            {/* 도트 패턴 */}
+            {/* 좌측 컬러 강조 바 (브랜드 point 컬러) */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-30"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, rgba(34,197,94,0.4) 1px, transparent 1px)',
-                backgroundSize: '28px 28px',
-              }}
+              className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-point via-point to-point/70"
             />
 
+            {/* 부드러운 배경 글로우 (아주 옅게) */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-point/8 blur-3xl" />
+              <div className="absolute -bottom-20 left-1/3 w-48 h-48 rounded-full bg-slate-200/40 blur-3xl" />
+            </div>
+
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
-              <div className="md:col-span-2">
-                <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-700 mb-2">
-                  {isKo ? '🌱 WHY CHOOSE US' : '🌱 WHY CHOOSE US'}
+              <div className="md:col-span-2 md:pl-2">
+                <p className="inline-flex items-center gap-2 text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-point mb-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-point" />
+                  {isKo ? 'WHY CHOOSE US' : 'WHY CHOOSE US'}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-2 text-emerald-950">
-                  {isKo
-                    ? '맡기시면 처음부터 끝까지, 모든 것이 준비됩니다.'
-                    : 'From start to finish — we handle everything.'}
+                <h3 className="text-2xl md:text-3xl font-extrabold leading-tight mb-3 text-slate-900">
+                  {isKo ? (
+                    <>
+                      맡기시면 처음부터 끝까지,<br className="hidden md:inline" />
+                      {' '}<span className="text-point">모든 것이 준비됩니다.</span>
+                    </>
+                  ) : (
+                    <>
+                      From start to finish —{' '}
+                      <span className="text-point">we handle everything.</span>
+                    </>
+                  )}
                 </h3>
-                <p className="text-base md:text-lg text-emerald-900/85 leading-relaxed font-medium">
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed">
                   {isKo
                     ? '제안서 · 강사 섭외 · 기자재 · 보고서 · 정산까지. 학교 담당자는 딱 한 분만 계셔도 충분합니다.'
                     : 'Proposal, instructors, equipment, reports, billing — your one contact handles all.'}
                 </p>
               </div>
-              <div className="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-4">
-                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">8단계</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '체계적 시스템' : 'Step System'}</p>
-                </div>
-                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">100%</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '서류 완비' : 'Full Docs'}</p>
-                </div>
-                <div className="text-center md:text-left bg-white/80 backdrop-blur-md rounded-2xl px-3 md:px-5 py-3 md:py-4 border border-white shadow-md">
-                  <p className="text-2xl md:text-3xl font-black leading-none text-emerald-700">1:1</p>
-                  <p className="text-[11px] md:text-sm font-semibold text-emerald-800 mt-1">{isKo ? '담당자 배정' : 'Dedicated Lead'}</p>
-                </div>
+              <div className="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-3.5">
+                {[
+                  { value: '8단계', valueEn: '8-Step', labelKo: '체계적 시스템', labelEn: 'Step System' },
+                  { value: '100%', valueEn: '100%', labelKo: '서류 완비', labelEn: 'Full Docs' },
+                  { value: '1:1', valueEn: '1:1', labelKo: '담당자 배정', labelEn: 'Dedicated Lead' },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="relative text-center md:text-left rounded-2xl px-3 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200/80 hover:border-point/40 hover:bg-white transition-colors"
+                  >
+                    {/* 좌측 작은 점 (md+ 만) */}
+                    <span aria-hidden className="hidden md:block absolute left-3 top-1/2 -translate-y-1/2 w-1 h-8 rounded-full bg-gradient-to-b from-point to-point/50" />
+                    <div className="md:pl-4">
+                      <p className="text-2xl md:text-3xl font-black leading-none text-point">
+                        {isKo ? stat.value : stat.valueEn}
+                      </p>
+                      <p className="text-[11px] md:text-sm font-semibold text-slate-700 mt-1">
+                        {isKo ? stat.labelKo : stat.labelEn}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
