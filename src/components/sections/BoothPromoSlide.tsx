@@ -48,10 +48,10 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
       <span aria-hidden className="hidden lg:block absolute top-1/2 right-8 text-2xl animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '1s' }}>🎉</span>
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-10 lg:px-14 xl:px-16">
-        <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-10 w-full max-w-[1440px] mx-auto items-center">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-8 lg:px-10 xl:px-14">
+        <div className="grid grid-cols-12 gap-4 md:gap-5 lg:gap-6 xl:gap-8 w-full max-w-[1320px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
-          <div className="col-span-12 md:col-span-7 lg:col-span-7">
+          <div className="col-span-12 md:col-span-7 lg:col-span-6">
             {/* NEW 라벨 */}
             <div className="inline-flex items-center gap-2 px-3 md:px-3.5 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-orange-500 shadow-lg shadow-orange-500/30 mb-2.5 md:mb-3 lg:mb-4">
               <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
@@ -120,9 +120,9 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
           </div>
 
           {/* 우측 — 4개 카테고리 사진 카드 */}
-          <div className="col-span-12 md:col-span-5 lg:col-span-5 flex justify-center md:justify-end items-center mt-3 md:mt-0">
-            <div className="relative w-full max-w-[340px] md:max-w-[300px] lg:max-w-[520px] xl:max-w-[580px] aspect-square">
-              <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-4 h-full">
+          <div className="col-span-12 md:col-span-5 lg:col-span-6 flex justify-center md:justify-end items-center mt-3 md:mt-0">
+            <div className="relative w-full max-w-[340px] md:max-w-[300px] lg:max-w-full lg:w-full aspect-square lg:aspect-[5/4]">
+              <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3.5 h-full">
                 {/* AI */}
                 <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-[3px] border-white shadow-[0_8px_22px_rgba(0,0,0,0.13)] hover:shadow-[0_14px_32px_rgba(56,189,248,0.40)] transition-all hover:-translate-y-1 hover:rotate-[-1deg]">
                   <img

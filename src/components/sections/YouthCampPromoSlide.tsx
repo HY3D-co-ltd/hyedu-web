@@ -51,10 +51,10 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
       />
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-10 lg:px-14 xl:px-16">
-        <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-10 w-full max-w-[1440px] mx-auto items-center">
+      <div className="relative h-full flex items-center py-6 sm:py-0 px-5 sm:px-6 md:px-8 lg:px-10 xl:px-14">
+        <div className="grid grid-cols-12 gap-4 md:gap-5 lg:gap-6 xl:gap-8 w-full max-w-[1320px] mx-auto items-center">
           {/* 좌측 — 텍스트 + CTA */}
-          <div className="col-span-12 md:col-span-7 lg:col-span-7 text-white">
+          <div className="col-span-12 md:col-span-7 lg:col-span-6 text-white">
             {/* 라벨 */}
             <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-amber-400 shadow-lg shadow-amber-400/40 mb-2 md:mb-3 lg:mb-4">
               <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
@@ -133,9 +133,9 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
           </div>
 
           {/* 우측 — 4가지 차별점 카드 (2x2) — 모바일에서도 표시 */}
-          <div className="col-span-12 md:col-span-5 lg:col-span-5 flex justify-center md:justify-end items-center mt-3 md:mt-0">
-            <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[520px] xl:max-w-[580px]">
-              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-4">
+          <div className="col-span-12 md:col-span-5 lg:col-span-6 flex justify-center md:justify-end items-center mt-3 md:mt-0">
+            <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-full">
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3.5">
                 {[
                   {
                     no: '01',
