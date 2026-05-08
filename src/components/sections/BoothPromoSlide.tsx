@@ -55,7 +55,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             {/* NEW 라벨 */}
             <div className="inline-flex items-center gap-2 px-3 md:px-3.5 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-orange-500 shadow-lg shadow-orange-500/30 mb-2.5 md:mb-3 lg:mb-4">
               <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] md:text-xs lg:text-sm font-extrabold tracking-[0.2em] text-white uppercase">
+              <span className="text-[9px] md:text-[11px] lg:text-xs font-extrabold tracking-[0.2em] text-white uppercase">
                 {isKo ? '🎯 NEW · 체험부스 커리큘럼' : '🎯 NEW · BOOTH'}
               </span>
             </div>
@@ -64,19 +64,19 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             <h2 className="font-extrabold mb-2 lg:mb-3 text-gray-900">
               {isKo ? (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.3] py-1">
                     AI · 로봇 · VR/AR · 코딩
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                     재미있는 체험부스 한눈에!
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.3] py-1">
                     AI · Robot · VR/AR · Coding
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.4] pb-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                     Fun Booth Programs!
                   </span>
                 </>
@@ -84,7 +84,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
             </h2>
 
             {/* 서브카피 */}
-            <p className="text-xs sm:text-[13px] md:text-base lg:text-lg xl:text-xl text-gray-700 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
+            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg text-gray-700 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
               {isKo
                 ? '23종 프로그램 · 4개 거점 · 베테랑 강사진. 행사·축제·기관에 딱 맞는 체험부스를 PDF에서 확인하세요!'
                 : '23 programs · 4 hubs · expert instructors. Find the perfect booth lineup for your event!'}
@@ -101,7 +101,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
               ].map((t, i) => (
                 <span
                   key={i}
-                  className={`px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[10px] md:text-xs lg:text-base font-bold border ${t.color}`}
+                  className={`px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[9px] md:text-[11px] lg:text-sm font-bold border ${t.color}`}
                 >
                   {isKo ? t.ko : t.en}
                 </span>
@@ -110,7 +110,7 @@ export default function BoothPromoSlide({ isKo }: { isKo: boolean }) {
 
             {/* CTA 버튼 */}
             <div className="flex items-center gap-3 md:gap-4">
-              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-extrabold text-xs md:text-sm lg:text-lg shadow-[0_8px_30px_rgba(236,72,153,0.45)] hover:shadow-[0_12px_40px_rgba(236,72,153,0.65)] hover:scale-105 transition-all">
+              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-extrabold text-[11px] md:text-xs lg:text-base shadow-[0_8px_30px_rgba(236,72,153,0.45)] hover:shadow-[0_12px_40px_rgba(236,72,153,0.65)] hover:scale-105 transition-all">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
