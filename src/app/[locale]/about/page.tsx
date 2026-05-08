@@ -293,7 +293,7 @@ export default async function AboutPage({
                 className="group relative flex flex-col sm:flex-row items-stretch bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(51,102,102,0.12)] hover:-translate-y-0.5 transition-all overflow-hidden"
               >
                 {/* 좌측 — 배경 사진 + 최소 오버레이 + 별점 + 키워드 */}
-                <div className="flex-shrink-0 w-full sm:w-[240px] md:w-[280px] lg:w-[300px] relative overflow-hidden min-h-[220px] sm:min-h-[240px]">
+                <div className="flex-shrink-0 w-full sm:w-[280px] md:w-[340px] lg:w-[400px] xl:w-[440px] relative overflow-hidden min-h-[240px] sm:min-h-[280px] lg:min-h-[300px]">
                   {/* 배경 이미지 */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
@@ -303,32 +303,32 @@ export default async function AboutPage({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
 
                   {/* 콘텐츠 */}
-                  <div className="relative z-10 h-full p-5 md:p-6 flex flex-col items-center justify-end text-white">
+                  <div className="relative z-10 h-full p-5 md:p-6 lg:p-7 flex flex-col items-center justify-end text-white">
                     {/* 별점 */}
-                    <div className="flex gap-0.5 mb-2 md:mb-2.5">
+                    <div className="flex gap-1 mb-3 md:mb-3.5">
                       {[...Array(5)].map((_, idx) => (
                         <svg
                           key={idx}
                           viewBox="0 0 24 24"
-                          className={`w-4 h-4 md:w-[18px] md:h-[18px] ${idx < item.stars ? 'text-yellow-300' : 'text-white/40'}`}
+                          className={`w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 ${idx < item.stars ? 'text-yellow-300' : 'text-white/40'}`}
                           fill="currentColor"
-                          style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))' }}
+                          style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))' }}
                         >
                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       ))}
                     </div>
-                    {/* 메인 키워드 (대형) */}
+                    {/* 메인 키워드 (초대형) */}
                     <p
-                      className="text-[44px] md:text-[52px] lg:text-[60px] font-black leading-none tracking-tight"
-                      style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.9)' }}
+                      className="text-[56px] md:text-[68px] lg:text-[80px] xl:text-[90px] font-black leading-none tracking-tight"
+                      style={{ textShadow: '0 4px 16px rgba(0,0,0,0.75), 0 2px 4px rgba(0,0,0,0.95)' }}
                     >
                       {isKo ? item.keyword : (item.keywordEn || item.keyword)}
                     </p>
                     {/* 부제 */}
                     <p
-                      className="mt-2.5 md:mt-3 text-sm md:text-base font-bold tracking-wide text-center px-2"
-                      style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
+                      className="mt-3 md:mt-4 text-base md:text-lg lg:text-xl font-extrabold tracking-wide text-center px-2"
+                      style={{ textShadow: '0 2px 6px rgba(0,0,0,0.85)' }}
                     >
                       {item.sub}
                     </p>
@@ -339,8 +339,8 @@ export default async function AboutPage({
                 </div>
 
                 {/* 우측 — 설명 (마케팅 강조) */}
-                <div className="flex-1 p-6 md:p-8 lg:p-10 flex items-center">
-                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-[1.7] md:leading-[1.75] font-medium">
+                <div className="flex-1 p-7 md:p-10 lg:p-12 flex items-center">
+                  <p className="text-lg md:text-xl lg:text-[22px] xl:text-2xl text-gray-700 leading-[1.7] md:leading-[1.75] font-semibold">
                     {item.desc}
                   </p>
                 </div>
