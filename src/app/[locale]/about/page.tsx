@@ -212,13 +212,14 @@ export default async function AboutPage({
                 stars: 1,
                 keyword: isKo ? '한양대' : 'Hanyang',
                 sub: isKo ? '명문 대학 출범' : 'University Origin',
+                lead: isKo ? '대학·현장·미래기술을 연결한 차세대 진로교육 프로그램을 제공합니다.' : 'Next-gen career education connecting universities, real-world, and future tech.',
                 desc: isKo ? (
                   <>
-                    <strong className="text-point">2019년 한양대학교</strong>에서 시작된 4차산업 교육기관으로, <strong className="text-gray-900">대학 연계 · 뛰어난 인력풀</strong>을 활용해 <strong className="text-gray-900">AI 모델 개발 · 캠퍼스 멘토링 · 방문형 캠프</strong>를 운영합니다.
+                    <strong className="text-point">2019년 한양대학교</strong>에서 시작한 4차산업 교육기관입니다. <strong className="text-gray-900">대학 연계</strong>와 <strong className="text-gray-900">뛰어난 인력풀</strong>을 활용해 <strong className="text-gray-900">AI 모델 개발 · 캠퍼스 멘토링 · 방문형 캠프</strong>를 운영합니다.
                   </>
                 ) : (
                   <>
-                    Started at <strong className="text-point">Hanyang University in 2019</strong>, leveraging <strong className="text-gray-900">university partnerships &amp; top-tier talent</strong> for <strong className="text-gray-900">AI model development, campus mentoring, and on-site camps</strong>.
+                    Started at <strong className="text-point">Hanyang University in 2019</strong>, leveraging <strong className="text-gray-900">university partnerships</strong> and <strong className="text-gray-900">top-tier talent</strong> for <strong className="text-gray-900">AI development, campus mentoring, and on-site camps</strong>.
                   </>
                 ),
                 bgImage: '/images/main/hyedu_program_4_campus_tour.png',
@@ -228,13 +229,14 @@ export default async function AboutPage({
                 keyword: '250명',
                 keywordEn: '250',
                 sub: isKo ? '검증된 베테랑 강사' : 'Verified Expert Instructors',
+                lead: isKo ? '검증된 전문 강사진이 고퀄리티 수업을 진행합니다.' : 'Verified expert instructors deliver high-quality classes.',
                 desc: isKo ? (
                   <>
-                    <strong className="text-point">전국 250명</strong>의 우수 강사풀 보유. <strong className="text-gray-900">공개 입찰 경쟁</strong>으로 강의를 배정하여, 가장 <strong className="text-gray-900">우수한 검증된 베테랑 강사</strong>가 강의의 품질을 책임집니다.
+                    <strong className="text-point">전국 250명</strong>의 우수 강사풀에서 <strong className="text-gray-900">공개 입찰 경쟁</strong>으로 매번 가장 적합한 강사를 배정합니다. <strong className="text-gray-900">검증된 베테랑 강사</strong>가 모든 강의의 품질을 책임집니다.
                   </>
                 ) : (
                   <>
-                    A nationwide pool of <strong className="text-point">250 top instructors</strong>. <strong className="text-gray-900">Open bidding</strong> ensures only the <strong className="text-gray-900">most verified veterans</strong> deliver each class — guaranteed quality.
+                    From a pool of <strong className="text-point">250 top instructors</strong>, <strong className="text-gray-900">open-bidding</strong> assigns the best fit. Only <strong className="text-gray-900">verified veterans</strong> teach — guaranteed quality.
                   </>
                 ),
                 bgImage: '/images/about/introduce_7_entrepreneurship_class.jpg',
@@ -244,13 +246,14 @@ export default async function AboutPage({
                 keyword: '4만명',
                 keywordEn: '40K',
                 sub: isKo ? '누적 참가자' : 'Cumulative Participants',
+                lead: isKo ? '다년간의 운영 노하우와 현장 경험으로 증명했습니다.' : 'Proven by years of operational know-how and field experience.',
                 desc: isKo ? (
                   <>
-                    지속적인 <strong className="text-gray-900">다분야 커리큘럼 개발</strong>, <strong className="text-gray-900">기관 맞춤형 제안</strong>, 체계적이고 꼼꼼한 사전 준비 끝에 <strong className="text-point">누적 참가자 4만명 이상</strong>이 선택한 검증된 기관입니다.
+                    <strong className="text-gray-900">다분야 커리큘럼 개발 · 기관 맞춤형 제안 · 꼼꼼한 사전 준비</strong>의 결과, <strong className="text-point">누적 참가자 4만명 이상</strong>이 한양미래연구소를 선택한 <strong className="text-gray-900">검증된 기관</strong>입니다.
                   </>
                 ) : (
                   <>
-                    Through ongoing <strong className="text-gray-900">multi-field curriculum development</strong>, <strong className="text-gray-900">custom proposals</strong>, and meticulous preparation — <strong className="text-point">over 40,000 participants</strong> chose us.
+                    Backed by <strong className="text-gray-900">multi-field curriculum, custom proposals</strong>, and meticulous prep — <strong className="text-point">over 40,000 participants</strong> have chosen us.
                   </>
                 ),
                 bgImage: '/images/main/hyedu_program_2_visit_class.png',
@@ -260,13 +263,14 @@ export default async function AboutPage({
                 keyword: '4거점',
                 keywordEn: '4 Hubs',
                 sub: isKo ? '전국 어디서나' : 'Nationwide Coverage',
+                lead: isKo ? '전국 어디서나 균일한 교육 품질을 제공합니다.' : 'Consistent education quality across the country.',
                 desc: isKo ? (
                   <>
-                    수도권 본사 및 <strong className="text-point">전국 4개 거점</strong>(충청·전라 / 강원 / 부울경) 운영으로 <strong className="text-gray-900">출장비 부담을 낮추고</strong>, 어디서나 <strong className="text-gray-900">첨단 기자재 활용</strong> 수업이 가능합니다.
+                    수도권 본사 + <strong className="text-point">전국 4개 거점</strong>(충청·전라 / 강원 / 부울경) 운영으로 <strong className="text-gray-900">출장비 부담은 낮추고</strong>, 어디서나 <strong className="text-gray-900">첨단 기자재 활용 수업</strong>이 가능합니다.
                   </>
                 ) : (
                   <>
-                    HQ in the capital region and <strong className="text-point">4 nationwide hubs</strong> (Honam / Gangwon / BuULGyeong) <strong className="text-gray-900">reduce travel cost</strong> and enable <strong className="text-gray-900">cutting-edge classes</strong> anywhere.
+                    HQ + <strong className="text-point">4 nationwide hubs</strong> (Honam / Gangwon / BuULGyeong). <strong className="text-gray-900">Lower travel cost</strong>, <strong className="text-gray-900">cutting-edge equipment</strong> anywhere.
                   </>
                 ),
                 bgImage: '/images/network/nationwide-map.png',
@@ -276,13 +280,14 @@ export default async function AboutPage({
                 keyword: '8단계',
                 keywordEn: '8-Step',
                 sub: isKo ? '체계적 운영 시스템' : 'Systematic Operation',
+                lead: isKo ? '복잡한 운영을 쉽고 체계적으로 지원합니다.' : 'Complex operations made easy and systematic.',
                 desc: isKo ? (
                   <>
                     제안서부터 사후 보고서까지 이어지는 <strong className="text-point">8단계 체계적 시스템</strong>으로 <strong className="text-gray-900">기관의 업무 부담은 최소화</strong>하고 <strong className="text-gray-900">강의의 질은 최대</strong>로 끌어올렸습니다.
                   </>
                 ) : (
                   <>
-                    An <strong className="text-point">8-step systematic process</strong> from proposal to post-event report — <strong className="text-gray-900">minimizing institutional workload</strong> while <strong className="text-gray-900">maximizing class quality</strong>.
+                    An <strong className="text-point">8-step systematic process</strong> from proposal to post-event report — <strong className="text-gray-900">minimizing your workload</strong>, <strong className="text-gray-900">maximizing class quality</strong>.
                   </>
                 ),
                 bgImage: '/images/about/company01_8.jpg',
@@ -293,7 +298,7 @@ export default async function AboutPage({
                 className="group relative flex flex-col sm:flex-row items-stretch bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(51,102,102,0.12)] hover:-translate-y-0.5 transition-all overflow-hidden"
               >
                 {/* 좌측 — 배경 사진 + 최소 오버레이 + 별점 + 키워드 */}
-                <div className="flex-shrink-0 w-full sm:w-[240px] md:w-[280px] lg:w-[300px] relative overflow-hidden min-h-[220px] sm:min-h-[240px]">
+                <div className="flex-shrink-0 w-full sm:w-[260px] md:w-[320px] lg:w-[400px] xl:w-[440px] relative overflow-hidden min-h-[220px] sm:min-h-[260px] lg:min-h-[280px]">
                   {/* 배경 이미지 */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
@@ -320,14 +325,14 @@ export default async function AboutPage({
                     </div>
                     {/* 메인 키워드 (대형) */}
                     <p
-                      className="text-[44px] md:text-[52px] lg:text-[60px] font-black leading-none tracking-tight"
+                      className="text-[48px] md:text-[58px] lg:text-[68px] font-black leading-none tracking-tight"
                       style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.9)' }}
                     >
                       {isKo ? item.keyword : (item.keywordEn || item.keyword)}
                     </p>
                     {/* 부제 */}
                     <p
-                      className="mt-2.5 md:mt-3 text-sm md:text-base font-bold tracking-wide text-center px-2"
+                      className="mt-2.5 md:mt-3 text-sm md:text-base lg:text-lg font-bold tracking-wide text-center px-2"
                       style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
                     >
                       {item.sub}
@@ -339,8 +344,13 @@ export default async function AboutPage({
                 </div>
 
                 {/* 우측 — 설명 (마케팅 강조) */}
-                <div className="flex-1 p-6 md:p-8 lg:p-10 flex items-center">
-                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-[1.7] md:leading-[1.75] font-medium">
+                <div className="flex-1 p-6 md:p-8 lg:p-10 flex flex-col justify-center min-w-0">
+                  {/* 마케팅 리드 카피 — 티얼 강조 */}
+                  <p className="text-lg md:text-xl lg:text-2xl font-extrabold text-point mb-3 md:mb-4 leading-snug">
+                    {item.lead}
+                  </p>
+                  {/* 본문 설명 */}
+                  <p className="text-base md:text-lg lg:text-[19px] xl:text-xl text-gray-700 leading-[1.75] font-medium max-w-[820px]">
                     {item.desc}
                   </p>
                 </div>
@@ -348,30 +358,48 @@ export default async function AboutPage({
             ))}
           </div>
 
-          {/* 하단 통합 통계 박스 (CTA 강조) */}
-          <div className="relative bg-gradient-to-r from-point to-point/85 rounded-3xl p-6 md:p-8 text-white shadow-xl overflow-hidden">
-            {/* 장식 점 */}
+          {/* 하단 통합 통계 박스 (눈에 편안한 소프트 블루 디자인) */}
+          <div
+            className="relative rounded-3xl p-6 md:p-10 overflow-hidden bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50"
+            style={{
+              boxShadow: '0 14px 40px rgba(56,189,248,0.15), 0 4px 12px rgba(0,0,0,0.04)',
+              border: '1px solid #dbeafe',
+            }}
+          >
+            {/* 좌측 컬러 강조 바 */}
+            <div
+              aria-hidden
+              className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-sky-400 via-blue-500 to-indigo-500"
+            />
+            {/* 부드러운 글로우 */}
             <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5 blur-2xl" />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-white/5 blur-2xl" />
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-sky-200/40 blur-3xl" />
+              <div className="absolute -bottom-16 left-1/3 w-48 h-48 rounded-full bg-indigo-200/30 blur-3xl" />
             </div>
-            <div className="relative">
+            <div className="relative md:pl-3">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8">
                 <div>
-                  <p className="text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-80 mb-1.5">
+                  <p className="inline-flex items-center gap-2 text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-sky-700 mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
                     {isKo ? 'BY THE NUMBERS' : 'BY THE NUMBERS'}
                   </p>
-                  <h3 className="text-xl md:text-2xl font-extrabold">
-                    {isKo
-                      ? '숫자로 증명하는 한양미래연구소'
-                      : 'Hanyang Future Lab — Proven by Numbers'}
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-slate-900">
+                    {isKo ? (
+                      <>
+                        숫자로 증명하는 <span className="text-sky-700">한양미래연구소</span>
+                      </>
+                    ) : (
+                      <>
+                        Hanyang Future Lab — <span className="text-sky-700">Proven by Numbers</span>
+                      </>
+                    )}
                   </h3>
                 </div>
-                <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/15 rounded-full backdrop-blur-sm">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-yellow-300" fill="currentColor">
+                <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/80 rounded-full border border-sky-200 shadow-sm">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-amber-400" fill="currentColor">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
-                  <span className="text-xs font-semibold tracking-wide">
+                  <span className="text-xs font-bold tracking-wide text-slate-700">
                     {isKo ? '검증된 교육 파트너' : 'Verified Partner'}
                   </span>
                 </div>
@@ -386,12 +414,13 @@ export default async function AboutPage({
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="bg-white/15 backdrop-blur-sm rounded-xl p-4 md:p-5 text-center border border-white/20 hover:bg-white/20 transition-colors"
+                    className="bg-white rounded-xl p-4 md:p-5 text-center border border-sky-100 hover:border-sky-300 hover:-translate-y-0.5 transition-all"
+                    style={{ boxShadow: '0 4px 14px rgba(56,189,248,0.10)' }}
                   >
-                    <p className="text-2xl md:text-[28px] font-extrabold leading-none mb-1.5">
+                    <p className="text-2xl md:text-[28px] lg:text-[32px] font-black leading-none mb-1.5 text-sky-700">
                       {isKo ? stat.value : stat.valueEn}
                     </p>
-                    <p className="text-[11px] md:text-xs font-semibold opacity-90">
+                    <p className="text-[11px] md:text-xs lg:text-sm font-semibold text-slate-600">
                       {isKo ? stat.labelKo : stat.labelEn}
                     </p>
                   </div>
