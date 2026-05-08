@@ -67,19 +67,19 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             <h2 className="font-extrabold mb-2 lg:mb-3">
               {isKo ? (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] mb-2 md:mb-3 lg:mb-4">
+                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
                     한양대학교 ERICA에서 시작하는
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent pb-1">
+                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
                     우리 학교 맞춤 청소년 캠프
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] mb-2 md:mb-3 lg:mb-4">
+                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
                     Starting at Hanyang University ERICA
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-3xl lg:text-[44px] xl:text-[52px] leading-[1.1] bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent pb-1">
+                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
                     Custom Youth Camp for Your School
                   </span>
                 </>
