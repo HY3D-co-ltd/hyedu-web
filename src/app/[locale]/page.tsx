@@ -4,6 +4,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import QuickLinksAndPrograms from '@/components/sections/QuickLinksAndPrograms';
 import AgeRecommendation from '@/components/sections/AgeRecommendation';
 import NationwideNetwork from '@/components/sections/NationwideNetwork';
+import OperationProcess from '@/components/sections/OperationProcess';
 import StatsSection from '@/components/sections/StatsSection';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import RecommendSection from '@/components/sections/RecommendSection';
@@ -45,6 +46,7 @@ export default async function HomePage({
       <QuickLinksAndPrograms />
       <AgeRecommendation />
       <NationwideNetwork />
+      <OperationProcess />
       <StatsSection />
       <TestimonialSection />
       <RecommendSection />
