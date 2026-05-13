@@ -56,34 +56,79 @@ export default function ProgramsClient({ locale }: { locale: string }) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-point text-white py-14 px-4 text-center">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-          <span className="text-sm opacity-80">Visit Experience Class</span>
-          <h1 className="text-[28px] md:text-[36px] font-bold mt-2">
-            {isKo ? '찾아가는 체험교실' : 'On-site Experience Classes'}{' '}
-            <small className="text-[20px] md:text-[24px] font-normal opacity-80">
+      {/* Hero — 밝은 파스텔 디자인 */}
+      <section className="relative py-16 md:py-20 px-4 text-center overflow-hidden bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-50">
+        {/* 배경 장식 */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-teal-200/40 blur-3xl" />
+          <div className="absolute -bottom-20 -right-12 w-80 h-80 rounded-full bg-cyan-200/40 blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-sky-200/30 blur-2xl" />
+        </div>
+        {/* 도트 패턴 */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle, rgba(51,102,102,0.18) 1.2px, transparent 1.2px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        <div className="relative mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
+          {/* 라벨 */}
+          <span className="inline-flex items-center gap-2 text-xs md:text-sm font-bold tracking-[0.2em] text-point uppercase mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-point animate-pulse" />
+            Visit Experience Class
+          </span>
+
+          {/* 메인 헤드라인 */}
+          <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-extrabold mt-2 text-slate-900 leading-tight">
+            {isKo ? (
+              <>
+                <span className="text-point">찾아가는</span> 체험교실
+              </>
+            ) : (
+              <>
+                <span className="text-point">On-site</span> Experience Classes
+              </>
+            )}{' '}
+            <small className="text-[18px] md:text-[22px] lg:text-[26px] font-bold text-slate-500 align-middle">
               ({isKo ? '1회기' : 'single-session'})
             </small>
           </h1>
-          <p className="text-[15px] mt-4 opacity-90 max-w-[600px] mx-auto leading-relaxed">
+
+          {/* 서브카피 */}
+          <p className="text-base md:text-lg mt-5 text-slate-700 max-w-[680px] mx-auto leading-relaxed font-medium">
             {isKo
               ? '각 지역별 청소년 수련관, 학교, 문화센터 등의 교육기관에 방문하여 첨단 장비와 미래기술을 활용한 수준별 체험 프로그램'
               : 'On-site visits to regional youth training centers, schools, and culture centers — leveled hands-on programs using advanced equipment and future technologies.'}
           </p>
-          <div className="flex justify-center gap-4 mt-6">
+
+          {/* 큰 CTA 버튼 2개 */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-8 md:mt-10">
             <Link
               href={`/${locale}/contact`}
-              className="inline-block bg-white text-point font-bold text-[15px] px-8 py-3 rounded-full hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-point text-white font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full hover:scale-105 hover:shadow-2xl transition-all"
+              style={{ boxShadow: '0 10px 30px rgba(51,102,102,0.35)' }}
             >
-              {isKo ? '교육 신청하기' : 'Apply'}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 md:w-6 md:h-6">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M22 4L12 14.01l-3-3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {isKo ? '교육 신청하기' : 'Apply Now'}
             </Link>
             <a
               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-curriculum.pdf`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-[#333] text-white font-bold text-[15px] px-8 py-3 rounded-full hover:bg-[#222] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-point font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full border-2 border-point hover:bg-point hover:text-white hover:scale-105 transition-all"
+              style={{ boxShadow: '0 8px 24px rgba(51,102,102,0.15)' }}
             >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 md:w-6 md:h-6">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6M9 13h6M9 17h4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               {isKo ? '커리큘럼 보기' : 'View Curriculum'}
             </a>
           </div>

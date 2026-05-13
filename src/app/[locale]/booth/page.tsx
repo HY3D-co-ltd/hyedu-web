@@ -189,18 +189,49 @@ export default async function BoothPage({
         ]}
       />
 
-      {/* Hero */}
-      <section className="bg-point py-16 md:py-24 px-4">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
+      {/* Hero — 밝은 파스텔 디자인 */}
+      <section className="relative py-16 md:py-24 px-4 overflow-hidden bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-50">
+        {/* 배경 장식 */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-teal-200/40 blur-3xl" />
+          <div className="absolute -bottom-20 -right-12 w-80 h-80 rounded-full bg-cyan-200/40 blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-sky-200/30 blur-2xl" />
+        </div>
+        {/* 도트 패턴 */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle, rgba(51,102,102,0.18) 1.2px, transparent 1.2px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        <div className="relative mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
           <div className="flex flex-col md:flex-row items-center gap-10">
-            <div className="md:w-1/2 text-white">
-              <span className="text-sm tracking-widest opacity-80 uppercase">
+            <div className="md:w-1/2">
+              {/* 라벨 */}
+              <span className="inline-flex items-center gap-2 text-xs md:text-sm font-bold tracking-[0.2em] text-point uppercase mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-point animate-pulse" />
                 Maker Booth Operation
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                {isKo ? '창의체험 부스 운영' : 'Creative Experience Booth'}
+
+              {/* 메인 헤드라인 */}
+              <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-extrabold mt-2 mb-4 text-slate-900 leading-tight">
+                {isKo ? (
+                  <>
+                    <span className="text-point">창의체험</span> 부스 운영
+                  </>
+                ) : (
+                  <>
+                    <span className="text-point">Creative</span> Experience Booth
+                  </>
+                )}
               </h1>
-              <p className="text-lg leading-relaxed opacity-90">
+
+              {/* 서브카피 */}
+              <p className="text-base md:text-lg leading-relaxed text-slate-700 font-medium">
                 {isKo ? (
                   <>
                     현장에서 가족과 함께, 친구와 함께
@@ -215,19 +246,31 @@ export default async function BoothPage({
                   </>
                 )}
               </p>
-              <div className="flex flex-wrap gap-3 mt-6">
+
+              {/* 큰 CTA 버튼 2개 */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8">
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-block bg-white text-point font-semibold px-6 py-2.5 rounded hover:bg-gray-100 transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-point text-white font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full hover:scale-105 hover:shadow-2xl transition-all"
+                  style={{ boxShadow: '0 10px 30px rgba(51,102,102,0.35)' }}
                 >
-                  {isKo ? '교육 신청하기' : 'Apply'}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 md:w-6 md:h-6">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M22 4L12 14.01l-3-3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {isKo ? '교육 신청하기' : 'Apply Now'}
                 </Link>
                 <a
                   href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-booth-curriculum.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block border border-white text-white font-semibold px-6 py-2.5 rounded hover:bg-white/10 transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-point font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full border-2 border-point hover:bg-point hover:text-white hover:scale-105 transition-all"
+                  style={{ boxShadow: '0 8px 24px rgba(51,102,102,0.15)' }}
                 >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 md:w-6 md:h-6">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 2v6h6M9 13h6M9 17h4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   {isKo ? '커리큘럼 보기' : 'View Curriculum'}
                 </a>
               </div>
@@ -240,7 +283,7 @@ export default async function BoothPage({
                 ).map((tag) => (
                   <li
                     key={tag}
-                    className="bg-white/15 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-full border border-white/30"
+                    className="bg-white text-point text-sm md:text-base font-bold px-5 py-2.5 rounded-full border-2 border-point/30 shadow-sm hover:border-point hover:scale-105 transition-all"
                   >
                     {tag}
                   </li>
