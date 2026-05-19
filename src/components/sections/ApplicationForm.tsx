@@ -315,12 +315,11 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
 }
 
 // ============ 오류 시 대체 안내 컴포넌트 ============
+const GMAIL_URL = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox';
+
 function ErrorFallback({ fields, isKo }: { fields: FormFields; isKo: boolean }) {
   const [copied, setCopied] = useState(false);
   const body = buildMessageBody(fields);
-  const subject = encodeURIComponent('[교육 신청] ' + (fields.school || ''));
-  const mailtoBody = encodeURIComponent(body);
-  const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${mailtoBody}`;
 
   async function copyToClipboard() {
     try {
@@ -344,16 +343,27 @@ function ErrorFallback({ fields, isKo }: { fields: FormFields; isKo: boolean }) 
           </h4>
           <p className="text-sm text-amber-800 leading-relaxed">
             {isKo
-              ? '아래 방법 중 한 가지로 신청해 주시면 담당자가 빠르게 연락드리겠습니다.'
-              : 'Please use one of the alternatives below — we will respond shortly.'}
+              ? '아래 방법 중 한 가지로 신청해 주시면 담당자가 빠르게 연락드리겠습니다. 「이메일로 보내기」 클릭 시 입력하신 내용이 클립보드에 자동 복사되며, Gmail이 새 창으로 열립니다 — 받는사람·내용 붙여넣어 보내주세요.'
+              : 'Please use one of the alternatives below — we will respond shortly. Clicking "Send via Email" copies your info to the clipboard and opens Gmail; paste and send.'}
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4">
-        {/* ① 이메일로 직접 보내기 */}
-        <a
-          href={mailtoUrl}
+        {/* ① Gmail 열기 (작성 내용 자동 복사 후 새 창에서 Gmail) */}
+        <button
+          type="button"
+          onClick={async () => {
+            // 내용을 자동으로 클립보드에 복사 후 Gmail 새 창으로 이동
+            try {
+              await navigator.clipboard.writeText(
+                `받는사람: ${CONTACT_EMAIL}\n제목: [교육 신청] ${fields.school || ''}\n\n${body}`,
+              );
+            } catch {
+              // 클립보드 실패해도 Gmail 은 열기
+            }
+            window.open(GMAIL_URL, '_blank', 'noopener,noreferrer');
+          }}
           className="flex items-center justify-center gap-2 bg-white text-point font-bold text-sm px-4 py-3 rounded-lg border-2 border-point hover:bg-point hover:text-white transition-all"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
@@ -361,7 +371,7 @@ function ErrorFallback({ fields, isKo }: { fields: FormFields; isKo: boolean }) 
             <polyline points="22,6 12,13 2,6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           {isKo ? '이메일로 보내기' : 'Send via Email'}
-        </a>
+        </button>
 
         {/* ② 카카오 채널 문의 */}
         <a
