@@ -58,7 +58,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             {/* 라벨 */}
             <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1 md:py-1.5 lg:py-2 rounded-full bg-amber-400 shadow-lg shadow-amber-400/40 mb-2 md:mb-3 lg:mb-4">
               <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] md:text-xs lg:text-sm font-extrabold tracking-[0.18em] text-amber-950 uppercase">
+              <span className="text-[9px] md:text-[11px] lg:text-xs font-extrabold tracking-[0.18em] text-amber-950 uppercase">
                 {isKo ? '🎓 NEW · 한양 청소년 캠프' : '🎓 NEW · YOUTH CAMP'}
               </span>
             </div>
@@ -67,19 +67,19 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             <h2 className="font-extrabold mb-2 lg:mb-3">
               {isKo ? (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.3] py-1">
                     한양대학교 ERICA에서 시작하는
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
                     우리 학교 맞춤 청소년 캠프
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.3] py-1">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.3] py-1">
                     Starting at Hanyang University ERICA
                   </span>
-                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-[36px] xl:text-[44px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
+                  <span className="block text-base sm:text-lg md:text-xl lg:text-3xl xl:text-[36px] leading-[1.4] pb-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">
                     Custom Youth Camp for Your School
                   </span>
                 </>
@@ -87,7 +87,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
             </h2>
 
             {/* 서브카피 — 선생님 어필 포인트 */}
-            <p className="text-xs sm:text-[13px] md:text-base lg:text-lg xl:text-xl text-blue-100/95 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
+            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg text-blue-100/95 leading-relaxed mb-2 md:mb-3 lg:mb-5 max-w-2xl font-medium">
               {isKo ? (
                 <>
                   진학 동기부여 + 한양대학생 멘토링 + 완성 결과물 + 수료증까지.
@@ -114,7 +114,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
               ].map((t, i) => (
                 <span
                   key={i}
-                  className="px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[10px] md:text-xs lg:text-base font-bold text-amber-50 bg-amber-400/20 border border-amber-300/50 backdrop-blur-sm shadow-sm"
+                  className="px-2.5 md:px-3 lg:px-3.5 py-0.5 md:py-1 lg:py-1.5 rounded-full text-[9px] md:text-[11px] lg:text-sm font-bold text-amber-50 bg-amber-400/20 border border-amber-300/50 backdrop-blur-sm shadow-sm"
                 >
                   {isKo ? t.ko : t.en}
                 </span>
@@ -123,7 +123,7 @@ export default function YouthCampPromoSlide({ isKo }: { isKo: boolean }) {
 
             {/* CTA 버튼 */}
             <div className="flex items-center gap-3 md:gap-4">
-              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white font-extrabold text-xs md:text-sm lg:text-lg shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.65)] hover:scale-105 transition-all">
+              <span className="inline-flex items-center gap-2 px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-4 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white font-extrabold text-[11px] md:text-xs lg:text-base shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.65)] hover:scale-105 transition-all">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
