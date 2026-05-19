@@ -5,19 +5,130 @@ import { useState, FormEvent } from 'react';
 /**
  * 교육 신청 폼.
  *
- * 백엔드 없이 정적 사이트에서 이메일 전송을 위해 FormSubmit.co 를 사용한다.
- * 첫 제출 시 hyedu0829@gmail.com 으로 인증 메일이 발송되며, 그 메일의
- * 링크를 한 번 클릭하면 이후 모든 제출이 자동으로 hyedu0829@gmail.com 으로 도착한다.
- *
- * https://formsubmit.co/  (가입 불필요, 무료, API 키 불필요)
+ * 전송 전략 (이중 안전망):
+ * 1) PRIMARY  — Web3Forms (안정적, 250건/월 무료, access_key 필요)
+ *    가입: https://web3forms.com/ → 'hyedu0829@gmail.com' 입력 → 즉시 access key 발급
+ *    환경변수 NEXT_PUBLIC_WEB3FORMS_KEY 에 발급받은 키 입력
+ * 2) FALLBACK — FormSubmit.co (가입 불필요, 단 가끔 522 오류 발생)
+ * 3) UI FALLBACK — 둘 다 실패 시 사용자에게 mailto / 카카오 채널 / 정보 복사 옵션 제공
  */
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/hyedu0829@gmail.com';
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/hyedu0829@gmail.com';
+
+const KAKAO_CHANNEL = 'http://pf.kakao.com/_fxbVcs';
+const CONTACT_EMAIL = 'hyedu0829@gmail.com';
+
+type FormFields = {
+  school: string;
+  contactName: string;
+  phone: string;
+  email: string;
+  target: string;
+  schedule: string;
+  programs: string;
+  notes: string;
+};
 
 type Status =
   | { type: 'idle' }
   | { type: 'submitting' }
   | { type: 'success' }
-  | { type: 'error'; message: string };
+  | { type: 'error'; fields: FormFields };
+
+function collectFields(form: HTMLFormElement): FormFields {
+  const fd = new FormData(form);
+  const get = (k: string) => String(fd.get(k) ?? '').trim();
+  return {
+    school: get('학교/기관명'),
+    contactName: get('담당자 이름'),
+    phone: get('연락처'),
+    email: get('이메일'),
+    target: get('대상 및 인원'),
+    schedule: get('희망 일정'),
+    programs: get('관심 프로그램'),
+    notes: get('기타 요청사항'),
+  };
+}
+
+function buildMessageBody(f: FormFields): string {
+  const lines: Array<[string, string]> = [
+    ['학교/기관명', f.school],
+    ['담당자 이름', f.contactName],
+    ['연락처', f.phone],
+    ['이메일', f.email],
+    ['대상 및 인원', f.target],
+    ['희망 일정', f.schedule],
+    ['관심 프로그램', f.programs],
+    ['기타 요청사항', f.notes],
+  ];
+  return lines
+    .map(([label, value]) => `■ ${label}\n${value || '-'}`)
+    .join('\n\n');
+}
+
+async function submitWeb3Forms(f: FormFields): Promise<boolean> {
+  if (!WEB3FORMS_KEY) return false;
+  const payload = new FormData();
+  payload.append('access_key', WEB3FORMS_KEY);
+  payload.append('subject', '[홈페이지] 교육 신청서');
+  payload.append('from_name', `${f.school} - ${f.contactName}`);
+  payload.append('email', f.email);
+  payload.append('학교/기관명', f.school);
+  payload.append('담당자 이름', f.contactName);
+  payload.append('연락처', f.phone);
+  payload.append('이메일', f.email);
+  payload.append('대상 및 인원', f.target);
+  payload.append('희망 일정', f.schedule);
+  payload.append('관심 프로그램', f.programs);
+  payload.append('기타 요청사항', f.notes);
+  try {
+    const res = await fetch(WEB3FORMS_ENDPOINT, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: payload,
+    });
+    if (!res.ok) return false;
+    const json = (await res.json()) as { success?: boolean };
+    return json.success === true;
+  } catch {
+    return false;
+  }
+}
+
+async function submitFormSubmit(f: FormFields): Promise<boolean> {
+  const payload = new FormData();
+  payload.append('학교/기관명', f.school);
+  payload.append('담당자 이름', f.contactName);
+  payload.append('연락처', f.phone);
+  payload.append('이메일', f.email);
+  payload.append('대상 및 인원', f.target);
+  payload.append('희망 일정', f.schedule);
+  payload.append('관심 프로그램', f.programs);
+  payload.append('기타 요청사항', f.notes);
+  payload.append('_subject', '[홈페이지] 교육 신청서');
+  payload.append('_template', 'table');
+  payload.append('_captcha', 'false');
+
+  // 1회 자동 재시도 (FormSubmit 의 일시 522 에러 완화)
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: payload,
+      });
+      if (res.ok) {
+        const json = (await res.json()) as { success?: string | boolean };
+        if (json.success === 'true' || json.success === true) return true;
+      }
+    } catch {
+      // 다음 시도로 진행
+    }
+    if (attempt === 1) await new Promise((r) => setTimeout(r, 1000));
+  }
+  return false;
+}
 
 export default function ApplicationForm({ isKo }: { isKo: boolean }) {
   const [status, setStatus] = useState<Status>({ type: 'idle' });
@@ -27,38 +138,20 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
     setStatus({ type: 'submitting' });
 
     const form = e.currentTarget;
-    const formData = new FormData(form);
+    const fields = collectFields(form);
 
-    // FormSubmit.co 전용 옵션
-    formData.append('_subject', '[홈페이지] 교육 신청서');
-    formData.append('_template', 'table'); // 메일 본문을 표 형태로
-    formData.append('_captcha', 'false'); // 자동 reCAPTCHA 비활성 (간소화)
+    // 1) Web3Forms 시도 → 실패 시 2) FormSubmit (재시도 포함)
+    const ok = (await submitWeb3Forms(fields)) || (await submitFormSubmit(fields));
 
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      const json = (await res.json()) as { success?: string | boolean };
-      if (json.success !== 'true' && json.success !== true) {
-        throw new Error('전송 실패 응답');
-      }
+    if (ok) {
       setStatus({ type: 'success' });
       form.reset();
-    } catch {
-      setStatus({
-        type: 'error',
-        message: isKo
-          ? '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
-          : 'An error occurred. Please try again shortly.',
-      });
+    } else {
+      setStatus({ type: 'error', fields });
     }
   }
 
+  // 성공 화면 ---------------------------------------------------
   if (status.type === 'success') {
     return (
       <div className="rounded-2xl bg-white border border-green-200 p-10 text-center shadow-sm">
@@ -102,45 +195,19 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label={isKo ? '학교/기관명' : 'School / Organization'} required>
-          <input
-            type="text"
-            name="학교/기관명"
-            required
-            disabled={submitting}
-            className="form-input"
-          />
+          <input type="text" name="학교/기관명" required disabled={submitting} className="form-input" />
         </Field>
 
         <Field label={isKo ? '담당자 이름' : 'Contact Person'} required>
-          <input
-            type="text"
-            name="담당자 이름"
-            required
-            disabled={submitting}
-            className="form-input"
-          />
+          <input type="text" name="담당자 이름" required disabled={submitting} className="form-input" />
         </Field>
 
         <Field label={isKo ? '연락처' : 'Phone'} required>
-          <input
-            type="tel"
-            name="연락처"
-            placeholder="010-1234-5678"
-            required
-            disabled={submitting}
-            className="form-input"
-          />
+          <input type="tel" name="연락처" placeholder="010-1234-5678" required disabled={submitting} className="form-input" />
         </Field>
 
         <Field label={isKo ? '이메일' : 'Email'} required>
-          <input
-            type="email"
-            name="이메일"
-            placeholder="example@email.com"
-            required
-            disabled={submitting}
-            className="form-input"
-          />
+          <input type="email" name="이메일" placeholder="example@email.com" required disabled={submitting} className="form-input" />
         </Field>
 
         <Field label={isKo ? '대상 및 인원' : 'Target & Number'} required>
@@ -197,10 +264,9 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
         </Field>
       </div>
 
+      {/* 오류 시 대체 안내 ----------------------------------- */}
       {status.type === 'error' && (
-        <div className="mt-4 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
-          {status.message}
-        </div>
+        <ErrorFallback fields={status.fields} isKo={isKo} />
       )}
 
       <div className="mt-6 flex justify-center">
@@ -221,8 +287,8 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
 
       <p className="mt-4 text-center text-xs text-gray-400">
         {isKo
-          ? '제출하신 정보는 hyedu0829@gmail.com 으로 전송되며, 문의 응대 외 다른 용도로 사용되지 않습니다.'
-          : 'Your information is sent to hyedu0829@gmail.com and used solely for responding to your inquiry.'}
+          ? `제출하신 정보는 ${CONTACT_EMAIL} 으로 전송되며, 문의 응대 외 다른 용도로 사용되지 않습니다.`
+          : `Your information is sent to ${CONTACT_EMAIL} and used solely for responding to your inquiry.`}
       </p>
 
       <style jsx>{`
@@ -245,6 +311,102 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
         }
       `}</style>
     </form>
+  );
+}
+
+// ============ 오류 시 대체 안내 컴포넌트 ============
+function ErrorFallback({ fields, isKo }: { fields: FormFields; isKo: boolean }) {
+  const [copied, setCopied] = useState(false);
+  const body = buildMessageBody(fields);
+  const subject = encodeURIComponent('[교육 신청] ' + (fields.school || ''));
+  const mailtoBody = encodeURIComponent(body);
+  const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${mailtoBody}`;
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(
+        `${CONTACT_EMAIL}\n\n[교육 신청서]\n\n${body}`,
+      );
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // 클립보드 권한 없는 경우 무시
+    }
+  }
+
+  return (
+    <div className="mt-5 rounded-xl bg-amber-50 border border-amber-200 p-5">
+      <div className="flex items-start gap-3 mb-3">
+        <span className="text-2xl">⚠️</span>
+        <div>
+          <h4 className="font-bold text-amber-900 mb-1">
+            {isKo ? '전송에 일시적인 문제가 발생했습니다' : 'Temporary submission issue'}
+          </h4>
+          <p className="text-sm text-amber-800 leading-relaxed">
+            {isKo
+              ? '아래 방법 중 한 가지로 신청해 주시면 담당자가 빠르게 연락드리겠습니다.'
+              : 'Please use one of the alternatives below — we will respond shortly.'}
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4">
+        {/* ① 이메일로 직접 보내기 */}
+        <a
+          href={mailtoUrl}
+          className="flex items-center justify-center gap-2 bg-white text-point font-bold text-sm px-4 py-3 rounded-lg border-2 border-point hover:bg-point hover:text-white transition-all"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" strokeLinecap="round" strokeLinejoin="round" />
+            <polyline points="22,6 12,13 2,6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {isKo ? '이메일로 보내기' : 'Send via Email'}
+        </a>
+
+        {/* ② 카카오 채널 문의 */}
+        <a
+          href={KAKAO_CHANNEL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 bg-[#FEE500] text-[#391B1B] font-bold text-sm px-4 py-3 rounded-lg hover:opacity-90 transition-opacity"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+            <path d="M12 3C6.48 3 2 6.58 2 11c0 2.85 1.87 5.34 4.66 6.79l-1.1 4.03c-.1.36.3.65.62.45L11 19.5c.33.03.66.05 1 .05 5.52 0 10-3.58 10-8s-4.48-8.55-10-8.55z" />
+          </svg>
+          {isKo ? '카카오톡 문의' : 'KakaoTalk'}
+        </a>
+
+        {/* ③ 작성 내용 복사 */}
+        <button
+          type="button"
+          onClick={copyToClipboard}
+          className="flex items-center justify-center gap-2 bg-white text-slate-700 font-bold text-sm px-4 py-3 rounded-lg border-2 border-slate-300 hover:border-slate-500 transition-all"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+            <rect x="9" y="9" width="13" height="13" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {copied
+            ? isKo ? '복사됨 ✓' : 'Copied ✓'
+            : isKo ? '내용 복사' : 'Copy Info'}
+        </button>
+      </div>
+
+      {/* 연락처 정보 */}
+      <div className="mt-4 pt-4 border-t border-amber-200 text-xs text-amber-900 space-y-1">
+        <p>
+          📧 <strong>{CONTACT_EMAIL}</strong>
+        </p>
+        <p>
+          📞 <strong>070-8064-0829</strong>
+        </p>
+        <p className="text-amber-700/80">
+          {isKo
+            ? '※ 잠시 후 [신청서 보내기] 버튼을 다시 눌러보셔도 됩니다.'
+            : '※ You can also retry by clicking [Submit] in a moment.'}
+        </p>
+      </div>
+    </div>
   );
 }
 
