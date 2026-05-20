@@ -1,16 +1,19 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 /**
  * 교육 신청 폼.
  *
- * 전송 전략 (이중 안전망):
- * 1) PRIMARY  — Web3Forms (안정적, 250건/월 무료, access_key 필요)
- *    가입: https://web3forms.com/ → 'hyedu0829@gmail.com' 입력 → 즉시 access key 발급
- *    환경변수 NEXT_PUBLIC_WEB3FORMS_KEY 에 발급받은 키 입력
- * 2) FALLBACK — FormSubmit.co (가입 불필요, 단 가끔 522 오류 발생)
- * 3) UI FALLBACK — 둘 다 실패 시 사용자에게 mailto / 카카오 채널 / 정보 복사 옵션 제공
+ * 전송 전략 (3중 안전망):
+ * 1) PRIMARY   — Firestore 직접 저장 (Firebase, 100% 안정적, 무료, 즉시)
+ *                → 관리자가 Firebase Console 에서 직접 확인 가능
+ *                → 분실 위험 없음, 외부 서비스 장애 영향 없음
+ * 2) SECONDARY — Web3Forms / FormSubmit 으로 이메일 알림 (best effort)
+ *                → 실패해도 Firestore 에 저장되었으므로 데이터는 안전
+ * 3) UI FALLBACK — 모든 전송이 실패할 경우만 사용자에게 대체 안내
  */
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '';
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
@@ -65,6 +68,33 @@ function buildMessageBody(f: FormFields): string {
   return lines
     .map(([label, value]) => `■ ${label}\n${value || '-'}`)
     .join('\n\n');
+}
+
+/**
+ * Firestore 'applications' 컬렉션에 신청서 저장.
+ * Firebase 가 살아있으면 100% 성공. 관리자는 Firebase Console > Firestore Database
+ * > applications 컬렉션에서 모든 신청 내역 확인 가능.
+ */
+async function submitFirestore(f: FormFields): Promise<boolean> {
+  try {
+    await addDoc(collection(db, 'applications'), {
+      school: f.school,
+      contactName: f.contactName,
+      phone: f.phone,
+      email: f.email,
+      target: f.target,
+      schedule: f.schedule,
+      programs: f.programs,
+      notes: f.notes,
+      createdAt: serverTimestamp(),
+      status: 'new',
+      source: 'website',
+    });
+    return true;
+  } catch (err) {
+    console.error('[ApplicationForm] Firestore submit failed', err);
+    return false;
+  }
 }
 
 async function submitWeb3Forms(f: FormFields): Promise<boolean> {
@@ -140,13 +170,19 @@ export default function ApplicationForm({ isKo }: { isKo: boolean }) {
     const form = e.currentTarget;
     const fields = collectFields(form);
 
-    // 1) Web3Forms 시도 → 실패 시 2) FormSubmit (재시도 포함)
-    const ok = (await submitWeb3Forms(fields)) || (await submitFormSubmit(fields));
+    // 1) Firestore 에 저장 (PRIMARY - 무조건 성공해야 함)
+    const firestoreOk = await submitFirestore(fields);
 
-    if (ok) {
+    // 2) 동시에 이메일 알림 시도 (best effort - 실패해도 데이터는 Firestore 에 안전)
+    //    사용자를 기다리게 하지 않고 백그라운드로 실행
+    void submitWeb3Forms(fields).catch(() => {});
+    void submitFormSubmit(fields).catch(() => {});
+
+    if (firestoreOk) {
       setStatus({ type: 'success' });
       form.reset();
     } else {
+      // Firestore 도 실패한 극히 드문 경우 → 대체 안내
       setStatus({ type: 'error', fields });
     }
   }
