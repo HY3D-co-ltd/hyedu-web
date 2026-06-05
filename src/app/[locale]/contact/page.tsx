@@ -109,9 +109,11 @@ export default async function ContactPage({
               </span>
             </a>
 
-            {/* Email */}
+            {/* Email — Gmail 웹으로 열기 (mailto: 미설정 환경 대응) */}
             <a
-              href="mailto:hyedu0829@gmail.com"
+              href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex flex-col items-center gap-4 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow text-center"
             >
               <Image
