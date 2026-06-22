@@ -120,16 +120,16 @@ export default function ProgramsClient({ locale }: { locale: string }) {
             </Link>
             <a
               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-curriculum.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
+              download="2026_찾아가는체험교실_커리큘럼.pdf"
               className="inline-flex items-center justify-center gap-2 bg-white text-point font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full border-2 border-point hover:bg-point hover:text-white hover:scale-105 transition-all"
               style={{ boxShadow: '0 8px 24px rgba(51,102,102,0.15)' }}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 md:w-6 md:h-6">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 2v6h6M9 13h6M9 17h4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points="7 10 12 15 17 10" strokeLinecap="round" strokeLinejoin="round" />
+                <line x1="12" y1="15" x2="12" y2="3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              {isKo ? '커리큘럼 보기' : 'View Curriculum'}
+              {isKo ? '커리큘럼 다운로드' : 'Download Curriculum'}
             </a>
           </div>
         </div>
