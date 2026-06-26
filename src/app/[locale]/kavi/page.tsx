@@ -75,9 +75,9 @@ const aiTiers: { level: string; sub: string; color: string; courses: Course[] }[
 
 // ── 캠프 유형 ────────────────────────────────────────────────────────────
 const campTypes = [
-  { type: '일일 캠프', price: '120,000원', detail: '1일 5시간 · 메이커 액티비티 2종' },
-  { type: '1박 2일', price: '300,000원', detail: '특강 + 액티비티 + 팀 프로젝트' },
-  { type: '2박 3일', price: '450,000원', detail: '메이커 액티비티 3종 + 발표·수료' },
+  { type: '일일 캠프', detail: '1일 5시간 · 메이커 액티비티 2종' },
+  { type: '1박 2일', detail: '특강 + 액티비티 + 팀 프로젝트' },
+  { type: '2박 3일', detail: '메이커 액티비티 3종 + 발표·수료' },
 ];
 
 const campTimetable = [
@@ -97,7 +97,7 @@ const makerActivities = [
 
 // ── 경진대회 일정 ────────────────────────────────────────────────────────
 const competitionSchedule = [
-  { date: '5.20 ~ 6.15', label: '얼리버드 신청 (50% 할인)' },
+  { date: '5.20 ~ 6.15', label: '얼리버드 신청' },
   { date: '6.16 ~ 7.10', label: '일반 신청' },
   { date: '7.15 (수)', label: '사전 오리엔테이션' },
   { date: '7.18 (토)', label: 'AI 에이전트 집중교육 (온라인 4시간)' },
@@ -272,8 +272,7 @@ export default async function KaviLandingPage({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
             {campTypes.map((c) => (
               <div key={c.type} className="rounded-2xl bg-white border border-gray-100 shadow-sm p-7 text-center">
-                <div className="text-sm font-bold text-[#1FA85B] mb-2">{c.type}</div>
-                <div className="text-2xl md:text-3xl font-extrabold mb-3">{c.price}</div>
+                <div className="text-lg md:text-xl font-extrabold text-[#1FA85B] mb-3">{c.type}</div>
                 <p className="text-[13px] md:text-sm text-gray-500 leading-relaxed">{c.detail}</p>
               </div>
             ))}
@@ -333,12 +332,11 @@ export default async function KaviLandingPage({
           </div>
 
           {/* 핵심 요약 */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
             {[
               { k: '참가 대상', v: '전국 중·고·대학생', s: '만 13~20세 · 개인전' },
               { k: '진행 방식', v: '1일 현장 개발', s: 'AI 자동심사 80 + 투표 20' },
-              { k: '참가비', v: '20만원', s: '얼리버드 10만원' },
-              { k: '총 상금', v: '180만원+', s: '참가자 전원 상장' },
+              { k: '시상', v: '총 180만원+', s: '참가자 전원 상장' },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl bg-white/8 border border-white/15 p-5 text-center">
                 <div className="text-[12px] text-white/60 font-semibold mb-2">{x.k}</div>
