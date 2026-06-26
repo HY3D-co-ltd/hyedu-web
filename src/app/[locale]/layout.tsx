@@ -2,10 +2,6 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import Popup from '@/components/layout/Popup';
-import { OrganizationJsonLd } from '@/components/seo/JsonLd';
 import './globals.css';
 
 export function generateStaticParams() {
@@ -99,11 +95,7 @@ export default async function RootLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <OrganizationJsonLd locale={locale} />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Popup />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
