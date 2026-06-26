@@ -448,7 +448,7 @@ export default async function KaviLandingPage({
           <p className="text-[15px] font-bold text-white mb-2">한국벤처혁신학회 (KAVI)</p>
           <p className="text-[13px] leading-relaxed">
             Korean Academy of Venture Innovation<br />
-            서울시 강남구 남부순환로 2738 (도곡동, 상일빌딩 401호) · 02-521-6745 · mail.kavi@kavi.or.kr
+            02-521-6745 · mail.kavi@kavi.or.kr
           </p>
           <p className="text-[12px] text-white/40 mt-5">
             교육 기획·운영: 한양미래연구소 &nbsp;|&nbsp; © 2026 한국벤처혁신학회. All rights reserved.
