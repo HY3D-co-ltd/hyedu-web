@@ -407,38 +407,37 @@ export default async function KaviLandingPage({
             </p>
           </div>
           <div className="rounded-2xl border border-gray-100 bg-[#f7f9fc] p-7 md:p-10">
-            <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200">
+            <div className="flex justify-center mb-8 pb-8 border-b border-gray-200">
               <Image
                 src="/images/kavi/logo.png"
                 alt="한국벤처혁신학회 KAVI"
                 width={218}
                 height={69}
-                className="h-9 w-auto"
+                className="h-10 md:h-12 w-auto"
               />
             </div>
-            <dl className="space-y-5">
-              {[
-                { k: '주소', v: '서울시 강남구 남부순환로 2738 (도곡동, 상일빌딩 401호)' },
-                { k: '개인정보관리자', v: '이도연' },
-                { k: '이메일', v: 'mail.kavi@kavi.or.kr', href: 'mailto:mail.kavi@kavi.or.kr' },
-                { k: '대표번호', v: '02-521-6745', href: 'tel:02-521-6745' },
-              ].map((row) => (
-                <div key={row.k} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <dt className="flex-shrink-0 w-28 text-[13px] font-bold text-gray-500 uppercase tracking-wide">
-                    {row.k}
-                  </dt>
-                  <dd className="text-[15px] md:text-base font-medium text-gray-800 break-words">
-                    {row.href ? (
-                      <a href={row.href} className="text-[#1B4DA1] hover:underline">
-                        {row.v}
-                      </a>
-                    ) : (
-                      row.v
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <a
+                href="tel:02-521-6745"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white border border-gray-100 px-6 py-8 shadow-sm hover:shadow-md hover:border-[#1B4DA1]/40 transition-all"
+              >
+                <span className="text-3xl mb-3">📞</span>
+                <span className="text-[13px] font-bold text-gray-400 tracking-widest mb-2">대표번호</span>
+                <span className="text-2xl md:text-3xl font-extrabold text-[#1B4DA1] group-hover:underline">
+                  02-521-6745
+                </span>
+              </a>
+              <a
+                href="mailto:mail.kavi@kavi.or.kr"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white border border-gray-100 px-6 py-8 shadow-sm hover:shadow-md hover:border-[#1B4DA1]/40 transition-all"
+              >
+                <span className="text-3xl mb-3">✉️</span>
+                <span className="text-[13px] font-bold text-gray-400 tracking-widest mb-2">이메일</span>
+                <span className="text-lg md:text-2xl font-extrabold text-[#1B4DA1] group-hover:underline break-all">
+                  mail.kavi@kavi.or.kr
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
