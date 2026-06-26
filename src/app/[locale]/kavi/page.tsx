@@ -18,12 +18,40 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const title = '한국벤처혁신학회(KAVI) 청소년 AI 교육사업';
+  const description =
+    '한국벤처혁신학회(KAVI)와 함께하는 청소년 AI 교육 — AI 체험교실 14종, 청소년 캠프, 전국 AI에이전트 코딩 경진대회. 초·중·고 대상 미래 인재 양성 프로그램.';
+  const ogImage = 'https://hyedu.kr/images/kavi/og-image.png';
+
   return {
-    title: '한국벤처혁신학회(KAVI) 청소년 AI 교육사업',
-    description:
-      '한국벤처혁신학회(KAVI)와 함께하는 청소년 AI 교육 — AI 체험교실 14종, 청소년 캠프, 전국 AI에이전트 코딩 경진대회. 초·중·고 대상 미래 인재 양성 프로그램.',
+    title,
+    description,
     robots: { index: false, follow: false },
     alternates: {},
+    // 본 사이트(한양미래연구소) og 태그를 상속받지 않도록 KAVI 전용으로 전부 재정의.
+    // 카카오톡/페이스북 등 링크 미리보기가 학회 브랜드로 뜨게 한다.
+    openGraph: {
+      type: 'website',
+      siteName: '한국벤처혁신학회 (KAVI)',
+      locale: 'ko_KR',
+      title,
+      description,
+      url: 'https://hyedu.kr/ko/kavi/',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: '한국벤처혁신학회 KAVI 청소년 AI 교육',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
