@@ -581,32 +581,6 @@ export default async function CampPage({
                       : 'Hanyang ERICA Campus or a partner institution (regional)'}
                   </td>
                 </tr>
-                <tr>
-                  <th className="bg-[#f5f5f5] border border-gray-300 px-3 py-3 font-bold text-gray-800">
-                    {isKo ? '비용' : 'Fee'}
-                  </th>
-                  <td className="border border-gray-300 px-3 py-3 align-top">
-                    {isKo ? (
-                      <>일일 120,000원<br />1박 2일 300,000원<br />2박 3일 450,000원</>
-                    ) : (
-                      <>1-day KRW 120,000<br />1N/2D KRW 300,000<br />2N/3D KRW 450,000</>
-                    )}
-                  </td>
-                  <td className="border border-gray-300 px-3 py-3 align-top">
-                    {isKo ? (
-                      <>1일 체험 120,000원<br />(1일 5시간 1회)</>
-                    ) : (
-                      <>1-day experience KRW 120,000<br />(5 hours, 1 session)</>
-                    )}
-                  </td>
-                  <td className="border border-gray-300 px-3 py-3 align-top">
-                    {isKo ? (
-                      <>4회 399,000원 (재료비 별도)<br />(4회 각 6시간 총 24시간)</>
-                    ) : (
-                      <>4 sessions KRW 399,000 (materials excluded)<br />(6 hours × 4 sessions = 24 hours)</>
-                    )}
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -652,15 +626,9 @@ export default async function CampPage({
                 </tr>
                 <tr>
                   <th className="bg-[#f5f5f5] border border-gray-300 px-4 py-3 font-bold text-left">
-                    {isKo ? '1인 비용' : 'Per-person Fee'}
-                  </th>
-                  <td className="border border-gray-300 px-4 py-3">
-                    {isKo ? '1박 2일 300,000원' : '1N 2D: KRW 300,000'}
-                  </td>
-                  <th className="bg-[#f5f5f5] border border-gray-300 px-4 py-3 font-bold text-left">
                     {isKo ? '교육장소' : 'Venue'}
                   </th>
-                  <td className="border border-gray-300 px-4 py-3">
+                  <td className="border border-gray-300 px-4 py-3" colSpan={3}>
                     {isKo ? '한양대 ERICA 캠퍼스 내 강의실' : 'Classrooms on Hanyang ERICA Campus'}
                   </td>
                 </tr>
@@ -744,15 +712,6 @@ export default async function CampPage({
                       <tbody>
                         <tr>
                           <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold text-gray-800 w-[140px] md:w-[180px]">
-                            {isKo ? '비용 (1인 기준)' : 'Fee (per person)'}
-                          </th>
-                          <td className="border border-gray-200 px-4 py-3 align-top">
-                            <span className="font-bold text-point text-[16px]">{pick(t.price, isKo)}</span>
-                            <span className="block text-[12px] text-gray-500 mt-1">{pick(t.priceNote, isKo)}</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold text-gray-800">
                             {isKo ? '프로그램 구성' : 'Program'}
                           </th>
                           <td className="border border-gray-200 px-4 py-3 align-top">

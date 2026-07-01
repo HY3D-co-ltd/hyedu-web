@@ -365,19 +365,6 @@ export default async function CompetitionCampPage({
               <tbody>
                 <tr>
                   <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold w-[140px] md:w-[180px]">
-                    {isKo ? '비용 (1인 기준)' : 'Fee (per person)'}
-                  </th>
-                  <td className="border border-gray-200 px-4 py-3 align-top">
-                    <span className="font-bold text-[#c73030] text-[16px]">
-                      {isKo ? '499,000원' : 'KRW 499,000'}
-                    </span>
-                    <span className="block text-[12px] text-gray-500 mt-1">
-                      {isKo ? '(총 4회 프로그램)' : '(4-session program)'}
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold">
                     {isKo ? '프로그램 구성' : 'Program'}
                   </th>
                   <td className="border border-gray-200 px-4 py-3 align-top text-gray-800">

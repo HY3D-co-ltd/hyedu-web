@@ -219,12 +219,6 @@ export default async function YouthClubPage({
                       </span>
                       <span className="text-gray-800">{pick(program.output, isKo)}</span>
                     </div>
-                    <div className="flex">
-                      <span className="text-gray-500 w-20 flex-shrink-0">
-                        {isKo ? '교육비용' : 'Fee'}
-                      </span>
-                      <span className="font-semibold text-point">{pick(program.price, isKo)}</span>
-                    </div>
                   </div>
                 </div>
               </article>

@@ -191,9 +191,6 @@ export default function QuickLinksAndPrograms() {
                       <p className="text-[15px] font-bold text-[#777]">
                         {pick(prog.category, isKo)}
                       </p>
-                      <p className="text-[20px] font-bold text-point mt-2">
-                        {pick(prog.price, isKo)}
-                      </p>
                     </div>
                   </div>
                 </Link>

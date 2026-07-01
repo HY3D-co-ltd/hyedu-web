@@ -93,7 +93,6 @@ export default function AgeRecommendation() {
               <div>
                 <span className="text-[15px] font-bold text-[#777]">{card.category}</span>
                 <h5 className="text-[20px] font-bold text-[#333] my-[10px] leading-tight">{card.title}</h5>
-                <p className="text-[18px] font-bold text-point">{card.price}</p>
               </div>
             </Link>
           ))}
