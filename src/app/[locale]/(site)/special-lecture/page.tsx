@@ -280,11 +280,6 @@ export default async function SpecialLecturePage({
                   <li className="relative pl-3 before:content-['·'] before:absolute before:left-0">
                     {isKo ? '기간: 60-100분' : 'Duration: 60–100 min'}
                   </li>
-                  <li className="relative pl-3 before:content-['·'] before:absolute before:left-0">
-                    <span className="font-semibold text-[#336666]">
-                      {isKo ? '교육비용: 1인 22,000원' : 'Fee: KRW 22,000 / person'}
-                    </span>
-                  </li>
                 </ul>
               </div>
             </a>
@@ -323,11 +318,6 @@ export default async function SpecialLecturePage({
                   </li>
                   <li className="relative pl-3 before:content-['·'] before:absolute before:left-0">
                     {isKo ? '기간: 100-120분' : 'Duration: 100–120 min'}
-                  </li>
-                  <li className="relative pl-3 before:content-['·'] before:absolute before:left-0">
-                    <span className="font-semibold text-[#336666]">
-                      {isKo ? '교육비용: 별도 문의' : 'Fee: Contact for quote'}
-                    </span>
                   </li>
                 </ul>
               </div>
@@ -448,14 +438,6 @@ export default async function SpecialLecturePage({
                         {isKo
                           ? '1회 최소인원 20명 (20명 이하일 경우, 1인당 비용 상승)'
                           : 'Minimum 20 per session (fewer than 20 → per-person fee increases)'}
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-200">
-                      <th className="py-4 px-4 bg-gray-50 text-left font-semibold text-gray-700">
-                        {isKo ? '비용' : 'Fee'}
-                      </th>
-                      <td className="py-4 px-4 text-gray-600">
-                        {isKo ? '1인 20,000 (VAT 별도)' : 'KRW 20,000 / person (VAT excl.)'}
                       </td>
                     </tr>
                     <tr className="border-b border-gray-200">
@@ -714,14 +696,6 @@ export default async function SpecialLecturePage({
                       </th>
                       <td className="py-4 px-4 text-gray-600">
                         {isKo ? '1회 최소 20명 이상' : 'Minimum 20 per session'}
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-200">
-                      <th className="py-4 px-4 bg-gray-50 text-left font-semibold text-gray-700">
-                        {isKo ? '비용' : 'Fee'}
-                      </th>
-                      <td className="py-4 px-4 text-gray-600">
-                        {isKo ? '별도 문의' : 'Contact for quote'}
                       </td>
                     </tr>
                     <tr className="border-b border-gray-200">

@@ -412,21 +412,6 @@ export default async function SaturdayCampPage({
               <tbody>
                 <tr>
                   <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold w-[140px] md:w-[180px]">
-                    {isKo ? '비용 (1인 기준)' : 'Fee (per person)'}
-                  </th>
-                  <td className="border border-gray-200 px-4 py-3 align-top">
-                    <span className="font-bold text-point text-[16px]">
-                      {isKo ? '120,000원' : 'KRW 120,000'}
-                    </span>
-                    <span className="block text-[12px] text-gray-500 mt-1">
-                      {isKo
-                        ? '최소 인원 25명 / 교육비, 교재비, 관리비, 식비 등 기타 제반비용 모두 포함 / 변동 가능'
-                        : 'Minimum 25 participants / includes tuition, materials, operations, and meals / subject to change'}
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th className="bg-[#f5f5f5] border border-gray-200 px-4 py-3 text-left font-bold">
                     {isKo ? '프로그램 구성' : 'Program'}
                   </th>
                   <td className="border border-gray-200 px-4 py-3 align-top">

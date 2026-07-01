@@ -517,14 +517,6 @@ export default async function ProgramDetailPage({
                 </tr>
                 <tr className="border-b border-gray-300">
                   <th className="bg-[#f5f5f5] px-5 py-3.5 text-left text-[14px] font-bold text-gray-800 w-[120px] border-r border-gray-300">
-                    {isKo ? '비용' : 'Fee'}
-                  </th>
-                  <td className="px-5 py-3.5 text-[14px] text-gray-700">
-                    {isKo ? program.price : program.priceEn}
-                  </td>
-                </tr>
-                <tr className="border-b border-gray-300">
-                  <th className="bg-[#f5f5f5] px-5 py-3.5 text-left text-[14px] font-bold text-gray-800 w-[120px] border-r border-gray-300">
                     {isKo ? '장소' : 'Venue'}
                   </th>
                   <td className="px-5 py-3.5 text-[14px] text-gray-700">
