@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "1784685980616-cepuax",
+    "title": "토요캠프",
+    "content": "블루투스 스피커 만들기",
+    "imageUrl": "/images/popups/1784685957553-g5qce6.jpg",
+    "linkUrl": "https://hyedu.kr/ko/board/events/313-music-tech-engineer-saturday-camp/",
+    "isActive": true,
+    "startDate": "2026-07-22",
+    "endDate": "2026-08-21",
+    "createdAt": "2026-07-22T02:06:20.616Z"
+  }
+]
