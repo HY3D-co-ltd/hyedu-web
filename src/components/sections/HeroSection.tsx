@@ -8,7 +8,7 @@ import BoothPromoSlide from './BoothPromoSlide';
 import YouthCampPromoSlide from './YouthCampPromoSlide';
 
 type Slide =
-  | { type: 'image'; image: string; href: string | null; external?: boolean; aspect?: string }
+  | { type: 'image'; image: string; href: string | null; external?: boolean; fit?: 'cover' | 'contain' }
   | { type: 'booth' }
   | { type: 'camp' };
 
@@ -18,8 +18,8 @@ const slides: Slide[] = [
   { type: 'image', image: '/images/slide/slide01.png', href: null },
   { type: 'booth' },
   { type: 'camp' },
-  // 포스터 원본 비율 1672x941 ≈ 16:9 — 원본 그대로 노출 (신청하기 버튼까지)
-  { type: 'image', image: '/images/slide/popular-robot-camp.png', href: KAKAO_URL, external: true, aspect: 'aspect-[1672/941]' },
+  // 다른 슬라이드와 동일한 높이 유지 + 포스터 전체 노출 위해 contain + 다크 배경
+  { type: 'image', image: '/images/slide/popular-robot-camp.png', href: KAKAO_URL, external: true, fit: 'contain' as const },
 ];
 
 const BOOTH_PDF_URL = 'https://hyedu.kr/files/2026-booth-curriculum.pdf';
@@ -63,14 +63,16 @@ export default function HeroSection() {
             );
           }
 
-          const aspectClass = slide.aspect ?? 'aspect-[16/6] md:aspect-[16/5]';
+          const fitClass = slide.fit === 'contain' ? 'object-contain' : 'object-cover';
+          // 포스터 배경(다크 네이비)과 유사한 색으로 좌우 여백 채워 자연스럽게
+          const bgStyle = slide.fit === 'contain' ? { backgroundColor: '#090633' } : undefined;
           const content = (
-            <div className={`relative w-full ${aspectClass}`}>
+            <div className="relative w-full aspect-[16/6] md:aspect-[16/5]" style={bgStyle}>
               <Image
                 src={slide.image}
                 alt={isKo ? `슬라이드 ${index + 1}` : `Slide ${index + 1}`}
                 fill
-                className="object-cover"
+                className={fitClass}
                 priority={index === 0}
               />
             </div>
