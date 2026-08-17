@@ -84,6 +84,30 @@ export default async function ContactPage({
         </div>
       </section>
 
+      {/* Phone / Business Hours — 전화 문의 유도를 위해 최상단 배치 */}
+      <section className="pb-12 px-4 bg-white">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] flex justify-center">
+          {/* 이미지 전체가 통화 링크 — 모바일에서 누르면 전화 앱이 번호를 띄운다 */}
+          <a
+            href="tel:070-8064-0829"
+            aria-label={isKo ? '070-8064-0829로 전화 걸기' : 'Call +82-70-8064-0829'}
+            className="block w-full max-w-[500px] rounded-2xl transition-opacity hover:opacity-90 active:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-point"
+          >
+            <Image
+              src="/images/main/inquiry01_02.png"
+              alt={
+                isKo
+                  ? '빠른 답변을 원하신다면 070-8064-0829. 업무 시간: 평일 09:00~18:00 (점심시간 12:00~13:00) 주말 및 공휴일 휴무'
+                  : 'For fast responses call +82-70-8064-0829. Hours: Weekdays 09:00–18:00 (lunch 12:00–13:00). Closed on weekends and holidays.'
+              }
+              width={500}
+              height={500}
+              className="w-full h-auto"
+            />
+          </a>
+        </div>
+      </section>
+
       {/* Contact Methods */}
       <section className="pb-16 px-4 bg-white">
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
@@ -173,23 +197,6 @@ export default async function ContactPage({
               isKo
                 ? '카카오톡에서 한양미래연구소 채널을 추가하세요. QR 스캔 시 채널로 이동합니다.'
                 : 'Add the Hanyang Future Lab channel on KakaoTalk. Scan the QR to open the channel.'
-            }
-            width={500}
-            height={500}
-            className="w-full max-w-[500px] h-auto"
-          />
-        </div>
-      </section>
-
-      {/* Phone / Business Hours */}
-      <section className="py-12 px-4 bg-white">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] flex justify-center">
-          <Image
-            src="/images/main/inquiry01_02.png"
-            alt={
-              isKo
-                ? '빠른 답변을 원하신다면 070-8064-0829. 업무 시간: 평일 09:00~18:00 (점심시간 12:00~13:00) 주말 및 공휴일 휴무'
-                : 'For fast responses call +82-70-8064-0829. Hours: Weekdays 09:00–18:00 (lunch 12:00–13:00). Closed on weekends and holidays.'
             }
             width={500}
             height={500}
