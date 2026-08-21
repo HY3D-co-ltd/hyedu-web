@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -12,6 +13,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, 'special-lecture'),
+    openGraph: buildOpenGraph(locale, 'special-lecture'),
     title: isKo
       ? '전문인 특강 | 4차산업혁명·기업가정신·스타트업 특강'
       : 'Specialist Lectures | 4th Industrial Revolution · Entrepreneurship · Startup',

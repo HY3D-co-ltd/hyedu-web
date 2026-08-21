@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import ProgramsClient from './ProgramsClient';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -9,6 +10,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    alternates: buildAlternates(locale, 'programs'),
+    openGraph: buildOpenGraph(locale, 'programs'),
     title:
       locale === 'ko'
         ? '찾아가는 체험교실 | AI교육·로봇코딩·메이커교육'

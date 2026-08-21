@@ -11,6 +11,7 @@ import RecommendSection from '@/components/sections/RecommendSection';
 import FeatureSection from '@/components/sections/FeatureSection';
 import ContactSection from '@/components/sections/ContactSection';
 import MapSection from '@/components/sections/MapSection';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -20,6 +21,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, ''),
+    openGraph: buildOpenGraph(locale, ''),
     title: isKo
       ? '한양미래연구소 | AI교육·로봇코딩·자율주행 No.1 체험교실'
       : 'Hanyang Future Lab | AI · Robot Coding · Autonomous Driving — No.1 Experience Classes',
@@ -39,9 +42,21 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const isKoPage = locale === 'ko';
 
   return (
     <>
+      {/*
+        홈 히어로는 이미지 슬라이더라 화면에 텍스트 제목이 없어 H1이 존재하지 않았다.
+        H1이 없으면 검색엔진이 이 문서의 주제를 판단할 근거를 잃으므로,
+        디자인을 바꾸지 않으면서 스크린리더·크롤러에만 노출되는 H1을 둔다.
+        (sr-only = 시각적으로 숨기되 접근성 트리에는 남기는 표준 패턴)
+      */}
+      <h1 className="sr-only">
+        {isKoPage
+          ? '한양미래연구소 — 초·중·고 AI교육, 로봇코딩, 자율주행 찾아가는 체험교실'
+          : 'Hanyang Future Lab — AI Education, Robot Coding, and Autonomous Driving On-site Classes for K-12'}
+      </h1>
       <HeroSection />
       <QuickLinksAndPrograms />
       <AgeRecommendation />

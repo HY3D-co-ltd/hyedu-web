@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -10,6 +11,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    alternates: buildAlternates(locale, 'camp/saturday'),
+    openGraph: buildOpenGraph(locale, 'camp/saturday'),
     title:
       locale === 'ko'
         ? '한양미래 청소년 토요캠프 | 1일 융합기술 집중체험'

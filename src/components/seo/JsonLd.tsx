@@ -24,12 +24,18 @@ export function OrganizationJsonLd({ locale }: { locale: string }) {
     },
     telephone: '070-8064-0829',
     email: 'hyedu0829@gmail.com',
+    // sameAs는 "이 계정들이 전부 같은 기관"임을 검색엔진·AI에 알려 엔티티를 통합한다.
+    // 죽은 URL이 들어 있으면 신호가 끊기므로 반드시 200 응답을 확인하고 등록할 것.
+    // 2026-08-21 전수 확인 완료.
     sameAs: [
-      'https://blog.naver.com/hyedu0829',
-      'https://www.youtube.com/@hyedu0829',
-      'https://www.instagram.com/hyedu0829',
+      'https://blog.naver.com/hyhyedu',
+      'https://www.youtube.com/@%ED%95%9C%EC%96%91%EB%AF%B8%EB%9E%98%EC%97%B0%EA%B5%AC%EC%86%8C',
+      'https://www.instagram.com/hy_edu',
+      'https://www.facebook.com/HanyangFutureEdu',
+      'https://hyedu-kr.blogspot.com',
     ],
-    foundingDate: '2020',
+    // about 페이지 본문에 "2019년 한양대학교에서 시작"으로 표기되어 있어 일치시킴
+    foundingDate: '2019',
     founder: {
       '@type': 'Person',
       name: isKo ? '이정욱' : 'Lee Jeong Uk',

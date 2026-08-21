@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import DownloadQR from '@/components/ui/DownloadQR';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 const PROGRAM_PDF_URL = 'https://hyedu.kr/files/2026-programs-overview.pdf';
 
@@ -14,6 +15,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, 'contact'),
+    openGraph: buildOpenGraph(locale, 'contact'),
     title: isKo ? '교육 신청/문의 | 한양미래연구소' : 'Contact / Apply | Hanyang Future Lab',
     description: isKo
       ? '한양미래연구소 교육 신청 및 문의. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로 문의하세요. 경진대회 대비반, 토요캠프 네이버 예약.'

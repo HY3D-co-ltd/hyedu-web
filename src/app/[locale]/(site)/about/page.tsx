@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { history } from '@/data/history';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import CoreValuesMindMap from '@/components/sections/CoreValuesMindMap';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -13,6 +14,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, 'about'),
+    openGraph: buildOpenGraph(locale, 'about'),
     title: isKo
       ? '한양미래연구소 소개 | AI교육·로봇코딩 전문 교육기관'
       : 'About Hanyang Future Lab | AI Education & Robot Coding Institute',

@@ -32,14 +32,15 @@ export async function generateMetadata({
     keywords: isKo
       ? ['AI교육', '로봇교육', '한양미래연구소', '체험교실', '청소년 캠프', '4차산업혁명 교육']
       : ['AI education', 'robot education', 'Hanyang Future Lab', 'experience class', 'youth camp', '4th industrial revolution education'],
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        ko: `${SITE_URL}/ko`,
-        en: `${SITE_URL}/en`,
-        'x-default': `${SITE_URL}/ko`,
-      },
-    },
+    // ⚠️ alternates(canonical/hreflang)와 openGraph.url은 여기서 설정하지 않는다.
+    //
+    // Next.js App Router는 layout의 metadata를 하위 page로 상속시킨다.
+    // 여기에 canonical을 두면, 자기 canonical을 명시하지 않은 모든 페이지가
+    // `/{locale}` 을 정본으로 선언하게 되어 색인에서 제외된다.
+    // (2026-08 실제 발생 — about/programs/camp/board 등 약 30개 페이지 피해)
+    //
+    // → 각 page.tsx에서 `buildAlternates(locale, path)` 로
+    //    자기참조 canonical을 설정할 것. src/lib/seo.ts 참고.
     openGraph: {
       type: 'website',
       siteName,
@@ -47,7 +48,6 @@ export async function generateMetadata({
       alternateLocale: isKo ? 'en_US' : 'ko_KR',
       title,
       description,
-      url: `${SITE_URL}/${locale}`,
       images: [
         {
           url: '/images/logo/logo.jpg',
