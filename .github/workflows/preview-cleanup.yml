@@ -1,0 +1,48 @@
+name: Cleanup PR Preview
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 1
+        continue-on-error: true
+      - name: Remove preview directory
+        id: remove
+        run: |
+          DIR="preview/${{ github.event.pull_request.number }}"
+          if [ -d "$DIR" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            rm -rf "$DIR"
+            git add -A
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: remove preview for closed PR #${{ github.event.pull_request.number }}"
+              git push origin gh-pages
+              echo "removed=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+      - name: Update PR comment
+        if: steps.remove.outputs.removed == 'true'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: preview-url
+          message: |
+            ### Preview removed
+
+            The preview for this PR was removed because the PR is closed.

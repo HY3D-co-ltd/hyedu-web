@@ -1,0 +1,48 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build with preview basePath
+        env:
+          GITHUB_PAGES: 'true'
+          NEXT_BASE_PATH: /hyedu-web/preview/${{ github.event.pull_request.number }}
+        run: npm run build
+      - name: Deploy preview to gh-pages/preview/<pr>
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          target-folder: preview/${{ github.event.pull_request.number }}
+          clean: true
+      - name: Comment preview URL on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: preview-url
+          message: |
+            ### Preview deployed
+
+            - Korean: https://hy3d-co-ltd.github.io/hyedu-web/preview/${{ github.event.pull_request.number }}/ko/
+            - English: https://hy3d-co-ltd.github.io/hyedu-web/preview/${{ github.event.pull_request.number }}/en/
+
+            Updated automatically on every push to this PR. The preview is removed when the PR is closed.
