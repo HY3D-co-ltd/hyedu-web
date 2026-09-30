@@ -575,6 +575,7 @@ export default async function BoothPage({
                 videoId="Za01ssSA4Jg"
                 poster="/images/booth/festa-2026-poster.webp"
                 title={isKo ? '2026 미래교육페스타 체험부스 스케치' : '2026 Future Education Festa Booth Highlights'}
+                endAt={120}
               />
             </div>
 

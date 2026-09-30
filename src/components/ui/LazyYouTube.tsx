@@ -7,6 +7,8 @@ type Props = {
   poster: string;
   title: string;
   className?: string;
+  /** Seconds — playback stops automatically at this point (YouTube `end` param). */
+  endAt?: number;
 };
 
 /**
@@ -15,14 +17,16 @@ type Props = {
  * iframe on user interaction. Improves initial page load and lets us set
  * a branded thumbnail that overrides YouTube's own.
  */
-export default function LazyYouTube({ videoId, poster, title, className = '' }: Props) {
+export default function LazyYouTube({ videoId, poster, title, className = '', endAt }: Props) {
   const [play, setPlay] = useState(false);
 
   if (play) {
+    const params = new URLSearchParams({ autoplay: '1', rel: '0', modestbranding: '1' });
+    if (endAt) params.set('end', String(endAt));
     return (
       <div className={`relative w-full aspect-video ${className}`}>
         <iframe
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+          src={`https://www.youtube.com/embed/${videoId}?${params.toString()}`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
