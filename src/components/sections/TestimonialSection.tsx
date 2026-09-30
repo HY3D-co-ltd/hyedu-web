@@ -4,6 +4,7 @@ import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { reviewPosts } from '@/data/boardPosts';
+import LazyYouTube from '@/components/ui/LazyYouTube';
 
 /**
  * 교육 후기 게시판(reviews.json) 에 글이 추가/수정되면 자동으로 이 영역도 갱신.
@@ -31,13 +32,11 @@ export default function TestimonialSection() {
             <h2 className="text-xl font-bold text-gray-900 mb-3">
               {isKo ? '교육을 받고 꿈이 생겼어요' : 'The class gave me a new dream'}
             </h2>
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md">
-              <iframe
-                src="https://www.youtube.com/embed/eBueNdGAvGg?rel=0&showinfo=0"
-                title={isKo ? '한양미래연구소 교육 후기' : 'Hanyang Future Lab Class Review'}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
+            <div className="relative w-full rounded-lg overflow-hidden shadow-md">
+              <LazyYouTube
+                videoId="Za01ssSA4Jg"
+                poster="/images/booth/festa-2026-poster.webp"
+                title={isKo ? '2026 미래교육페스타 체험부스 스케치' : '2026 Future Education Festa Booth Highlights'}
               />
             </div>
             <p className="mt-3 text-gray-600 text-sm">
