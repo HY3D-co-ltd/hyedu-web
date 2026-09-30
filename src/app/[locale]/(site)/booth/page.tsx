@@ -547,9 +547,51 @@ export default async function BoothPage({
       {/* 교육 후기 */}
       <section className="py-14 md:py-20 px-4 bg-white">
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 relative pl-4 border-l-4 border-point">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 relative pl-4 border-l-4 border-point">
             {isKo ? '교육 후기' : 'Reviews'}
           </h2>
+
+          {/* 스케치 영상 */}
+          <div className="mb-10 md:mb-14">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2 md:gap-4 mb-4">
+              <div>
+                <p className="inline-block text-[11px] md:text-xs font-bold tracking-wider text-point uppercase mb-1.5">
+                  {isKo ? '🎬 2026 미래교육페스타 · 현장 스케치' : '🎬 2026 Future Education Festa · Highlights'}
+                </p>
+                <h3 className="text-lg md:text-2xl font-bold text-gray-900 leading-tight">
+                  {isKo
+                    ? '현장의 열기, 영상으로 만나보세요'
+                    : 'See the excitement — in motion'}
+                </h3>
+              </div>
+              <p className="text-xs md:text-sm text-gray-500">
+                {isKo ? '체험부스 · 실제 현장 스케치' : 'Actual booth footage'}
+              </p>
+            </div>
+
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(51,102,102,0.18)] ring-1 ring-point/10 bg-black">
+              <iframe
+                src="https://www.youtube.com/embed/Za01ssSA4Jg?rel=0&modestbranding=1"
+                title={isKo ? '2026 미래교육페스타 체험부스 스케치' : '2026 Future Education Festa Booth Highlights'}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+
+            <p className="mt-3 md:mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
+              {isKo
+                ? '학생, 학부모, 선생님이 함께 만든 순간들 — 한양미래연구소 체험부스가 어떻게 진행되는지 짧은 영상으로 확인해보세요.'
+                : 'Moments created together by students, parents, and teachers — see how Hanyang Future Lab booths run in a short video.'}
+            </p>
+          </div>
+
+          {/* 참여자 후기 */}
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <span className="inline-block w-1.5 h-5 bg-point rounded-full" />
+            {isKo ? '참여자 후기' : 'Participant Reviews'}
+          </h3>
           <div className="space-y-6">
             {reviews.map((review) => (
               <div
