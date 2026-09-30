@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd, FAQJsonLd, ReviewsJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -11,6 +12,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    alternates: buildAlternates(locale, 'camp'),
+    openGraph: buildOpenGraph(locale, 'camp'),
     title:
       locale === 'ko'
         ? '한양청소년캠프 | 4차산업혁명 체험 중심 캠프'

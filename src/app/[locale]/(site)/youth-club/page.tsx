@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -12,6 +13,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, 'youth-club'),
+    openGraph: buildOpenGraph(locale, 'youth-club'),
     title: isKo
       ? '청소년 동아리 | 로봇코딩·메이커·STEAM 동아리'
       : 'Youth Clubs | Robot Coding · Maker · STEAM Clubs',

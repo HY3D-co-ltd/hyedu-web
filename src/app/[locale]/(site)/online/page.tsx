@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -10,6 +11,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    alternates: buildAlternates(locale, 'online'),
+    openGraph: buildOpenGraph(locale, 'online'),
     title:
       locale === 'ko'
         ? '온라인 교육 | AI·코딩·메이커 온라인 수업'

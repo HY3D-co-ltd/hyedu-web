@@ -24,12 +24,18 @@ export function OrganizationJsonLd({ locale }: { locale: string }) {
     },
     telephone: '070-8064-0829',
     email: 'hyedu0829@gmail.com',
+    // sameAs는 "이 계정들이 전부 같은 기관"임을 검색엔진·AI에 알려 엔티티를 통합한다.
+    // 죽은 URL이 들어 있으면 신호가 끊기므로 반드시 200 응답을 확인하고 등록할 것.
+    // 2026-08-21 전수 확인 완료.
     sameAs: [
-      'https://blog.naver.com/hyedu0829',
-      'https://www.youtube.com/@hyedu0829',
-      'https://www.instagram.com/hyedu0829',
+      'https://blog.naver.com/hyhyedu',
+      'https://www.youtube.com/@%ED%95%9C%EC%96%91%EB%AF%B8%EB%9E%98%EC%97%B0%EA%B5%AC%EC%86%8C',
+      'https://www.instagram.com/hy_edu',
+      'https://www.facebook.com/HanyangFutureEdu',
+      'https://hyedu-kr.blogspot.com',
     ],
-    foundingDate: '2020',
+    // about 페이지 본문에 "2019년 한양대학교에서 시작"으로 표기되어 있어 일치시킴
+    foundingDate: '2019',
     founder: {
       '@type': 'Person',
       name: isKo ? '이정욱' : 'Lee Jeong Uk',
@@ -68,6 +74,41 @@ const targetLabelEn: Record<string, string> = {
   adult: 'Adults',
 };
 
+/**
+ * price 문자열을 schema.org Offer 로 변환한다.
+ *
+ * schema.org 의 `Offer.price` 는 **숫자만** 허용한다.
+ * 기존에는 "1인 28,500원 (최소 20명)" 같은 문장을 그대로 넣고 있었는데,
+ * 이러면 구글이 값을 파싱하지 못해 Offer 전체가 무효 처리된다.
+ *
+ * - 첫 번째 금액을 숫자로 추출해 `price` 에 넣는다
+ *   ("대여 1인 30,000원 / 구매 1인 82,500원" → 30000)
+ * - "최소 N명" 은 `eligibleQuantity` 로 옮긴다
+ * - 사람이 읽는 원문은 `description` 에 보존한다
+ */
+function buildCourseOffer(priceText: string) {
+  const amount = priceText.match(/([\d,]+)\s*원/);
+  const minQty = priceText.match(/최소\s*(\d+)\s*명/);
+
+  const offer: Record<string, unknown> = {
+    '@type': 'Offer',
+    priceCurrency: 'KRW',
+    description: priceText,
+    availability: 'https://schema.org/InStock',
+  };
+
+  if (amount) offer.price = amount[1].replace(/,/g, '');
+  if (minQty) {
+    offer.eligibleQuantity = {
+      '@type': 'QuantitativeValue',
+      minValue: Number(minQty[1]),
+      unitText: 'person',
+    };
+  }
+
+  return offer;
+}
+
 export function CourseJsonLd({
   program,
   locale,
@@ -95,13 +136,64 @@ export function CourseJsonLd({
       educationalRole: 'student',
       audienceType: targetLabels.join(', '),
     },
-    offers: {
-      '@type': 'Offer',
-      price: isKo ? program.price : program.priceEn,
-      priceCurrency: 'KRW',
-    },
+    offers: buildCourseOffer(isKo ? program.price : program.priceEn),
     courseMode: 'onsite',
     url: `https://hyedu.kr/${locale}/programs/${program.slug}`,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// ─── CourseListJsonLd ─────────────────────────────────────────────────────────
+
+/**
+ * 프로그램 **목록** 페이지(/[locale]/programs)용 ItemList 스키마.
+ *
+ * 상세 페이지에는 개별 Course 스키마가 이미 들어가지만, 목록 페이지에는
+ * Organization 밖에 없어서 "여기에 22개 강좌가 있다"는 사실을 검색엔진이
+ * 알 수 없었다. ItemList 로 전체 목록을 한 번에 알린다.
+ *
+ * hidden 프로그램은 호출부에서 걸러서 넘길 것.
+ */
+export function CourseListJsonLd({
+  programs,
+  locale,
+}: {
+  programs: Program[];
+  locale: string;
+}) {
+  const isKo = locale === 'ko';
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: isKo
+      ? '한양미래연구소 찾아가는 체험교실 프로그램'
+      : 'Hanyang Future Lab On-site Experience Class Programs',
+    description: isKo
+      ? '초·중·고등학생 대상 AI·코딩·메이커융합·STEAM 체험교실 프로그램 목록'
+      : 'AI, coding, maker convergence, and STEAM experience class programs for K-12 students',
+    numberOfItems: programs.length,
+    itemListElement: programs.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Course',
+        name: isKo ? p.title : p.titleEn,
+        description: isKo ? p.description : p.descriptionEn,
+        url: `https://hyedu.kr/${locale}/programs/${p.slug}`,
+        provider: {
+          '@type': 'EducationalOrganization',
+          name: isKo ? '한양미래연구소' : 'Hanyang Future Lab',
+          url: 'https://hyedu.kr',
+        },
+      },
+    })),
   };
 
   return (

@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import PhoneCopyButton from '@/components/ui/PhoneCopyButton';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -12,6 +13,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const isKo = locale === 'ko';
   return {
+    alternates: buildAlternates(locale, 'phone'),
+    openGraph: buildOpenGraph(locale, 'phone'),
     title: isKo ? '전화 문의 | 한양미래연구소' : 'Phone Inquiry | Hanyang Future Lab',
     description: isKo
       ? '한양미래연구소 전화 문의 070-8064-0829. 업무시간 평일 09:00~18:00 (점심시간 12:00~13:00), 주말 및 공휴일 휴무.'

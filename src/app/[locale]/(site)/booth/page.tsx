@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -11,6 +12,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    alternates: buildAlternates(locale, 'booth'),
+    openGraph: buildOpenGraph(locale, 'booth'),
     title:
       locale === 'ko'
         ? '창의체험 부스 운영 | 3D프린팅·VR·AR·드론·로봇 체험 부스'
