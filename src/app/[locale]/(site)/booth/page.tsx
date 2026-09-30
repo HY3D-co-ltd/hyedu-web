@@ -4,6 +4,7 @@ import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { buildAlternates, buildOpenGraph } from '@/lib/seo';
+import LazyYouTube from '@/components/ui/LazyYouTube';
 
 export async function generateMetadata({
   params,
@@ -569,14 +570,11 @@ export default async function BoothPage({
               </p>
             </div>
 
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(51,102,102,0.18)] ring-1 ring-point/10 bg-black">
-              <iframe
-                src="https://www.youtube.com/embed/Za01ssSA4Jg?rel=0&modestbranding=1"
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(51,102,102,0.18)] ring-1 ring-point/10">
+              <LazyYouTube
+                videoId="Za01ssSA4Jg"
+                poster="/images/booth/festa-2026-poster.webp"
                 title={isKo ? '2026 미래교육페스타 체험부스 스케치' : '2026 Future Education Festa Booth Highlights'}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                className="absolute inset-0 w-full h-full"
               />
             </div>
 
