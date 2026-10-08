@@ -1,0 +1,73 @@
+name: Sync Naver Blog to Reviews
+
+on:
+  schedule:
+    # 매일 15:30 KST (블로그 글이 14:00 KST에 발행되므로 그 직후)
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '이번 실행에서 가져올 최대 글 수'
+        required: false
+        default: '30'
+      probe:
+        description: '저장 없이 최신 글 1건만 시험 변환 (네이버 접근 점검용)'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: naver-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync new blog posts
+        id: sync
+        run: node scripts/sync-naver-blog.mjs --limit "${{ inputs.limit || '30' }}" ${{ inputs.probe && '--probe' || '' }}
+
+      - name: Commit, push and deploy
+        if: steps.sync.outputs.added != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ADDED: ${{ steps.sync.outputs.added }}
+          LIMIT: ${{ inputs.limit || '30' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/boards/reviews.json scripts/naver-sync-state.json public/images/board/reviews/naver
+          git commit -m "chore(sync): 네이버 블로그 새 글 ${ADDED}건 교육 후기에 자동 등록"
+
+          # 관리자 페이지에서 동시에 수정한 내용이 있으면 충돌할 수 있으므로,
+          # 실패 시 최신 main 기준으로 동기화를 다시 실행해 재시도한다.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              gh workflow run deploy.yml --ref main
+              exit 0
+            fi
+            echo "push 실패 ($attempt/3) — 최신 main 기준으로 재시도"
+            git rebase --abort 2>/dev/null || true
+            git reset --hard origin/main
+            node scripts/sync-naver-blog.mjs --limit "$LIMIT"
+            git add src/data/boards/reviews.json scripts/naver-sync-state.json public/images/board/reviews/naver
+            git commit -m "chore(sync): 네이버 블로그 새 글 자동 등록" || exit 0
+          done
+          echo "::error::3회 재시도 후에도 push에 실패했습니다"
+          exit 1
