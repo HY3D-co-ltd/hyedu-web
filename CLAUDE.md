@@ -285,6 +285,16 @@ Tailwind with custom tokens in `tailwind.config.ts`: `primary` (blue #2563eb), `
 - 시작일 / 종료일
 - 활성화 여부
 
+### 시나리오 9: 네이버 블로그 → 교육 후기 자동 동기화
+
+네이버 블로그(`hyhyedu`) 새 글이 매일 자동으로 `reviews.json`(교육 후기)에 등록된다.
+
+- 스크립트: `scripts/sync-naver-blog.mjs` / 워크플로: `.github/workflows/sync-naver-blog.yml` (매일 15:30 KST, 수동 실행 가능)
+- 흐름: RSS로 새 글 감지 → 원문 PostView에서 본문·이미지 변환 → 이미지는 `public/images/board/reviews/naver/`에 저장 → `reviews.json` 맨 앞에 추가 → 커밋 후 `deploy.yml` 호출
+- 글 ID/slug는 `naver-{logNo}`. 처리 이력은 `scripts/naver-sync-state.json` — **이 파일을 지우면 이미 올라간 글이 중복 등록되고, 관리자에서 삭제한 글도 다시 올라온다.** 삭제한 글은 이력에 남겨둘 것.
+- 네이버 접근 점검: Actions → Sync Naver Blog → Run workflow → `probe` 체크 (저장 없이 최신 글 1건만 시험 변환)
+- 로컬 시험: `node scripts/sync-naver-blog.mjs --dry-run --limit 3`
+
 ## 콘텐츠 수정 시 주의사항
 
 1. **기존 프로그램의 slug를 변경하지 마세요** — URL이 바뀌면 SEO에 악영향
