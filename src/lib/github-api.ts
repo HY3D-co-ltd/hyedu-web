@@ -62,10 +62,24 @@ export async function getJsonFile<T>(path: string): Promise<FileResult<T>> {
     encoding: string;
     sha: string;
   };
-  if (body.encoding !== 'base64') {
-    throw new GithubApiError('예상치 못한 파일 인코딩입니다.');
+  let b64 = body.content;
+  if (body.encoding !== 'base64' || !b64) {
+    // Contents API는 1MB를 넘는 파일의 content를 비워서(encoding: "none") 돌려준다.
+    // 이 경우 응답의 sha로 Git Blob API(최대 100MB)에서 내용을 가져온다.
+    const blobRes = await fetch(`${API_BASE}/git/blobs/${body.sha}`, {
+      headers: authHeaders(),
+      cache: 'no-store',
+    });
+    if (!blobRes.ok) {
+      throw new GithubApiError(`큰 파일 불러오기 실패 (${blobRes.status})`, blobRes.status);
+    }
+    const blob = (await blobRes.json()) as { content: string; encoding: string };
+    if (blob.encoding !== 'base64') {
+      throw new GithubApiError('예상치 못한 파일 인코딩입니다.');
+    }
+    b64 = blob.content;
   }
-  const jsonStr = base64Decode(body.content.replace(/\n/g, ''));
+  const jsonStr = base64Decode(b64.replace(/\n/g, ''));
   return { data: JSON.parse(jsonStr) as T, sha: body.sha };
 }
 
