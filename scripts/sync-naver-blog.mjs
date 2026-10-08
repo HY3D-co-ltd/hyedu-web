@@ -8,13 +8,14 @@
  *
  * 처리 이력(state)에 있는 글은 관리자가 삭제해도 다시 올라오지 않는다.
  *
- * 실행: node scripts/sync-naver-blog.mjs [--limit 30] [--dry-run] [--probe]
+ * 실행: node scripts/sync-naver-blog.mjs [--limit 30] [--dry-run] [--probe] [--rethumb]
  * GitHub Actions: .github/workflows/sync-naver-blog.yml (매일 자동 실행)
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
 import sharp from 'sharp';
+import { makeReviewThumbnail, pickPhoto } from './lib/review-thumbnail.mjs';
 
 const BLOG_ID = 'hyhyedu';
 const RSS_URL = `https://rss.blog.naver.com/${BLOG_ID}.xml`;
@@ -29,6 +30,7 @@ const UA =
 const args = process.argv.slice(2);
 const PROBE = args.includes('--probe'); // 최신 1건을 저장 없이 시험 변환 (접근 차단 점검용)
 const DRY_RUN = PROBE || args.includes('--dry-run');
+const RETHUMB = args.includes('--rethumb'); // 이미 등록된 네이버 글의 썸네일을 현재 양식으로 다시 생성
 const limitIdx = args.indexOf('--limit');
 const LIMIT = limitIdx >= 0 ? Number(args[limitIdx + 1]) || 30 : 30;
 
@@ -276,7 +278,7 @@ async function convertPost(logNo, title) {
   return { body: blocks.join(''), images };
 }
 
-// ─── main ───────────────────────────────────────────────────────────────────
+// ─── 썸네일 ─────────────────────────────────────────────────────────────────
 
 async function readJson(file, fallback) {
   try {
@@ -286,7 +288,48 @@ async function readJson(file, fallback) {
   }
 }
 
+/** 기존 후기 썸네일 양식(상단 띠 + 파란 제목 + 사진)으로 생성. 실패하면 null → 호출부에서 첫 이미지로 대체 */
+async function buildThumbnail(logNo, title, localImages) {
+  if (DRY_RUN || localImages.length === 0) return null;
+  try {
+    const files = localImages.map((p) => path.resolve('public', p.replace(/^\//, '')));
+    const { file: photo, isPhoto } = await pickPhoto(files);
+    const name = `${logNo}-thumb.jpg`;
+    await makeReviewThumbnail({ photoPath: photo, title, destPath: path.join(IMG_DIR, name), cover: isPhoto });
+    return `${IMG_URL_BASE}/${name}`;
+  } catch (err) {
+    console.warn(`  ⚠ 썸네일 생성 실패, 첫 이미지로 대체: ${err.message}`);
+    return null;
+  }
+}
+
+async function rethumbAll() {
+  const reviews = await readJson(REVIEWS_PATH, []);
+  const names = await fs.readdir(IMG_DIR);
+  let done = 0;
+  for (const r of reviews) {
+    if (!r.id?.startsWith('naver-')) continue;
+    const logNo = r.id.slice('naver-'.length);
+    const imgs = names
+      .filter((f) => f.startsWith(`${logNo}-`) && !f.includes('thumb') && /\.(jpg|gif)$/.test(f))
+      .sort((a, b) => parseInt(a.split('-')[1], 10) - parseInt(b.split('-')[1], 10))
+      .map((f) => `${IMG_URL_BASE}/${f}`);
+    const thumb = await buildThumbnail(logNo, r.title, imgs);
+    if (thumb) {
+      r.thumbnail = thumb;
+      done += 1;
+      console.log(`✓ ${logNo} ${r.title}`);
+    }
+  }
+  if (!DRY_RUN) await fs.writeFile(REVIEWS_PATH, JSON.stringify(reviews, null, 2) + '\n', 'utf-8');
+  console.log(`\n썸네일 재생성 완료: ${done}건`);
+}
+
+// ─── main ───────────────────────────────────────────────────────────────────
+
 async function main() {
+  if (RETHUMB) return rethumbAll();
+
   const xml = await fetchText(RSS_URL);
   const items = parseRss(xml);
   if (items.length === 0) throw new Error('RSS에서 글을 하나도 읽지 못함');
@@ -308,7 +351,7 @@ async function main() {
     try {
       console.log(`→ ${it.logNo} ${it.title}`);
       const { body, images } = await convertPost(it.logNo, it.title);
-      let thumbnail = images[0] ?? '';
+      let thumbnail = (await buildThumbnail(it.logNo, it.title, images)) ?? images[0] ?? '';
       if (!thumbnail && it.thumb) {
         try {
           thumbnail = await saveImage(it.thumb, it.logNo, 0);
