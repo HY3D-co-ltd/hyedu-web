@@ -4,13 +4,15 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
-const basePath = isGithubPages ? '/hyedu-web' : '';
+const explicitBasePath = process.env.NEXT_BASE_PATH;
+const basePath = explicitBasePath ?? (isGithubPages ? '/hyedu-web' : '');
+const assetPrefix = basePath ? `${basePath}/` : '';
 
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   basePath,
-  assetPrefix: isGithubPages ? '/hyedu-web/' : '',
+  assetPrefix,
   images: {
     unoptimized: true,
   },
