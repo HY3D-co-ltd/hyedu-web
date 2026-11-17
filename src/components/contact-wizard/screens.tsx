@@ -342,7 +342,8 @@ export function CompletionScreen({
       )}
       <div className="rounded-2xl border border-point/40 bg-point/5 p-6 text-center">
         <p className="text-sm text-gray-600">{ko ? '접수번호' : 'Receipt number'}</p>
-        <p className="mt-1 text-3xl md:text-4xl font-bold tracking-wider text-point">{receipt}</p>
+        {/* 360px에서 가장 긴 번호(T-261117-001)가 하이픈에서 꺾이지 않는 크기 */}
+        <p className="mt-1 text-[26px] sm:text-3xl md:text-4xl font-bold tracking-wider text-point">{receipt}</p>
         <p className="mt-2 text-sm text-gray-600">{ko ? '문의하실 때 이 번호를 알려 주세요.' : 'Please mention this number when you contact us.'}</p>
         <div className="mt-3">
           <CopyButton text={() => receipt} label={ko ? '접수번호 복사' : 'Copy receipt number'} doneLabel={t(UI.copied, lang)} />
