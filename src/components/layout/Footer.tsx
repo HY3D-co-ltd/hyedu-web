@@ -2,7 +2,8 @@
 
 import Image from '@/components/ui/Img';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { PRIVACY_POLICY_DRAFT } from '@/data/privacy-policy';
 
 const SNS_LINKS = [
   {
@@ -24,6 +25,7 @@ const SNS_LINKS = [
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -76,6 +78,14 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-10 pt-6 border-t border-gray-700 text-center">
+          {/* 처리방침은 다른 고지와 구별되게 굵게 둔다 (개인정보위 처리방침 작성지침) */}
+          {!PRIVACY_POLICY_DRAFT && (
+            <p className="mb-3">
+              <Link href={`/${locale}/privacy/`} className="text-sm font-bold text-white hover:underline">
+                {t('privacy')}
+              </Link>
+            </p>
+          )}
           <p className="text-sm text-gray-500">
             &copy; {new Date().getFullYear()} {t('company')}. All rights reserved.
             {/* 관리자 전용 링크 — 의도적으로 눈에 띄지 않게 처리됨. */}

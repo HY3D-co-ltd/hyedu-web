@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { programs } from '@/data/programs';
 import { eventPosts, reviewPosts } from '@/data/boardPosts';
+import { PRIVACY_POLICY_DRAFT } from '@/data/privacy-policy';
 
 export const dynamic = 'force-static';
 
@@ -24,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/board/reviews',
     '/board/events',
     '/board/gallery',
+    // 처리방침이 초안이면 사이트맵에서 뺀다 (위저드 사양 §8)
+    ...(PRIVACY_POLICY_DRAFT ? [] : ['/privacy']),
   ];
 
   const entries: MetadataRoute.Sitemap = [];

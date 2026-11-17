@@ -235,7 +235,7 @@ export default async function SpecialLecturePage({
               )}
             </p>
             <Link
-              href={`/${locale}/contact`}
+              href={`/${locale}/contact/?type=lecture`}
               className="inline-block mt-6 px-6 py-2.5 bg-[#336666] text-white text-[14px] font-semibold rounded hover:bg-[#2a5454] transition-colors"
             >
               {applyBtn}
@@ -356,7 +356,7 @@ export default async function SpecialLecturePage({
                 )}
               </p>
               <Link
-                href={`/${locale}/contact`}
+                href={`/${locale}/contact/?type=lecture`}
                 className="inline-block mt-6 px-6 py-2.5 bg-[#336666] text-white text-[14px] font-semibold rounded hover:bg-[#2a5454] transition-colors"
               >
                 {applyBtn}
@@ -600,7 +600,7 @@ export default async function SpecialLecturePage({
                 )}
               </p>
               <Link
-                href={`/${locale}/contact`}
+                href={`/${locale}/contact/?type=lecture`}
                 className="inline-block mt-6 px-6 py-2.5 bg-[#336666] text-white text-[14px] font-semibold rounded hover:bg-[#2a5454] transition-colors"
               >
                 {applyBtn}

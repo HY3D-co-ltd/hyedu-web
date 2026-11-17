@@ -24,7 +24,19 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # /contact 위저드가 접수를 보내는 주소. NEXT_PUBLIC_* 는 빌드 때 브라우저 코드에 박히므로 비밀값이 아니다.
+      # 값이 없으면 손님 화면에서 접수가 조용히 안 되므로 빌드를 멈춘다 (위저드 사양 §5.4).
+      - name: Check inquiry endpoint
+        env:
+          NEXT_PUBLIC_INQUIRY_ENDPOINT: ${{ vars.NEXT_PUBLIC_INQUIRY_ENDPOINT }}
+        run: |
+          if [[ ! "$NEXT_PUBLIC_INQUIRY_ENDPOINT" =~ ^https://[^[:space:]]+$ ]]; then
+            echo "::error::저장소 변수 NEXT_PUBLIC_INQUIRY_ENDPOINT 가 없거나 https 주소가 아닙니다 (Settings → Secrets and variables → Actions → Variables)."
+            exit 1
+          fi
       - run: npm run build
+        env:
+          NEXT_PUBLIC_INQUIRY_ENDPOINT: ${{ vars.NEXT_PUBLIC_INQUIRY_ENDPOINT }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

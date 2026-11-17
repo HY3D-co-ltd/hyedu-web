@@ -19,6 +19,8 @@ import {
   TEST_CONTACT,
   UI,
 } from '@/data/contact-wizard';
+import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { visibleSteps } from '@/lib/contact-wizard/flow';
 import { answerText, formatMobile } from '@/lib/contact-wizard/format';
 import type { Answers, ContactForm, InquiryPayload, Lang, StepId, WizardMode } from '@/lib/contact-wizard/types';
@@ -219,6 +221,15 @@ export function ContactStep({
   );
 }
 
+/** 처리방침 링크. 새 탭으로 열어 작성 중인 연락처 칸(임시 저장 대상이 아님)을 잃지 않게 한다. */
+function PrivacyLink({ lang, children }: { lang: Lang; children: ReactNode }) {
+  return (
+    <Link href={`/${lang}/privacy/`} target="_blank" rel="noopener" className="font-semibold text-point underline underline-offset-2 hover:opacity-80">
+      {children}
+    </Link>
+  );
+}
+
 /** 동의 고지. 문구는 처리방침 초안 부록 A. */
 function ConsentBox({ lang, checked, onChange, error }: { lang: Lang; checked: boolean; onChange: (v: boolean) => void; error?: string }) {
   const ko = lang === 'ko';
@@ -244,7 +255,9 @@ function ConsentBox({ lang, checked, onChange, error }: { lang: Lang; checked: b
             <p>· 보유 기간: 문의 접수일로부터 3년 (계약으로 이어지면 계약 종료 후 5년)</p>
             <p>· 동의하지 않으실 수 있습니다. 동의하지 않으시면 홈페이지로 문의를 접수할 수 없으니, 전화({PHONE})나 카카오톡 채널로 문의해 주세요.</p>
             <p>· 문의 내용은 n8n(독일), Airtable(미국), Google(미국 등)의 시스템에서 처리 · 보관됩니다.</p>
-            <p className="text-gray-400">개인정보 처리방침 페이지는 준비 중입니다.</p>
+            <p>
+              <PrivacyLink lang={lang}>[개인정보 처리방침 보기]</PrivacyLink>
+            </p>
           </>
         ) : (
           <>
@@ -254,7 +267,9 @@ function ConsentBox({ lang, checked, onChange, error }: { lang: Lang; checked: b
             <p>· Retention: 3 years from the inquiry (5 years after the contract ends if it leads to a contract)</p>
             <p>· You may refuse. If you do, we cannot accept the inquiry online; please call us ({PHONE}) or use KakaoTalk.</p>
             <p>· Your inquiry is processed and stored on systems run by n8n (Germany), Airtable (USA) and Google (USA and others).</p>
-            <p className="text-gray-400">The privacy policy page is being prepared. The Korean version prevails.</p>
+            <p>
+              <PrivacyLink lang={lang}>[View the privacy policy]</PrivacyLink> The Korean version prevails.
+            </p>
           </>
         )}
       </div>

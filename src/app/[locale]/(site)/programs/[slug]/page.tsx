@@ -639,7 +639,7 @@ export default async function ProgramDetailPage({
             ))}
           </div>
           <Link
-            href={`/${locale}/contact`}
+            href={`/${locale}/contact/?program=${program.slug}`}
             className="inline-block bg-point text-white font-bold px-10 py-3 rounded-full text-[16px] hover:opacity-90 transition-opacity"
           >
             {isKo ? '신청하기' : 'Apply'}

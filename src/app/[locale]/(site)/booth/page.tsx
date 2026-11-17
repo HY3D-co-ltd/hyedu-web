@@ -254,7 +254,7 @@ export default async function BoothPage({
               {/* 큰 CTA 버튼 2개 */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8">
                 <Link
-                  href={`/${locale}/contact`}
+                  href={`/${locale}/contact/?type=booth`}
                   className="inline-flex items-center justify-center gap-2 bg-point text-white font-extrabold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full hover:scale-105 hover:shadow-2xl transition-all"
                   style={{ boxShadow: '0 10px 30px rgba(51,102,102,0.35)' }}
                 >
