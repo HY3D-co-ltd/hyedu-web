@@ -3,6 +3,7 @@ import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import DownloadQR from '@/components/ui/DownloadQR';
+import EmailLink from '@/components/ui/EmailLink';
 import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 
 const PROGRAM_PDF_URL = 'https://hyedu.kr/files/2026-programs-overview.pdf';
@@ -136,11 +137,10 @@ export default async function ContactPage({
               </span>
             </a>
 
-            {/* Email — Gmail 웹으로 열기 (mailto: 미설정 환경 대응) */}
-            <a
-              href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Email — 받는 사람·제목이 채워진 작성 화면 (PC: Gmail 작성 창, 모바일: 메일 앱) */}
+            <EmailLink
+              to="hyedu0829@gmail.com"
+              subject={isKo ? '[홈페이지] 교육 문의' : '[Website] Inquiry'}
               className="flex flex-col items-center gap-4 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow text-center"
             >
               <Image
@@ -153,7 +153,7 @@ export default async function ContactPage({
                 {isKo ? '메일 전송하기' : 'Send Email'}
               </span>
               <span className="text-sm text-gray-500">hyedu0829@gmail.com</span>
-            </a>
+            </EmailLink>
 
             {/* Naver Booking */}
             <a

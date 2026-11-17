@@ -1,6 +1,7 @@
 'use client';
 
 import Image from '@/components/ui/Img';
+import EmailLink from '@/components/ui/EmailLink';
 import { useLocale } from 'next-intl';
 import type { MouseEvent } from 'react';
 
@@ -58,11 +59,10 @@ export default function ContactSection() {
             {isKo ? '전화 문의하기' : 'Call Us'}
           </a>
 
-          {/* 이메일 (Gmail) */}
-          <a
-            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* 이메일 — 받는 사람·제목이 채워진 작성 화면 (PC: Gmail 작성 창, 모바일: 메일 앱) */}
+          <EmailLink
+            to="hyedu0829@gmail.com"
+            subject={isKo ? '[홈페이지] 교육 문의' : '[Website] Inquiry'}
             className="flex items-center justify-center gap-3 bg-white text-gray-900 font-semibold rounded-xl px-8 py-4 border border-gray-200 hover:border-gray-400 hover:bg-gray-50 transition-all shadow-md"
           >
             {/* Gmail 로고 (인라인 SVG, 컬러 유지) */}
@@ -74,7 +74,7 @@ export default function ContactSection() {
               <path fill="#fbc02d" d="M45 12.298V16.2l-10 7.5V11.2l3.124-2.341C38.868 8.301 39.772 8 40.702 8h0C43.076 8 45 9.924 45 12.298z"/>
             </svg>
             {isKo ? '이메일로 문의하기' : 'Email Us'}
-          </a>
+          </EmailLink>
         </div>
       </div>
     </section>
