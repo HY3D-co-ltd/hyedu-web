@@ -3,9 +3,10 @@
  *
  * - 범위는 홈페이지 「교육 신청」(/contact 위저드)으로 받는 개인정보와, 10장의 이용 통계 쿠키다.
  * - 시행일마다 한 판씩 `privacyPolicies`에 더한다. 시행된 판은 고치지 않는다 — 바꿀 것이 있으면 `revise`로 새 판을 만든다.
+ *   이미 시행한 날에 다시 고친 판은 같은 시행일에 `sameDayRevision`(2부터)을 붙인다.
  * - 어느 판을 보일지는 서울 날짜로 고른다(`policyInEffect`). 시행일이 아직 안 온 판은 페이지 위 「개정 안내」로,
  *   시행 중인 판보다 오래된 판은 아래 「이전 처리방침」으로 보인다. 개정판은 시행 7일 전부터 알린다(14장).
- * - 위저드가 보내는 `consent.version`은 제출하는 날 시행 중인 판의 시행일이다(src/data/contact-wizard.ts).
+ * - 위저드가 보내는 `consent.version`은 제출하는 날 시행 중인 판의 `policyVersionId`다(src/data/contact-wizard.ts).
  * - GA4는 시행 중인 판의 `analyticsCookies`가 true일 때만 켜진다(src/components/analytics/GoogleAnalytics.tsx).
  * - 한국어가 원문이고 영어는 번역이다.
  */
@@ -32,8 +33,13 @@ export interface PolicySection {
 }
 
 export interface PrivacyPolicyVersion {
-  /** 시행일 (YYYY-MM-DD). 위저드의 동의 버전과 같은 값이다. */
+  /** 시행일 (YYYY-MM-DD). */
   effectiveDate: string;
+  /**
+   * 같은 시행일에 앞서 시행한 판을 고친 판이면 그날의 몇 번째 판인지(2, 3, …). 그날 첫 판에는 없다.
+   * 판의 식별자는 `policyVersionId`다.
+   */
+  sameDayRevision?: number;
   /** 이 판이 이용 분석 쿠키(Google Analytics)를 안내하는가. 시행 중인 판이 true여야 GA4 태그가 들어간다. */
   analyticsCookies: boolean;
   /** 이전 판과 달라진 점. 시행 전 「개정 안내」에 보인다. 첫 판에는 없다. */
@@ -536,6 +542,7 @@ function revise(
 /**
  * 2026-11-18 시행본. 홈페이지 이용 통계(Google Analytics)를 10장에 더한다.
  * 2026-11-17에 「11-24 시행」으로 알렸다가, GA4 수집을 바로 시작하려고 운영자 결정으로 시행일을 11-18로 당겼다.
+ * 같은 날 POLICY_2026_11_18_2로 다시 고쳐 시행했다(Google Ads 광고 성과 측정 안내).
  */
 const POLICY_2026_11_18 = revise(POLICY_2026_11_17, {
   effectiveDate: '2026-11-18',
@@ -619,11 +626,122 @@ const POLICY_2026_11_18 = revise(POLICY_2026_11_17, {
   ],
 });
 
-export const privacyPolicies: PrivacyPolicyVersion[] = [POLICY_2026_11_18, POLICY_2026_11_17];
+/**
+ * 2026-11-18 같은 날 두 번째 판. 10장에 Google Ads 광고 성과 측정을 더한다.
+ * GA4 속성이 Google Ads(계정 250-662-4033)에 연결돼 있는데 앞 판이 「광고에 쓰지 않는다」고 적고 있어,
+ * 운영자 결정으로 같은 날 고쳐 시행했다. 맞춤형 광고(리마케팅)는 하지 않는다 — GA4의 Ads 연결과
+ * 태그(allow_ad_personalization_signals: false) 모두에서 꺼 두었다.
+ */
+const POLICY_2026_11_18_2 = revise(POLICY_2026_11_18, {
+  effectiveDate: '2026-11-18',
+  sameDayRevision: 2,
+  analyticsCookies: true,
+  changes: [
+    {
+      ko: '10번에, 어떤 광고가 문의로 이어졌는지 알기 위해 Google Analytics를 Google Ads와 연결해 광고 성과를 잰다는 내용을 더했습니다.',
+      en: 'Section 10 now states that Google Analytics is linked to Google Ads to measure which ads lead to inquiries.',
+    },
+    {
+      ko: '10번의 「이용 통계를 광고에 쓰지 않는다」는 문구를 「맞춤형 광고(리마케팅)에 쓰지 않는다」로 고쳤습니다.',
+      en: 'In Section 10, "not used for advertising" now reads "not used for personalized advertising (remarketing)".',
+    },
+  ],
+  sections: [
+    {
+      id: 'cookies',
+      title: { ko: '10. 개인정보 자동 수집 장치의 설치 · 운영 및 거부', en: '10. Cookies and similar technologies' },
+      blocks: [
+        {
+          kind: 'list',
+          items: [
+            {
+              ko: '회사는 홈페이지 이용 통계를 내고 홈페이지를 개선하기 위해 Google LLC의 Google Analytics를 씁니다. Google Analytics는 이용자 브라우저에 쿠키(_ga 등)를 저장해 다시 방문한 브라우저를 구별합니다.',
+              en: 'The Company uses Google Analytics, a service of Google LLC, to compile website usage statistics and improve the website. Google Analytics stores cookies (such as _ga) in your browser to recognize a returning browser.',
+              sub: [
+                {
+                  ko: '수집하는 정보: 쿠키에 저장된 무작위 식별값, 방문한 페이지와 머문 시간, 들어온 경로(광고를 누르고 들어온 경우 어떤 광고인지 포함), 페이지 안에서의 행동(스크롤, 누른 버튼과 링크, 내려받은 파일, 양식 작성 시작 · 제출 여부), 브라우저 · 운영체제 · 기기 종류, 화면 크기, 언어, 접속 지역(국가 · 도시 수준)',
+                  en: 'Information collected: a random identifier stored in the cookie, pages visited and time spent, how you arrived (including which ad, if you arrived by clicking an ad), actions on the page (scrolling, buttons and links clicked, files downloaded, whether a form was started or submitted), browser, operating system and device type, screen size, language, and approximate location (country and city level)',
+                },
+                {
+                  ko: '접속 IP 주소는 접속 지역을 추정하는 데 쓰입니다. Google은 Google Analytics가 IP 주소를 기록하거나 저장하지 않는다고 밝히고 있습니다.',
+                  en: 'Your IP address is used to estimate your location. Google states that Google Analytics does not log or store IP addresses.',
+                },
+                {
+                  ko: '회사는 이 정보로 이용자 개인을 알아보지 않고, 교육 신청으로 받은 개인정보와 연결하지 않습니다.',
+                  en: 'The Company does not use this information to identify you and does not link it to personal information received through the "Apply" form.',
+                },
+                {
+                  ko: '이 정보는 미국 등 Google이 서버를 운영하는 국가에서 처리됩니다. 개별 이용 기록은 수집일로부터 14개월이 지나면 지워지도록 설정했으며, 그 뒤에는 개인을 구별할 수 없는 집계 통계만 남습니다. 쿠키는 마지막 방문일로부터 최대 2년 동안 브라우저에 남습니다.',
+                  en: 'This information is processed in the USA and other countries where Google operates servers. Individual usage records are set to be deleted 14 months after collection, after which only aggregated statistics that cannot distinguish individuals remain. The cookies remain in your browser for up to 2 years from your last visit.',
+                },
+              ],
+            },
+            {
+              ko: '광고 성과 측정: 회사는 Google Ads로 홈페이지를 광고하며, 어떤 광고가 문의로 이어졌는지 알기 위해 Google Analytics를 Google Ads와 연결해 둡니다. 이에 따라 광고를 누르고 들어온 방문의 이용 통계(본 페이지, 문의 버튼(전화 · 카카오톡 채널 · 네이버 예약 · 이메일)을 눌렀는지 등)가 Google Ads로 전달되어 광고 성과를 재는 데 쓰입니다.',
+              en: 'Measuring advertising: The Company advertises the website through Google Ads and links Google Analytics to Google Ads to learn which ads lead to inquiries. Usage statistics from visits that arrive by clicking an ad (pages viewed, whether an inquiry button for phone, KakaoTalk channel, Naver booking or email was clicked, etc.) are therefore shared with Google Ads and used to measure ad performance.',
+              sub: [
+                {
+                  ko: '회사는 홈페이지 방문 기록을 이용해 다른 사이트나 앱에서 방문자에게 광고를 다시 보여 주는 맞춤형 광고(리마케팅)를 하지 않습니다. 이를 위해 Google Analytics의 개인 맞춤 광고 기능을 꺼 두었습니다.',
+                  en: 'The Company does not use your visits to this website to show you ads elsewhere (personalized advertising or remarketing). Ad personalization is turned off in Google Analytics for this purpose.',
+                },
+              ],
+            },
+            {
+              ko: '거부 방법: 브라우저 설정에서 쿠키를 차단하거나 지울 수 있고, Google Analytics 차단 부가 기능(https://tools.google.com/dlpage/gaoptout)을 설치해 수집을 막을 수 있습니다. 쿠키를 거부해도 홈페이지를 보거나 교육을 신청하는 데 지장이 없습니다.',
+              en: 'How to refuse: you can block or delete cookies in your browser settings, or install the Google Analytics Opt-out Browser Add-on (https://tools.google.com/dlpage/gaoptout). Refusing cookies does not affect browsing the website or applying for programs.',
+            },
+            {
+              ko: '회사는 맞춤형 광고를 위한 쿠키를 설치하지 않습니다. 다만 홈페이지에 넣은 YouTube 영상을 재생하면 Google(YouTube)이 자체 쿠키를 설치할 수 있으며, 이는 Google의 개인정보처리방침을 따릅니다.',
+              en: 'The Company does not set cookies for personalized advertising. If you play a YouTube video embedded on the website, Google (YouTube) may set its own cookies under Google’s privacy policy.',
+            },
+            WIZARD_DRAFT_STORAGE,
+          ],
+        },
+      ],
+    },
+    {
+      id: 'changes',
+      title: { ko: '14. 처리방침의 변경', en: '14. Changes to this policy' },
+      blocks: [
+        {
+          kind: 'list',
+          items: [
+            {
+              ko: '이 처리방침은 2026년 11월 18일부터 적용합니다. 같은 날 앞서 시행한 처리방침의 10번에 광고 성과 측정 안내를 더한 것입니다.',
+              en: 'This policy takes effect on November 18, 2026. It adds the advertising measurement notice to Section 10 of the version that took effect earlier the same day.',
+            },
+            {
+              ko: '내용이 바뀌면 시행 7일 전부터 홈페이지로 알리며, 이전 처리방침은 이 페이지에서 볼 수 있습니다.',
+              en: 'Any change will be announced on the website at least 7 days before it takes effect, and previous versions remain available on this page.',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+
+export const privacyPolicies: PrivacyPolicyVersion[] = [POLICY_2026_11_18_2, POLICY_2026_11_18, POLICY_2026_11_17];
 
 // ─── 시행일로 판 고르기 ──────────────────────────────────────────
 
-const byNewest = [...privacyPolicies].sort((a, b) => b.effectiveDate.localeCompare(a.effectiveDate));
+/** 판의 식별자. 그날 첫 판은 시행일 그대로, 같은 날 고친 판은 「시행일-순번」(예: 2026-11-18-2). */
+export function policyVersionId(v: PrivacyPolicyVersion): string {
+  return v.sameDayRevision ? `${v.effectiveDate}-${v.sameDayRevision}` : v.effectiveDate;
+}
+
+/** 최근 판이 앞. 시행일이 같으면 순번이 큰 판이 앞이다. */
+const byNewest = [...privacyPolicies].sort(
+  (a, b) => b.effectiveDate.localeCompare(a.effectiveDate) || (b.sameDayRevision ?? 1) - (a.sameDayRevision ?? 1),
+);
+
+{
+  const ids = privacyPolicies.map(policyVersionId);
+  const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
+  if (dup.length > 0) {
+    throw new Error(`개인정보 처리방침 판이 겹칩니다: ${dup.join(', ')} (같은 날 고친 판에는 sameDayRevision을 붙이세요).`);
+  }
+}
 
 /**
  * 서울 기준 날짜(YYYY-MM-DD).
@@ -648,8 +766,8 @@ export function upcomingPolicies(date: string): PrivacyPolicyVersion[] {
 
 /** 시행 중인 판보다 오래된 판(「이전 처리방침」). 최근 것이 앞이다. */
 export function previousPolicies(date: string): PrivacyPolicyVersion[] {
-  const current = policyInEffect(date);
-  return byNewest.filter((v) => v.effectiveDate < current.effectiveDate);
+  // 시행일로 거르지 않고 순서로 자른다 — 같은 날 앞서 시행한 판도 「이전」에 들어가야 한다.
+  return byNewest.slice(byNewest.indexOf(policyInEffect(date)) + 1);
 }
 
 export const BUSINESS_INFO: Bi = {

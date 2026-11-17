@@ -20,7 +20,8 @@ if (GA_MEASUREMENT_ID && !policyCoversAnalytics) {
  * GA4 태그. 측정 ID(NEXT_PUBLIC_GA_ID)가 없거나 처리방침이 아직 안내하지 않으면 아무것도 넣지 않는다.
  * 사이트 안 이동(next-intl Link)의 페이지뷰는 GA4 향상된 측정의
  * "브라우저 기록 이벤트 기반 페이지 변경"이 세므로 여기서 따로 보내지 않는다.
- * 광고 신호는 끈다 — 처리방침 10장이 "광고에 쓰지 않는다"고 약속하므로 GA4 관리 화면 설정과 상관없이 막는다.
+ * 광고 신호는 끈다 — 처리방침 10장이 "맞춤형 광고(리마케팅)는 하지 않는다"고 약속하므로 GA4 관리 화면 설정과
+ * 상관없이 막는다. GA4 속성의 Google Ads 연결은 광고 성과 측정용이다(10장 「광고 성과 측정」).
  */
 export default function GoogleAnalytics() {
   if (!GA_MEASUREMENT_ID || !policyCoversAnalytics) return null;
