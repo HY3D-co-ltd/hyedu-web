@@ -364,6 +364,9 @@ export function buildPayload(input: {
   if (a.request?.docs.length) extraLines.push(`필요 자료: ${a.request.docs.join(', ')}`);
   if (a.request?.purchase) extraLines.push(`구매 방법: ${a.request.purchase}`);
   if (a.booth?.needs.length) extraLines.push(`부스 요청: ${a.booth.needs.join(', ')}`);
+  // 회신 방법은 contact.replyPreference로도 가지만 그 칸은 원본 테이블에만 남는다. 실무자가 보는 OM 상담내용과
+  // 알림 메일에는 이 extra만 실리므로 여기에도 적는다 (완료 화면이 고객에게 그 방법으로 연락하겠다고 약속한다).
+  if (c.replyPreference) extraLines.push(`회신 방법: ${c.replyPreference}`);
   if (c.callTime) extraLines.push(`통화 편한 시간: ${c.callTime}`);
   const free = a.request?.text.trim() ?? '';
   if (free) extraLines.push('', free);
