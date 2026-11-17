@@ -6,7 +6,7 @@
  * 이 값을 보낸다(운영자가 한국어로 읽는다). `en`은 영어 화면에 보여 줄 말이다.
  */
 import type { EduKey, FieldKey, Loc, PlaceKey, StepId, Target } from '@/lib/contact-wizard/types';
-import { CURRENT_PRIVACY_POLICY } from '@/data/privacy-policy';
+import { policyInEffect, seoulDate } from '@/data/privacy-policy';
 
 export interface Opt {
   value: string;
@@ -23,8 +23,13 @@ export const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_fxbVcs';
 export const KAKAO_CHAT_URL = 'https://pf.kakao.com/_fxbVcs/chat';
 export const NAVER_BOOKING_URL = 'https://booking.naver.com/booking/12/bizes/252156';
 
-/** 동의한 처리방침 버전 = 현행 처리방침의 시행일 (src/data/privacy-policy.ts). */
-export const PRIVACY_VERSION = CURRENT_PRIVACY_POLICY.effectiveDate;
+/**
+ * 동의한 처리방침 버전 = 제출하는 날(서울 기준) 시행 중인 처리방침의 시행일 (src/data/privacy-policy.ts).
+ * 빌드한 날이 아니라 제출하는 순간에 고르도록 함수로 둔다.
+ */
+export function privacyVersionNow(): string {
+  return policyInEffect(seoulDate()).effectiveDate;
+}
 
 // ─── 질문 머리 ───────────────────────────────────────────────────
 

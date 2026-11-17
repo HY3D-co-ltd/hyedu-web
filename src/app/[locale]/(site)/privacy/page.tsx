@@ -5,7 +5,10 @@ import { buildAlternates, buildOpenGraph } from '@/lib/seo';
 import {
   BUSINESS_INFO,
   PRIVACY_POLICY_DRAFT,
-  privacyPolicies,
+  policyInEffect,
+  previousPolicies,
+  seoulDate,
+  upcomingPolicies,
   type Bi,
   type PolicyBlock,
   type PrivacyPolicyVersion,
@@ -13,7 +16,8 @@ import {
 
 /**
  * 개인정보 처리방침. 문안은 src/data/privacy-policy.ts.
- * 현행본을 먼저 보이고, 이전 판은 아래 「이전 처리방침」에 접어 둔다.
+ * 빌드한 날(서울 기준) 시행 중인 판을 본문으로 보인다. 시행 예정인 판은 위 「개정 안내」에,
+ * 이전 판은 아래 「이전 처리방침」에 접어 둔다. deploy.yml이 매일 다시 빌드해 시행일에 바뀐다.
  */
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -35,12 +39,14 @@ function formatDate(iso: string, isKo: boolean): string {
   return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
+// 문단은 한국어 단어를 끊지 않되(break-keep), URL · 이메일처럼 공백 없는 긴 덩어리는 넘칠 때 끊는다(break-words).
+// keep-all만 걸면 긴 URL이 360px 화면 밖으로 나간다.
 function Block({ block, isKo }: { block: PolicyBlock; isKo: boolean }) {
   const tx = (b: Bi) => (isKo ? b.ko : b.en);
-  if (block.kind === 'p') return <p className="text-[15px] leading-7 text-gray-700 break-keep">{tx(block.text)}</p>;
+  if (block.kind === 'p') return <p className="text-[15px] leading-7 text-gray-700 break-keep break-words">{tx(block.text)}</p>;
   if (block.kind === 'list') {
     return (
-      <ul className="list-disc space-y-1.5 pl-5 text-[15px] leading-7 text-gray-700 break-keep">
+      <ul className="list-disc space-y-1.5 pl-5 text-[15px] leading-7 text-gray-700 break-keep break-words">
         {block.items.map((item, i) => (
           <li key={i}>
             {item.strong ? <strong className="font-semibold text-gray-900">{tx(item)}</strong> : tx(item)}
@@ -73,7 +79,7 @@ function Block({ block, isKo }: { block: PolicyBlock; isKo: boolean }) {
           {block.rows.map((row, i) => (
             <tr key={i} className="border-b border-gray-100 last:border-0 align-top">
               {row.map((cell, j) => (
-                <td key={j} className={`px-3 py-2.5 leading-6 break-keep ${j === 0 ? 'font-medium text-gray-900' : ''}`}>
+                <td key={j} className={`px-3 py-2.5 leading-6 break-keep break-words ${j === 0 ? 'font-medium text-gray-900' : ''}`}>
                   {tx(cell)}
                 </td>
               ))}
@@ -85,18 +91,22 @@ function Block({ block, isKo }: { block: PolicyBlock; isKo: boolean }) {
   );
 }
 
-function PolicyBody({ policy, isKo }: { policy: PrivacyPolicyVersion; isKo: boolean }) {
+/**
+ * `idPrefix`: 현행본이 아닌 판에 붙인다. 한 페이지에 여러 판이 있어도 조항 id(#cookies 등)가
+ * 겹치지 않아 목차 · 외부 링크가 늘 현행본으로 간다.
+ */
+function PolicyBody({ policy, isKo, idPrefix = '' }: { policy: PrivacyPolicyVersion; isKo: boolean; idPrefix?: string }) {
   return (
     <div className="space-y-10">
       <div className="space-y-3">
         {policy.intro.map((b, i) => (
-          <p key={i} className="text-[15px] leading-7 text-gray-700 break-keep">
+          <p key={i} className="text-[15px] leading-7 text-gray-700 break-keep break-words">
             {isKo ? b.ko : b.en}
           </p>
         ))}
       </div>
       {policy.sections.map((s) => (
-        <section key={s.id} id={s.id} className="scroll-mt-24 space-y-4">
+        <section key={s.id} id={`${idPrefix}${s.id}`} className="scroll-mt-24 space-y-4">
           <h2 className="text-lg md:text-xl font-bold text-gray-900">{isKo ? s.title.ko : s.title.en}</h2>
           {s.blocks.map((b, i) => (
             <Block key={i} block={b} isKo={isKo} />
@@ -111,7 +121,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const isKo = locale === 'ko';
-  const [current, ...previous] = privacyPolicies;
+  const today = seoulDate();
+  const current = policyInEffect(today);
+  const upcoming = upcomingPolicies(today);
+  const previous = previousPolicies(today);
 
   return (
     <>
@@ -124,7 +137,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
       <article className="bg-white px-4 pt-10 pb-20 md:pt-14">
         <div className="mx-auto max-w-4xl">
           {PRIVACY_POLICY_DRAFT && (
-            <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900 break-keep">
+            <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900 break-keep break-words">
               {isKo ? '초안입니다. 아직 시행되지 않았습니다.' : 'Draft. Not yet in effect.'}
             </p>
           )}
@@ -141,12 +154,47 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             )}
           </header>
 
+          {upcoming.map((v) => {
+            const date = formatDate(v.effectiveDate, isKo);
+            return (
+              <section
+                key={v.effectiveDate}
+                aria-labelledby={`notice-${v.effectiveDate}`}
+                className="mb-10 rounded-2xl border border-point/30 bg-point/5 p-5 md:p-6"
+              >
+                <h2 id={`notice-${v.effectiveDate}`} className="text-base md:text-lg font-bold text-gray-900 break-keep break-words">
+                  {isKo ? '개인정보 처리방침 개정 안내' : 'Upcoming changes to this policy'}
+                </h2>
+                <p className="mt-2 text-[15px] leading-7 text-gray-700 break-keep break-words">
+                  {isKo
+                    ? `${date}부터 개인정보 처리방침이 아래와 같이 바뀝니다. 그 전까지는 이 페이지의 현행 처리방침(${formatDate(current.effectiveDate, true)} 시행)이 적용됩니다.`
+                    : `This policy will change as follows from ${date}. Until then, the current policy on this page (effective ${formatDate(current.effectiveDate, false)}) applies.`}
+                </p>
+                {v.changes && (
+                  <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[15px] leading-7 text-gray-700 break-keep break-words">
+                    {v.changes.map((c, i) => (
+                      <li key={i}>{isKo ? c.ko : c.en}</li>
+                    ))}
+                  </ul>
+                )}
+                <details className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
+                  <summary className="cursor-pointer text-sm font-semibold text-gray-800 break-keep break-words">
+                    {isKo ? `${date} 시행 처리방침 전문 보기` : `Read the full policy effective ${date}`}
+                  </summary>
+                  <div className="mt-6">
+                    <PolicyBody policy={v} isKo={isKo} idPrefix={`v${v.effectiveDate}-`} />
+                  </div>
+                </details>
+              </section>
+            );
+          })}
+
           {/* 목차 */}
           <nav aria-label={isKo ? '목차' : 'Contents'} className="mb-10 rounded-2xl bg-gray-50 p-5">
             <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
               {current.sections.map((s) => (
                 <li key={s.id}>
-                  <a href={`#${s.id}`} className="text-gray-700 hover:text-point hover:underline break-keep">
+                  <a href={`#${s.id}`} className="text-gray-700 hover:text-point hover:underline break-keep break-words">
                     {isKo ? s.title.ko : s.title.en}
                   </a>
                 </li>
@@ -158,7 +206,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
 
           <section className="mt-12 border-t border-gray-200 pt-6">
             <h2 className="text-base font-bold text-gray-900">{isKo ? '사업자 정보' : 'Business information'}</h2>
-            <p className="mt-2 text-sm leading-6 text-gray-600 break-keep">{isKo ? BUSINESS_INFO.ko : BUSINESS_INFO.en}</p>
+            <p className="mt-2 text-sm leading-6 text-gray-600 break-keep break-words">{isKo ? BUSINESS_INFO.ko : BUSINESS_INFO.en}</p>
           </section>
 
           {previous.length > 0 && (
@@ -171,7 +219,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
                       {isKo ? `${formatDate(v.effectiveDate, true)} 시행본` : `Effective ${formatDate(v.effectiveDate, false)}`}
                     </summary>
                     <div className="mt-6">
-                      <PolicyBody policy={v} isKo={isKo} />
+                      <PolicyBody policy={v} isKo={isKo} idPrefix={`v${v.effectiveDate}-`} />
                     </div>
                   </details>
                 ))}

@@ -22,7 +22,7 @@ import {
   PERIOD_MINUTES,
   PLACE_LABEL,
   PLACE_OPTIONS,
-  PRIVACY_VERSION,
+  privacyVersionNow,
   PURCHASE,
   REPLY_OPTIONS,
   ROOMS,
@@ -408,7 +408,7 @@ export function buildPayload(input: {
       extra,
       answers: qa,
     },
-    consent: { privacy: c.consent, version: PRIVACY_VERSION },
+    consent: { privacy: c.consent, version: privacyVersionNow() },
     hp: c.hp,
   };
 }
