@@ -79,6 +79,24 @@ Tailwind with custom tokens in `tailwind.config.ts`: `primary` (blue #2563eb), `
 - i18n strings → `src/messages/{ko,en}.json`
 - Design/spec of the rebuild → `docs/superpowers/`
 
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues on `HY3D-co-ltd/hyedu-web`, through the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`, `spec`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Gate
+
+lint `none`, typecheck `npx tsc --noEmit`, test `npm run build` (no test suite; the static export build stands in). See `docs/agents/gate.md`.
+
 ---
 
 # 콘텐츠 관리 AI 에이전트 가이드
