@@ -1,7 +1,7 @@
 # 교육 신청 위저드: 질문 세트
 
 - 상태: **확정 (2026-11-17)**, 같은 날 Codex 리뷰 반영. 결정 사항은 §9, 공개 전 내부 시험은 §8, 화면 디자인은 §6.
-- 구현: 공개본 `/contact` (2026-11-17 공개), 미리보기 `/ko/contact/preview/` (`src/components/contact-wizard/`, `src/lib/contact-wizard/`, `src/data/contact-wizard.ts`). 처리방침은 `/privacy` (`src/data/privacy-policy.ts`).
+- 구현: 공개본 `/contact` (2026-11-17 공개 → 보완을 위해 같은 날 내림, §9), 미리보기 `/ko/contact/preview/` (`src/components/contact-wizard/`, `src/lib/contact-wizard/`, `src/data/contact-wizard.ts`). 처리방침은 `/privacy` (`src/data/privacy-policy.ts`).
 - 관련 문서: `docs/benchmark/2026-11-17-aigosu-inquiry-benchmark.md` §5.2 (처음 초안). 이 문서가 그 초안을 대체한다.
 - 보내는 형식: 접수 엔드포인트의 **요청 계약 v1**. 이 문서는 계약의 필드 이름과 응답만 쓴다. 계약 원문과 수신 측 처리 규칙은 비공개 운영 문서에 있다.
 
@@ -515,6 +515,7 @@ AI 인공지능(`ai`) / 코딩 · 로봇(`coding`) / 메이커: 3D · 드론 · 
 | 동의 방식 | 필수 체크박스 (처리방침 초안 부록 A) |
 | 공개 전 시험 | 같은 사이트의 숨은 미리보기 경로, 시험 접수는 `test: true` (§8) |
 | 공개 시점 (2026-11-17) | 의견 수렴(§8 공개 1번)을 기다리지 않고 공개한다. 처리방침은 법무 검토 전 초안 문구로 2026-11-17 시행본을 게시하고, 검토 결과가 나오면 새 판으로 고친다. 미리보기는 남기며, 배포 빌드에서는 시험 접수(T-)도 실제로 저장된다 |
+| 공개 중단 (2026-11-17) | 보완이 필요해 같은 날 `/contact`를 공개 전 페이지로 되돌린다. 처리방침 `/privacy`(Footer · 사이트맵), 신청 버튼의 `?program=` · `?type=` 파라미터(옛 페이지는 무시한다), 배포 워크플로의 엔드포인트 검사, 미리보기는 그대로 둔다. 다시 공개할 때는 §8 커트오버 1번(의견 반영 → 다시 시험)부터 밟고 `/contact`에 위저드를 되살린다 |
 
 따로 묻지 않고 기본값으로 진행하는 것:
 

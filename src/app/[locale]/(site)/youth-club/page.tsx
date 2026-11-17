@@ -238,8 +238,8 @@ export default async function YouthClubPage({
           </h2>
           <p className="text-white/80 text-base md:text-lg mb-8 max-w-xl mx-auto">
             {isKo
-              ? '학교·기관 단체 신청은 아래 버튼으로 접수하시거나 카카오톡 · 전화로 문의해 주세요.'
-              : 'Schools and institutions can apply with the button below, or reach us via KakaoTalk or phone.'}
+              ? '학교·기관 단체 신청은 카카오톡 또는 전화로 문의해 주세요.'
+              : 'Group applications from schools and institutions: please inquire via KakaoTalk or phone.'}
           </p>
           <Link
             href={`/${locale}/contact/?type=club`}

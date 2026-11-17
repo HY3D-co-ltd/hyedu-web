@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import Image from '@/components/ui/Img';
 import { setRequestLocale } from 'next-intl/server';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
-import ContactWizard, { WizardSkeleton } from '@/components/contact-wizard/ContactWizard';
 import DownloadQR from '@/components/ui/DownloadQR';
 import EmailLink from '@/components/ui/EmailLink';
 import { buildAlternates, buildOpenGraph } from '@/lib/seo';
@@ -22,8 +20,8 @@ export async function generateMetadata({
     openGraph: buildOpenGraph(locale, 'contact'),
     title: isKo ? '교육 신청/문의 | 한양미래연구소' : 'Contact / Apply | Hanyang Future Lab',
     description: isKo
-      ? '한양미래연구소 교육 신청 및 문의. 몇 가지 질문에 답하면 담당자가 견적과 교육계획안을 준비해 연락드립니다. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로도 문의하실 수 있습니다. 경진대회 대비반, 토요캠프 네이버 예약.'
-      : 'Apply to Hanyang Future Lab online: answer a few questions and we will reply with a quote and lesson plan. You can also reach us via KakaoTalk, email (hyedu0829@gmail.com), or phone (+82-70-8064-0829). Naver booking for Competition Prep and Saturday Camps.',
+      ? '한양미래연구소 교육 신청 및 문의. 카카오톡, 이메일(hyedu0829@gmail.com), 전화(070-8064-0829)로 문의하세요. 경진대회 대비반, 토요캠프 네이버 예약.'
+      : 'Apply and inquire at Hanyang Future Lab via KakaoTalk, email (hyedu0829@gmail.com), or phone (+82-70-8064-0829). Naver booking for Competition Prep and Saturday Camps.',
     keywords: isKo
       ? ['한양미래연구소 문의', 'AI교육', '로봇교육', '교육 신청', '카카오톡 문의', '교육 예약', '경진대회 대비반', '토요캠프']
       : ['Hanyang Future Lab contact', 'AI education', 'robot education', 'education apply', 'KakaoTalk inquiry', 'competition prep', 'Saturday camp'],
@@ -39,6 +37,8 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const isKo = locale === 'ko';
 
+  // 교육 신청 위저드는 2026-11-17 공개했다가 보완을 위해 같은 날 내렸다. 그동안 공개 전 페이지로 둔다.
+  // 위저드는 /contact/preview/ 에서 계속 시험한다. 다시 공개할 때는 1e0d22d · 09b47e3 의 배치를 되살린다.
   return (
     <>
       <BreadcrumbJsonLd
@@ -49,7 +49,7 @@ export default async function ContactPage({
       />
 
       {/* Page Title */}
-      <section className="pt-10 pb-8 md:pt-14 md:pb-10 bg-white text-center">
+      <section className="py-16 md:py-20 bg-white text-center">
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] px-4">
           <p className="text-sm text-gray-500 tracking-widest uppercase mb-2">
             Education Application / Education Inquiry
@@ -57,26 +57,7 @@ export default async function ContactPage({
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
             {isKo ? '교육 신청 / 문의' : 'Apply / Contact'}
           </h1>
-          <p className="mt-3 text-[15px] text-gray-500 break-keep">
-            {isKo
-              ? '몇 가지만 골라 주시면 담당자가 견적과 교육계획안을 준비해 연락드려요.'
-              : "Answer a few questions and we'll get back to you with a quote and lesson plan."}
-          </p>
-        </div>
-      </section>
-
-      {/* 교육 신청 위저드 (공개본). 사양 docs/superpowers/specs/2026-11-17-contact-wizard-questions.md §6.3 */}
-      <section className="bg-white pb-16">
-        <Suspense fallback={<WizardSkeleton />}>
-          <ContactWizard mode="live" locale={locale} />
-        </Suspense>
-      </section>
-
-      {/* 프로그램 안내 PDF */}
-      <section className="pb-12 px-4 bg-white">
-        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
-          {/* 휴대폰 화면에서는 QR을 찍을 수 없으므로 sm 이상에서만 QR을 보인다 */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-overview.pdf`}
               download
@@ -100,28 +81,16 @@ export default async function ContactPage({
               </svg>
               {isKo ? '모든 프로그램 한눈에 보기 (PDF)' : 'View All Programs (PDF)'}
             </a>
-            <div className="hidden sm:block">
-              <DownloadQR
-                url={PROGRAM_PDF_URL}
-                label={isKo ? 'QR로 받기' : 'Scan to Download'}
-                sublabel={isKo ? '모바일 카메라로 스캔' : 'Scan with your phone'}
-              />
-            </div>
+            <DownloadQR
+              url={PROGRAM_PDF_URL}
+              label={isKo ? 'QR로 받기' : 'Scan to Download'}
+              sublabel={isKo ? '모바일 카메라로 스캔' : 'Scan with your phone'}
+            />
           </div>
         </div>
       </section>
 
-      {/* 다른 방법으로 문의하기 */}
-      <section className="pt-12 pb-8 px-4 bg-white border-t border-gray-100 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-          {isKo ? '다른 방법으로 문의하기' : 'Other ways to reach us'}
-        </h2>
-        <p className="mt-2 text-[15px] text-gray-500 break-keep">
-          {isKo ? '전화나 카카오톡, 이메일로도 편하게 문의하세요.' : 'You can also call us or reach us on KakaoTalk or by email.'}
-        </p>
-      </section>
-
-      {/* Phone / Business Hours */}
+      {/* Phone / Business Hours — 전화 문의 유도를 위해 최상단 배치 */}
       <section className="pb-12 px-4 bg-white">
         <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px] flex justify-center">
           {/* 이미지 전체가 통화 링크 — 모바일에서 누르면 전화 앱이 번호를 띄운다 */}

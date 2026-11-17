@@ -9,7 +9,7 @@ import ContactWizard, { WizardSkeleton } from '@/components/contact-wizard/Conta
  * - 항상 test:true로 보낸다. 배포 빌드에는 접수 중계 주소가 들어 있으므로 시험 접수(T-)도 실제로 저장되고,
  *   수신 측은 이를 운영 상담 목록과 알림으로 보내지 않는다. 시험 기록은 사람이 지운다.
  *   중계 주소 없이 빌드하면(로컬 등) 보내지 않는 시험 모드로 동작한다.
- * - 공개본은 /contact 다(2026-11-17 공개). 이 경로는 질문을 고칠 때 다시 시험하도록 남겨 둔다(사양 §8 공개 6번).
+ * - 2026-11-17 /contact 에 공개했다가 보완을 위해 같은 날 내렸다. 다시 공개할 때까지 위저드는 이 경로에서만 돈다(사양 §9).
  */
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
