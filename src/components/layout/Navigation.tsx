@@ -20,20 +20,22 @@ export default function Navigation() {
 
   return (
     <nav>
-      {/* Desktop Navigation */}
-      <ul className="hidden md:flex items-center gap-1">
+      {/* Desktop Navigation — lg(1024px)부터. 메뉴 한 줄에 로고 · 언어 버튼까지 놓으려면 약 950~1000px가
+          필요해서(영어가 더 길다), 그보다 좁으면 영어는 화면 밖으로 넘치고 한국어는 메뉴가 두 줄로 접힌다.
+          그 아래 폭은 햄버거 메뉴를 쓴다. 메뉴를 늘리거나 번역을 바꾸면 1024px 영어 헤더에 들어가는지 확인할 것. */}
+      <ul className="hidden lg:flex items-center gap-1">
         {navigationItems.map((item: NavItem) => (
           <li key={item.labelKey} className="relative group">
             {item.href ? (
               <Link
                 href={buildHref(item.href)}
-                className="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="block px-3 xl:px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap"
               >
                 {t(item.labelKey)}
               </Link>
             ) : (
               <button
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-1 px-3 xl:px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap"
                 aria-haspopup="true"
               >
                 {t(item.labelKey)}
@@ -70,7 +72,7 @@ export default function Navigation() {
 
       {/* Mobile Hamburger Button */}
       <button
-        className="md:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+        className="lg:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors"
         onClick={() => setMobileOpen((prev) => !prev)}
         aria-label="Toggle navigation menu"
         aria-expanded={mobileOpen}
@@ -88,7 +90,7 @@ export default function Navigation() {
 
       {/* Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
           <ul className="py-2">
             {navigationItems.map((item: NavItem) => (
               <li key={item.labelKey}>
