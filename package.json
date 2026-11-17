@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "serve": "npx http-server out -p 3000 -c-1 --cors"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "swiper": "^11.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
     "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.0.0",
     "@types/qrcode": "^1.5.6",

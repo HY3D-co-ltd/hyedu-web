@@ -4,13 +4,13 @@ The machine checks that must all pass before publication, and before review when
 
 The autopilot retries failed gates and pre-review lint/typecheck checks once at the same HEAD with the same commands and selected slots. A passing retry completes that check call and updates its pass records and confirmation under the selected scope; it does not increase `gate_retries`, the count of hand-backs to the implementer for repair. A failing retry supplies its failed slot, command and output tail to the implementer, and the pair counts as one consecutive failure. Failures after a repair are also retried once. Results that end the run, including command timeouts, are not retried. The autopilot retains each first failure's slot, command and output tail, together with its retry outcome, in its local execution records for display even after it removes the ticket worktree.
 
-- **lint:** none
+- **lint:** `npm run lint`
 - **typecheck:** `npx tsc --noEmit`
 - **test:** `npm run build`
 
 Notes for this repo:
 
-- **lint is `none`.** There is no ESLint config, so `npm run lint` (`next lint`) stops at an interactive setup prompt instead of linting. `next lint` is also removed in Next.js 16. When lint is set up, add an `eslint.config.mjs`, run the ESLint CLI directly, and fill this slot.
+- **lint runs the ESLint CLI.** `npm run lint` is `eslint .` with `eslint.config.mjs` (`next/core-web-vitals` + `next/typescript`, adapted through `FlatCompat`). Errors fail the slot; warnings do not. `next build` lints too, so a lint error also fails the test slot.
 - **test is the build.** There is no test suite. `npm run build` is the only check CI runs (`.github/workflows/deploy.yml`): it type-checks and statically exports every page (`output: 'export'`), so it fails on a dynamic route without `generateStaticParams` or on anything the static export cannot serve. It needs no `.env.local`.
 - In a fresh worktree, run `npm ci` before the gate.
 
