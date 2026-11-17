@@ -62,8 +62,21 @@ export default async function ContactPage({
               ? '몇 가지만 골라 주시면 담당자가 견적과 교육계획안을 준비해 연락드려요.'
               : "Answer a few questions and we'll get back to you with a quote and lesson plan."}
           </p>
-          {/* 휴대폰 화면에서는 QR을 찍을 수 없으므로 sm 이상에서만 QR을 보여 위저드를 첫 화면 가까이 올린다 */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
+        </div>
+      </section>
+
+      {/* 교육 신청 위저드 (공개본). 사양 docs/superpowers/specs/2026-11-17-contact-wizard-questions.md §6.3 */}
+      <section className="bg-white pb-16">
+        <Suspense fallback={<WizardSkeleton />}>
+          <ContactWizard mode="live" locale={locale} />
+        </Suspense>
+      </section>
+
+      {/* 프로그램 안내 PDF */}
+      <section className="pb-12 px-4 bg-white">
+        <div className="mx-auto max-w-[1170px] 2xl:max-w-[1280px]">
+          {/* 휴대폰 화면에서는 QR을 찍을 수 없으므로 sm 이상에서만 QR을 보인다 */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/files/2026-programs-overview.pdf`}
               download
@@ -96,13 +109,6 @@ export default async function ContactPage({
             </div>
           </div>
         </div>
-      </section>
-
-      {/* 교육 신청 위저드 (공개본). 사양 docs/superpowers/specs/2026-11-17-contact-wizard-questions.md §6.3 */}
-      <section className="bg-white pb-16">
-        <Suspense fallback={<WizardSkeleton />}>
-          <ContactWizard mode="live" locale={locale} />
-        </Suspense>
       </section>
 
       {/* 다른 방법으로 문의하기 */}
