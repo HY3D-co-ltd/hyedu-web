@@ -12,7 +12,7 @@ export type SubmitResult =
   | { kind: 'ok'; receipt: string }
   /** 400이고 화면 칸을 가리키는 오류 */
   | { kind: 'invalid'; fields: string[] }
-  /** 저장 실패가 확실함 (502 save_failed) */
+  /** 저장 실패가 확실함 (500 save_failed) */
   | { kind: 'save_failed' }
   /** 결과를 모름 (네트워크 오류 · 시간 초과). 저장됐을 수 있다 */
   | { kind: 'unknown' }
@@ -56,7 +56,9 @@ async function classify(res: Response, mode: WizardMode): Promise<SubmitResult> 
     const fields = body.errors.filter((e): e is string => typeof e === 'string' && FIELD_ERRORS.includes(e));
     if (fields.length) return { kind: 'invalid', fields };
   }
-  if (res.status === 502 && body.reason === 'save_failed') return { kind: 'save_failed' };
+  // 저장 실패는 500이다. 502는 n8n Cloud 앞단(Cloudflare)이 자기 HTML 오류 페이지로 바꾸고 CORS 헤더를 떨어뜨려
+  // 브라우저가 네트워크 오류로 보게 되므로 중계가 쓰지 않는다 (hyedu-brain 웹 접수 계약 v1).
+  if (res.status === 500 && body.reason === 'save_failed') return { kind: 'save_failed' };
   return { kind: 'error' };
 }
 
