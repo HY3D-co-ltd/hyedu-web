@@ -55,6 +55,10 @@ Do not try to read Firestore in a server component; it will run at build time an
 
 When adding a new page type with structured data potential, add a new JsonLd helper rather than inlining `<script type="application/ld+json">` in the page.
 
+### Analytics (GA4)
+
+`src/components/analytics/GoogleAnalytics.tsx` is mounted in `[locale]/layout.tsx` (so `/admin` is not tracked). It renders nothing unless `NEXT_PUBLIC_GA_ID` (a `G-…` measurement ID) is set at build time — in CI that comes from the repo variable checked in `deploy.yml`. Page views, outbound `click`, and `file_download` (PDFs) come from GA4 Enhanced Measurement. `LinkClickTracker` adds `click_phone`, `click_email`, `click_naver_booking`, `click_kakao_channel` through one document-level listener, so links inside board HTML count too. To track a new link type, extend `classifyLink` in `src/lib/analytics.ts`; don't add per-link `onClick`. A link whose href doesn't reveal its intent declares it with `data-track="<event>"` (e.g. `EmailLink`, whose desktop href is a Gmail compose URL). Renaming an event breaks its key-event setting in the GA4 admin.
+
 ### Layout composition
 
 `[locale]/layout.tsx` always renders `Header`, `Footer`, `Popup`, and `OrganizationJsonLd`. Page components render only their own content (hero + sections). Shared section components live in `src/components/sections/` and are designed for the homepage — don't import them into inner pages unless intentionally reusing a section.
