@@ -23,14 +23,12 @@ export type SubmitResult =
 const FIELD_ERRORS = ['org.name', 'contact.name', 'contact.mobile', 'contact.email', 'consent'];
 
 /**
- * 접수번호 형식. 번호는 중계가 짓는다.
- * - 새 형식: 접수일(KST YYMMDD) + 그날 순번 3자리. 공개본 `261117-001`, 미리보기 `T-261117-001`.
- * - 옛 형식: `W-`/`T-` + 제출ID 앞 8자리(16진수 대문자).
- * 중계를 새 형식으로 바꾸는 동안(hyedu-brain#274) 둘 다 받는다. 형식이 안 맞으면 저장됐어도 오류 화면이 뜨므로
- * 이 검사를 먼저 넓혀 배포하고 중계를 바꾼다. 중계가 새 형식만 내는 것을 확인하면 옛 형식을 지운다.
+ * 접수번호 형식. 번호는 중계가 짓는다: 접수일(KST YYMMDD) + 그날 순번 3자리.
+ * 공개본 `261117-001`, 미리보기 `T-261117-001` (hyedu-brain#274, 2026-11-17 전환).
+ * 형식이 안 맞으면 저장됐어도 오류 화면이 뜨므로, 형식을 바꿀 때는 이 검사를 먼저 넓혀 배포한 뒤 중계를 바꾼다.
  */
 function receiptPattern(mode: WizardMode): RegExp {
-  return mode === 'preview' ? /^T-(?:\d{6}-\d{3}|[0-9A-F]{8})$/ : /^(?:\d{6}-\d{3}|W-[0-9A-F]{8})$/;
+  return mode === 'preview' ? /^T-\d{6}-\d{3}$/ : /^\d{6}-\d{3}$/;
 }
 
 async function postOnce(endpoint: string, body: string): Promise<Response> {
