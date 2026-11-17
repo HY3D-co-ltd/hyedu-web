@@ -77,7 +77,7 @@ function GithubConnectionBanner() {
           ⚠️ 처음이신가요? GitHub 연결이 필요해요
         </p>
         <p className="text-sm text-amber-800">
-          글을 저장하려면 먼저 "연결 설정" 페이지에서 GitHub 토큰을 등록해주세요.
+          글을 저장하려면 먼저 &quot;연결 설정&quot; 페이지에서 GitHub 토큰을 등록해주세요.
           한 번만 하시면 됩니다.
         </p>
       </div>

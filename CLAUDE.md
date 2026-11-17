@@ -14,7 +14,7 @@ The detailed design spec lives at `docs/superpowers/specs/2026-04-14-hyedu-websi
 - `npm run build` — production build; emits a fully static site to `out/` because of `output: 'export'` in `next.config.ts`.
 - `npm run start` — serves via `next start` (only useful for non-exported testing; prefer `serve` for parity with production).
 - `npm run serve` — serves the exported `out/` directory on port 3000 via `http-server`. Use this to validate what GitHub Pages will actually ship.
-- `npm run lint` — ESLint (`eslint-config-next`).
+- `npm run lint` — ESLint CLI (`eslint .`) with `eslint.config.mjs` (`next/core-web-vitals` + `next/typescript`). `next build` also lints, so a lint error fails the build.
 
 Type-checking is done via `tsc --noEmit` implicitly through the build; there is no separate script. Run `npx tsc --noEmit` to check types without building.
 
@@ -95,7 +95,7 @@ Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents
 
 ### Gate
 
-lint `none`, typecheck `npx tsc --noEmit`, test `npm run build` (no test suite; the static export build stands in). See `docs/agents/gate.md`.
+lint `npm run lint`, typecheck `npx tsc --noEmit`, test `npm run build` (no test suite; the static export build stands in). See `docs/agents/gate.md`.
 
 ---
 
