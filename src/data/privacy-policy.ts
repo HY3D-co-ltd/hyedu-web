@@ -533,9 +533,12 @@ function revise(
   };
 }
 
-/** 2026-11-24 시행본. 홈페이지 이용 통계(Google Analytics)를 10장에 더한다. */
-const POLICY_2026_11_24 = revise(POLICY_2026_11_17, {
-  effectiveDate: '2026-11-24',
+/**
+ * 2026-11-18 시행본. 홈페이지 이용 통계(Google Analytics)를 10장에 더한다.
+ * 2026-11-17에 「11-24 시행」으로 알렸다가, GA4 수집을 바로 시작하려고 운영자 결정으로 시행일을 11-18로 당겼다.
+ */
+const POLICY_2026_11_18 = revise(POLICY_2026_11_17, {
+  effectiveDate: '2026-11-18',
   analyticsCookies: true,
   changes: [
     {
@@ -604,7 +607,7 @@ const POLICY_2026_11_24 = revise(POLICY_2026_11_17, {
         {
           kind: 'list',
           items: [
-            { ko: '이 처리방침은 2026년 11월 24일부터 적용합니다.', en: 'This policy takes effect on November 24, 2026.' },
+            { ko: '이 처리방침은 2026년 11월 18일부터 적용합니다.', en: 'This policy takes effect on November 18, 2026.' },
             {
               ko: '내용이 바뀌면 시행 7일 전부터 홈페이지로 알리며, 이전 처리방침은 이 페이지에서 볼 수 있습니다.',
               en: 'Any change will be announced on the website at least 7 days before it takes effect, and previous versions remain available on this page.',
@@ -616,7 +619,7 @@ const POLICY_2026_11_24 = revise(POLICY_2026_11_17, {
   ],
 });
 
-export const privacyPolicies: PrivacyPolicyVersion[] = [POLICY_2026_11_24, POLICY_2026_11_17];
+export const privacyPolicies: PrivacyPolicyVersion[] = [POLICY_2026_11_18, POLICY_2026_11_17];
 
 // ─── 시행일로 판 고르기 ──────────────────────────────────────────
 
