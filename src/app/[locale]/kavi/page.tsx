@@ -433,34 +433,41 @@ export default async function KaviLandingPage({
             </p>
           </div>
           <div className="rounded-2xl border border-gray-100 bg-[#f7f9fc] p-7 md:p-10">
-            <div className="flex justify-center mb-8 pb-8 border-b border-gray-200">
+            <div className="mx-auto flex max-w-sm items-center justify-center gap-4 mb-8 pb-8 border-b border-gray-200 sm:gap-8">
               <Image
                 src="/images/kavi/logo.png"
                 alt="한국벤처혁신학회 KAVI"
                 width={218}
                 height={69}
-                className="h-10 md:h-12 w-auto"
+                className="h-auto w-[48%] max-w-[170px] min-w-0 object-contain"
+              />
+              <Image
+                src="/images/logo/logo.jpg"
+                alt="한양미래연구소"
+                width={140}
+                height={48}
+                className="h-auto w-[42%] max-w-[140px] min-w-0 object-contain"
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <a
-                href="tel:02-521-6745"
+                href="tel:070-8064-0829"
                 className="group flex flex-col items-center text-center rounded-2xl bg-white border border-gray-100 px-6 py-8 shadow-sm hover:shadow-md hover:border-[#1B4DA1]/40 transition-all"
               >
                 <span className="text-3xl mb-3">📞</span>
                 <span className="text-[13px] font-bold text-gray-400 tracking-widest mb-2">대표번호</span>
                 <span className="text-2xl md:text-3xl font-extrabold text-[#1B4DA1] group-hover:underline">
-                  02-521-6745
+                  070-8064-0829
                 </span>
               </a>
               <a
-                href="mailto:mail.kavi@kavi.or.kr"
+                href="mailto:hyedu0829@gmail.com"
                 className="group flex flex-col items-center text-center rounded-2xl bg-white border border-gray-100 px-6 py-8 shadow-sm hover:shadow-md hover:border-[#1B4DA1]/40 transition-all"
               >
                 <span className="text-3xl mb-3">✉️</span>
                 <span className="text-[13px] font-bold text-gray-400 tracking-widest mb-2">이메일</span>
                 <span className="text-lg md:text-2xl font-extrabold text-[#1B4DA1] group-hover:underline break-all">
-                  mail.kavi@kavi.or.kr
+                  hyedu0829@gmail.com
                 </span>
               </a>
             </div>
@@ -474,7 +481,7 @@ export default async function KaviLandingPage({
           <p className="text-[15px] font-bold text-white mb-2">한국벤처혁신학회 (KAVI)</p>
           <p className="text-[13px] leading-relaxed">
             Korean Academy of Venture Innovation<br />
-            02-521-6745 · mail.kavi@kavi.or.kr
+            교육 문의 (한양미래연구소): <a href="tel:070-8064-0829" className="hover:underline">070-8064-0829</a> · <a href="mailto:hyedu0829@gmail.com" className="hover:underline">hyedu0829@gmail.com</a>
           </p>
           <p className="text-[12px] text-white/40 mt-5">
             교육 기획·운영: 한양미래연구소 &nbsp;|&nbsp; © 2026 한국벤처혁신학회. All rights reserved.
